@@ -1,0 +1,32 @@
+{
+  "name": "lcw-sls-poc",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "dynamodb:install": "sls dynamodb install",
+    "dynamodb:setup": "sls dynamodb migrate && sls dynamodb seed",
+    "start": "sls offline start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "graphql-auth-transformer": "^7.2.22",
+    "graphql-connection-transformer": "^5.2.22",
+    "graphql-dynamodb-transformer": "^7.2.22",
+    "graphql-elasticsearch-transformer": "^5.2.23",
+    "graphql-function-transformer": "^3.3.14",
+    "graphql-key-transformer": "^3.2.23",
+    "graphql-transformer-core": "^7.4.5",
+    "serverless-appsync-plugin": "^1.12.1",
+    "serverless-appsync-simulator": "^0.19.3",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-esbuild": "^1.26.2",
+    "serverless-offline": "^8.8.0",
+    "serverless-offline-local-authorizers-plugin": "^1.2.0",
+    "serverless-plugin-offline-dynamodb-stream": "^1.0.20",
+    "serverless-s3-local": "^0.6.21",
+    "cfn-resolver-lib": "1.1.7"
+  }
+}

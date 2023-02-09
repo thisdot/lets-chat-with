@@ -1,0 +1,43 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  @include media_breakpoint_down(lg) {
+    position: relative;
+  }
+
+  .shape {
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--primary-500) 40%, var(--primary-500) 100%);
+    position: absolute;
+    z-index: -1;
+
+    @include media_breakpoint_down(sm) {
+      transform: translateX(-50vw);
+    }
+
+    @include media_breakpoint_down(md) {
+      width: 200vw;
+      height: 200vw;
+      top: -100vw;
+    }
+
+    @include media_breakpoint_up(md) {
+      width: 88vw;
+      height: 88vw;
+      top: -30vw;
+    }
+
+    @include media_breakpoint_up(lg) {
+      width: 68vw;
+      height: 68vw;
+      top: -25vw;
+    }
+
+    @include media_breakpoint_up(xl) {
+      width: calc(1300px / 5 * 3);
+      height: calc(1300px / 5 * 3);
+      top: calc(-1124px / 5);
+      transform: translateX(-3rem);
+    }
+  }
+}

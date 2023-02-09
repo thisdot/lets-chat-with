@@ -1,0 +1,467 @@
+{
+  "global": {
+    "back": "Go back",
+    "save": "Save",
+    "openMenuA11y": "Open menu. To close the menu press Escape",
+    "closeMenu": "Close menu"
+  },
+  "conferences": {
+    "title": "My conferences",
+    "conferences": {
+      "selectCard": "Select {{title}} card",
+      "joinConference": "Join Conference",
+      "empty": {
+        "heading": "Welcome to Let's Chat With!",
+        "text": "The best way to get started is to join a conference. You can scan a QR Code or use the conference URL provided by the organizers using the button below. Check your email or the check-in desk for more information."
+      },
+      "noResults": "No Conferences yet, loading..."
+    },
+    "share": {
+      "modal": {
+        "shareViaLink": "Share via link",
+        "notification": {
+          "title": "Successful copy",
+          "message": "Share url is copied to your clipboard",
+          "errorTitle": "Clipboard error",
+          "errorMessage": "Share url could not be copied to your clipboard"
+        }
+      }
+    },
+    "join": {
+      "modal": {
+        "title": "Join a conference",
+        "description": "To join your conference, look for the QR Code or conference URL. Organizers will typically email this to you before the conference starts. You can also ask another attendee to share the QR Code with you via the \"Share\" option. Alternatively, check the conference check-in desk for joining info.",
+        "scanAction": "Scan QR code",
+        "enterConferenceUrlAction": "Enter conference URL"
+      },
+      "byQR": {
+        "toggleCameras": "Toggle camera",
+        "failed": "QR Scan failed",
+        "error": "An error occurred during QR Scan",
+        "allowCameraTitle": "Permission denied",
+        "allowCameraMessage": "Camera access must be granted to scan QR codes",
+        "askPermission": "Ask for permission"
+      },
+      "byUrl": {
+        "enterUrl": "Enter Conference URL",
+        "inputLabel": "conference URL",
+        "continue": "Continue",
+        "already.join.conference": "You already joined this conference!"
+      },
+      "wizard": {
+        "basic": {
+          "title": "Tell us some basic info",
+          "fields": {
+            "fullName": {
+              "placeholder": "Your full name"
+            },
+            "title": {
+              "placeholder": "Your title"
+            },
+            "company": {
+              "placeholder": "Company"
+            },
+            "pronouns": {
+              "placeholder": "Preferred pronouns"
+            },
+            "specialOffers": {
+              "label": "Subscribe for special tickets",
+              "description": "Get special offers for related conference tickets save up to 75%"
+            }
+          }
+        },
+        "socials": {
+          "title": "Add social networks",
+          "description": "Your socials will be shown on your profile page. Make your profile more attractive.",
+          "fields": {
+            "linkedin": {
+              "placeholder": "username"
+            },
+            "twitter": {
+              "placeholder": "username"
+            },
+            "facebook": {
+              "placeholder": "username"
+            }
+          }
+        },
+        "uploadPhoto": {
+          "title": "Upload your photo",
+          "description": "Snap a selfie or upload your favorite headshot. It doesn't have to be glamorous."
+        },
+        "bio": {
+          "title": "Add your Bio",
+          "description": "Profiles with Bio attract more target connections."
+        },
+        "actions": {
+          "next": "Next",
+          "skip": "Skip",
+          "continue": "Continue"
+        },
+        "lookingFor": {
+          "title": "What are you looking for?",
+          "description": "Help us to find the best chatters for you."
+        },
+        "whoIAm": {
+          "title": "Who are you?",
+          "description": "Help us to find the best chatters for you."
+        }
+      }
+    },
+    "connect": {
+      "findChatters": "Find your chatters",
+      "reviewChatterInterests": "Review chatter interests to find networking opportunities that align with your interests. If the other chatter shows interest as well, we'll connect you to continue the conversation.",
+      "passChatters": "Pass and see more",
+      "notInterested": "Not interested in connecting with someone? That's ok! You can pass and see other chatters to connect with.",
+      "connectButton": "Connect",
+      "nextButton": "Next"
+    },
+    "conferenceSwitcher": {
+      "changeConference": "Change Conference"
+    }
+  },
+  "matches": {
+    "profile": {
+      "chatWith": "Chat with {{name}}"
+    }
+  },
+  "messages": {
+    "search": "Search",
+    "placeholderMessage": "Say hi to start a conversation!",
+    "banner": {
+      "interestedBecause": "Chatter is interested in talking to you because",
+      "lookingFor": "You're looking for",
+      "interests": "Your interests",
+      "matchedWith": "You connected with {{ name }} {{ time }}"
+    },
+    "messagePlaceholder": "Type a message...",
+    "firstMessage": "Write the first message to start a conversation.",
+    "today": "Today"
+  },
+  "connect": {
+    "button": {
+      "undo": "Undo",
+      "skip": "Skip",
+      "like": "Let's Chat"
+    },
+    "empty": {
+      "title": "Look at you!",
+      "alt": "No connect result",
+      "description": "You've gone through all the connection suggestions, start chatting with your matches or check back soon"
+    },
+    "card": {
+      "lookingFor": "Looking for...",
+      "whoIAm": "Who I am",
+      "interests": "Interests"
+    },
+    "reasons": {
+      "selectRoles": "Select role(s)",
+      "thatFitYou": "is looking for that fit you",
+      "interestsToChatAbout": "What interests you'd like to chat about?",
+      "letsChatAbout": "Let's chat about...",
+      "youllBeInformedIf": "You'll be informed if",
+      "wantsToChatWithYou": "wants to chat with you."
+    },
+    "matched": {
+      "chatWith": "Chat with {{name}}",
+      "chattingInterests": "Chatting interests",
+      "role": "Role",
+      "youAreChatters": "You are chatters!"
+    },
+    "new": {
+      "newConnection": "New connection",
+      "tapToChat": "Tap to chat with"
+    },
+    "connections": {
+      "removeConnection": "Remove Connection",
+      "reportAndRemoveConnection": "Report and Remove Connection"
+    }
+  },
+  "chipList": {
+    "editChip": "Edit {{title}}"
+  },
+  "profile": {
+    "view": {},
+    "edit": {
+      "title": "Edit my profile",
+      "labels": {
+        "name": "Name",
+        "title": "Title",
+        "company": "Company",
+        "pronouns": "Preferred Pronouns",
+        "about": "About"
+      },
+      "chipTitles": {
+        "lookingFor": "Looking for...",
+        "whoIAm": "Who I am",
+        "interests": "Interests"
+      },
+      "socialsLabel": "On the web",
+      "maxNumberModal": {
+        "header": "Maximum number of {{entityName}} reached",
+        "message": "You may add a total of {{maxNumber}} {{entityName}}. Please remove one to add another.",
+        "button": "Got It"
+      },
+      "interests": {
+        "title": "My interests"
+      },
+      "connections": {
+        "title": "My connection types",
+        "headerText": "What are you looking for?",
+        "helpUsFindBestMatches": "Help us to find the best chatters for you.",
+        "removeConnection": "Remove Connection",
+        "reportAndRemoveConnection": "Report and Remove Connection"
+      },
+      "lookingFor": {
+        "title": "What are you looking for?",
+        "description": "Help us to find the best chatters for you."
+      },
+      "whoIAm": {
+        "title": "Who am I?",
+        "headerText": "Who am I?",
+        "helpUsFindBestMatches": "Help us to find the best chatters for you."
+      },
+      "save": "Save",
+      "back": "Back"
+    }
+  },
+  "settings": {
+    "main": {
+      "title": "Settings"
+    },
+    "navigation": {
+      "settings": "Settings",
+      "email": "Change email",
+      "password": "Change password",
+      "notifications": "Notifications",
+      "help": "Need help?",
+      "houseRules": "House rules",
+      "terms": "Terms"
+    },
+    "email": {
+      "title": "Change email",
+      "description": "By verifying a new email, your current one will no longer be associated with your account.",
+      "newEmail": "New email",
+      "buttons": {
+        "sendVerification": "Send Verification",
+        "verify": "Verify"
+      },
+      "back": "Back"
+    },
+    "help": {
+      "title": "Need help?",
+      "back": "Back",
+      "contactSupport": "Contact Support"
+    },
+    "houseRules": {
+      "title": "Welcome to LetsChatWith.",
+      "description": "Please follow these house rules",
+      "back": "Back",
+      "termsOfService": "Terms of Service",
+      "iHaveReadAndAcceptedThe": "I have read and accepted the "
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Set your notification settings here.",
+      "labels": {
+        "matches": "toggle notifications for matches",
+        "messages": "toggle notifications for messages",
+        "subscribe": "subscribe for special tickets"
+      },
+      "newMatches": "New matches",
+      "messages": "Messages",
+      "subscribe": "Subscribe for special tickets",
+      "specialOffers": "Get special offers for related conference tickets save up to 75%",
+      "back": "Back"
+    },
+    "password": {
+      "title": "Change password",
+      "description": "Set a new password for your account.",
+      "inputs": {
+        "old": "Old password",
+        "new": "New password"
+      },
+      "saveButton": "Save Changes",
+      "back": "Back"
+    },
+    "messages": {
+      "userUpdateFailed": "Could not update user settings, please try again later.",
+      "userUpdateSuccess": "Settings successfully updated.",
+      "back": "Back"
+    }
+  },
+  "shared": {
+    "noMatch": {
+      "title": "Find your matches first",
+      "step1": "You request to chat",
+      "step2": "They request to chat too",
+      "step3": "It's a match, you can chat",
+      "startConnecting": "Start connecting",
+      "altText": "No match results"
+    },
+    "profileCard": {
+      "lookingFor": "Looking for",
+      "whoIAm": "Who I am",
+      "interests": "Interests",
+      "socials": "On the web",
+      "edit": "Edit",
+      "profile": "Profile",
+      "matches": "Matches"
+    },
+    "landingView": {
+      "alreadyAMember": "Already a member?",
+      "signin": "Login",
+      "newBusiness": "Find new business connects",
+      "atConf": "at conferences you attend"
+    }
+  },
+  "menu": {
+    "share": {
+      "title": "Share"
+    },
+    "conferences": {
+      "title": "Conferences"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "support": {
+      "title": "Support"
+    },
+    "logout": {
+      "title": "Logout"
+    }
+  },
+  "signin": {
+    "main": {
+      "skipText": "skip to main content",
+      "heading": "Login to LetsChatWith",
+      "description": "Welcome to LetsChatWith! Login to see your enrolled conferences or join a new one",
+      "signup": "Sign Up",
+      "signin": "Sign In",
+      "noAccountYet": "Don't have an account?",
+      "submitBtnLabel": "Sign in",
+      "header": {
+        "goingAbove": "Going above and beyond the",
+        "appExperience": "typical event app experience"
+      },
+      "forgotPassword": "Forgot your password?",
+      "recoverPassword": "Recover password?"
+    }
+  },
+  "signup": {
+    "welcomeScreen": {
+      "description": "Be the best explorer in next-gen technologies!",
+      "signup": "Sign Up",
+      "signin": "Sign In",
+      "alreadyAMember": "Already a member?"
+    },
+    "terms": {
+      "welcome": "Welcome to LetsChatWith.",
+      "followRules": "Please follow these house rules",
+      "iAgree": "I Agree",
+      "empathyTitle": "I will have empathy",
+      "empathyText": "We all express ourselves differently. Do not judge.",
+      "termsOfService": "Terms of Service",
+      "iHaveReadAndAcceptedThe": "I have read and accepted the "
+    },
+    "verify": {
+      "checkYourEmail": "Check your email",
+      "verificationMessage": "In order to verify your account, type the the security code that has been just sent to your email."
+    }
+  },
+  "userAuth": {
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Invalid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Minimum length of 8 required"
+      }
+    },
+    "input": {
+      "email": {
+        "placeholder": "Enter your email",
+        "label": "Email address"
+      },
+      "password": {
+        "placeholder": "Password",
+        "label": "Password",
+        "revealed": "Password is revealed",
+        "concealed": "Password is concealed"
+      }
+    },
+    "toaster": {
+      "error": {
+        "title": "Error"
+      }
+    },
+    "forgotPassword": "Forgot your password?"
+  },
+  "resetPassword": {
+    "notifications": {
+      "resetFailed": "Reset Password Failed",
+      "resetSuccess": "Your password has been changed!"
+    },
+    "newPassword": {
+      "passwordNotLongEnough": "Passwords not long enough. Password should have at least {{minPasswordLength}} characters",
+      "passwordsMatchError": "Passwords don't match",
+      "newPassword": "New password",
+      "setNewPasswordText": "Set a new password for your account.",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "confirm": "Confirm"
+    },
+    "currentEmail": {
+      "passwordRecovery": "Password recovery",
+      "enterEmail": "Enter your email and we will send you a security code which allows you to change your password.",
+      "yourEmail": "Email",
+      "placeholderEmail": "Enter your email here",
+      "next": "Next"
+    },
+    "securityCode": {
+      "invalidCode": "Wrong code, make sure your entered the right code.",
+      "resend": "Resend Code",
+      "next": "Next"
+    }
+  },
+  "securityCode": {
+    "invalidCode": "Wrong code, make sure your entered the right code.",
+    "resend": "Resend Code",
+    "next": "Next"
+  },
+  "resend": {
+    "notifications": {
+      "success": "Code resend successfully, please check your email."
+    }
+  },
+  "fileUpload": {
+    "fail": "File upload has failed, please try again later.",
+    "success": "File uploaded successfully."
+  },
+  "report": {
+    "title": "Report",
+    "back": "Go back",
+    "successMsg": "Thanks for letting us know!",
+    "successSubMsg": "If we find that this account is violating the LetsChatWith Rules, we will take action on it.",
+    "reasons": {
+      "title": "Why do you want to report this person?",
+      "subTitle": "Your report will be confidential",
+      "inappropriateMessage": "Inappropriate Message",
+      "inappropriatePhoto": "Inappropriate Photo",
+      "spam": "Feels like spam"
+    },
+    "other": {
+      "title": "Please specify",
+      "placeholder": "Describe why are you reporting this person.",
+      "submit": "Submit"
+    }
+  },
+  "banned": {
+    "title": "You've been banned",
+    "alt": "banned user",
+    "reason": "Reason"
+  }
+}

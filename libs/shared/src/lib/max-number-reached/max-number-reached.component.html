@@ -1,0 +1,10 @@
+<div cdkTrapFocus cdkTrapFocusAutoCapture *transloco="let t; read: 'profile.edit.maxNumberModal'">
+  <h2>{{ t('header', { entityName: data.entityName }) }}</h2>
+  <p>
+    {{ t('message', { maxNumber: data.maxNumber, entityName: data.entityName }) }}
+    You may add a total of {{ data.maxNumber }} {{ data.entityName }}. Please remove one to add
+    another
+  </p>
+  <!-- TODO: resolve issues that prevent from using cm-button here -->
+  <button cdkFocusInitial (click)="close()">{{ t('button') }}</button>
+</div>

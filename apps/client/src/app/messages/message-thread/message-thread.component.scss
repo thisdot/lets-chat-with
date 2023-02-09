@@ -1,0 +1,70 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+.cm-message-thread {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // The total heigh minus the header and footer
+  height: calc(100vh - 107px);
+  // padding: 0 1rem;
+
+  @include media_breakpoint_up(md) {
+    padding: 0;
+    padding-top: 4rem;
+    height: calc(100vh - 4rem);
+  }
+
+  .cm-message-list {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--grey-100);
+    padding: 0 1rem;
+    padding-bottom: 0.5rem;
+
+    @include media_breakpoint_up(md) {
+      background-color: inherit;
+      padding: 0;
+    }
+  }
+
+  &__back-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__user-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--grey-400);
+    margin-left: 1.45rem;
+    margin-right: 0.75rem;
+
+    @include media_breakpoint_up(md) {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__user-name {
+    @extend %h200;
+    color: var(--grey-900);
+  }
+
+  &__no-messages {
+    margin: 0 16px auto 16px;
+  }
+}
+
+cm-message-box {
+  justify-self: flex-end;
+}

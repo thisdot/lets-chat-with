@@ -1,0 +1,19 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+@import '../../../../../../../shared/styles/src/lib/breakpoints';
+
+.empty-indicator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 25px;
+
+  &__title {
+    @extend %h400;
+  }
+
+  &__subtitle {
+    @extend %text300;
+    text-align: center;
+  }
+}

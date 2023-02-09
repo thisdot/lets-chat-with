@@ -1,0 +1,66 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/src/test.ts",
+        "tsConfig": "libs/shared/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/karma.conf.js",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "libs/shared/src/assets/",
+            "output": "./assets/"
+          }
+        ]
+      },
+      "configurations": {
+        "CI": {
+          "watch": false,
+          "progress": false,
+          "browsers": "HeadlessChrome"
+        }
+      },
+      "outputs": ["coverage/libs/shared"]
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/shared/.storybook",
+        "browserTarget": "shared:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputDir": "dist/storybook/shared",
+        "configDir": "libs/shared/.storybook",
+        "browserTarget": "shared:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,18 @@
+projects:
+  confMatch:
+    schemaPath: serverless/appsync-schema.graphql
+    includes:
+      - libs/api/src/graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: angular
+        generatedFileName: libs/api/src/lib/api.service.ts
+        docsFilePath: libs/api/src/graphql
+        frontend: javascript
+        framework: angular
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

@@ -1,0 +1,10 @@
+{
+  "request": {
+    "codeParameter": "code123",
+    "userAttributes": {
+      "email": "test@email",
+      "sub": "testOwner"
+    }
+  },
+  "response": {}
+}

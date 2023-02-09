@@ -1,0 +1,24 @@
+<div class="settings-page" *transloco="let t; read: 'settings.navigation'">
+  <div class="settings-page__content">
+    <div class="settings-page__content__wrapper">
+      <div class="settings-page__content__links">
+        <a
+          cm-list-item
+          icon="LeftChevron"
+          (click)="onBack()"
+          class="settings-page__content__links__title"
+          >{{ t('settings') }}</a
+        >
+        <a cm-list-item routerLink="/settings/email" icon="Email">{{ t('email') }}</a>
+        <a cm-list-item routerLink="/settings/password" icon="Lock">{{ t('password') }}</a>
+        <a cm-list-item routerLink="/settings/notifications" icon="Settings">{{
+          t('notifications')
+        }}</a>
+        <!--        TODO: re-enable this in #707 -->
+        <!--        <a cm-list-item routerLink="/settings/help" icon="Question">{{ t('help') }}</a>-->
+        <a cm-list-item routerLink="/settings/house-rules" icon="List">{{ t('houseRules') }}</a>
+        <a cm-list-item icon="List">{{ t('terms') }}</a>
+      </div>
+    </div>
+  </div>
+</div>

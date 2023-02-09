@@ -1,0 +1,37 @@
+<ng-container *transloco="let t; read: 'shared.landingView'">
+  <header class="cm-landing-view__header">
+    <nav>
+      <a class="cm-landing-view__home-link" href="/">
+        <img
+          class="cm-landing-view__icon--mobile"
+          src="assets/logo-with-text.svg"
+          width="198"
+          height="32"
+          alt="LetsChatWith"
+        />
+        <img
+          class="cm-landing-view__icon--desktop"
+          src="assets/logo-with-text-white.svg"
+          width="198"
+          height="32"
+          alt="LetsChatWith"
+        />
+      </a>
+      <div class="cm-landing-view__login-link-container">
+        <p class="cm-landing-view__login-link-text">
+          {{ t('alreadyAMember') }}
+        </p>
+        <a class="cm-landing-view__login-link" routerLink="/signin">{{ t('signin') }}</a>
+      </div>
+    </nav>
+  </header>
+  <div class="cm-landing-view__content-layout">
+    <div class="cm-landing-view__left-panel">
+      <p>{{ t('newBusiness') }}</p>
+      <p>{{ t('atConf') }}</p>
+    </div>
+    <div class="cm-landing-view__content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</ng-container>

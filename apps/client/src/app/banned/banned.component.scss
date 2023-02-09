@@ -1,0 +1,33 @@
+@import '../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../../../../../libs/client/shared/styles/src/lib/util';
+
+.cm-banned {
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .cm-banned__image {
+    margin-top: 34px;
+    width: toRem(198);
+    height: toRem(196);
+
+    @include media_breakpoint_down(xs) {
+      width: 45%;
+    }
+  }
+
+  .cm-banned__title {
+    @extend %h400;
+    color: var(--var-900);
+    margin-top: 48px;
+  }
+
+  .cm-banned__text {
+    @extend %text300;
+    color: var(--var-700);
+    margin-top: 12px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,53 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+@mixin action-button(
+  $size,
+  $bgColor,
+  $fill,
+  $stroke,
+  $boxShadow: 0px 4px 10px rgba(2, 11, 34, 0.12)
+) {
+  @if $size == md {
+    width: 48px;
+    height: 48px;
+  } @else {
+    width: 72px;
+    height: 72px;
+  }
+
+  background-color: $bgColor;
+
+  fill: $fill;
+  stroke: $stroke;
+  box-shadow: $boxShadow;
+}
+
+:host.cm-action-button {
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.cm-action-button--match {
+    @include action-button(lg, var(--white), var(--primary-500), var(--white));
+  }
+
+  &.cm-action-button--no-match {
+    @include action-button(lg, var(--white), var(--grey-600), none);
+  }
+
+  &.cm-action-button--undo {
+    @include action-button(md, var(--primary-300), var(--white), none);
+  }
+
+  &.cm-action-button--info {
+    @include action-button(md, var(--grey-200), var(--secondary-500), none, none);
+  }
+
+  &.cm-action-button--chat {
+    @include action-button(md, var(--primary-500), var(--white), var(--primary-500));
+  }
+}

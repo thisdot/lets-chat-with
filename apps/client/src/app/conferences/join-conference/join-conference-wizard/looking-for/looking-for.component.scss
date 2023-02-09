@@ -1,0 +1,19 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+
+:host {
+  width: 100%;
+
+  header {
+    display: flex;
+    align-items: flex-start;
+
+    cm-counter {
+      margin-left: 20px;
+    }
+  }
+
+  cm-pill {
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+}

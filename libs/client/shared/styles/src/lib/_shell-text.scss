@@ -1,0 +1,14 @@
+@import './typography';
+
+h2 {
+  @extend %h500;
+  color: var(--grey-900);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+p {
+  @extend %text300;
+  color: var(--grey-700);
+  margin-bottom: 24px;
+}

@@ -1,0 +1,37 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <h2 class="cm-wizard-heading">{{ t('basic.title') }}</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input
+      cmInput
+      class="cm-input--overload-invalid-ui"
+      [placeholder]="t('basic.fields.fullName.placeholder')"
+      formControlName="fullName"
+    />
+    <input cmInput [placeholder]="t('basic.fields.title.placeholder')" formControlName="title" />
+    <input
+      cmInput
+      [placeholder]="t('basic.fields.company.placeholder')"
+      formControlName="company"
+    />
+    <input
+      cmInput
+      [placeholder]="t('basic.fields.pronouns.placeholder')"
+      formControlName="pronouns"
+    />
+    <!-- Special offers box hidden for now  -->
+    <!-- <div
+      *ngIf="subscribeBox$ | async"
+      class="cm-basic-info__subscribe-box"
+      [class.cm-basic-info__subscribe-box--checked]="form.get('newsletterSubscribed').value"
+    >
+      <div class="box-content">
+        <h3>{{ t('basic.fields.specialOffers.label') }}</h3>
+        <cm-checkbox formControlName="newsletterSubscribed"></cm-checkbox>
+      </div>
+      <p>
+        {{ t('basic.fields.specialOffers.description') }}
+      </p>
+    </div> -->
+    <button cm-button [disabled]="!form.valid">{{ t('actions.next') }}</button>
+  </form>
+</ng-container>

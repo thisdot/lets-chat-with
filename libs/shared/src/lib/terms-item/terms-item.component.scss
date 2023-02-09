@@ -1,0 +1,26 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host.cm-terms {
+  padding: 16px;
+  display: flex;
+
+  background-color: var(--white);
+  border-radius: 12px;
+
+  .cm-terms__icon {
+    margin-right: 11px;
+  }
+
+  .cm-terms__content__title {
+    @extend %h200;
+    letter-spacing: 0.01em;
+    color: var(--grey-900);
+  }
+
+  .cm-terms__content__text {
+    @extend %text200;
+    letter-spacing: 0.01em;
+    color: var(--grey-700);
+    margin-top: 4px;
+  }
+}

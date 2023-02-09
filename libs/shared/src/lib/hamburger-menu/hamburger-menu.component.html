@@ -1,0 +1,20 @@
+<ng-container *transloco="let t">
+  <button #trigger class="menu-trigger">
+    <cm-icon name="HamburgerMenu" [attr.aria-label]="t('global.openMenuA11y')" size="xl"></cm-icon>
+  </button>
+  <ng-template #template>
+    <div class="cm-hamburger-menu-content-container" cdkTrapFocus cdkTrapFocusAutoCapture>
+      <div class="cm-hamburger-menu-content">
+        <ng-content select="cm-hamburger-menu-item"></ng-content>
+      </div>
+      <div class="cm-hamburger-menu-close-action">
+        <cm-icon
+          name="Close"
+          role="button"
+          [attr.aria-label]="t('global.closeMenu')"
+          (click)="close()"
+        ></cm-icon>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

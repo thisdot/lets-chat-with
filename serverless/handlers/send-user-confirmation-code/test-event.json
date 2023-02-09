@@ -1,0 +1,10 @@
+{
+  "triggerSource": "CustomMessage_SignUp",
+  "request": {
+    "codeParameter": "code123",
+    "userAttributes": {
+      "email": "test@email"
+    }
+  },
+  "response": {}
+}

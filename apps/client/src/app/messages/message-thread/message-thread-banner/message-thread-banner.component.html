@@ -1,0 +1,24 @@
+<ng-container *transloco="let t; read: 'messages.banner'">
+  <div class="cm-message-thread__matched" *ngIf="matchAttendee">
+    {{
+      t('matchedWith', {
+        name: matchAttendee.fullName,
+        time: matchedSince$ | async
+      })
+    }}
+  </div>
+
+  <div class="cm-message-thread-banner" *ngIf="attendee$ | async">
+    <div class="cm-message-thread-banner__title">{{ t('interestedBecause') }}:</div>
+    <span class="cm-message-thread-banner__section-title">{{ t('lookingFor') }}</span>
+    <div class="cm-chips-list">
+      <cm-chip *ngFor="let identifier of identifiers$ | async">{{ identifier.name }}</cm-chip>
+    </div>
+    <span class="cm-message-thread-banner__section-title">{{ t('interests') }}</span>
+    <div class="cm-chips-list">
+      <cm-chip type="secondary" *ngFor="let interest of interests$ | async">{{
+        interest.name
+      }}</cm-chip>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,26 @@
+<div class="cm-match-card__content">
+  <cm-avatar-image [avatarUrl]="match?.attendee.avatarUrl"></cm-avatar-image>
+  <div>
+    <div class="cm-match-card__content__full-name">
+      {{ match?.attendee?.fullName }}
+    </div>
+    <div class="cm-match-card__content__bio">
+      {{ match?.attendee?.bio }}
+    </div>
+  </div>
+</div>
+
+<div class="cm-match-card__actions">
+  <button
+    class="cm-match-card__action__info"
+    cm-action-button
+    type="info"
+    (click)="info.emit()"
+  ></button>
+
+  <button cm-action-button type="chat" (click)="chat.emit()"></button>
+
+  <button class="cm-match-card__menu" (click)="menu.emit()">
+    <cm-icon name="More" size="lg"></cm-icon>
+  </button>
+</div>

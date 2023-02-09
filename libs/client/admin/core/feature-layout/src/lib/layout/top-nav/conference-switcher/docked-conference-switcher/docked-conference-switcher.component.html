@@ -1,0 +1,6 @@
+<div class="docked-conference-switcher" *ngIf="data.conferences$ | async as conferences">
+  <cm-conference-switcher-item
+    *ngFor="let conference of conferences; trackBy: trackById"
+    [conference]="conference"
+  ></cm-conference-switcher-item>
+</div>

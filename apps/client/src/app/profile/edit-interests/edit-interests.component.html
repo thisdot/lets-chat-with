@@ -1,0 +1,27 @@
+<ng-container *transloco="let t">
+  <div class="interests__header">
+    <a class="interests__close-button cm-link-button" (click)="onClose()">
+      <cm-icon name="Close" size="lg"></cm-icon>
+      <span class="cdk-visually-hidden">{{ t('global.back') }}</span>
+    </a>
+
+    <h2 id="modal-title" class="interests__title">{{ t('profile.edit.interests.title') }}</h2>
+
+    <button
+      cm-button
+      cmButtonType="borderless"
+      class="interests__save-button"
+      (click)="saveAction.next()"
+    >
+      {{ t('global.save') }}
+    </button>
+  </div>
+  <div class="interests__content">
+    <cm-interests-selector
+      [interests]="interests$ | async"
+      [selected]="(attendee$ | async)?.interests"
+      [limit]="interestCount$ | async"
+      (interestSelect)="onInterestsSelected($event)"
+    ></cm-interests-selector>
+  </div>
+</ng-container>

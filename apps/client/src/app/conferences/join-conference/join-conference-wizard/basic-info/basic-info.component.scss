@@ -1,0 +1,71 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+@import '../../../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host.cm-basic-info {
+  width: 100%;
+
+  @include media_breakpoint_up(md) {
+    width: 600px;
+  }
+
+  form {
+    margin-top: 24px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      margin-bottom: 16px;
+      display: block;
+      width: 100%;
+    }
+
+    button {
+      margin: 20px 0;
+    }
+
+    .cm-basic-info__subscribe-box {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-flow: column nowrap;
+      border: 1px solid var(--primary-300);
+      box-sizing: border-box;
+      border-radius: 12px;
+      padding: 16px 12px;
+
+      .box-content {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin-right: 8px;
+        width: 100%;
+      }
+
+      &.cm-basic-info__subscribe-box--checked {
+        background-color: var(--primary-100);
+        border-color: var(--primary-100);
+      }
+
+      h3 {
+        @extend %text300;
+        font-weight: bold;
+        color: var(--grey-800);
+        margin: 0 8px 8px 0;
+      }
+
+      p {
+        @extend %text300;
+        color: var(--grey-700);
+        text-align: left;
+        margin: 0;
+      }
+
+      cm-checkbox {
+        width: 25px;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<ng-container *transloco="let t; read: 'connect.connections'">
+  <cm-context-menu-button
+    *ngIf="data.isMatch"
+    iconName="Close"
+    text="{{ t('removeConnection') }}"
+    (buttonClick)="unmatch()"
+  ></cm-context-menu-button>
+  <cm-context-menu-button
+    iconName="Flag"
+    text="{{ t('reportAndRemoveConnection') }}"
+    (buttonClick)="report()"
+  ></cm-context-menu-button>
+</ng-container>

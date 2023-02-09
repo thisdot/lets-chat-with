@@ -1,0 +1,30 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/core/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/core/src/test.ts",
+        "tsConfig": "libs/core/tsconfig.spec.json",
+        "karmaConfig": "libs/core/karma.conf.js"
+      },
+      "configurations": {
+        "CI": {
+          "watch": false,
+          "progress": false,
+          "browsers": "HeadlessChrome"
+        }
+      },
+      "outputs": ["coverage/libs/core"]
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}

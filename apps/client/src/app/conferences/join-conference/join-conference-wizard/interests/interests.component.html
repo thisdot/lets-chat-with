@@ -1,0 +1,17 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <cm-interests-selector
+    [interests]="(interests$ | async) || []"
+    [selected]="selectedInterests"
+    [limit]="interestsCount$ | async"
+    (interestSelect)="onInterestsSelected($event)"
+  ></cm-interests-selector>
+
+  <button
+    cm-button
+    [floating]="true"
+    [disabled]="selectedInterests.length === 0"
+    (click)="onSubmit()"
+  >
+    {{ t('actions.next') }}
+  </button>
+</ng-container>

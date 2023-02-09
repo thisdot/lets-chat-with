@@ -1,0 +1,10 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+
+:host {
+  width: 100%;
+
+  cm-textarea-wrapper,
+  textarea {
+    width: 100%;
+  }
+}

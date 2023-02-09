@@ -1,0 +1,14 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+@import '../../../../../../../shared/styles/src/lib/shell-text';
+
+:host.cm-reasons {
+  width: 100%;
+  padding: 1rem;
+
+  .cm-reasons__options {
+    cm-icon {
+      transform: rotate(90deg);
+      fill: var(--grey-600);
+    }
+  }
+}

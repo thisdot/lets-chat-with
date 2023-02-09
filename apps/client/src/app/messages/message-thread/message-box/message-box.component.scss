@@ -1,0 +1,32 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  background-color: var(--grey-100);
+  border-top: 1px solid var(--grey-300);
+
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+
+  @include media_breakpoint_up(md) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .cm-input {
+    width: 100%;
+    padding: 11px 16px;
+  }
+}
+
+button {
+  fill: var(--grey-300);
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &.has-content {
+    fill: var(--grey-500);
+  }
+}

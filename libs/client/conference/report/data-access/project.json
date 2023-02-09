@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/conference/report/data-access/src",
+  "prefix": "cm",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/conference/report/data-access/src/**/*.ts",
+          "libs/client/conference/report/data-access/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["application:client", "scope:report", "type:data-access", "bc:conferences"]
+}

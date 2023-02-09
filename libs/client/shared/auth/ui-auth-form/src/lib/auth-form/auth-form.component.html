@@ -1,0 +1,61 @@
+<ng-container *transloco="let t; read: 'userAuth'">
+  <form class="cm-auth-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <div [class]="page">
+      <cm-text-field-wrapper [label]="t('input.email.label')" [name]="'email'">
+        <input
+          cmInput
+          id="email"
+          type="email"
+          data-test-id="login email"
+          [placeholder]="t('input.email.placeholder')"
+          class="cm-input--overload-invalid-ui"
+          formControlName="email"
+        />
+        <div data-error class="cm-auth-form__errors" aria-live="assertive">
+          <span
+            class="cm-auth-form__errors__error"
+            *ngIf="form.controls.email.touched && form.get('email').hasError('required')"
+          >
+            {{ t('errors.email.required') }}
+          </span>
+          <span
+            class="cm-auth-form__errors__error"
+            *ngIf="form.controls.email.touched && form.get('email').hasError('email')"
+            >{{ t('errors.email.invalid') }}</span
+          >
+        </div>
+      </cm-text-field-wrapper>
+
+      <cm-text-field-wrapper [label]="t('input.password.label')" [name]="'password'">
+        <cm-password-wrapper>
+          <input
+            cmInput
+            id="password"
+            data-test-id="login password"
+            [placeholder]="t('input.password.placeholder')"
+            class="cm-input--overload-invalid-ui"
+            formControlName="password"
+          />
+        </cm-password-wrapper>
+        <div data-error class="cm-auth-form__errors" aria-live="assertive">
+          <span
+            class="cm-auth-form__errors__error"
+            *ngIf="form.controls.password.touched && form.get('password').hasError('required')"
+            >{{ t('errors.password.required') }}</span
+          >
+          <span
+            class="cm-auth-form__errors__error"
+            *ngIf="form.controls.password.touched && form.get('password').hasError('minlength')"
+            >{{ t('errors.password.minLength') }}</span
+          >
+        </div>
+      </cm-text-field-wrapper>
+    </div>
+
+    <ng-content select="[data-forgot-password-link]"></ng-content>
+
+    <button data-test-id="login button" cm-button [disabled]="form.invalid || loading">
+      {{ buttonLabel }}
+    </button>
+  </form>
+</ng-container>

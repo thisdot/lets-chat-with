@@ -1,0 +1,22 @@
+@import '../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  text-align: justify;
+  padding: 0 1rem;
+  display: flex;
+  flex-flow: column;
+
+  h1 {
+    @extend %h500;
+    color: var(--grey-900);
+  }
+
+  h2 {
+    @extend %h300;
+    color: var(--grey-900);
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui-auth/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui-auth/src/test.ts",
+        "tsConfig": "libs/shared/ui-auth/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui-auth/karma.conf.js"
+      },
+      "configurations": {
+        "CI": {
+          "watch": false,
+          "progress": false,
+          "browsers": "HeadlessChrome"
+        }
+      },
+      "outputs": ["coverage/libs/shared/ui-auth"]
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}

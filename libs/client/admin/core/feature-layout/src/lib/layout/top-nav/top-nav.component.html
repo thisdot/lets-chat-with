@@ -1,0 +1,49 @@
+<div class="cm-top-nav__wrapper" *transloco="let t" [class.primary]="isPrimary$ | async">
+  <ng-container *tdRouteTag="RouteTag.back; else noBack">
+    <cm-icon
+      tabindex="0"
+      role="button"
+      size="xl"
+      [attr.aria-label]="t('global.back')"
+      name="LeftChevron"
+      (click)="onBack()"
+      (keydown.enter)="onBack()"
+      (keydown.space)="onBack()"
+    ></cm-icon>
+  </ng-container>
+  <ng-template #noBack>
+    <a routerLink="/">
+      <img src="assets/logo-inline.svg" alt="LetsChatWith" class="cm-top-nav__logo" />
+    </a>
+  </ng-template>
+  <cm-conference-switcher></cm-conference-switcher>
+  <cm-hamburger-menu class="cm-top-nav__wrapper__control">
+    <cm-hamburger-menu-item
+      *tdRouteTag="RouteTag.conference"
+      label="{{ t('menu.conferences.title') }}"
+      iconName="QR"
+      routerLinkPath="/conferences"
+    ></cm-hamburger-menu-item>
+    <cm-hamburger-menu-item
+      *tdRouteTag="RouteTag.settings"
+      label="{{ t('menu.settings.title') }}"
+      iconName="SettingsWheel"
+      routerLinkPath="/settings"
+    ></cm-hamburger-menu-item>
+    <cm-hamburger-menu-item
+      label="{{ t('menu.support.title') }}"
+      iconName="Question"
+    ></cm-hamburger-menu-item>
+    <cm-hamburger-menu-item
+      label="{{ t('menu.logout.title') }}"
+      iconName="Logout"
+      routerLinkPath="/logout"
+    >
+    </cm-hamburger-menu-item>
+  </cm-hamburger-menu>
+</div>
+<ng-container *ngIf="progress$ | async as progress">
+  <div *ngIf="progress !== null" class="cm-top-nav__progress-bar">
+    <div class="cm-top-nav__progress-bar__fill" [style.width.%]="progress * 100"></div>
+  </div>
+</ng-container>

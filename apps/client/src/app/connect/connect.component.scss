@@ -1,0 +1,179 @@
+@import '../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../../../../../libs/client/shared/styles/src/lib/util';
+
+:host {
+  display: flex;
+  width: 100%;
+  flex-flow: column nowrap;
+  padding: 1.5rem 1.5rem 0;
+
+  @include media_breakpoint_up(md) {
+    padding-top: 4rem;
+  }
+
+  cm-new-connection {
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+  }
+}
+
+.cm-connect-card {
+  margin-bottom: 12px;
+}
+
+.cm-connect-card,
+.cm-connect__actions {
+  position: relative;
+}
+
+.cm-connect__card-wrapper {
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @include media_breakpoint_up(md) {
+    flex-grow: unset;
+  }
+
+  .cm-connect__card-wrapper__inner {
+    touch-action: auto !important;
+  }
+}
+
+.cm-connect__card-wrapper__inner {
+  max-width: 344px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // the second element is the animated card
+  // that leaves the screen after animating
+  &:nth-child(2) {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.cm-connect__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+
+  .button-container {
+    width: 344px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .primary-actions {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+  }
+
+  .cm-action-button:not(.cm-connect__actions__back) {
+    margin: 20px;
+  }
+
+  @include media_breakpoint_down(md) {
+    .primary-actions {
+      margin-right: 22%;
+
+      .cm-action-button {
+        margin: 10px;
+      }
+    }
+  }
+
+  @include media_breakpoint_down(xs) {
+    .primary-actions {
+      margin-right: 20%;
+    }
+  }
+
+  .cm-connect__actions__back {
+    &[disabled] {
+      background-color: var(--primary-100);
+    }
+  }
+}
+
+.cm-connect-skip-btn {
+  height: 40px;
+  width: 116px;
+  border-radius: 6px;
+  padding: 12px 20px 12px 20px;
+  background: rgba(192, 214, 247, 0.28);
+  border: 1px solid var(--primary-500);
+  box-shadow: 0px 4px 8px rgba(2, 11, 34, 0.04);
+  text-transform: uppercase;
+  color: var(--var-500);
+  margin-right: 10px;
+
+  &.mobile {
+    width: 40px;
+    border-radius: 50%;
+  }
+}
+
+.cm-connect-chat-btn {
+  height: 40px;
+  width: 132px;
+  border-radius: 6px;
+  padding: 10px 20px 10px 20px;
+  background: var(--primary-500);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--grey-100);
+}
+
+.cm-connect__no-results {
+  position: relative;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .cm-connect__no-results__image {
+    margin-top: 34px;
+    width: toRem(198);
+    height: toRem(196);
+
+    @include media_breakpoint_down(xs) {
+      width: 45%;
+    }
+  }
+
+  .cm-connect__no-results__title {
+    @extend %h400;
+    color: var(--var-900);
+    margin-top: 48px;
+  }
+
+  .cm-connect__no-results__text {
+    @extend %text300;
+    color: var(--var-700);
+    margin-top: 12px;
+    text-align: center;
+  }
+}

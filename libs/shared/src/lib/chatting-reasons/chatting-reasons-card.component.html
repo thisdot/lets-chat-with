@@ -1,0 +1,59 @@
+<div *transloco="let t; read: 'connect.reasons'">
+  <div class="cm-chatting-reasons-card__attendee">
+    <cm-avatar-image [avatarUrl]="candidate.attendee.avatarUrl"></cm-avatar-image>
+    <div>
+      <div class="cm-chatting-reasons-card__attendee__name">
+        {{ candidate.attendee.fullName }}
+      </div>
+      <div class="cm-chatting-reasons-card__attendee__description">
+        {{ candidate.attendee.title }}, {{ candidate.attendee.company }}
+      </div>
+      <div class="cm-chatting-reasons-card__attendee__pronouns">
+        {{ candidate.attendee.pronouns }}
+      </div>
+    </div>
+  </div>
+  <p class="cm-chatting-reasons-card__title">
+    {{ t('selectRoles') }} <strong>{{ candidate.attendee.fullName }}</strong> {{ t('thatFitYou') }}
+  </p>
+  <div class="cm-chatting-reasons-card__list">
+    <div *ngFor="let identifier of candidate.attendee.desiredIdentifiers">
+      <cm-pill
+        tabindex="0"
+        (ngModelChange)="onIdentifierStateChange(identifier)"
+        [ngModel]="isIdentifierSelected(identifier)"
+      >
+        {{ identifier.name }}
+      </cm-pill>
+    </div>
+  </div>
+
+  <p class="cm-chatting-reasons-card__title">
+    {{ t('interestsToChatAbout') }}
+  </p>
+  <div class="cm-chatting-reasons-card__list">
+    <div *ngFor="let interest of candidate.attendee.interests">
+      <cm-pill
+        type="secondary"
+        tabindex="0"
+        (ngModelChange)="onInterestStateChange(interest)"
+        [ngModel]="isInterestSelected(interest)"
+      >
+        {{ interest.name }}
+      </cm-pill>
+    </div>
+  </div>
+  <button
+    cm-button
+    class="cm-chatting-reasons-card__button"
+    type="button"
+    (click)="like()"
+    [disabled]="isLikeDisabled()"
+  >
+    {{ t('letsChatAbout') }}
+  </button>
+  <p class="cm-chatting-reasons-card__footnote">
+    {{ t('youllBeInformedIf') }} <strong>{{ candidate.attendee.fullName }}</strong>
+    {{ t('wantsToChatWithYou') }}
+  </p>
+</div>

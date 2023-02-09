@@ -1,0 +1,16 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+
+.reason-form {
+  &__title {
+    @extend %h300;
+  }
+
+  &__textarea {
+    width: 100%;
+  }
+
+  &__submit {
+    width: 100%;
+    font-size: smaller;
+  }
+}

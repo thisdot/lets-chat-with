@@ -1,0 +1,28 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host {
+  @extend %text300;
+  color: var(--grey-900);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &.cm-list-item--active {
+    background-color: var(--grey-100);
+    color: var(--primary-500);
+  }
+
+  cm-icon {
+    margin-right: 14px;
+  }
+
+  .cm-active-link {
+    stroke: var(--primary-400);
+    stroke-width: 0.7;
+  }
+}

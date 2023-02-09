@@ -1,0 +1,33 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+
+.reports-modal-header {
+  background-color: var(--white);
+  padding: 10px;
+  border-bottom: 1px solid var(--grey-400);
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: 'back title close';
+
+  &__back {
+    grid-area: back;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  &__title {
+    grid-area: title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @extend %h200;
+  }
+
+  &__close {
+    grid-area: close;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+}

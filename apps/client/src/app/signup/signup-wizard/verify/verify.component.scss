@@ -1,0 +1,15 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: center;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    padding: 0.5rem;
+  }
+}

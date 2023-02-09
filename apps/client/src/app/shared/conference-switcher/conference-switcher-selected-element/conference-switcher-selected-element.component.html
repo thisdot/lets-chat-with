@@ -1,0 +1,11 @@
+<ng-container *transloco="let t; read: 'conferences.conferenceSwitcher'">
+  <button
+    class="conference-selector__icon-button"
+    [attr.aria-label]="t('changeConference')"
+    [disabled]="disabled"
+  >
+    <cm-event-logo [event]="selectedConference"></cm-event-logo>
+    {{ selectedConference?.name }}
+    <cm-icon *ngIf="!hideChevron" name="DownChevronBold"></cm-icon>
+  </button>
+</ng-container>

@@ -1,0 +1,74 @@
+## [Start] Set query expression for @key **
+#set( $modelQueryExpression = {} )
+## [Start] Validate key arguments. **
+#if( !$util.isNull($ctx.args.matchScore) && $util.isNull($ctx.args.eventId) )
+  $util.error("When providing argument 'matchScore' you must also provide arguments eventId", "InvalidArgumentsError")
+#end
+## [End] Validate key arguments. **
+#if( !$util.isNull($ctx.args.eventId) )
+  #set( $modelQueryExpression.expression = "#eventId = :eventId" )
+  #set( $modelQueryExpression.expressionNames = {
+  "#eventId": "eventId"
+} )
+  #set( $modelQueryExpression.expressionValues = {
+  ":eventId": {
+      "S": "$ctx.args.eventId"
+  }
+} )
+#end
+## [Start] Applying Key Condition **
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.beginsWith) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND begins_with(#sortKey, :sortKey)" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.beginsWith" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.between) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey BETWEEN :sortKey0 AND :sortKey1" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey0", { "N": "$ctx.args.matchScore.between[0]" }))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey1", { "N": "$ctx.args.matchScore.between[1]" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.eq) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey = :sortKey" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.eq" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.lt) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey < :sortKey" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.lt" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.le) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey <= :sortKey" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.le" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.gt) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey > :sortKey" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.gt" }))
+#end
+#if( !$util.isNull($ctx.args.matchScore) && !$util.isNull($ctx.args.matchScore.ge) )
+  #set( $modelQueryExpression.expression = "$modelQueryExpression.expression AND #sortKey >= :sortKey" )
+  $util.qr($modelQueryExpression.expressionNames.put("#sortKey", "matchScore"))
+  $util.qr($modelQueryExpression.expressionValues.put(":sortKey", { "N": "$ctx.args.matchScore.ge" }))
+#end
+## [End] Applying Key Condition **
+## [End] Set query expression for @key **
+#set( $limit = $util.defaultIfNull($context.args.limit, 100) )
+#set( $QueryRequest = {
+  "version": "2018-05-29",
+  "operation": "Query",
+  "limit": $limit,
+  "query": $modelQueryExpression,
+  "index": "byEventId"
+} )
+#if( !$util.isNull($ctx.args.sortDirection)
+                    && $ctx.args.sortDirection == "DESC" )
+  #set( $QueryRequest.scanIndexForward = false )
+#else
+  #set( $QueryRequest.scanIndexForward = true )
+#end
+#if( $context.args.nextToken ) #set( $QueryRequest.nextToken = $context.args.nextToken ) #end
+#if( $context.args.filter ) #set( $QueryRequest.filter = $util.parseJson("$util.transform.toDynamoDBFilterExpression($ctx.args.filter)") ) #end
+$util.toJson($QueryRequest)

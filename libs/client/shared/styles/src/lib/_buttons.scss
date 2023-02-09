@@ -1,0 +1,15 @@
+@import './typography';
+
+.cm-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @extend %text300;
+  font-weight: bold;
+  color: var(--primary-500);
+
+  &[disabled] {
+    color: var(--grey-500);
+  }
+}

@@ -1,0 +1,12 @@
+<label class="cm-text-field-wrapper__label" [for]="name" *ngIf="label; else content"
+  >{{ label }}
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</label>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+<div class="cm-text-field-wrapper__errors">
+  <ng-content select="[data-error]"> </ng-content>
+  <span class="cm-text-field-wrapper__errors__error" *ngFor="let error of errors">{{ error }}</span>
+</div>
+<p *ngIf="info" class="cm-text-field-wrapper__info">{{ info }}</p>

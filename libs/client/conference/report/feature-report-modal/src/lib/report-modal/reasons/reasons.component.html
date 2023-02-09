@@ -1,0 +1,24 @@
+<ng-container *transloco="let t; read: 'report.reasons'">
+  <h2>{{ t('title') }}</h2>
+  <p>{{ t('subTitle') }}</p>
+  <div class="cm-reasons__options">
+    <cm-context-menu-button
+      iconName="MessageExclamationMark"
+      (buttonClick)="reportFor(ReportReason.INAPPROPRIATE_MESSAGE)"
+      text="{{ t('inappropriateMessage') }}"
+    ></cm-context-menu-button>
+    <cm-context-menu-button
+      iconName="Camera"
+      (buttonClick)="reportFor(ReportReason.INAPPROPRIATE_PHOTO)"
+      text="{{ t('inappropriatePhoto') }}"
+    ></cm-context-menu-button>
+    <cm-context-menu-button
+      iconName="Spam"
+      (buttonClick)="reportFor(ReportReason.SPAM)"
+      text="{{ t('spam') }}"
+    ></cm-context-menu-button>
+    <cm-context-menu-button iconName="Flag" (buttonClick)="selectOtherReason()" text="Other">
+      <cm-icon name="LeftChevron" size="lg"></cm-icon>
+    </cm-context-menu-button>
+  </div>
+</ng-container>

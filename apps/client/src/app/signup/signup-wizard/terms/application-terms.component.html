@@ -1,0 +1,19 @@
+<ng-container *transloco="let t; read: 'signup.terms'">
+  <h1 class="cm-terms__title">
+    {{ t('welcome') }} <br />
+    {{ t('followRules') }}
+  </h1>
+
+  <cm-terms-item
+    *ngFor="let term of terms"
+    [title]="t(term.title)"
+    [text]="t(term.text)"
+    [icon]="term.icon"
+  ></cm-terms-item>
+  <cm-terms-item [title]="t('termsOfService')" [icon]="'CheckBadge'">
+    {{ t('iHaveReadAndAcceptedThe') }}<a routerLink="/terms-of-service">{{ t('termsOfService') }}</a
+    >.
+  </cm-terms-item>
+
+  <button cm-button [floating]="true" (click)="onAgree()">{{ t('iAgree') }}</button>
+</ng-container>

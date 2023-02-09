@@ -1,0 +1,73 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+@import '../../../../client/shared/styles/src/lib/cards';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  padding-top: 1rem;
+
+  @include media_breakpoint_up(sm) {
+    width: 85%;
+  }
+
+  @include media_breakpoint_up(xl) {
+    width: 100%;
+  }
+
+  @include media_breakpoint_down(sm) {
+    width: 100%;
+  }
+}
+
+.cm-you-are-chatters-card__heading {
+  text-align: center;
+  @extend %h500;
+}
+
+.cm-you-are-chatters-card__title {
+  @extend %h100;
+}
+
+.cm-you-are-chatters-card__attendee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--grey-300);
+}
+
+.cm-you-are-chatters-card__attendee__name {
+  @extend %h200;
+  color: var(--grey-900);
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+.cm-you-are-chatters-card__attendee__description {
+  @extend %text200;
+  color: var(--grey-700);
+}
+
+.cm-you-are-chatters-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cm-you-are-chatters-card__title {
+  margin: 20px 0 8px 0;
+}
+
+.cm-button.cm-you-are-chatters-card__button {
+  margin: 28px 0 8px 0;
+
+  @include media_breakpoint_down(md) {
+    width: 100%;
+  }
+}

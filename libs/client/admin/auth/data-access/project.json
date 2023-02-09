@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/admin/auth/data-access/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/client/admin/auth/data-access/src/test.ts",
+        "tsConfig": "libs/client/admin/auth/data-access/tsconfig.spec.json",
+        "karmaConfig": "libs/client/admin/auth/data-access/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/admin/auth/data-access/src/**/*.ts",
+          "libs/client/admin/auth/data-access/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["technology:client", "application:admin", "bc:auth", "type:data-access"]
+}

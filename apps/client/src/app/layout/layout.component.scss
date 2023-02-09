@@ -1,0 +1,90 @@
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    'header'
+    'content';
+
+  .header {
+    grid-area: header;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main {
+    overflow: auto;
+    width: 100%;
+    height: calc(100vh - 50px);
+    height: calc(100svh - 50px);
+    grid-area: content;
+    display: grid;
+    grid-column-gap: 2rem;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-template-areas:
+      'content'
+      'nav';
+
+    @include media_breakpoint_down(md) {
+      /* The bottom navigation on mobile is exactly 57px vertically */
+      grid-template-rows: calc(100vh - 107px) 57px;
+      grid-template-rows: calc(100svh - 107px) 57px;
+
+      &.centered {
+        grid-template-rows: auto;
+      }
+    }
+
+    @include media_breakpoint_up(md) {
+      grid-template-columns: 50px 4fr;
+      grid-template-areas: 'nav content';
+
+      &.centered {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas: 'content';
+      }
+    }
+
+    @include media_breakpoint_up(lg) {
+      grid-template-columns: 1fr 4fr;
+    }
+
+    @include media_breakpoint_up(xl) {
+      padding: 0 calc((100vw - 1124px) / 2);
+      grid-template-columns: 1fr 2fr;
+
+      &.centered {
+        grid-template-columns: auto;
+      }
+    }
+
+    &__nav {
+      grid-area: nav;
+
+      @include media_breakpoint_up(md) {
+        padding-top: 4rem;
+      }
+    }
+
+    &__content {
+      grid-area: content;
+
+      @include media_breakpoint_down(md) {
+        overflow: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+}

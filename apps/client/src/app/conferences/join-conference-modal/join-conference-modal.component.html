@@ -1,0 +1,19 @@
+<ng-container *transloco="let t; read: 'conferences.join.modal'">
+  <h1 class="cm-join-conference-modal__title">{{ t('title') }}</h1>
+  <p class="cm-join-conference-modal__description">
+    {{ t('description') }}
+  </p>
+  <div class="cm-join-conference-modal__buttons">
+    <button [attr.data-test-id]="t('scanAction')" cm-list-item icon="QR" (click)="showQR()">
+      {{ t('scanAction') }}
+    </button>
+    <button
+      [attr.data-test-id]="t('enterConferenceUrlAction')"
+      cm-list-item
+      icon="HyperLink"
+      (click)="showHyperlinkForm()"
+    >
+      {{ t('enterConferenceUrlAction') }}
+    </button>
+  </div>
+</ng-container>

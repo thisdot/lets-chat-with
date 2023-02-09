@@ -1,0 +1,15 @@
+:host.cm-search-input {
+  position: relative;
+  display: block;
+
+  cm-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding-left: 55px;
+  }
+}

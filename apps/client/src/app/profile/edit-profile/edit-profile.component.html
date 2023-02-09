@@ -1,0 +1,75 @@
+<ng-container *transloco="let t; read: 'profile.edit'">
+  <ng-container *ngIf="attendee$ | async as attendee">
+    <a class="profile__edit--back cm-link-button" routerLink="../">
+      <cm-icon name="Close" size="lg"></cm-icon>
+      <span class="cdk-visually-hidden">{{ t('back') }}</span>
+    </a>
+    <cm-photo-picker
+      [photo]="attendee.avatarUrl"
+      (selectPhoto)="updateAvatarUrl($event)"
+    ></cm-photo-picker>
+
+    <form [formGroup]="form">
+      <cm-text-field-wrapper [label]="t('labels.name')"
+        ><input [id]="t('labels.name')" cmInput formControlName="fullName"
+      /></cm-text-field-wrapper>
+      <cm-text-field-wrapper [label]="t('labels.title')"
+        ><input [id]="t('labels.title')" cmInput formControlName="title"
+      /></cm-text-field-wrapper>
+      <cm-text-field-wrapper [label]="t('labels.company')"
+        ><input [id]="t('labels.company')" cmInput formControlName="company"
+      /></cm-text-field-wrapper>
+      <cm-text-field-wrapper [label]="t('labels.pronouns')"
+        ><input [id]="t('labels.pronouns')" cmInput formControlName="pronouns"
+      /></cm-text-field-wrapper>
+      <cm-text-field-wrapper [label]="t('labels.about')">
+        <cm-textarea-wrapper>
+          <textarea
+            [id]="t('labels.about')"
+            cmTextarea
+            rows="6"
+            maxlength="160"
+            formControlName="bio"
+          ></textarea>
+        </cm-textarea-wrapper>
+      </cm-text-field-wrapper>
+
+      <cm-chip-list
+        [title]="t('chipTitles.lookingFor')"
+        [items]="attendee.desiredIdentifiers"
+        type="primary"
+        (edit)="editConnections()"
+      ></cm-chip-list>
+      <cm-chip-list
+        [title]="t('chipTitles.whoIAm')"
+        [items]="attendee.ownIdentifiers"
+        type="primary"
+        (edit)="editIdentifiers()"
+      ></cm-chip-list>
+      <cm-chip-list
+        [title]="t('chipTitles.interests')"
+        [items]="attendee.interests"
+        type="secondary"
+        (edit)="editInterests()"
+      ></cm-chip-list>
+
+      <h4 class="profile__edit--social-label">{{ t('socialsLabel') }}</h4>
+
+      <cm-social-input-wrapper platform="linkedin">
+        <input cmInput aria-label="linkedin" placeholder="username" formControlName="linkedin" />
+      </cm-social-input-wrapper>
+      <cm-social-input-wrapper platform="twitter">
+        <input cmInput aria-label="twitter" placeholder="username" formControlName="twitter" />
+      </cm-social-input-wrapper>
+      <cm-social-input-wrapper platform="fb">
+        <input cmInput aria-label="facebook" placeholder="username" formControlName="facebook" />
+      </cm-social-input-wrapper>
+
+      <div class="profile__edit--save">
+        <button cm-button [disabled]="!form.valid" (click)="saveAction.next()">
+          {{ t('save') }}
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</ng-container>

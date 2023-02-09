@@ -1,0 +1,12 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host {
+  position: relative;
+  display: block;
+
+  cm-counter {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+}

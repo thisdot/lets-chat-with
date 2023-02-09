@@ -1,0 +1,67 @@
+<ng-container *transloco="let t; read: 'signin.main'">
+  <div class="skiptocontent">
+    <a [href]="skipLinkPath">{{ t('skipText') }}</a>
+  </div>
+  <header class="cm-main__header">
+    <nav>
+      <a href="/" class="cm-main__home-link" aria-label="LetsChatWith">
+        <img
+          class="cm-main__icon"
+          src="assets/logo-with-text-white.svg"
+          width="198"
+          height="32"
+          alt="LetsChatWith"
+        />
+      </a>
+      <div class="cm-main__signup-link-container">
+        <p class="cm-main__signup-link-text">
+          {{ t('noAccountYet') }}
+        </p>
+        <a class="cm-main__signup-link" routerLink="/signup">{{ t('signup') }}</a>
+      </div>
+    </nav>
+  </header>
+  <main class="cm-main__content-layout" id="maincontent">
+    <div class="cm-main__left-panel">
+      <p>
+        <span>{{ t('header.goingAbove') }}</span> &nbsp;
+        <span>{{ t('header.appExperience') }}</span>
+      </p>
+    </div>
+    <div class="cm-main__right-panel">
+      <div class="cm-main__content">
+        <img
+          class="cm-main__right-panel__icon"
+          src="assets/large-letschatwith-logo-by.svg"
+          alt="LetsChatWith"
+        />
+        <h1 class="cm-main__content__heading">{{ t('heading') }}</h1>
+        <p class="cm-main__content__text">
+          {{ t('description') }}
+        </p>
+        <cm-auth-form
+          data-test-id="login form"
+          [page]="'signin'"
+          [loading]="loading$ | async"
+          [buttonLabel]="t('submitBtnLabel')"
+          (submitForm)="onSubmit($event)"
+        >
+          <a
+            data-forgot-password-link
+            class="cm-main__content__forgot-password"
+            routerLink="/recover-pass/email"
+            >{{ t('recoverPassword') }}</a
+          >
+        </cm-auth-form>
+
+        <div class="cm-main__links">
+          <a routerLink="/recover-pass/email">{{ t('recoverPassword') }}</a>
+          <a routerLink="/signup">{{ t('signup') }}</a>
+        </div>
+        <!-- Hide social sign ins for now -->
+        <!-- <span class="divider">Login with</span>
+        <cm-social-auth-buttons [colored]="true"></cm-social-auth-buttons> -->
+      </div>
+    </div>
+  </main>
+</ng-container>

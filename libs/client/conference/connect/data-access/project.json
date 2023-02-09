@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/conference/connect/data-access/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/client/conference/connect/data-access/src/test.ts",
+        "tsConfig": "libs/client/conference/connect/data-access/tsconfig.spec.json",
+        "karmaConfig": "libs/client/conference/connect/data-access/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/conference/connect/data-access/src/**/*.ts",
+          "libs/client/conference/connect/data-access/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["application:client", "scope:connect", "type:data-access", "bc:conference"]
+}
