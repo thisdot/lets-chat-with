@@ -1,0 +1,102 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  text-align: start;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+cm-conference-url-form .cm-shell__content {
+  padding-bottom: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .input-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cm-input_duplicate__errors {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    color: var(--red);
+  }
+}
+
+.page-title {
+  @extend %h500;
+  color: var(--grey-900);
+}
+
+.form-field {
+  display: inline-block;
+  position: relative;
+
+  &__ripple {
+    position: absolute;
+    height: 1.5px;
+    left: 0;
+    width: 100%;
+    transform-origin: 100%;
+    transform: scaleX(0.5);
+    opacity: 0;
+    transition: background-color 300ms cubic-bezier(0.55, 0, 0.55, 0.2);
+  }
+
+  input:focus + &__ripple {
+    opacity: 1;
+    transform: none;
+    transition: transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1),
+      opacity 100ms cubic-bezier(0.25, 0.8, 0.25, 1),
+      background-color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-color: var(--primary-500);
+  }
+}
+
+input {
+  border: 0;
+  background: transparent;
+  @extend %text400;
+  color: var(--grey-900);
+  text-align: end;
+  outline: none;
+  background-image: none !important; // this is necessary to hide LastPass icon because it seems to not respect autocomplete=off
+}
+input::placeholder {
+  color: var(--grey-500);
+}
+input:empty {
+  width: 12ch;
+  max-width: 14ch;
+}
+
+div.domain {
+  @extend %text400;
+
+  color: var(--grey-900);
+}
+
+button {
+  position: fixed;
+  bottom: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

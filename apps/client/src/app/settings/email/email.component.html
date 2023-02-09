@@ -1,0 +1,57 @@
+<div class="settings-email-page" *transloco="let t; read: 'settings.email'">
+  <div class="settings-email-page__content">
+    <a
+      cm-list-item
+      icon="LeftChevron"
+      class="cm-settings-wrapper__content__nav"
+      routerLink="/settings"
+      >{{ t('back') }}</a
+    >
+    <h1 class="settings-email-page__title">{{ t('title') }}</h1>
+    <p class="settings-email-page__description">
+      {{ t('description') }}
+    </p>
+    <ng-container *ngIf="showEmail; then emailFormTemplate; else codeFormTemplate"></ng-container>
+
+    <ng-template #emailFormTemplate>
+      <form
+        class="settings-email-page__form"
+        [formGroup]="emailForm"
+        (ngSubmit)="sendVerification()"
+        novalidate
+      >
+        <input
+          cmInput
+          formControlName="email"
+          [placeholder]="t('newEmail')"
+          [attr.aria-label]="t('newEmail')"
+        />
+
+        <div class="settings-email-page__form__buttons">
+          <button cm-button type="submit" cmButtonType="primary" [disabled]="emailForm.invalid">
+            {{ t('buttons.sendVerification') }}
+          </button>
+        </div>
+      </form>
+    </ng-template>
+
+    <ng-template #codeFormTemplate>
+      <form
+        class="settings-email-page__form"
+        [formGroup]="codeForm"
+        (ngSubmit)="verify(codeForm.value.code)"
+        novalidate
+      >
+        <cm-security-code-input
+          formControlName="code"
+          [securityCodeSize]="6"
+        ></cm-security-code-input>
+        <div class="settings-email-page__form__buttons">
+          <button cm-button type="submit" cmButtonType="primary" [disabled]="codeForm.invalid">
+            {{ t('buttons.verify') }}
+          </button>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

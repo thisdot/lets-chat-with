@@ -1,0 +1,40 @@
+<ng-container *ngIf="thread$ | async as thread">
+  <ng-container *transloco="let t; read: 'messages'">
+    <div class="cm-message-thread" *ngIf="matchAttendee$ | async as matchAttendee">
+      <div class="cm-message-thread__toolbar">
+        <a class="cm-message-thread__back-button" routerLink="..">
+          <cm-icon name="LeftChevron" size="xl"></cm-icon>
+          <cm-message-avatar [avatarUrl]="matchAttendee.avatarUrl"></cm-message-avatar>
+          <div class="cm-message-thread__user-name">
+            {{ matchAttendee?.fullName }}
+          </div>
+        </a>
+
+        <cm-icon name="Flag" size="xl"></cm-icon>
+      </div>
+
+      <ng-container *ngIf="messages$ | async as messages; else noMessages">
+        <ng-container *ngIf="messages.items.length; else noMessages">
+          <cm-message-list
+            [isLoading]="isLoading$ | async"
+            [attendeeId]="attendeeId$ | async"
+            [matchAttendee]="matchAttendee$ | async"
+            [messageThread]="thread"
+            [messages]="messages"
+            (loadNextPage)="onLoadNextPage()"
+            (updateAttendeeLastReadAt)="updateAttendeeLastReadAt()"
+          ></cm-message-list>
+        </ng-container>
+      </ng-container>
+      <cm-message-box (send)="send($event)"></cm-message-box>
+    </div>
+    <ng-template #noMessages>
+      <div class="cm-message-thread__no-messages">
+        <cm-message-thread-banner
+          [matchAttendee]="matchAttendee$ | async"
+        ></cm-message-thread-banner>
+        {{ t('firstMessage') }}
+      </div>
+    </ng-template>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,32 @@
+<ng-container *transloco="let t; read: 'messages'">
+  <cm-input-append-wrapper>
+    <cm-icon cmInputPrefix name="Search" size="xl"></cm-icon>
+    <input
+      cmInput
+      [placeholder]="t('search')"
+      (input)="onSearch($any($event.target).value)"
+      [disabled]="(filteredMessageThreads$ | async) != null"
+    />
+  </cm-input-append-wrapper>
+
+  <ng-container *ngIf="filteredMessageThreads$ | async; else loading">
+    <ng-container *ngIf="(filteredMessageThreads$ | async)?.length; else noResults">
+      <div class="cm-message-thread-list__threads">
+        <a
+          [routerLink]="['./', messageThread.id]"
+          *ngFor="let messageThread of filteredMessageThreads$ | async"
+        >
+          <cm-message-thread-list-item
+            [messageThread]="messageThread"
+          ></cm-message-thread-list-item>
+        </a>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-template #noResults>
+    <cm-no-results></cm-no-results>
+  </ng-template>
+  <ng-template #loading>
+    <cm-ellipsis></cm-ellipsis>
+  </ng-template>
+</ng-container>

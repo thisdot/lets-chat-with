@@ -1,0 +1,163 @@
+{
+  "reports": {
+    "reportedAttendeeAvatarDescription": "Avatar of reported attendee",
+    "reportingAttendeeAvatarDescription": "Avatar of reporting attendee",
+    "ban": "Ban",
+    "dismiss": "Dismiss",
+    "revoke": "Revoke",
+    "issue": "Issue",
+    "inappropriateMessage": "Inappropriate message",
+    "inappropriatePhoto": "Inappropriate photo",
+    "feelsLikeSpam": "Feels like spam",
+    "other": "Other",
+    "reportedBy": "Reported by",
+    "goodJob": "Good job!",
+    "noBannedReportsTitle": "No one is banned!",
+    "noBannedReportsSubtitle": "You don't have any banned users' reports.",
+    "noDismissedReportsTitle": "No one is dismissed!",
+    "noDismissedReportsSubtitle": "You don't have any dismissed users' reports.",
+    "loadingReportsTitle": "Loading...",
+    "loadingReportsSubtitle": "Getting users' reports.",
+    "noNewReports": "Seems you don't have any new reports to handle.",
+    "describeWhyBan": "Describe why you are banning this person.",
+    "describeWhyDismiss": "Describe why you are dismissing this report.",
+    "describeWhyRevoke": "Describe why you are revoking this ban.",
+    "banAttendee": "Ban attendee",
+    "dismissAttendee": "Dismiss the report",
+    "revokeAttendee": "Revoke this ban",
+    "viewAttendee": "Attendee",
+    "cactus": "Cactus",
+    "close": "Close",
+    "back": "Back",
+    "menu": {
+      "reported": "Reported",
+      "banned": "Banned",
+      "dismissed": "Dismissed",
+      "reportedUsers": "Reported users",
+      "bannedUsers": "Banned users",
+      "dismissedUsers": "Dismissed users"
+    },
+    "conferenceSwitcher": {
+      "changeConference": "Change Conference"
+    }
+  },
+  "global": {
+    "back": "Go back",
+    "save": "Save",
+    "openMenuA11y": "Open menu. To close the menu press Escape",
+    "closeMenu": "Close menu"
+  },
+  "shared": {
+    "landingView": {
+      "alreadyAMember": "Already a member?",
+      "signin": "Login",
+      "newBusiness": "Find new business connects",
+      "atConf": "at conferences you attend"
+    },
+    "profileCard": {
+      "lookingFor": "Looking for",
+      "whoIAm": "Who I am",
+      "interests": "Interests",
+      "socials": "On the web",
+      "edit": "Edit",
+      "profile": "Profile",
+      "matches": "Matches"
+    }
+  },
+  "signin": {
+    "main": {
+      "skipText": "skip to main content",
+      "heading": "Login to LetsChatWith",
+      "description": "Welcome to LetsChatWith! Login to see your enrolled conferences or join a new one",
+      "signup": "Sign Up",
+      "signin": "Sign In",
+      "noAccountYet": "Don't have an account?",
+      "submitBtnLabel": "Sign in",
+      "header": {
+        "goingAbove": "Going above and beyond the",
+        "appExperience": "typical event app experience"
+      },
+      "forgotPassword": "Forgot your password?",
+      "recoverPassword": "Recover password?"
+    }
+  },
+  "signup": {
+    "welcomeScreen": {
+      "description": "Be the best explorer in next-gen technologies!",
+      "signup": "Sign Up",
+      "signin": "Sign In",
+      "alreadyAMember": "Already a member?"
+    },
+    "terms": {
+      "empathyTitle": "I will have empathy",
+      "empathyText": "We all express ourselves differently. Do not judge."
+    }
+  },
+  "userAuth": {
+    "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Invalid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Minimum length of 8 required"
+      },
+      "notAdmin": "User is not an admin"
+    },
+    "input": {
+      "email": {
+        "placeholder": "Enter your email",
+        "label": "Email address"
+      },
+      "password": {
+        "placeholder": "Password",
+        "label": "Password",
+        "revealed": "Password is revealed",
+        "concealed": "Password is concealed"
+      }
+    },
+    "toaster": {
+      "error": {
+        "title": "Error"
+      }
+    },
+    "forgotPassword": "Forgot your password?"
+  },
+  "resetPassword": {
+    "notifications": {
+      "resetFailed": "Reset Password Failed",
+      "resetSuccess": "Your password has been changed!"
+    },
+    "newPassword": {
+      "passwordNotLongEnough": "Passwords not long enough. Password should have at least {{minPasswordLength}} characters",
+      "passwordsMatchError": "Passwords don't match",
+      "newPassword": "New password",
+      "setNewPasswordText": "Set a new password for your account.",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "confirm": "Confirm"
+    },
+    "currentEmail": {
+      "passwordRecovery": "Password recovery",
+      "enterEmail": "Enter your email and we will send you a security code which allows you to change your password.",
+      "yourEmail": "Email",
+      "placeholderEmail": "Enter your email here",
+      "next": "Next"
+    }
+  },
+  "menu": {
+    "share": {
+      "title": "Share"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "support": {
+      "title": "Support"
+    },
+    "logout": {
+      "title": "Logout"
+    }
+  }
+}

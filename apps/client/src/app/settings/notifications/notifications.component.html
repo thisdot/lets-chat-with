@@ -1,0 +1,40 @@
+<div class="settings-notifications-page" *transloco="let t; read: 'settings.notifications'">
+  <div class="settings-notifications-page__content">
+    <a
+      cm-list-item
+      icon="LeftChevron"
+      class="cm-settings-wrapper__content__nav"
+      routerLink="/settings"
+      >{{ t('back') }}</a
+    >
+    <h2 class="settings-notifications-page__title">{{ t('title') }}</h2>
+    <p class="settings-notifications-page__description">
+      {{ t('description') }}
+    </p>
+    <form [formGroup]="form" *ngIf="notificationConfig$ | async; else loading">
+      <div class="settings-notifications-page__toggle-item">
+        <span>{{ t('newMatches') }}</span>
+        <cm-switch formControlName="matches" [label]="t('labels.matches')"></cm-switch>
+      </div>
+      <div class="settings-notifications-page__toggle-item">
+        <span> {{ t('messages') }} </span>
+        <cm-switch formControlName="messages" [label]="t('labels.messages')"></cm-switch>
+      </div>
+      <!-- Special offers box hidden for now  -->
+      <!-- <div class="settings-notifications-page__checkbox-item">
+        <div class="settings-notifications-page__checkbox-item__top">
+          <span class="settings-notifications-page__checkbox-item__title"
+            >{{ t('subscribe') }}</span
+          ><cm-checkbox [label]="t('labels.subscribe')" [showLabel]="false" formControlName="subscribe"></cm-checkbox>
+        </div>
+        <p class="settings-notifications-page__checkbox-item__description">
+          {{ t('specialOffers') }}
+        </p>
+      </div> -->
+    </form>
+  </div>
+</div>
+
+<ng-template #loading>
+  <cm-ellipsis></cm-ellipsis>
+</ng-template>

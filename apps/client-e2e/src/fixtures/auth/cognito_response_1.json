@@ -1,0 +1,10 @@
+{
+  "ChallengeName": "PASSWORD_VERIFIER",
+  "ChallengeParameters": {
+    "SALT": "789asdg87894235kjh89623khjg9845h",
+    "SECRET_BLOCK": "asfdasdf",
+    "SRP_B": "asfd",
+    "USERNAME": "6cc28c18-asdf-asdf-asdf-asdfasdfb2ac",
+    "USER_ID_FOR_SRP": "6cc28c18-asdf-asdf-asdf-asdfasdfb2ac"
+  }
+}

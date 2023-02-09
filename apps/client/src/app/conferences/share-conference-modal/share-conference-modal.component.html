@@ -1,0 +1,14 @@
+<ng-container *transloco="let t; read: 'conferences.share.modal'">
+  <img
+    [src]="qrUrl$ | async | sanitizer: 'URL'"
+    alt="Conference share QR Code"
+    width="200"
+    height="200"
+  />
+
+  <div class="cm-join-conference-modal__buttons">
+    <button [attr.data-test-id]="t('shareViaLink')" cm-list-item icon="Share" (click)="share()">
+      {{ t('shareViaLink') }}
+    </button>
+  </div>
+</ng-container>

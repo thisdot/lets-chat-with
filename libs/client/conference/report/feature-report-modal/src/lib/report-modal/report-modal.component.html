@@ -1,0 +1,35 @@
+<ng-container *transloco="let t; read: 'report'">
+  <div class="report__header">
+    <button
+      cm-button
+      cmButtonType="borderless"
+      tabindex="0"
+      class="report__back-button cm-link-button"
+      (click)="onBack()"
+    >
+      <cm-icon name="LeftChevron" size="lg"></cm-icon>
+      <span class="cdk-visually-hidden">{{ t('back') }}</span>
+    </button>
+
+    <h2 id="modal-title" class="report__title">{{ t('title') }}</h2>
+
+    <button cm-button cmButtonType="borderless" class="report__close-button" (click)="onClose()">
+      <cm-icon name="Close" size="lg"></cm-icon>
+    </button>
+  </div>
+  <div class="report__content">
+    <cm-reasons
+      *ngIf="isReasonsView$ | async"
+      (send)="onSend($event)"
+      (otherReasonSelected)="goToOtherReasons()"
+    ></cm-reasons>
+    <cm-other-reason *ngIf="isOtherReasonsView$ | async" (send)="onSend($event)"></cm-other-reason>
+    <div *ngIf="isSuccessMessageView$ | async" class="report__content__msg">
+      <h2>{{ t('successMsg') }}</h2>
+      <p>
+        {{ t('successSubMsg') }}
+      </p>
+      <button cm-button (click)="onDone()">Done</button>
+    </div>
+  </div>
+</ng-container>

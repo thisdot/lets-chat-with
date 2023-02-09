@@ -1,0 +1,55 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../../../../../../libs/client/shared/styles/src/lib/cards';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 1rem;
+
+  @include media_breakpoint_up(md) {
+    padding-top: 4rem;
+  }
+
+  .cm-message-thread-list__threads {
+    flex-grow: 1;
+    overflow: auto;
+
+    @include media_breakpoint_up(md) {
+      @include desktop-card;
+    }
+  }
+
+  cm-ellipsis {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.cm-input-append-wrapper {
+  width: 100%;
+  margin-bottom: 16px;
+  fill: var(--grey-600);
+
+  padding: 0 1rem;
+
+  @include media_breakpoint_up(md) {
+    padding: 0;
+  }
+
+  cm-icon {
+    left: 32px;
+
+    @include media_breakpoint_up(md) {
+      left: 16px;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}

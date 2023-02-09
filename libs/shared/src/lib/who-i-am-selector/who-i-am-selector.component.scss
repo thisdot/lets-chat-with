@@ -1,0 +1,33 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host {
+  width: 100%;
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    cm-counter {
+      margin-left: 20px;
+    }
+  }
+
+  cm-pill {
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+.cm-who-i-am-selector-heading {
+  @extend %h500;
+  color: var(--grey-900);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.cm-who-i-am-selector-text {
+  @extend %text300;
+  color: var(--grey-700);
+  margin-bottom: 24px;
+}

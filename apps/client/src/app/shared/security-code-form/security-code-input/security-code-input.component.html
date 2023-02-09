@@ -1,0 +1,14 @@
+<input
+  *ngFor="let i of placeholders; index as idx"
+  cmInput
+  [class.cm-input--invalid]="invalid"
+  type="tel"
+  maxlength="1"
+  step="0"
+  (paste)="onPaste($event, idx)"
+  (keyup.backspace)="onBackspace($event, idx)"
+  (input)="onInput($event, idx)"
+  (blur)="onBlur($event, idx)"
+  (focus)="onFocus($event, idx)"
+  (keydown)="onKeydown($event, idx)"
+/>

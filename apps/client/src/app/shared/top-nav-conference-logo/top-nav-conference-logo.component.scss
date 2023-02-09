@@ -1,0 +1,22 @@
+:host {
+  height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 122%;
+
+  letter-spacing: 0.01em;
+  font-feature-settings: 'liga' off;
+
+  color: var(--grey-900);
+
+  cm-event-logo {
+    height: 36px;
+    width: 36px;
+    margin-right: 1rem;
+  }
+}

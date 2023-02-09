@@ -1,0 +1,759 @@
+# this is an auto generated file. This will be overwritten
+query NumberOfUnreadMessages($chatThreadId: ID) {
+  numberOfUnreadMessages(chatThreadId: $chatThreadId)
+}
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    owner
+    notificationConfig {
+      matches
+      messages
+      subscribe
+    }
+    termsAccepted
+    createdAt
+    updatedAt
+  }
+}
+query GetInterest($id: ID!) {
+  getInterest(id: $id) {
+    id
+    group
+    name
+    createdAt
+    updatedAt
+  }
+}
+query ListInterests(
+  $filter: ModelInterestFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listInterests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetIdentifier($id: ID!) {
+  getIdentifier(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+query ListIdentifiers(
+  $filter: ModelIdentifierFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listIdentifiers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTheme($id: ID!) {
+  getTheme(id: $id) {
+    id
+    name
+    primary
+    secondary
+    tertiary
+    createdAt
+    updatedAt
+  }
+}
+query ListThemes(
+  $filter: ModelThemeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listThemes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      primary
+      secondary
+      tertiary
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetOrganizationMember($organizationId: ID!, $userId: ID!) {
+  getOrganizationMember(organizationId: $organizationId, userId: $userId) {
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    userId
+    role
+    createdAt
+    updatedAt
+  }
+}
+query ListOrganizationMembers(
+  $organizationId: ID
+  $userId: ModelIDKeyConditionInput
+  $filter: ModelOrganizationMemberFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listOrganizationMembers(
+    organizationId: $organizationId
+    userId: $userId
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      organizationId
+      userId
+      role
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetOrganization($id: ID!) {
+  getOrganization(id: $id) {
+    id
+    owners
+    name
+    website
+    facebook
+    twitter
+    linkedin
+    events {
+      nextToken
+    }
+    members {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListOrganizations(
+  $id: ID
+  $filter: ModelOrganizationFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listOrganizations(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetEvent($id: ID!) {
+  getEvent(id: $id) {
+    id
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    owners
+    readers
+    name
+    status
+    size
+    logoUrl
+    qrImageUrl
+    description
+    theme {
+      id
+      name
+      primary
+      secondary
+      tertiary
+      createdAt
+      updatedAt
+    }
+    registrationCode
+    letsChatWithUrl
+    website
+    facebook
+    twitter
+    dateRange {
+      startDate
+      endDate
+    }
+    interests {
+      nextToken
+    }
+    identifiers {
+      nextToken
+    }
+    maxInterests
+    maxIdentifiers
+    totalAmountDue
+    paymentStatus
+    payments {
+      transactionId
+      amount
+      receivedAt
+    }
+    attendees {
+      nextToken
+    }
+    reports {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetAttendee($id: ID!) {
+  getAttendee(id: $id) {
+    id
+    owner
+    userId
+    fullName
+    avatarUrl
+    title
+    company
+    pronouns
+    bio
+    newsletterSubscribed
+    linkedin
+    twitter
+    facebook
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    ownIdentifiers {
+      nextToken
+    }
+    eventId
+    attendeeMatches {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendeeChats {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListAttendees(
+  $filter: ModelAttendeeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAttendees(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetReport($eventId: ID!, $id: ID!) {
+  getReport(eventId: $eventId, id: $id) {
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    id
+    owner
+    reportingAttendeeId
+    reportingAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reportedAttendeeId
+    reportedAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reason
+    message
+    status
+    createdAt
+    updatedAt
+  }
+}
+query ListReports(
+  $eventId: ID
+  $id: ModelIDKeyConditionInput
+  $filter: ModelReportFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listReports(
+    eventId: $eventId
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      eventId
+      id
+      owner
+      reportingAttendeeId
+      reportedAttendeeId
+      reason
+      message
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetChatThread($id: ID!) {
+  getChatThread(id: $id) {
+    id
+    eventId
+    lastMessageAt
+    attendee1LastReadAt
+    attendee2LastReadAt
+    messages {
+      nextToken
+    }
+    matchId
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListChatThreads(
+  $filter: ModelChatThreadFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChatThreads(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCandidate($id: ID!) {
+  getCandidate(id: $id) {
+    id
+    owner
+    ownerAttendeeId
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    attendeeId
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    candidateType
+    matchScore
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCandidates(
+  $filter: ModelCandidateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCandidates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetMatch($id: ID!) {
+  getMatch(id: $id) {
+    id
+    owners
+    attendee1Id
+    attendee2Id
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    attendee1 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendee2 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    updatedAt
+  }
+}
+query ListMatches(
+  $filter: ModelMatchFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMatches(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetUserByOwner(
+  $owner: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  getUserByOwner(
+    owner: $owner
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      owner
+      termsAccepted
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query CandidatesByEventId(
+  $eventId: ID
+  $matchScore: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelCandidateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  candidatesByEventId(
+    eventId: $eventId
+    matchScore: $matchScore
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

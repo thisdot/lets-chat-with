@@ -1,0 +1,54 @@
+:host.cm-icon {
+  position: relative;
+  display: inline-block;
+
+  svg {
+    all: inherit;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.cm-icon--xs,
+  &.cm-icon--xs svg {
+    width: 4px;
+    height: 4px;
+  }
+
+  &.cm-icon--sm,
+  &.cm-icon--sm svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  &.cm-icon--md,
+  &.cm-icon--md svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.cm-icon--lg,
+  &.cm-icon--lg svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.cm-icon--xl,
+  &.cm-icon--xl svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.cm-icon--xxl,
+  &.cm-icon--xxl svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.cm-icon--xxxl,
+  &.cm-icon--xxxl svg {
+    width: 40px;
+    height: 40px;
+  }
+}

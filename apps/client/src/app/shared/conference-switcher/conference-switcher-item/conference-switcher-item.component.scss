@@ -1,0 +1,17 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+.conference-switcher-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1.5rem;
+  margin-bottom: 0.5rem;
+
+  height: 2.65rem;
+
+  cm-event-logo {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+}

@@ -1,0 +1,15 @@
+<ng-container *transloco="let t; read: 'report.other'">
+  <h2>{{ t('title') }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <textarea
+      cmTextarea
+      rows="6"
+      formControlName="message"
+      class="cm-input--overload-invalid-ui"
+      placeholder="{{ t('placeholder') }}"
+    ></textarea>
+    <p></p>
+    <button cm-button [disabled]="form.invalid">{{ t('submit') }}</button>
+  </form>
+</ng-container>

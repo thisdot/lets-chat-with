@@ -1,0 +1,15 @@
+<ng-container *transloco="let t">
+  <cm-top-nav class="header"></cm-top-nav>
+  <main
+    id="maincontent"
+    class="main"
+    [class.centered]="([RouteTag.conference, RouteTag.edit] | inRouteTags$ | async) === false"
+  >
+    <div class="main__content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="main__nav" *tdRouteTag="[RouteTag.conference, RouteTag.edit]">
+      <router-outlet name="main-nav"></router-outlet>
+    </div>
+  </main>
+</ng-container>

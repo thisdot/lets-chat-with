@@ -1,0 +1,104 @@
+$font-family: 'Lato', sans-serif;
+$letter-spacing: 0.01em;
+
+%h500 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 108%;
+  letter-spacing: $letter-spacing;
+}
+
+%h400 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 110%;
+  letter-spacing: $letter-spacing;
+}
+
+%h300 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 118%;
+  letter-spacing: $letter-spacing;
+}
+
+%h200 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 122%;
+  letter-spacing: $letter-spacing;
+}
+
+%h100 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 122%;
+  letter-spacing: $letter-spacing;
+}
+
+%text400 {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 132%;
+  letter-spacing: $letter-spacing;
+}
+
+%text300 {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 148%;
+  letter-spacing: $letter-spacing;
+}
+
+%text200 {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 154%;
+  letter-spacing: $letter-spacing;
+}
+
+%text100 {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 164%;
+  letter-spacing: $letter-spacing;
+}
+
+%link300 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 148%;
+  letter-spacing: $letter-spacing;
+}
+
+%caption100 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 124%;
+  letter-spacing: 0.06em;
+}
+
+%caption200 {
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 122%;
+  letter-spacing: 0.06em;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

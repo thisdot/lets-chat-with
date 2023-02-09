@@ -1,0 +1,37 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <h2 class="cm-wizard-heading">{{ t('socials.title') }}</h2>
+  <p class="cm-wizard-text">
+    {{ t('socials.description') }}
+  </p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <cm-social-input-wrapper platform="linkedin">
+      <input
+        cmInput
+        [placeholder]="t('socials.fields.linkedin.placeholder')"
+        formControlName="linkedin"
+      />
+    </cm-social-input-wrapper>
+    <cm-social-input-wrapper platform="twitter">
+      <input
+        cmInput
+        [placeholder]="t('socials.fields.twitter.placeholder')"
+        formControlName="twitter"
+      />
+    </cm-social-input-wrapper>
+    <cm-social-input-wrapper platform="fb">
+      <input
+        cmInput
+        [placeholder]="t('socials.fields.facebook.placeholder')"
+        formControlName="facebook"
+      />
+    </cm-social-input-wrapper>
+    <button
+      cm-button
+      [floating]="true"
+      [disabled]="form.invalid"
+      [cmButtonType]="isButtonNext ? 'primary' : 'secondary'"
+    >
+      {{ t(isButtonNext ? 'actions.next' : 'actions.skip') }}
+    </button>
+  </form>
+</ng-container>

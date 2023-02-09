@@ -1,0 +1,23 @@
+<ng-container *transloco="let t; read: 'resetPassword.currentEmail'">
+  <h2 class="cm-wizard-heading">{{ t('passwordRecovery') }}</h2>
+  <p class="cm-wizard-text">
+    {{ t('enterEmail') }}
+  </p>
+  <form [formGroup]="form" (ngSubmit)="onNext(form.value)">
+    <cm-text-field-wrapper [errors]="errors$ | async">
+      <label for="password-recovery-email">{{ t('yourEmail') }}</label>
+      <input
+        id="password-recovery-email"
+        cmInput
+        type="email"
+        [placeholder]="t('placeholderEmail')"
+        formControlName="email"
+        [class.cm-input--invalid]="!!(errors$ | async)?.length"
+        (input)="onInput($any($event))"
+      />
+    </cm-text-field-wrapper>
+    <button cm-button [disabled]="form.invalid || (loading$ | async)" [floating]="true">
+      {{ t('next') }}
+    </button>
+  </form>
+</ng-container>

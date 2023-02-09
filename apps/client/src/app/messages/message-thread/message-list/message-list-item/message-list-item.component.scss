@@ -1,0 +1,43 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host.cm-message-list-item {
+  @extend %text300;
+  padding: 8px 12px;
+  background-color: var(--white);
+  color: var(--grey-900);
+  border-radius: 8px 8px 8px 0;
+  align-self: flex-start;
+
+  &--sent {
+    background-color: var(--secondary-500);
+    color: var(--white);
+    border-radius: 8px 8px 0 8px;
+    align-self: flex-end;
+    .cm-message-list-item__createdAt {
+      color: var(--secondary-100);
+    }
+  }
+}
+
+.cm-message-list-item {
+  &__content,
+  &__createdAt {
+    display: block;
+  }
+
+  &__text-filler {
+    width: 72px;
+    display: inline-block;
+  }
+
+  &__createdAt {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 120%;
+    color: var(--grey-500);
+
+    float: right;
+    margin-top: -10px;
+  }
+}

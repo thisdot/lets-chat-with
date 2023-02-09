@@ -1,0 +1,47 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+@mixin set_page_styles() {
+  padding: 0 1.5rem;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+@mixin settings_shared() {
+  width: 100%;
+
+  @media (min-width: 1000px) {
+    min-height: unset;
+  }
+
+  & &__top-nav {
+    @media (min-width: 1000px) {
+      display: none;
+    }
+  }
+
+  & &__title {
+    @extend %h500;
+    color: var(--grey-900);
+    margin: 0;
+  }
+
+  & &__description {
+    @extend %text300;
+    color: var(--grey-700);
+  }
+
+  & &__title + &__description {
+    margin-top: 12px;
+  }
+
+  .cm-settings-wrapper__content__nav {
+    display: none;
+  }
+
+  @include media_breakpoint_down(lg) {
+    .cm-settings-wrapper__content__nav {
+      display: flex;
+      background-color: transparent;
+    }
+  }
+}

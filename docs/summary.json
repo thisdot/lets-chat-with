@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Tech Stack",
+    "file": "technology-stack.md"
+  },
+  {
+    "title": "Serverless Framework",
+    "file": "../serverless/README.md"
+  },
+  {
+    "title": "Development Workflow",
+    "file": "development-workflow.md"
+  },
+  {
+    "title": "Architectural Guidelines",
+    "file": "architectural-guidelines.md"
+  },
+  {
+    "title": "Testing",
+    "file": "testing.md"
+  },
+  {
+    "title": "Storybook",
+    "file": "storybook.md"
+  },
+  {
+    "title": "CI CD",
+    "file": "ci-cd.md"
+  },
+  {
+    "title": "Additional Resources",
+    "file": "additional-resources.md"
+  }
+]

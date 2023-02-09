@@ -1,0 +1,25 @@
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+
+  @include media_breakpoint_up(md) {
+    padding-top: 4rem;
+  }
+
+  cm-ellipsis {
+    display: flex;
+    justify-content: center;
+  }
+
+  cm-match-card {
+    width: 100%;
+
+    & + cm-match-card {
+      margin-top: 1rem;
+    }
+  }
+}

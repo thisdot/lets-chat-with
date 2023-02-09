@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/admin/core/state/src",
+  "prefix": "conf-match",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/admin/core/state/src/**/*.ts",
+          "libs/client/admin/core/state/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["technology:client", "application:admin", "bc:core", "type:feature"]
+}

@@ -1,0 +1,257 @@
+@import 'libs/client/shared/styles/src/lib/typography';
+@import 'libs/client/shared/styles/src/lib/breakpoints';
+@import 'libs/client/shared/styles/src/lib/a11y';
+@import 'libs/client/shared/styles/src/lib/util';
+
+:host.cm-main {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  min-height: 100svh;
+  align-items: center;
+  justify-content: center;
+
+  .cm-main__header {
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+    height: 20svh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    @include media_breakpoint_up(md) {
+      height: 10vh;
+      height: 10svh;
+    }
+
+    .cm-main__signup-link-text,
+    .cm-main__signup-link,
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav {
+      padding: 2rem 0;
+      margin: 0;
+      width: 100%;
+
+      @include media_breakpoint_up(md) {
+        justify-content: space-between;
+      }
+
+      .cm-main__home-link {
+        display: flex;
+        text-decoration: none;
+      }
+
+      .cm-main__signup-link-container {
+        display: flex;
+        margin-right: 2rem;
+
+        .cm-main__signup-link-text {
+          font-size: 1rem;
+          color: var(--grey-700);
+          margin-right: 0.75rem;
+        }
+
+        .cm-main__signup-link {
+          padding: 0.5rem 0.75rem;
+          height: 2rem;
+          text-transform: uppercase;
+          background: var(--opacity-grey-200);
+          color: var(--primary-500);
+          border: 1px solid var(--primary-500);
+          box-sizing: border-box;
+          box-shadow: var(--btn-shadow-100);
+          border-radius: 4px;
+          text-decoration: none;
+        }
+
+        @include media_breakpoint_down(md) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .cm-main__icon {
+    margin-left: 2rem;
+    @include media_breakpoint_down(md) {
+      display: none;
+    }
+  }
+
+  .cm-main__content-layout {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    .cm-main__left-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      width: 40%;
+      height: 100vh;
+      height: 100svh;
+      background-image: url('/assets/img/attendee_signin_bg.png');
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 2.5rem;
+      background-size: cover;
+
+      @include media_breakpoint_down(md) {
+        display: none;
+      }
+
+      p span {
+        color: var(--white);
+        font-weight: bold;
+        font-size: 2rem;
+        font-family: Lato;
+        font-style: normal;
+        line-height: 108%;
+
+        letter-spacing: 0.01em;
+        font-feature-settings: 'liga' off;
+      }
+    }
+
+    .cm-main__right-panel {
+      width: 100%;
+      margin-top: 15vh;
+      margin-top: 15svh;
+      padding: 1.25rem;
+      background: linear-gradient(180deg, var(--grey-200) 0%, var(--grey-100) 100%);
+
+      &__icon {
+        align-self: center;
+        margin-bottom: 1.5rem;
+        width: toRem(203);
+        height: toRem(147);
+
+        @include media_breakpoint_up(md) {
+          display: none;
+        }
+      }
+    }
+
+    .cm-main__content {
+      position: relative;
+      display: flex;
+      text-align: center;
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 22.5rem;
+      min-height: 80vh;
+      min-height: 80svh;
+      margin: 0 auto;
+      padding-bottom: 3rem;
+
+      .cm-main__content__heading {
+        display: none;
+        @extend %h500;
+        font-size: 1.88rem;
+
+        @include media_breakpoint_up(md) {
+          display: block;
+        }
+      }
+
+      &__text {
+        @extend %text300;
+        color: var(--grey-800);
+        padding: 0 1.5rem;
+      }
+
+      span.divider {
+        @extend %caption200;
+        margin: 0 0 1.25rem;
+        text-transform: uppercase;
+        color: var(--grey-700);
+        z-index: 2;
+        position: relative;
+        width: 100%;
+
+        &::before,
+        &::after {
+          width: 100px;
+          content: '';
+          background: var(--grey-400);
+          height: 1px;
+          position: absolute;
+          display: block;
+          top: 50%;
+        }
+
+        &:before {
+          left: 24px;
+        }
+
+        &:after {
+          right: 24px;
+        }
+      }
+
+      .cm-main__content__forgot-password {
+        @extend %text200;
+        color: var(--secondary-500);
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0.5rem 0.5rem;
+        display: none;
+        text-align: left;
+
+        @include media_breakpoint_up(md) {
+          display: block;
+        }
+      }
+
+      .cm-main__content__sign-up {
+        margin-top: 2rem;
+
+        a {
+          color: var(--grey-800);
+          font-weight: bold;
+          text-decoration: underline;
+        }
+
+        @include media_breakpoint_up(md) {
+          display: none;
+        }
+      }
+
+      .cm-main__links {
+        text-align: center;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        height: 2.5rem;
+
+        a {
+          @extend %text300;
+          color: var(--secondary-500);
+          text-decoration: none;
+          font-weight: bold;
+          margin: 0.5rem 0.5rem;
+        }
+
+        @include media_breakpoint_up(md) {
+          display: none;
+        }
+      }
+    }
+  }
+}

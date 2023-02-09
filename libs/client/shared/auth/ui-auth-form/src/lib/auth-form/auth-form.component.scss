@@ -1,0 +1,75 @@
+@import 'libs/client/shared/styles/src/lib/breakpoints';
+@import 'libs/client/shared/styles/src/lib/typography';
+
+form {
+  padding: 2rem 0;
+  text-align: center;
+
+  .signup {
+    min-width: 327px;
+  }
+
+  @include media_breakpoint_down(xs) {
+    width: 310px;
+
+    .signup {
+      min-width: 310px;
+    }
+  }
+
+  @include media_breakpoint_down(sm) {
+    width: 327px;
+  }
+
+  @include media_breakpoint_down(md) {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  input,
+  cm-password-wrapper,
+  cm-text-field-wrapper {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    text-align: left;
+  }
+
+  & > input {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    display: block;
+    @extend %text300;
+    color: var(--secondary-500);
+    text-decoration: none;
+    margin: 8px 8px;
+    text-align: left;
+  }
+
+  button {
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--grey-200);
+    }
+  }
+
+  .cm-auth-form__errors {
+    &__error {
+      display: block;
+      margin: 0;
+      padding: 0;
+      font-size: 0.81rem;
+      color: var(--grey-900);
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

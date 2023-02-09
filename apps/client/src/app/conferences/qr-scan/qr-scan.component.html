@@ -1,0 +1,41 @@
+<ng-container *transloco="let t; read: 'conferences.join.byQR'">
+  <zxing-scanner
+    *ngIf="startCamera$ | async"
+    [enable]="enable$ | async"
+    [autostart]="false"
+    [device]="selectedDevice$ | async"
+    [formats]="['QR_CODE']"
+    (camerasFound)="devices.next($event)"
+    (scanSuccess)="scanResult.next($event)"
+    (scanError)="scanError($event)"
+  >
+  </zxing-scanner>
+
+  <div class="shade" [class.success]="successfulScan$ | async">
+    <div class="qr-shaded-region" id="qr-shaded-region_1"></div>
+    <div class="qr-shaded-region" id="qr-shaded-region_2"></div>
+    <div class="qr-shaded-region" id="qr-shaded-region_3">
+      <div></div>
+      <div></div>
+    </div>
+    <div class="qr-shaded-region" id="qr-shaded-region_4">
+      <div></div>
+      <div></div>
+      <button
+        cm-button
+        [cmButtonType]="'secondary'"
+        *ngIf="(devices$ | async)?.length > 1"
+        (click)="toggleCamera()"
+      >
+        {{ t('toggleCameras') }}
+      </button>
+    </div>
+
+    <img
+      class="qr-success"
+      *ngIf="successfulScan$ | async"
+      src="assets/qr-logo.svg"
+      alt="successful qr scan"
+    />
+  </div>
+</ng-container>

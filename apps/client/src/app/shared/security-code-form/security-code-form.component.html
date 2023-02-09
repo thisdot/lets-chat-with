@@ -1,0 +1,14 @@
+<ng-container *transloco="let t; read: 'securityCode'">
+  <form [formGroup]="form" (ngSubmit)="submitForm.emit(form.value)">
+    <cm-security-code-input formControlName="code" [invalid]="invalid"></cm-security-code-input>
+    <div class="cm-security-code-form__invalid">
+      <p *ngIf="invalid">{{ t('invalidCode') }}</p>
+      <button type="button" (click)="resendCode.emit()" [disabled]="loading">
+        {{ t('resend') }}
+      </button>
+    </div>
+    <button cm-button [disabled]="form.invalid || loading" [floating]="true">
+      {{ t('next') }}
+    </button>
+  </form>
+</ng-container>

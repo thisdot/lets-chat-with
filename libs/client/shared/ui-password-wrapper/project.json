@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/shared/ui-password-wrapper/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/client/shared/ui-password-wrapper/src/test.ts",
+        "tsConfig": "libs/client/shared/ui-password-wrapper/tsconfig.spec.json",
+        "karmaConfig": "libs/client/shared/ui-password-wrapper/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shared/ui-password-wrapper/src/**/*.ts",
+          "libs/client/shared/ui-password-wrapper/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["technology:client", "application:shared", "bc:shared", "type:ui"]
+}

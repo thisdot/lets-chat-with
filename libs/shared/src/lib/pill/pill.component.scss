@@ -1,0 +1,51 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host.cm-pill {
+  display: inline-block;
+  border-radius: 8px;
+  box-sizing: border-box;
+  align-self: center;
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 122%;
+  letter-spacing: 0.03em;
+
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    padding: 11px 20px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px auto rgba(170, 50, 220, 0.6);
+  }
+
+  &.cm-pill--primary {
+    color: var(--primary-600);
+    border: 1px solid var(--primary-500);
+    &.cm-pill--active {
+      background-color: var(--primary-500);
+      color: white;
+    }
+  }
+
+  &.cm-pill--secondary {
+    color: var(--secondary-600);
+    border: 1px solid var(--secondary-500);
+
+    &.cm-pill--active {
+      background-color: var(--secondary-500);
+      color: white;
+    }
+  }
+}

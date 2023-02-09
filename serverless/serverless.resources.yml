@@ -1,0 +1,620 @@
+Resources:
+  CognitoUserPoolLCW:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ClientPool_${self:provider.stage}
+      UsernameAttributes:
+        - email
+      Schema:
+        - Name: email
+          AttributeDataType: String
+          Required: true
+          Mutable: true
+      AutoVerifiedAttributes:
+        - email
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: false
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: false
+  AdminUserPoolGroup:
+    Type: 'AWS::Cognito::UserPoolGroup'
+    Properties:
+      GroupName: ADMINS
+      Precedence: 0
+      UserPoolId:
+        Ref: CognitoUserPoolLCW
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: LCW_UI_${self:provider.stage}
+      UserPoolId:
+        Ref: CognitoUserPoolLCW
+  ChatThreadTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byEventId
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.CHAT_THREAD_TABLE_NAME}
+  MessageTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: chatThreadId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: gsi-chatThreadMessages
+          KeySchema:
+            - AttributeName: chatThreadId
+              KeyType: HASH
+            - AttributeName: id
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.MESSAGE_TABLE_NAME}
+  AttendeeTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byEventId
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byUserId
+          KeySchema:
+            - AttributeName: userId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ATTENDEE_TABLE_NAME}
+  AttendeeDesiredIdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: attendeeId
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: identifierId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byAttendee
+          KeySchema:
+            - AttributeName: attendeeId
+              KeyType: HASH
+            - AttributeName: identifierId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ATTENDEE_DESIRED_IDENTIFIER_TABLE_NAME}
+  AttendeeInterestTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: attendeeId
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: interestId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byAttendee
+          KeySchema:
+            - AttributeName: attendeeId
+              KeyType: HASH
+            - AttributeName: interestId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ATTENDEE_INTEREST_TABLE_NAME}
+  AttendeeOwnIdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: attendeeId
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: identifierId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byAttendee
+          KeySchema:
+            - AttributeName: attendeeId
+              KeyType: HASH
+            - AttributeName: identifierId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ATTENDEE_OWN_IDENTIFIER_TABLE_NAME}
+  CandidateTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: attendeeId
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: ownerAttendeeId
+          AttributeType: S
+        - AttributeName: matchScore
+          AttributeType: N
+      GlobalSecondaryIndexes:
+        - IndexName: byAttendees
+          KeySchema:
+            - AttributeName: attendeeId
+              KeyType: HASH
+            - AttributeName: ownerAttendeeId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEventId
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+            - AttributeName: matchScore
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.CANDIDATE_TABLE_NAME}
+  EventTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: letsChatWithUrl
+          AttributeType: S
+        - AttributeName: organizationId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byLetsChatWithUrl
+          KeySchema:
+            - AttributeName: letsChatWithUrl
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byOrganization
+          KeySchema:
+            - AttributeName: organizationId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.EVENT_TABLE_NAME}
+  EventIdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: identifierId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+            - AttributeName: identifierId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.EVENT_IDENTIFIER_TABLE_NAME}
+  EventInterestTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: interestId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byEvent
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+            - AttributeName: interestId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.EVENT_INTEREST_TABLE_NAME}
+  IdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: name
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byName
+          KeySchema:
+            - AttributeName: name
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.IDENTIFIER_TABLE_NAME}
+  InterestTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: group
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byGroup
+          KeySchema:
+            - AttributeName: group
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.INTEREST_TABLE_NAME}
+  MatchTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: attendee1Id
+          AttributeType: S
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: attendee2Id
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byAttendeesIds
+          KeySchema:
+            - AttributeName: attendee1Id
+              KeyType: HASH
+            - AttributeName: attendee2Id
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: byEventId
+          KeySchema:
+            - AttributeName: eventId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.MATCH_TABLE_NAME}
+  MatchInterestTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: matchId
+          AttributeType: S
+        - AttributeName: interestId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byMatch
+          KeySchema:
+            - AttributeName: matchId
+              KeyType: HASH
+            - AttributeName: interestId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.MATCH_INTEREST_TABLE_NAME}
+  MatchDesiredIdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: matchId
+          AttributeType: S
+        - AttributeName: desiredIdentifierId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byMatch
+          KeySchema:
+            - AttributeName: matchId
+              KeyType: HASH
+            - AttributeName: desiredIdentifierId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.MATCH_DESIRED_IDENTIFIER_TABLE_NAME}
+  CandidateInterestTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: candidateId
+          AttributeType: S
+        - AttributeName: interestId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byCandidate
+          KeySchema:
+            - AttributeName: candidateId
+              KeyType: HASH
+            - AttributeName: interestId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.CANDIDATE_INTEREST_TABLE_NAME}
+  CandidateDesiredIdentifierTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: candidateId
+          AttributeType: S
+        - AttributeName: desiredIdentifierId
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byCandidate
+          KeySchema:
+            - AttributeName: candidateId
+              KeyType: HASH
+            - AttributeName: desiredIdentifierId
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.CANDIDATE_DESIRED_IDENTIFIER_TABLE_NAME}
+  OrganizationTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ORGANIZATION_TABLE_NAME}
+  OrganizationMemberTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: organizationId
+          KeyType: HASH
+        - AttributeName: userId
+          KeyType: RANGE
+      AttributeDefinitions:
+        - AttributeName: organizationId
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.ORGANIZATION_MEMBER_TABLE_NAME}
+  ReportTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: eventId
+          KeyType: HASH
+        - AttributeName: id
+          KeyType: RANGE
+      AttributeDefinitions:
+        - AttributeName: eventId
+          AttributeType: S
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.REPORT_TABLE_NAME}
+  ThemeTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.THEME_TABLE_NAME}
+  UserTableResource:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: owner
+          AttributeType: S
+      GlobalSecondaryIndexes:
+        - IndexName: byOwner
+          KeySchema:
+            - AttributeName: owner
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+      TableName: ${self:provider.environment.USER_TABLE_NAME}
+  ImageBucketResource:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${self:provider.environment.S3_BUCKET_NAME}
+  ImageBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicRead
+            Effect: Allow
+            Principal: '*'
+            Action:
+              - 's3:GetObject'
+            Resource: !Join ['', ['arn:aws:s3:::', !Ref ImageBucketResource, /*]]
+      Bucket:
+        Ref: ImageBucketResource

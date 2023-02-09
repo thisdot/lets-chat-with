@@ -1,0 +1,29 @@
+<header>
+  <h2 class="cm-interests-selector-heading">What are your interests?</h2>
+  <cm-counter [total]="limit" [count]="selectedInterests.length"></cm-counter>
+</header>
+<p class="cm-interests-selector-text">Your interests will be show in your profile.</p>
+<cm-search-input (search)="onSearchInput($event)"></cm-search-input>
+<cm-expandable
+  *ngFor="let group of interestGroups"
+  [visible]="visibleGroups.get(group.name) !== undefined ? visibleGroups.get(group.name) : true"
+  (toggle)="onGroupVisibilityToggle(group.name, $event)"
+>
+  <h3 header>{{ group.name }}</h3>
+  <div content class="cm-interests__group">
+    <div *ngFor="let interest of group.interests">
+      <cm-pill
+        type="secondary"
+        tabindex="0"
+        (tryUpdateWhenDisabled)="
+          onInterestMouseDown(limit === selectedInterests.length && !isSelected(interest))
+        "
+        (ngModelChange)="onInterestStateChange(interest)"
+        [ngModel]="isSelected(interest)"
+        [disabled]="limit === selectedInterests.length && !isSelected(interest)"
+      >
+        {{ interest.name }}
+      </cm-pill>
+    </div>
+  </div>
+</cm-expandable>

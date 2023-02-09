@@ -1,0 +1,16 @@
+<div
+  #content
+  (touchstart)="onContentTouchStart($event)"
+  (mousedown)="onContentTouchStart($event)"
+  class="cm-swipe-stepper__content"
+>
+  <ng-content></ng-content>
+</div>
+<div class="cm-swipe-stepper__markers">
+  <div *ngFor="let selected of markers">
+    <div
+      class="cm-swipe-stepper__markers__marker"
+      [class.cm-swipe-stepper__markers__marker--focused]="selected"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+
+:host {
+  width: 100%;
+
+  cm-social-input-wrapper {
+    margin-bottom: 16px;
+
+    input {
+      width: 100%;
+    }
+  }
+}

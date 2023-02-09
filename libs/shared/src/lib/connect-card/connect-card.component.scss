@@ -1,0 +1,111 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+@import '../../../../client/shared/styles/src/lib/cards';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  padding-top: 1rem;
+
+  @include media_breakpoint_up(sm) {
+    width: 85%;
+  }
+
+  @include media_breakpoint_up(xl) {
+    width: 100%;
+  }
+
+  @include media_breakpoint_down(sm) {
+    width: 100%;
+  }
+}
+
+.cm-connect-card__chips {
+  @include desktop-card;
+}
+
+.cm-connect-card__content,
+.cm-connect-card__actions {
+  display: flex;
+  align-items: center;
+}
+
+.cm-connect-card__content {
+  margin-bottom: 16px;
+}
+
+cm-avatar-image {
+  margin-right: 16px;
+}
+
+.cm-connect-card__content__name {
+  @extend %h200;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cm-connect-card__content__description {
+  @extend %text200;
+  color: var(--grey-300);
+}
+
+.cm-connect-card__content__pronouns {
+  @extend %text200;
+  color: var(--grey-400);
+}
+
+.cm-connect-card__summary {
+  @extend %text300;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+
+.cm-connect-card__looking-for,
+.cm-connect-card__who-i-am,
+.cm-connect-card__interests {
+  margin-bottom: 22px;
+
+  span {
+    @extend %caption200;
+    color: var(--grey-700);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .cm-chip {
+    margin: 4px;
+  }
+}
+
+.cm-connect-card__actions {
+  justify-content: center;
+  background-color: var(--grey-200);
+
+  margin-left: -24px;
+  margin-right: -24px;
+  margin-bottom: -24px;
+  border-radius: 0px 0px 12px 12px;
+}
+
+.cm-connect-card__menu {
+  background: none;
+  border: none;
+  position: absolute;
+  padding: 0;
+  top: 16px;
+  right: 16px;
+
+  fill: var(--grey-600);
+
+  cursor: pointer;
+}
+
+.cm-chips-list {
+  margin-left: -4px;
+  margin-right: -4px;
+}

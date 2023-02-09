@@ -1,0 +1,36 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.cm-join-conference-modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @extend %h500;
+  color: var(--grey-900);
+}
+
+.cm-join-conference-modal__description {
+  margin-top: 8px;
+
+  @extend %text300;
+
+  color: var(--grey-700);
+}
+
+.cm-join-conference-modal__buttons {
+  height: 100%;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+a {
+  text-decoration: none;
+}

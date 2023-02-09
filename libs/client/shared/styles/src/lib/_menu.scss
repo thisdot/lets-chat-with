@@ -1,0 +1,19 @@
+@mixin desktop-menu() {
+  padding: 16px 0;
+  box-shadow: 0 4px 20px rgba(9, 13, 44, 0.06);
+  border-radius: 12px;
+
+  background-color: var(--white);
+
+  box-sizing: border-box;
+}
+
+@mixin mobile-menu() {
+  padding: 48px 12px;
+  box-shadow: 0 4px 20px rgba(9, 13, 44, 0.06);
+  border-radius: 12px 0 0 12px;
+
+  background-color: var(--white);
+
+  box-sizing: border-box;
+}

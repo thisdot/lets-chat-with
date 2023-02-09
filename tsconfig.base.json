@@ -1,0 +1,100 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@conf-match/api": ["libs/api/src/index.ts"],
+      "@conf-match/client/admin/assets": ["libs/client/admin/assets/src/index.ts"],
+      "@conf-match/client/admin/auth/data-access": [
+        "libs/client/admin/auth/data-access/src/index.ts"
+      ],
+      "@conf-match/client/admin/auth/feature-signin": [
+        "libs/client/admin/auth/feature-signin/src/index.ts"
+      ],
+      "@conf-match/client/admin/auth/feature-signout": [
+        "libs/client/admin/auth/feature-signout/src/index.ts"
+      ],
+      "@conf-match/client/admin/core/environments": [
+        "libs/client/admin/core/environments/src/index.ts"
+      ],
+      "@conf-match/client/admin/core/feature-layout": [
+        "libs/client/admin/core/feature-layout/src/index.ts"
+      ],
+      "@conf-match/client/admin/core/shell": ["libs/client/admin/core/shell/src/index.ts"],
+      "@conf-match/client/admin/core/state": ["libs/client/admin/core/state/src/index.ts"],
+      "@conf-match/client/admin/i18n/util-transloco-root": [
+        "libs/client/admin/i18n/util-transloco-root/src/index.ts"
+      ],
+      "@conf-match/client/admin/reports/feature-reports": [
+        "libs/client/admin/reports/feature-reports/src/index.ts"
+      ],
+      "@conf-match/client/conference/connect/data-access": [
+        "libs/client/conference/connect/data-access/src/index.ts"
+      ],
+      "@conf-match/client/conference/matches/data-access": [
+        "libs/client/conference/matches/data-access/src/index.ts"
+      ],
+      "@conf-match/client/conference/messages/data-access": [
+        "libs/client/conference/messages/data-access/src/index.ts"
+      ],
+      "@conf-match/client/conference/report/data-access": [
+        "libs/client/conference/report/data-access/src/index.ts"
+      ],
+      "@conf-match/client/conference/report/domain": [
+        "libs/client/conference/report/domain/src/index.ts"
+      ],
+      "@conf-match/client/conference/report/feature-report-modal": [
+        "libs/client/conference/report/feature-report-modal/src/index.ts"
+      ],
+      "@conf-match/client/shared/auth/ui-auth-form": [
+        "libs/client/shared/auth/ui-auth-form/src/index.ts"
+      ],
+      "@conf-match/client/shared/styles": ["libs/client/shared/styles/src/index.ts"],
+      "@conf-match/client/shared/testing/util-testing": [
+        "libs/client/shared/testing/util-testing/src/index.ts"
+      ],
+      "@conf-match/client/shared/ui-input": ["libs/client/shared/ui-input/src/index.ts"],
+      "@conf-match/client/shared/ui-password-wrapper": [
+        "libs/client/shared/ui-password-wrapper/src/index.ts"
+      ],
+      "@conf-match/client/shared/ui-text-field-wrapper": [
+        "libs/client/shared/ui-text-field-wrapper/src/index.ts"
+      ],
+      "@conf-match/core": ["libs/core/src/index.ts"],
+      "@conf-match/shared": ["libs/shared/src/index.ts"],
+      "@conf-match/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@conf-match/shared/data-access-file-upload": [
+        "libs/shared/data-access-file-upload/src/index.ts"
+      ],
+      "@conf-match/shared/route-tags": ["libs/shared/route-tags/src/index.ts"],
+      "@conf-match/shared/storybook-helpers": ["libs/shared/storybook-helpers/src/index.ts"],
+      "@conf-match/shared/theme": ["libs/shared/theme/src/index.ts"],
+      "@conf-match/shared/ui-auth": ["libs/shared/ui-auth/src/index.ts"],
+      "@conf-match/shared/ui-buttons": ["libs/shared/ui-buttons/src/index.ts"],
+      "@conf-match/shared/ui-icons": ["libs/shared/ui-icons/src/index.ts"],
+      "@conf-match/shared/ui-notifications": ["libs/shared/ui-notifications/src/index.ts"],
+      "@conf-match/utilities": ["libs/utilities/src/index.ts"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": true,
+    "enableIvy": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}

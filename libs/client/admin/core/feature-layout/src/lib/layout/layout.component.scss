@@ -1,0 +1,60 @@
+@import '../../../../../../shared/styles/src/lib/breakpoints';
+@import '../../../../../../shared/styles/src/lib/typography';
+
+:host {
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    'header'
+    'content';
+
+  .header {
+    grid-area: header;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main {
+    overflow: auto;
+    width: 100%;
+    grid-area: content;
+
+    &__header {
+      height: 60px;
+      background-color: var(--white);
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 20px rgb(9 13 44 / 6%);
+      padding: 0 10%;
+
+      @include media_breakpoint_up(sm) {
+        padding: 0;
+
+        &__container {
+          width: 100%;
+          max-width: 1280px;
+          margin: auto;
+        }
+      }
+    }
+
+    &__content {
+      padding: 0;
+
+      @include media_breakpoint_up(sm) {
+        width: 100%;
+        max-width: 1280px;
+        margin: auto;
+      }
+    }
+  }
+}

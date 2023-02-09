@@ -1,0 +1,182 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+@import '../../../../../../../shared/styles/src/lib/breakpoints';
+
+$baseMargin: 5px;
+$marginBetweenSections: $baseMargin * 3;
+$avatarMargin: $baseMargin * 2;
+
+:host {
+  display: block;
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'reported-user'
+      'issue'
+      'report-note'
+      'reported-by'
+      'action-buttons';
+
+    @include media_breakpoint_up(sm) {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: minmax(min-content, max-content);
+      grid-template-areas:
+        'reported-user action-buttons'
+        'issue reported-by'
+        'report-note report-note';
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &__reported-user {
+      grid-area: reported-user;
+      display: flex;
+      align-items: center;
+
+      &__avatar {
+        background-color: var(--white);
+        border-radius: 90px;
+        width: 88px;
+        height: 88px;
+        border: 1px solid #c4d5ef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: $avatarMargin;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+
+        @include media_breakpoint_up(sm) {
+          margin-bottom: 40px;
+        }
+      }
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+
+        &__name {
+          @extend %h200;
+        }
+        &__title {
+          @extend %text200;
+        }
+      }
+    }
+
+    &__issue {
+      grid-area: issue;
+      display: flex;
+      flex-direction: column;
+      margin: $marginBetweenSections 0;
+
+      &__label {
+        text-transform: uppercase;
+        @extend %text200;
+      }
+
+      &__type {
+        display: flex;
+        align-items: center;
+        margin-top: $baseMargin;
+
+        cm-icon {
+          margin-right: 6px;
+        }
+
+        span {
+          @extend %text300;
+        }
+      }
+    }
+
+    &__reported-by {
+      grid-area: reported-by;
+      margin-bottom: $baseMargin;
+
+      &__label {
+        text-transform: uppercase;
+        @extend %text200;
+      }
+
+      &__user {
+        display: flex;
+        align-items: center;
+        margin-top: $baseMargin;
+
+        &__avatar {
+          height: 44px;
+          width: 44px;
+          border-radius: 45px;
+          border: 1px solid #c4d5ef;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: $avatarMargin;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &__name {
+          @extend %h100;
+        }
+      }
+    }
+
+    &__report-note {
+      grid-area: report-note;
+      background-color: var(--grey-200);
+      border-radius: 6px;
+      position: relative;
+      padding: 10px;
+      margin-bottom: $marginBetweenSections;
+
+      &__pointer {
+        position: absolute;
+        top: 0;
+        margin-top: -10px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid var(--grey-200);
+        margin-left: 20px;
+      }
+    }
+
+    &__action-buttons {
+      grid-area: action-buttons;
+      display: flex;
+      justify-content: space-around;
+      margin: $marginBetweenSections 0;
+
+      @include media_breakpoint_up(sm) {
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      &__ban {
+        min-width: 80px;
+        font-size: smaller;
+        margin-right: 50px;
+      }
+
+      &__dismiss {
+        min-width: 80px;
+        font-size: smaller;
+      }
+    }
+  }
+}

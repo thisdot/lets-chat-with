@@ -1,0 +1,31 @@
+<div class="settings-help-page" *transloco="let t; read: 'settings.help'">
+  <div class="settings-help-page__content">
+    <a
+      cm-list-item
+      icon="LeftChevron"
+      class="cm-settings-wrapper__content__nav"
+      routerLink="/settings"
+      >{{ t('back') }}</a
+    >
+    <div class="settings-help-page__questions">
+      <ng-container *ngFor="let question of questions$ | async">
+        <button
+          class="settings-help-page__question"
+          [class.settings-help-page__question--open]="question === selectedQuestion"
+          (click)="selectQuestion(question)"
+        >
+          {{ question.question }}
+          <cm-icon
+            [name]="question === selectedQuestion ? 'DownChevronBold' : 'RightChevronBold'"
+          ></cm-icon>
+        </button>
+        <div class="settings-help-page__answer" *ngIf="question === selectedQuestion">
+          {{ question.answer }}
+        </div>
+      </ng-container>
+    </div>
+    <a class="settings-help-page__contact" cm-list-item icon="Question">{{
+      t('contactSupport')
+    }}</a>
+  </div>
+</div>

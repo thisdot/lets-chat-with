@@ -1,0 +1,44 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+@import '../../../../client/shared/styles/src/lib/menu';
+
+.menu-trigger {
+  display: flex;
+}
+
+.cm-hamburger-menu-content-container {
+  @include mobile-menu;
+  display: block;
+  position: relative;
+  background-color: var(--grey-100);
+  border-top: 1px solid var(--grey-300);
+  width: 100%;
+  @include media_breakpoint_up(md) {
+    @include desktop-menu;
+  }
+
+  .cm-hamburger-menu-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  }
+
+  .cm-hamburger-menu-close-action {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+
+    @include media_breakpoint_up(md) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/shared/testing/util-testing/src",
+  "prefix": "cm",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shared/testing/util-testing/src/**/*.ts",
+          "libs/client/shared/testing/util-testing/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["application:client", "scope:testing", "type:util", "bc:shared"]
+}

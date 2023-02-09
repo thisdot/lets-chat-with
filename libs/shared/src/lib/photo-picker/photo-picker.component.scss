@@ -1,0 +1,70 @@
+:host.cm-photo-picker {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  display: block;
+  cursor: pointer;
+
+  .cm-photo-picker__container {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 1px var(--grey-400);
+
+    &__circle {
+      position: absolute;
+      background-color: var(--grey-400);
+      border: 1px solid black;
+      border-radius: inherit;
+      box-sizing: border-box;
+      width: inherit;
+      height: inherit;
+      opacity: 0.16;
+      right: 0;
+      top: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  .cm-photo-picker__icon {
+    position: absolute;
+    background-color: var(--white);
+    color: var(--primary-500);
+    fill: var(--primary-500);
+    border: 1px solid var(--primary-500);
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    bottom: -2px;
+    right: -2px;
+
+    &:focus {
+      outline: 1px solid rgb(229, 152, 0);
+    }
+  }
+
+  .cm-photo-picker__input {
+    position: absolute;
+    display: block;
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}

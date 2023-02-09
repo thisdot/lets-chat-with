@@ -1,0 +1,52 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  display: flex;
+}
+
+.conference-selector__icon-button {
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  cm-event-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  &:focus {
+    color: var(--primary-500);
+    fill: var(--primary-500);
+    border: 1px solid var(--primary-500);
+  }
+
+  &:not(:focus) {
+    border: none;
+    outline: none;
+  }
+
+  background: transparent;
+  cursor: pointer;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 122%;
+
+  letter-spacing: 0.01em;
+  font-feature-settings: 'liga' off;
+
+  color: var(--grey-900);
+
+  cm-icon {
+    margin-top: 0.13rem;
+    margin-left: 0.31rem;
+  }
+}

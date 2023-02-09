@@ -1,0 +1,48 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  display: block;
+}
+
+.cm-message-thread__matched {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 124%;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--grey-600);
+
+  margin-bottom: 21px;
+  margin-top: 0.5rem;
+}
+
+.cm-message-thread-banner {
+  @extend %text300;
+  padding: 8px 12px;
+  background-color: var(--primary-500);
+  color: var(--white);
+  border-radius: 8px 8px 8px 0;
+  align-self: stretch;
+  margin-bottom: 12px;
+
+  &__title {
+    @extend %text300;
+    margin: 8px 0 16px 0;
+  }
+
+  &__section-title {
+    @extend %caption100;
+    text-transform: uppercase;
+  }
+}
+
+.cm-chips-list {
+  margin: 0 -4px;
+
+  .cm-chip {
+    margin: 4px;
+    color: var(--primary-500);
+  }
+}

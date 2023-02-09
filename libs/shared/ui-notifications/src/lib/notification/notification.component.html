@@ -1,0 +1,5 @@
+<cm-icon *ngIf="config.type" [name]="iconName" size="xxl"></cm-icon>
+<div class="cm-notification__content" aria-live="assertive">
+  <h6>{{ config.title }}</h6>
+  <p *ngIf="config.message">{{ config.message }}</p>
+</div>

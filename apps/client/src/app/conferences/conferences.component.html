@@ -1,0 +1,40 @@
+<ng-container *transloco="let t; read: 'conferences.conferences'">
+  <div class="cm-conferences">
+    <ng-container *ngIf="conferences$ | async as conferences; else noResults">
+      <ng-container *ngIf="conferences.length > 0; else noConferences">
+        <ul>
+          <li
+            *ngFor="let conference of conferences; trackBy: trackById"
+            tabindex="0"
+            (click)="selectConference($event, conference.id)"
+            (keydown.space)="selectConference($event, conference.id)"
+            (keydown.enter)="selectConference($event, conference.id)"
+            [attr.aria-label]="t('selectCard', { title: conference?.title })"
+          >
+            <cm-conference-card [conference]="conference" role="button"></cm-conference-card>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-template #noConferences>
+        <div class="cm-conferences__empty">
+          <div class="cm-conferences__empty__img-container">
+            <img src="/assets/conferences-empty-state.svg" alt="" />
+          </div>
+          <h1>{{ t('empty.heading') }}</h1>
+          <p>
+            {{ t('empty.text') }}
+          </p>
+        </div>
+      </ng-template>
+      <div class="cm-conferences__join">
+        <button data-test-id="join conference" cm-button [floating]="true" (click)="openModal()">
+          {{ t('joinConference') }}
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #noResults>
+      <h1>{{ t('noResults') }}</h1>
+    </ng-template>
+  </div>
+</ng-container>

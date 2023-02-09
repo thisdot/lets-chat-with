@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "target": "es2020",
+    "allowSyntheticDefaultImports": true,
+    "module": "Node16",
+    "sourceMap": false
+  },
+  "files": ["generate-seed-data.ts"],
+  "include": ["**/*.ts"]
+}

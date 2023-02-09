@@ -1,0 +1,9 @@
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 0 0.5rem;
+}

@@ -1,0 +1,29 @@
+:host.cm-social-auth-buttons {
+  button {
+    margin: 0 16px;
+
+    cm-icon {
+      fill: var(--white);
+    }
+  }
+}
+
+:host.cm-social-auth-buttons--colored {
+  .cm-social-auth-buttons__facebook {
+    cm-icon {
+      fill: #4469b0;
+    }
+  }
+
+  .cm-social-auth-buttons__twitter {
+    cm-icon {
+      fill: #1eabf1;
+    }
+  }
+
+  .cm-social-auth-buttons__linkedin {
+    cm-icon {
+      fill: #1178b3;
+    }
+  }
+}

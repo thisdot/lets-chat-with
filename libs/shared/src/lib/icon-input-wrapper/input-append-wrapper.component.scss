@@ -1,0 +1,38 @@
+@import '../../../../client/shared/styles/src/lib/inputs';
+
+:host.cm-input-append-wrapper {
+  position: relative;
+  display: block;
+
+  ::ng-deep [cmInputPrefix],
+  ::ng-deep [cmInputSuffix] {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: calc(50% - 12px);
+  }
+
+  ::ng-deep .cm-input-append-wrapper__input {
+    width: 100%;
+  }
+}
+
+:host.cm-input-append-wrapper--prefix {
+  ::ng-deep [cmInputPrefix] {
+    left: 16px;
+  }
+
+  ::ng-deep .cm-input-append-wrapper__input {
+    padding-left: 56px;
+  }
+}
+
+:host.cm-input-append-wrapper--suffix {
+  ::ng-deep [cmInputSuffix] {
+    right: 16px;
+  }
+
+  ::ng-deep .cm-input-append-wrapper__input {
+    padding-right: 56px;
+  }
+}

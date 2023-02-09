@@ -1,0 +1,35 @@
+@import '../../../../../../../shared/styles/src/lib/shell-text';
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  h2 {
+    margin-bottom: 24px;
+  }
+
+  form {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  p {
+    flex-grow: 1;
+  }
+
+  button {
+    justify-content: flex-end;
+  }
+
+  .cm-button--floating {
+    margin-bottom: 40px;
+  }
+}

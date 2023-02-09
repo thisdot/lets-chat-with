@@ -1,0 +1,43 @@
+<ng-container *transloco="let t; read: 'connect.card'">
+  <div class="cm-connect-card__content">
+    <cm-avatar-image [avatarUrl]="attendee.avatarUrl"></cm-avatar-image>
+    <div>
+      <div class="cm-connect-card__content__name">
+        {{ attendee.fullName }}
+      </div>
+      <div class="cm-connect-card__content__description">
+        {{ attendee.title }}, {{ attendee.company }}
+      </div>
+      <div class="cm-connect-card__content__pronouns">
+        {{ attendee.pronouns }}
+      </div>
+    </div>
+  </div>
+
+  <p class="cm-connect-card__summary">
+    {{ attendee.bio }}
+  </p>
+
+  <div class="cm-connect-card__chips">
+    <div class="cm-connect-card__looking-for">
+      <span>{{ t('lookingFor') }}</span>
+      <div class="cm-chips-list">
+        <cm-chip *ngFor="let item of attendee.desiredIdentifiers">{{ item.name }}</cm-chip>
+      </div>
+    </div>
+
+    <div class="cm-connect-card__who-i-am">
+      <span>{{ t('whoIAm') }}</span>
+      <div class="cm-chips-list">
+        <cm-chip *ngFor="let item of attendee.ownIdentifiers">{{ item.name }}</cm-chip>
+      </div>
+    </div>
+
+    <div class="cm-connect-card__interests">
+      <span>{{ t('interests') }}</span>
+      <div class="cm-chips-list">
+        <cm-chip *ngFor="let item of attendee.interests" type="secondary">{{ item.name }}</cm-chip>
+      </div>
+    </div>
+  </div>
+</ng-container>

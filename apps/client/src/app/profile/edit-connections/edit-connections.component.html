@@ -1,0 +1,32 @@
+<ng-container *transloco="let t">
+  <div class="connections__header">
+    <div
+      tabindex="0"
+      role="button"
+      class="connections__close-button cm-link-button"
+      (click)="onClose()"
+    >
+      <cm-icon name="Close" size="lg"></cm-icon>
+      <span class="cdk-visually-hidden">{{ t('global.back') }}</span>
+    </div>
+
+    <h2 id="modal-title" class="connections__title">{{ t('profile.edit.connections.title') }}</h2>
+
+    <button
+      cm-button
+      cmButtonType="borderless"
+      class="connections__save-button"
+      (click)="saveAction.next()"
+    >
+      {{ t('global.save') }}
+    </button>
+  </div>
+  <div class="connections__content">
+    <cm-connections-selector
+      [identifiers]="availableIdentifiers$ | async"
+      [selected]="(attendee$ | async)?.desiredIdentifiers"
+      [limit]="identifiersCount$ | async"
+      (connectionSelect)="onIdentifiersSelected($event)"
+    ></cm-connections-selector>
+  </div>
+</ng-container>

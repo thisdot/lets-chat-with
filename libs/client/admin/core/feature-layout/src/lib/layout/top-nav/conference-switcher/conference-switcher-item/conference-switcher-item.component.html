@@ -1,0 +1,5 @@
+<ng-container *ngIf="conference">
+  <a class="conference-switcher-item" [routerLink]="['/reports', conference?.id]">
+    <cm-event-logo [event]="conference"></cm-event-logo> {{ conference?.name }}
+  </a>
+</ng-container>

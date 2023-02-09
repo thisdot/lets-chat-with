@@ -1,0 +1,60 @@
+@import 'libs/client/shared/styles/src/lib/typography';
+@import 'libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  .cm-text-field-wrapper {
+    display: block;
+  }
+
+  .cm-text-field-wrapper {
+    &__label {
+      font-family: $font-family;
+      color: var(--grey-700);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    &__errors,
+    &__info {
+      @extend %text100;
+      margin: 3px 0 10px 0;
+    }
+
+    &__errors {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+
+      &__error {
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+        color: var(--grey-900);
+
+        @include media_breakpoint_down(sm) {
+          color: white;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 0.63rem;
+        }
+      }
+    }
+
+    &__info {
+      @extend %text100;
+      color: var(--grey-700);
+    }
+  }
+}
+
+:host-context(.signup) {
+  .cm-text-field-wrapper {
+    &__label {
+      @include media_breakpoint_down(sm) {
+        color: var(--white);
+      }
+    }
+  }
+}

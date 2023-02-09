@@ -1,0 +1,15 @@
+<div class="view-attendee-modal" *transloco="let t; read: 'reports'">
+  <cm-modal-header [title]="t('viewAttendee')" (cancel)="closeModal()"></cm-modal-header>
+  <div class="view-attendee-modal__content">
+    <div class="view-attendee-modal__content__background">
+      <div class="view-attendee-modal__content__background__shape"></div>
+    </div>
+    <div class="view-attendee-modal__content__card">
+      <cm-profile-card
+        [attendee]="attendee"
+        [showOwnIdentifiers]="false"
+        [showSocials]="false"
+      ></cm-profile-card>
+    </div>
+  </div>
+</div>

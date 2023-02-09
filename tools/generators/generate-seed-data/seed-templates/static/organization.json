@@ -1,0 +1,9 @@
+[
+  {
+    "__typename": "Organization",
+    "createdAt": "2022-03-02T16:53:34.056Z",
+    "id": "052a154d-a0ac-4d83-89d4-77a95be6079f",
+    "name": "Test Organization",
+    "updatedAt": "2022-03-02T16:53:34.056Z"
+  }
+]

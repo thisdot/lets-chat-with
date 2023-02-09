@@ -1,0 +1,13 @@
+<label class="cm-checkbox">
+  <span *ngIf="showLabel" class="label">{{ label }}</span>
+  <input
+    type="checkbox"
+    tabindex="-1"
+    [checked]="value"
+    [disabled]="disabled"
+    [id]="id"
+    [attr.aria-label]="label"
+    (click)="onClick()"
+  />
+  <span tabindex="0" class="checkmark"></span>
+</label>

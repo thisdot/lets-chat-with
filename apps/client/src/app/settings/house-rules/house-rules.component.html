@@ -1,0 +1,30 @@
+<div class="settings-house-rules-page" *transloco="let t; read: 'settings.houseRules'">
+  <div class="settings-house-rules-page__content">
+    <a
+      cm-list-item
+      icon="LeftChevron"
+      class="cm-settings-wrapper__content__nav"
+      routerLink="/settings"
+      >{{ t('back') }}</a
+    >
+    <h1 class="settings-house-rules-page__title">
+      {{ t('title') }}
+    </h1>
+    <p class="settings-house-rules-page__description">
+      {{ t('description') }}
+    </p>
+    <div class="settings-house-rules-page__terms">
+      <cm-terms-item
+        *ngFor="let rule of houseRules$ | async"
+        [title]="rule.title"
+        [text]="rule.text"
+        [icon]="rule.icon"
+      ></cm-terms-item>
+      <cm-terms-item [title]="t('termsOfService')" [icon]="'CheckBadge'">
+        {{ t('iHaveReadAndAcceptedThe')
+        }}<a routerLink="/terms-of-service">{{ t('termsOfService') }}</a
+        >.
+      </cm-terms-item>
+    </div>
+  </div>
+</div>

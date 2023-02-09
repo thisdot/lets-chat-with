@@ -1,0 +1,692 @@
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+  mimeType: String!
+  localUri: String!
+}
+
+enum STATE {
+  PENDING
+  REJECTED
+  APPROVED
+}
+
+enum STATUS {
+  VISIBLE
+  HIDDEN
+}
+
+enum OrganizationMemberRole {
+  MEMBER
+  MARKETING
+  VOLUNTEER
+  SALES
+}
+
+enum ReportReason {
+  INAPPROPRIATE_MESSAGE
+  INAPPROPRIATE_PHOTO
+  SPAM
+  OTHER
+}
+
+enum ReportStatus {
+  # an Attendee has submitted the report to be reviewed
+  SUBMITTED
+  # a member of the organization has reviewed the report and has decided
+  ### that the actions of the Attendee do not follow their code of conduct.
+  ### the Attendee has been banned
+  BANNED
+  # a member of the organization has reviewed the report and has decided
+  ### that the actions of the Attendee do not go against thier code of conduct.
+  ### This report has been dismissed.
+  DISMISSED
+}
+
+enum EventStatus {
+  # the organizer has began creating the event but has not completed or published
+  DRAFT
+  # the organizer has completed the setup of their event and has published the event.
+  ### PUBLISHED events are able to be seen by potential Attendees and signed up to attend.
+  PUBLISHED
+  # the organizer has cancelled the event.
+  ### this is reversible by the organization.
+  CANCELLED
+  # the event was terminated by the administration.
+  ### this is not reversible by the organization.
+  TERMINATED
+}
+
+enum EventSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum EventPaymentStatus {
+  REQUIRED
+  PAID_IN_FULL
+  DEFAULTED
+}
+
+enum CandidateType {
+  LIKE
+  DISLIKE
+  UNDECIDED
+}
+
+type NotificationConfig {
+  matches: Boolean
+  messages: Boolean
+  subscribe: Boolean
+}
+
+type User
+  @model(mutations: { update: "updateUser" }, queries: { get: "getUser" }, subscriptions: null)
+  @key(name: "byOwner", fields: ["owner"], queryField: "getUserByOwner")
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [create, update, delete, read]
+      }
+    ]
+  ) {
+  id: ID!
+  # the AWS Cognito user id (UUID) for the user
+  owner: ID!
+  notificationConfig: NotificationConfig
+  termsAccepted: Boolean
+}
+
+type Interest @model(subscriptions: null) @key(name: "byGroup", fields: ["group"]) {
+  id: ID!
+  group: String!
+  name: String!
+}
+
+type Identifier @model(subscriptions: null) @key(name: "byName", fields: ["name"]) {
+  id: ID!
+  name: String!
+}
+
+type Theme
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      { allow: groups, groups: ["Organizer", "Attendee"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  primary: String!
+  secondary: String!
+  tertiary: String!
+}
+
+# Type representing an association of Organization to authenticated users
+type OrganizationMember
+  @model(subscriptions: null)
+  @key(fields: ["organizationId", "userId"])
+  @auth(
+    rules: [{ allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }]
+  ) {
+  # the HASH key.
+  ### this is the id of the organization the member belongs to
+  organizationId: ID!
+  organization: Organization! @connection(name: "OrganizationMembers", fields: ["organizationId"])
+  # the SORT key.
+  ### this is the id of the authenticated user record in Cognito
+  userId: ID!
+  # the users role in the organization
+  role: OrganizationMemberRole!
+}
+
+# type of created payment methods for the Organization.
+### these can be used when the Organization pays for an event to use already entered and verified payment info
+type OrganizationPaymentMethod {
+  # a name for the method so they can select it from a list
+  name: String!
+  # the payment provider.
+  ### ex: Stripe
+  provider: String!
+  # the established payment method.
+  ### ex: Card, ACH
+  method: String!
+  # a reference to the created payment method with the payment provider
+  token: String!
+}
+
+# Type representing the Organization in charge of/putting on/sponsoring the Event.
+### This could be an individual or an organization that is putting the Event on and in charge of it.
+type Organization
+  @model(subscriptions: null)
+  @key(fields: ["id"])
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owners"
+        operations: [create, update, delete, read]
+      }
+      { allow: groups, groups: ["Attendee", "Organizer"], operations: [read] }
+    ]
+  ) {
+  id: ID!
+  # the AWS Cognito user ids (UUID) for the users, with a role of Organizer, who own this organization record
+  owners: [String!]!
+  name: String!
+  website: String
+  facebook: String
+  twitter: String
+  linkedin: String
+  events: [Event] @connection(name: "OrganizationEvents", fields: ["id"])
+  members: [OrganizationMember!] @connection(name: "OrganizationMembers", fields: ["id"])
+}
+
+type EventDateRange {
+  startDate: AWSDate!
+  endDate: AWSDate!
+}
+
+type Event
+  @model(subscriptions: null)
+  @key(name: "byOrganization", fields: ["organizationId"])
+  @key(name: "byLetsChatWithUrl", fields: ["letsChatWithUrl"])
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owners"
+        operations: [create, update, delete, read]
+      }
+      { allow: owner, ownerField: "readers", operations: [read] }
+    ]
+  ) {
+  id: ID!
+  organizationId: ID!
+  organization: Organization! @connection(name: "OrganizationEvents", fields: ["organizationId"])
+  # the AWS Cognito user ids (UUID) for the users, with a role of Organizer, who own this Event record
+  owners: [String!]!
+  # the AWS Cognito user ids (UUID) for the users who can read this Event record
+  readers: [ID!]
+  name: String!
+  status: EventStatus!
+  size: EventSize!
+  logoUrl: String
+  qrImageUrl: String
+  description: String
+  theme: Theme @connection
+  registrationCode: String
+  # this is the lets chat with subdomain url for the created event
+  letsChatWithUrl: String!
+  # the event/event organizer website
+  website: String
+  facebook: String
+  twitter: String
+  dateRange: EventDateRange!
+  ### helps with potential Attendees finding events they may be interested in
+  interests: [EventInterest] @connection(keyName: "byEvent", fields: ["id"]) # interests available on a conference
+  identifiers: [EventIdentifier] @connection(keyName: "byEvent", fields: ["id"]) # identifiers available on a conference
+  maxInterests: Int
+  maxIdentifiers: Int
+  # the total amount the organization needs to pay for the event
+  totalAmountDue: Int
+  # the event payment status
+  paymentStatus: EventPaymentStatus
+  # the payment installments received from the organization for the event
+  payments: [EventPayments!]
+  attendees: [Attendee] @connection(name: "eventAttendees")
+  reports: [Report] @connection(name: "EventReports", fields: ["id"])
+}
+
+type EventInterest
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId", "interestId"]) {
+  id: ID!
+  eventId: ID!
+  interestId: ID!
+  event: Event! @connection(fields: ["eventId"])
+  interest: Interest! @connection(fields: ["interestId"])
+}
+
+type EventIdentifier
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId", "identifierId"]) {
+  id: ID!
+  eventId: ID!
+  identifierId: ID!
+  event: Event! @connection(fields: ["eventId"])
+  identifier: Identifier! @connection(fields: ["identifierId"])
+}
+
+# type representing payment installations received for an Event by an Organization
+type EventPayments {
+  # the Organizations payment method that has been verified by the provider
+  paymentMethod: OrganizationPaymentMethod!
+  # the generated token/id from the payment transaction
+  transactionId: String!
+  amount: Int!
+  receivedAt: AWSDate!
+}
+
+type Attendee
+  @model(mutations: null, subscriptions: null)
+  @key(name: "byEventId", fields: ["eventId"])
+  @key(name: "byEvent", fields: ["eventId", "createdAt"])
+  @key(name: "byUserId", fields: ["userId"])
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [create, update, delete, read]
+      }
+      { allow: groups, groups: ["Organizer"], operations: [read] }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  # the AWS Cognito user id (UUID) for the user, with a role of Attendee, who owns their Attendee record
+  owner: String
+  userId: ID!
+  fullName: String!
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  interests: [AttendeeInterest] @connection(keyName: "byAttendee", fields: ["id"])
+  desiredIdentifiers: [AttendeeDesiredIdentifier]!
+    @connection(keyName: "byAttendee", fields: ["id"])
+  ownIdentifiers: [AttendeeOwnIdentifier]! @connection(keyName: "byAttendee", fields: ["id"])
+  eventId: ID!
+  attendeeMatches: [Match] @function(name: "resolveMatches-${env}")
+  attendeeChats: [ChatThread] @function(name: "resolveChats-${env}")
+  event: Event @connection(name: "eventAttendees", fields: ["eventId"])
+  createdAt: AWSDateTime!
+}
+
+type AttendeeInterest
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId"])
+  @key(name: "byAttendee", fields: ["attendeeId", "interestId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  attendeeId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee! @connection(fields: ["attendeeId"])
+  interest: Interest! @connection(fields: ["interestId"])
+}
+
+type AttendeeDesiredIdentifier
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId"])
+  @key(name: "byAttendee", fields: ["attendeeId", "identifierId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee! @connection(fields: ["attendeeId"])
+  identifier: Identifier! @connection(fields: ["identifierId"])
+}
+
+type AttendeeOwnIdentifier
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId"])
+  @key(name: "byAttendee", fields: ["attendeeId", "identifierId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee! @connection(fields: ["attendeeId"])
+  identifier: Identifier! @connection(fields: ["identifierId"])
+}
+
+type Report
+  @model(subscriptions: null)
+  @key(fields: ["eventId", "id"])
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [create, update, delete, read]
+      }
+    ]
+  ) {
+  eventId: ID!
+  event: Event! @connection(name: "EventReports", fields: ["eventId"])
+  id: ID!
+  # the AWS Cognito user id (UUID) for the user, with a role of Attendee, who owns and submitted this Report record.
+  ### this is the owner of the reportingAttendee.
+  owner: String!
+  reportingAttendeeId: ID!
+  reportingAttendee: Attendee! @connection(name: "AttendeeReports", fields: ["reportingAttendeeId"])
+  reportedAttendeeId: ID!
+  reportedAttendee: Attendee! @connection(name: "AttendeeIncidents", fields: ["reportedAttendeeId"])
+  reason: ReportReason!
+  message: String
+  status: ReportStatus!
+}
+
+type ChatThread
+  @key(name: "byEventId", fields: ["eventId"])
+  @model(
+    mutations: { update: "updateChatThread" }
+    queries: { get: "getChatThread", list: "listChatThreads" }
+    subscriptions: null
+  ) {
+  id: ID!
+  eventId: ID!
+  lastMessageAt: AWSDateTime
+  attendee1LastReadAt: AWSDateTime
+  attendee2LastReadAt: AWSDateTime
+  messages: [Message!]
+    @connection(
+      name: "chatThreadMessages"
+      fields: ["id"]
+      keyName: "gsi-chatThreadMessages"
+      sortField: "createdAt"
+    )
+  matchId: ID!
+  match: Match @connection(name: "matchChatThreads", fields: ["matchId"])
+}
+
+# TODO: The @searchable annotation is creating extra costs.
+#       Only enable for the production release and in the case that it is truly needed.
+# @searchable
+type Message
+  @key(name: "gsi-chatThreadMessages", fields: ["chatThreadId", "id"])
+  @model(mutations: { create: "createMessage" }, queries: null, subscriptions: null) {
+  id: ID!
+  content: String!
+  createdAt: AWSDateTime
+  owner: String
+  attendeeId: ID!
+  attendee: Attendee @connection(name: "attendeeMessages", fields: ["attendeeId"])
+  # The conversation this message belongs to
+  chatThreadId: ID!
+  chatThread: ChatThread! @connection(name: "chatThreadMessages", fields: ["chatThreadId"])
+}
+
+type Subscription {
+  onCreateMessage(chatThreadId: ID): Message @aws_subscribe(mutations: ["createMessage"])
+}
+
+type Query {
+  numberOfUnreadMessages(chatThreadId: ID): Int @function(name: "numberOfUnreadMessages-${env}")
+}
+
+type Mutation {
+  accessEvent(letsChatWithUrl: String): ID @function(name: "accessEvent-${env}")
+  fileUpload(bucketFolder: String, fileName: String, base64: String): String
+    @function(name: "fileUpload-${env}")
+  createAttendee(input: CreateAttendeeInput!): Attendee @function(name: "createAttendee-${env}")
+  updateAttendee(input: UpdateAttendeeInput!): Attendee @function(name: "updateAttendee-${env}")
+  updateCandidate(input: UpdateCandidateInput!): Candidate @function(name: "updateCandidate-${env}")
+}
+
+input UpdateAttendeeInput {
+  id: ID!
+  owner: String
+  userId: ID
+  fullName: String
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  eventId: ID
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  ownIdentifiers: [ID!]
+  updatedAt: AWSDateTime
+}
+
+input UpdateCandidateInput {
+  id: ID!
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  updatedAt: AWSDateTime
+  candidateType: CandidateType!
+}
+
+input CreateAttendeeInput {
+  id: ID
+  owner: String!
+  userId: ID!
+  fullName: String!
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  eventId: ID!
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  ownIdentifiers: [ID!]
+  createdAt: AWSDateTime
+}
+
+type Candidate
+  @model(
+    queries: { list: "listCandidates", get: "getCandidate" }
+    mutations: null
+    subscriptions: null
+  )
+  @key(name: "byAttendees", fields: ["attendeeId", "ownerAttendeeId"])
+  @key(name: "byEventId", fields: ["eventId", "matchScore"], queryField: "candidatesByEventId")
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [create, read, update]
+      }
+    ]
+  ) {
+  id: ID!
+  owner: String!
+  ownerAttendeeId: ID!
+  eventId: ID!
+  event: Event @connection(name: "EventCandidateLinks", fields: ["eventId"])
+  attendeeId: ID!
+  attendee: Attendee @connection(name: "AttendeeCandidateLinks", fields: ["attendeeId"])
+  candidateType: CandidateType!
+  matchScore: Int!
+  interests: [CandidateInterest] @connection(keyName: "byCandidate", fields: ["id"])
+  desiredIdentifiers: [CandidateDesiredIdentifier]
+    @connection(keyName: "byCandidate", fields: ["id"])
+}
+
+type Match
+  @model(
+    queries: { list: "listMatches", get: "getMatch" }
+    mutations: { delete: "deleteMatch" }
+    subscriptions: null
+  )
+  @key(fields: ["attendee1Id", "attendee2Id"], name: "byAttendeesIds")
+  @key(fields: ["eventId"], name: "byEventId")
+  @auth(
+    rules: [
+      { allow: groups, groups: ["ADMINS"], operations: [create, update, delete, read] }
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owners"
+        operations: [create, update, delete, read]
+      }
+    ]
+  ) {
+  id: ID!
+  owners: [String!]!
+  attendee1Id: ID!
+  attendee2Id: ID!
+  eventId: ID!
+  event: Event @connection(name: "EventMatchLinks", fields: ["eventId"])
+  createdAt: AWSDateTime!
+  attendee1: Attendee @connection(fields: ["attendee1Id"])
+  attendee2: Attendee @connection(fields: ["attendee2Id"])
+  interests: [MatchInterest] @connection(keyName: "byMatch", fields: ["id"])
+  desiredIdentifiers: [MatchDesiredIdentifier] @connection(keyName: "byMatch", fields: ["id"])
+}
+
+type CandidateInterest
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId"])
+  @key(name: "byCandidate", fields: ["candidateId", "interestId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  candidateId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  candidate: Candidate! @connection(fields: ["candidateId"])
+  interest: Interest! @connection(fields: ["interestId"])
+}
+
+type CandidateDesiredIdentifier
+  @model(queries: null, subscriptions: null)
+  @key(name: "byCandidate", fields: ["candidateId", "desiredIdentifierId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  candidateId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+  candidate: Candidate! @connection(fields: ["candidateId"])
+  desiredIdentifier: Identifier! @connection(fields: ["desiredIdentifierId"])
+}
+
+type MatchInterest
+  @model(queries: null, subscriptions: null)
+  @key(name: "byEvent", fields: ["eventId"])
+  @key(name: "byMatch", fields: ["matchId", "interestId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  matchId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  attendeeId: ID!
+  match: Match! @connection(fields: ["matchId"])
+  interest: Interest! @connection(fields: ["interestId"])
+}
+
+type MatchDesiredIdentifier
+  @model(queries: null, subscriptions: null)
+  @key(name: "byMatch", fields: ["matchId", "desiredIdentifierId"])
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        ownerField: "owner"
+        operations: [update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  matchId: ID!
+  attendeeId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+  match: Match! @connection(fields: ["matchId"])
+  desiredIdentifier: Identifier! @connection(fields: ["desiredIdentifierId"])
+}

@@ -1,0 +1,12 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/typography';
+
+.cm-terms {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.cm-terms__title {
+  @extend %h300;
+  margin-top: 0;
+  margin-bottom: 24px;
+}

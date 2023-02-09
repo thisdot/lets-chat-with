@@ -1,0 +1,12 @@
+<div class="cm-message-thread-list-item__content">
+  <cm-avatar-image [avatarUrl]="attendee.avatarUrl"></cm-avatar-image>
+
+  <div class="cm-message-thread-list-item__content__name">
+    {{ attendee.fullName }}
+  </div>
+  <div class="cm-message-thread-list-item__content__lastMessage text-ellipsis">
+    {{ lastMessage }}
+  </div>
+
+  <div class="cm-message-thread-list-item__content__badge" *ngIf="hasUnreadMessages">!</div>
+</div>

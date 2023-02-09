@@ -1,0 +1,59 @@
+@import '../shared/settings_shared';
+
+:host {
+  @include set_page_styles();
+}
+
+.settings-page {
+  @media (min-width: 1000px) {
+    min-height: unset;
+  }
+
+  & &__content {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 42px;
+      height: 100%;
+      width: 100%;
+
+      button {
+        bottom: 58px;
+        left: 50%;
+        z-index: 1;
+      }
+    }
+
+    & a {
+      text-decoration: none;
+      background: transparent;
+      padding-left: 0.5rem;
+
+      &.settings-page__content__links__title {
+        padding-left: 0;
+        fill: var(--grey-600);
+        stroke-width: 0.2;
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  & &__top-nav,
+  .settings-page__content__links {
+    @media (min-width: 1000px) {
+      display: none;
+    }
+
+    &__title {
+      font-size: larger;
+      font-weight: bold;
+    }
+  }
+}

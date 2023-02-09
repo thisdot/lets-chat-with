@@ -1,0 +1,22 @@
+@import '../../../../../../../../shared/styles/src/lib/breakpoints';
+
+:host {
+  margin-left: 16px;
+  margin-right: auto;
+}
+
+.conference-switcher--mobile {
+  display: block;
+
+  @include media_breakpoint_up(md) {
+    display: none;
+  }
+}
+
+.conference-switcher--desktop {
+  display: none;
+
+  @include media_breakpoint_up(md) {
+    display: block;
+  }
+}

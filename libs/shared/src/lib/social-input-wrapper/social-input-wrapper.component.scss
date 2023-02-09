@@ -1,0 +1,18 @@
+@import '../../../../client/shared/styles/src/lib/inputs';
+
+:host.cm-social-input-wrapper {
+  position: relative;
+  display: block;
+
+  .cm-social-input-wrapper__icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 16px;
+    top: calc(50% - 12px);
+  }
+}
+
+:host ::ng-deep .cm-social-input-wrapper__input {
+  padding-left: 56px;
+}

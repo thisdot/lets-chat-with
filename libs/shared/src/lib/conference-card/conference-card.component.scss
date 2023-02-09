@@ -1,0 +1,90 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host.cm-conference-card {
+  background-color: var(--white);
+
+  .cm-conference-card__content__title {
+    color: var(--grey-900);
+  }
+
+  .cm-conference-card__content__subtitle {
+    color: var(--grey-500);
+  }
+
+  .cm-conference-card__meta__item {
+    color: var(--grey-700);
+    fill: var(--grey-600);
+    stroke: var(--white);
+  }
+
+  &.cm-conference-card--active {
+    background-color: var(--primary-500);
+
+    .cm-conference-card__content__title {
+      color: var(--white);
+    }
+
+    .cm-conference-card__content__subtitle {
+      color: var(--grey-300);
+    }
+
+    .cm-conference-card__meta__item {
+      color: var(--white);
+      fill: var(--grey-300);
+      stroke: var(--primary-500);
+    }
+  }
+}
+
+:host.cm-conference-card {
+  display: flex;
+  flex-direction: column;
+
+  padding: 16px;
+  box-shadow: 0px 4px 20px rgba(9, 13, 44, 0.06);
+  border-radius: 12px;
+}
+
+.cm-conference-card__content,
+.cm-conference-card__meta {
+  display: flex;
+  align-items: center;
+}
+
+.cm-conference-card__content {
+  margin-bottom: 16px;
+}
+
+.cm-conference-card__content__img {
+  width: 56px;
+  height: 56px;
+  background-color: var(--grey-100);
+  margin-right: 1rem;
+}
+
+.cm-conference-card__content__title {
+  @extend %h200;
+  margin-bottom: 4px;
+}
+
+.cm-conference-card__content__subtitle {
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 132%;
+  letter-spacing: 0.05;
+}
+
+.cm-conference-card__meta__item {
+  @extend %text300;
+
+  display: flex;
+  align-items: center;
+
+  cm-icon {
+    margin-right: 9px;
+  }
+
+  + .cm-conference-card__meta__item {
+    margin-left: 24px;
+  }
+}

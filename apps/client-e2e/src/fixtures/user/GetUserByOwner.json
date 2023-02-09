@@ -1,0 +1,23 @@
+{
+  "data": {
+    "getUserByOwner": {
+      "items": [
+        {
+          "id": "testid",
+          "owner": "testowner",
+          "notificationConfig": {
+            "matches": false,
+            "messages": false,
+            "subscribe": false,
+            "__typename": "NotificationConfig"
+          },
+          "createdAt": "2021-05-11T23:46:16.275Z",
+          "updatedAt": "2021-05-11T23:46:16.275Z",
+          "__typename": "User"
+        }
+      ],
+      "nextToken": null,
+      "__typename": "ModelUserConnection"
+    }
+  }
+}
