@@ -1,0 +1,17 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+.conference-switcher--mobile {
+  display: block;
+
+  @include media_breakpoint_up(md) {
+    display: none;
+  }
+}
+
+.conference-switcher--desktop {
+  display: none;
+
+  @include media_breakpoint_up(md) {
+    display: block;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/shared/ui-notifications/src",
+  "prefix": "cm",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/ui-notifications/src/test.ts",
+        "tsConfig": "libs/shared/ui-notifications/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/ui-notifications/karma.conf.js"
+      }
+    }
+  },
+  "tags": ["scope:shared", "technology:client", "type:ui"]
+}

@@ -1,0 +1,23 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host.cm-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 132%;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+
+  &.cm-chip--primary {
+    color: var(--primary-800);
+    background-color: var(--primary-100);
+  }
+
+  &.cm-chip--secondary {
+    color: var(--secondary-800);
+    background-color: var(--secondary-100);
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-image: url('/assets/img/new_connection_bg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80% 80%;
+  box-shadow: 0 10px 15px 1px rgba(0, 0, 0, 0.1);
+
+  section {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .avatar-image {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    border: 1px solid #c4d5ef;
+    margin: 0 0 0.3rem;
+  }
+
+  h2 {
+    color: #2a2248;
+    font-family: Lato;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    color: #4d4864;
+  }
+
+  span {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

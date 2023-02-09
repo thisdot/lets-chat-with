@@ -1,0 +1,12 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <h2 class="cm-wizard-heading">{{ t('bio.title') }}</h2>
+  <p class="cm-wizard-text">{{ t('bio.description') }}</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <cm-textarea-wrapper>
+      <textarea cmTextarea rows="6" maxlength="160" formControlName="bio"></textarea>
+    </cm-textarea-wrapper>
+    <button cm-button [floating]="true">
+      {{ t('actions.next') }}
+    </button>
+  </form>
+</ng-container>

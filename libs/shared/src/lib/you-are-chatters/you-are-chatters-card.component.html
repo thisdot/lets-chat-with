@@ -1,0 +1,26 @@
+<div *transloco="let t; read: 'connect.matched'">
+  <h2 class="cm-you-are-chatters-card__heading">{{ t('youAreChatters') }}</h2>
+  <div class="cm-you-are-chatters-card__attendee">
+    <cm-avatar-image [avatarUrl]="match.attendee.avatarUrl"></cm-avatar-image>
+    <div>
+      <div class="cm-you-are-chatters-card__attendee__name">
+        {{ match.attendee.fullName }}
+      </div>
+      <div class="cm-you-are-chatters-card__attendee__description">
+        {{ match.attendee.title }}, {{ match.attendee.company }}
+      </div>
+    </div>
+  </div>
+  <p class="cm-you-are-chatters-card__title">{{ t('role') }}</p>
+  <div class="cm-you-are-chatters-card__list">
+    <cm-chip *ngFor="let identifier of identifiers">{{ identifier }}</cm-chip>
+  </div>
+
+  <p class="cm-you-are-chatters-card__title">{{ t('chattingInterests') }}</p>
+  <div class="cm-you-are-chatters-card__list">
+    <cm-chip *ngFor="let interest of interests" type="secondary">{{ interest }}</cm-chip>
+  </div>
+  <button cm-button class="cm-you-are-chatters-card__button" (click)="chat.emit()">
+    {{ t('chatWith', { name: match.attendee.fullName }) }}
+  </button>
+</div>

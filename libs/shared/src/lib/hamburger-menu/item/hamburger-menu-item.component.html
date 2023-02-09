@@ -1,0 +1,56 @@
+<ng-container *ngIf="routerLinkPath; else nonRouterLink">
+  <a
+    [routerLink]="routerLinkPath"
+    [attr.data-testid]="'main-nav:link:' + label"
+    class="cm-hamburger-menu-item__link"
+    tabindex="0"
+    (click)="onClick()"
+    (keydown.enter)="onClick()"
+    (keydown.space)="onClick()"
+    (keydown.escape)="close()"
+  >
+    <div class="cm-hamburger-menu-item__link__desktop__notifier">&nbsp;</div>
+
+    <div class="cm-hamburger-menu-item__link__content">
+      <cm-icon
+        [name]="iconName"
+        size="lg"
+        [attr.data-testid]="'main-nav:link:icon:' + iconName"
+      ></cm-icon>
+      <span
+        class="cm-hamburger-menu-item__link__content__label"
+        [attr.data-testid]="'main-nav:link:label:' + label"
+      >
+        {{ label }}
+      </span>
+    </div>
+  </a>
+</ng-container>
+
+<ng-template #nonRouterLink>
+  <a
+    [attr.data-testid]="'main-nav:link:' + label"
+    class="cm-hamburger-menu-item__link"
+    tabindex="0"
+    (click)="onClick()"
+    (keydown.enter)="onClick()"
+    (keydown.space)="onClick()"
+    (keydown.escape)="close()"
+  >
+    <div class="cm-hamburger-menu-item__link__desktop__notifier">&nbsp;</div>
+
+    <div class="cm-hamburger-menu-item__link__content">
+      <cm-icon
+        [name]="iconName"
+        size="lg"
+        [attr.data-testid]="'main-nav:link:icon:' + iconName"
+      ></cm-icon>
+      <span
+        class="cm-hamburger-menu-item__link__content__label"
+        [attr.data-testid]="'main-nav:link:label:' + label"
+      >
+        {{ label }}
+      </span>
+    </div>
+  </a>
+</ng-template>

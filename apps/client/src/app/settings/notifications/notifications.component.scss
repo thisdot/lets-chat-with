@@ -1,0 +1,63 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../shared/settings_shared';
+
+:host {
+  @include set_page_styles();
+
+  cm-ellipsis {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.settings-notifications-page {
+  @include settings_shared();
+
+  & &__content {
+    align-items: flex-start;
+    padding-top: 16px;
+    padding-bottom: 42px;
+    box-sizing: border-box;
+  }
+
+  & &__toggle-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    @extend %text300;
+    color: var(--grey-900);
+  }
+
+  & &__checkbox-item {
+    background: var(--primary-100);
+    padding: 16px 17px 16px 24px;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 24px;
+
+    &__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @extend %text300;
+      color: var(--grey-900);
+    }
+
+    &__title {
+      @extend %text300;
+      font-weight: bold;
+      color: var(--grey-800);
+      max-width: calc(100% - 60px);
+    }
+
+    &__description {
+      @extend %text200;
+      color: var(--grey-700);
+      max-width: calc(100% - 60px);
+    }
+  }
+}

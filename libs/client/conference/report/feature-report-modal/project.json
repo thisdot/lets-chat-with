@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/conference/report/feature-report-modal/src",
+  "prefix": "cm",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/conference/report/feature-report-modal/src/**/*.ts",
+          "libs/client/conference/report/feature-report-modal/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["application:client", "scope:report", "type:feature", "bc:conferences"]
+}

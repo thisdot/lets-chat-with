@@ -1,0 +1,10 @@
+<cm-icon
+  class="cm-list-item__icon"
+  [class.cm-active-link]="active"
+  *ngIf="icon"
+  [name]="icon"
+  size="lg"
+  [attr.aria-hidden]="true"
+>
+</cm-icon>
+<ng-content></ng-content>

@@ -1,0 +1,114 @@
+<cm-card class="item" *transloco="let t; read: 'reports'">
+  <a (click)="viewAttendee.emit(reportedAttendee.attendeeId)"
+    ><div class="item__reported-user">
+      <div class="item__reported-user__avatar">
+        <img
+          *ngIf="reportedAttendee.avatarUrl; else noReportedAttendeeAvatar"
+          [src]="reportedAttendee.avatarUrl"
+          [alt]="t('reportedAttendeeAvatarDescription')"
+        />
+        <ng-template #noReportedAttendeeAvatar>
+          <cm-icon name="SingleMan" size="xxxl"></cm-icon>
+        </ng-template>
+      </div>
+      <div class="item__reported-user__info">
+        <span class="item__reported-user__info__name">{{ reportedAttendee.fullName }}</span>
+        <span class="item__reported-user__info__title">{{ reportedAttendee.title }}</span>
+      </div>
+    </div></a
+  >
+  <ng-container [ngSwitch]="reportedAttendee.status">
+    <ng-container *ngSwitchCase="ReportStatus.SUBMITTED">
+      <div class="item__action-buttons">
+        <div>
+          <button
+            cm-button
+            cmButtonType="primary"
+            class="item__action-buttons__ban"
+            (click)="ban.emit(reportedAttendee)"
+          >
+            {{ t('ban') }}
+          </button>
+          <button
+            cm-button
+            cmButtonType="secondary"
+            class="item__action-buttons__dismiss"
+            (click)="dismiss.emit(reportedAttendee)"
+          >
+            {{ t('dismiss') }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="ReportStatus.BANNED">
+      <div class="item__action-buttons">
+        <div>
+          <button
+            cm-button
+            cmButtonType="secondary"
+            class="item__action-buttons__dismiss"
+            (click)="revoke.emit(reportedAttendee)"
+          >
+            {{ t('revoke') }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="ReportStatus.DISMISSED">
+      <div class="item__action-buttons">
+        <div>
+          <button
+            cm-button
+            cmButtonType="secondary"
+            class="item__action-buttons__dismiss"
+            (click)="ban.emit(reportedAttendee)"
+          >
+            {{ t('ban') }}
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <div class="item__issue">
+    <span class="item__issue__label">{{ t('issue') }}</span>
+    <div class="item__issue__type" [ngSwitch]="reportedAttendee.reportReason">
+      <ng-container *ngSwitchCase="'INAPPROPRIATE_MESSAGE'"
+        ><cm-icon name="MessageExclamationMark" size="md"></cm-icon
+        ><span>{{ t('inappropriateMessage') }}</span></ng-container
+      >
+      <ng-container *ngSwitchCase="'INAPPROPRIATE_PHOTO'"
+        ><cm-icon name="Camera" size="md"></cm-icon
+        ><span>{{ t('inappropriatePhoto') }}</span></ng-container
+      >
+      <ng-container *ngSwitchCase="'SPAM'"
+        ><cm-icon name="Email" size="md"></cm-icon
+        ><span>{{ t('feelsLikeSpam') }}</span></ng-container
+      >
+      <ng-container *ngSwitchCase="'OTHER'"
+        ><cm-icon name="Flag" size="md"></cm-icon><span>{{ t('other') }}</span></ng-container
+      >
+    </div>
+  </div>
+  <div class="item__report-note" *ngIf="reportedAttendee.note">
+    <div class="item__report-note__pointer"></div>
+    <span>{{ reportedAttendee.note }}</span>
+  </div>
+  <div class="item__reported-by">
+    <span class="item__reported-by__label">{{ t('reportedBy') }}</span>
+    <div class="item__reported-by__user">
+      <div class="item__reported-by__user__avatar">
+        <img
+          *ngIf="reportedAttendee.reportingAttendee.avatarUrl; else noReportingAttendeeAvatar"
+          [src]="reportedAttendee.reportingAttendee.avatarUrl"
+          [alt]="t('reportingAttendeeAvatarDescription')"
+        />
+        <ng-template #noReportingAttendeeAvatar>
+          <cm-icon name="SingleMan" size="xl"></cm-icon>
+        </ng-template>
+      </div>
+      <span class="item__reported-by__user__name">{{
+        reportedAttendee.reportingAttendee.fullName
+      }}</span>
+    </div>
+  </div>
+</cm-card>

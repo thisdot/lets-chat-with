@@ -1,0 +1,34 @@
+<ng-container>
+  <h2 class="selector-title">Why do you want to ban this person?</h2>
+  <ul class="selector-options">
+    <li>
+      <a (click)="onClickOption('INAPPROPRIATE_MESSAGE')"
+        ><cm-icon class="selector-options__icon" name="MessageExclamationMark" size="md"></cm-icon
+        ><span>Inappropriate messages</span></a
+      >
+    </li>
+    <li>
+      <a (click)="onClickOption('INAPPROPRIATE_PHOTO')"
+        ><cm-icon class="selector-options__icon" name="Camera" size="md"></cm-icon>
+        <span>Inappropriate photo</span></a
+      >
+    </li>
+    <li>
+      <a (click)="onClickOption('SPAM')"
+        ><cm-icon class="selector-options__icon" name="Email" size="md"></cm-icon>
+        <span>Feels like spam</span></a
+      >
+    </li>
+    <li>
+      <a (click)="onClickOption('OTHER')"
+        ><cm-icon class="selector-options__icon" name="Flag" size="md"></cm-icon>
+        <span>Other</span>
+        <cm-icon
+          class="selector-options__icon--expandable"
+          name="RightChevronBold"
+          size="md"
+        ></cm-icon
+      ></a>
+    </li>
+  </ul>
+</ng-container>

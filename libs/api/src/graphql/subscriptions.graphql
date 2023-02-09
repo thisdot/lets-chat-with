@@ -1,0 +1,40 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateMessage($chatThreadId: ID) {
+  onCreateMessage(chatThreadId: $chatThreadId) {
+    id
+    content
+    createdAt
+    owner
+    attendeeId
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    chatThreadId
+    chatThread {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    updatedAt
+  }
+}

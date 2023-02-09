@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/shared/styles/src",
+  "prefix": "cm",
+  "targets": {},
+  "tags": ["technology:client", "application:shared", "bc:shared", "type:styles"]
+}

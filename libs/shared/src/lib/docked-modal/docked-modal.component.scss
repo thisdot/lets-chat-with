@@ -1,0 +1,194 @@
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+
+.cm-docked-modal-wrapper {
+  position: fixed;
+  z-index: 1;
+
+  .cm-docked-modal__overlay,
+  .cm-docked-modal__modal {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .cm-docked-modal__overlay {
+    animation: fade-in;
+    animation-duration: 200ms;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .cm-docked-modal__modal {
+    position: fixed;
+    bottom: 0;
+
+    background: var(--white);
+    box-shadow: 0px 4px 20px rgba(9, 13, 44, 0.16);
+    padding: 0 24px 50px 24px;
+
+    &__drag-handle {
+      padding: 0.5rem 0 0.75rem 0;
+
+      &::after {
+        content: '';
+        background-color: var(--grey-200);
+        border-radius: 3px;
+        display: block;
+        cursor: grab;
+      }
+    }
+
+    &__close-icon {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      cursor: pointer;
+    }
+
+    &__spacer {
+      height: 1.55rem;
+    }
+
+    &__options {
+      padding-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: auto;
+      }
+    }
+  }
+
+  .cm-docked-modal__modal-bottom {
+    animation: slide-in;
+    animation-duration: 200ms;
+    padding-top: 1rem;
+
+    left: 0;
+    right: 0;
+
+    .cm-docked-modal__modal__drag-handle {
+      display: flex;
+      padding: 0 0.75rem 0 0;
+
+      &::after {
+        width: 2.19rem;
+        height: 0.31rem;
+        margin: 0 auto;
+      }
+    }
+
+    .cm-docked-modal__modal-body {
+      .cm-docked-modal__modal__content {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .cm-docked-modal__modal-right {
+    display: flex;
+
+    animation: slide-in-right;
+    animation-duration: 200ms;
+    width: 100%;
+
+    height: 100%;
+    left: unset;
+    right: 0;
+
+    @include media_breakpoint_up(md) {
+      width: auto;
+    }
+
+    .cm-docked-modal__modal__drag-handle {
+      display: flex;
+      padding: 0 0.75rem 0 0;
+
+      &::after {
+        width: 5px;
+        height: 2.19rem;
+        margin: auto 0;
+      }
+    }
+
+    .cm-docked-modal__modal-body {
+      width: 100%;
+      padding-top: 1rem;
+
+      .cm-docked-modal__modal__content {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(100%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+:host.cm-docked-modal--without-spacing {
+  .cm-docked-modal__modal {
+    padding: 0;
+
+    &__spacer {
+      height: 0;
+    }
+
+    &__options {
+      padding-top: 0px;
+    }
+  }
+
+  .cm-docked-modal__modal-body {
+    padding-top: 0rem !important;
+
+    .cm-docked-modal__modal__content {
+      margin-top: 0rem !important;
+    }
+  }
+}
+
+:host.cm-docked-modal--rounded {
+  .cm-docked-modal__modal {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+  }
+
+  .cm-docked-modal__modal-right {
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    border-top-right-radius: 0;
+  }
+}

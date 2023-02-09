@@ -1,0 +1,10 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <h2 class="cm-wizard-heading">{{ t('uploadPhoto.title') }}</h2>
+  <p class="cm-wizard-text">
+    {{ t('uploadPhoto.description') }}
+  </p>
+  <cm-photo-picker [photo]="avatarUrl" (selectPhoto)="onPhotoSelect($event)"></cm-photo-picker>
+  <button cm-button [floating]="true" (click)="onSubmit()">
+    {{ t('actions.next') }}
+  </button>
+</ng-container>

@@ -1,0 +1,32 @@
+@import '../../../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../../../libs/client/shared/styles/src/lib/wizard-text';
+
+:host.cm-interests {
+  width: 100%;
+  padding-bottom: 160px;
+
+  header {
+    display: flex;
+    align-items: flex-start;
+
+    cm-counter {
+      margin-left: 20px;
+    }
+  }
+
+  h3 {
+    @extend %h300;
+    color: var(--grey-800);
+    margin: 24px 0;
+  }
+
+  .cm-interests__group {
+    display: flex;
+    flex-wrap: wrap;
+
+    cm-pill {
+      margin-right: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}

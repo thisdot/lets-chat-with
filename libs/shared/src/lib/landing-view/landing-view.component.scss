@@ -1,0 +1,166 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+
+:host.cm-landing-view {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  .cm-landing-view__header {
+    display: flex;
+    justify-content: center;
+    height: 18vh;
+    height: 18svh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    @include media_breakpoint_up(md) {
+      height: 10vh;
+      height: 10svh;
+    }
+
+    .cm-landing-view__login-link-text,
+    .cm-landing-view__login-link,
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav {
+      padding: 32px 0;
+      margin: 0;
+      width: 100%;
+
+      @include media_breakpoint_up(md) {
+        justify-content: space-between;
+      }
+
+      .cm-landing-view__home-link {
+        display: flex;
+        text-decoration: none;
+      }
+
+      .cm-landing-view__login-link-container {
+        display: flex;
+        margin-right: 2rem;
+
+        .cm-landing-view__login-link-text {
+          font-size: 16px;
+          color: var(--grey-700);
+          margin-right: 0.75rem;
+        }
+
+        .cm-landing-view__login-link {
+          padding: 8px 12px;
+          width: 68px;
+          height: 32px;
+          text-transform: uppercase;
+          background: var(--opacity-grey-200);
+          color: var(--primary-500);
+          border: 1px solid var(--primary-500);
+          box-sizing: border-box;
+          box-shadow: var(--btn-shadow-100);
+          border-radius: 4px;
+          text-decoration: none;
+        }
+
+        @include media_breakpoint_down(md) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .cm-landing-view__icon--mobile {
+    @include media_breakpoint_up(md) {
+      display: none;
+    }
+  }
+
+  .cm-landing-view__icon--desktop {
+    margin-left: 2rem;
+    @include media_breakpoint_down(md) {
+      display: none;
+    }
+  }
+
+  .cm-landing-view__content-layout {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    .cm-landing-view__left-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      width: 40%;
+      height: 100vh;
+      height: 100svh;
+      background-image: url('/assets/img/attendee_signup_bg.png');
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 2.5rem;
+      background-size: cover;
+
+      @include media_breakpoint_down(md) {
+        display: none;
+      }
+
+      p {
+        color: var(--white);
+        font-weight: bold;
+        font-size: 30px;
+        font-family: Lato;
+        font-style: normal;
+        line-height: 108%;
+
+        letter-spacing: 0.01em;
+        font-feature-settings: 'liga' off;
+      }
+    }
+
+    .cm-landing-view__content {
+      min-height: 85vh;
+      min-height: 85svh;
+      margin-top: 15vh;
+      margin-top: 15svh;
+      display: flex;
+      justify-content: center;
+      flex-flow: column nowrap;
+      background: linear-gradient(180deg, #736bc7 0%, #938cd9 100%);
+      box-shadow: 0px -4px 16px rgba(60, 60, 60, 0.06);
+      border-radius: 16px 16px 0px 0px;
+      text-align: center;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+      width: 100%;
+
+      @include media_breakpoint_up(md) {
+        box-shadow: none;
+        height: 90vh;
+        height: 90svh;
+        margin-top: 10vh;
+        margin-top: 10svh;
+        padding-top: 0;
+        align-items: center;
+
+        background: linear-gradient(180deg, var(--grey-200) 0%, var(--grey-100) 100%);
+      }
+    }
+  }
+}

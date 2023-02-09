@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/admin/i18n/util-transloco-root/src",
+  "prefix": "cm",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/admin/i18n/util-transloco-root/src/**/*.ts",
+          "libs/client/admin/i18n/util-transloco-root/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["technology:client", "application:admin", "bc:i18n", "type:utils"]
+}

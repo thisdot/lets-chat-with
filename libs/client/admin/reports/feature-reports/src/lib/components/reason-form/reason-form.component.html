@@ -1,0 +1,20 @@
+<h2 class="reason-form__title">Please specify</h2>
+<cm-text-field-wrapper>
+  <cm-textarea-wrapper>
+    <textarea
+      class="reason-form__textarea"
+      [placeholder]="placeholder"
+      cmTextarea
+      rows="6"
+      [(ngModel)]="reason"
+    ></textarea>
+  </cm-textarea-wrapper>
+</cm-text-field-wrapper>
+<button
+  cm-button
+  cmButtonType="primary"
+  class="reason-form__submit"
+  (click)="submission.emit(reason)"
+>
+  Submit
+</button>

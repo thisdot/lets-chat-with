@@ -1,0 +1,113 @@
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  display: block;
+  min-height: 100%;
+  padding: 1rem 0.5rem 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-flow: column wrap;
+  width: 100%;
+
+  @include media_breakpoint_up(md) {
+    align-items: center;
+  }
+}
+
+li {
+  cursor: pointer;
+
+  @include media_breakpoint_up(md) {
+    width: 40%;
+  }
+  @include media_breakpoint_up(lg) {
+    width: 33%;
+  }
+}
+
+li + li {
+  margin-top: 1rem;
+}
+
+li:last-child {
+  margin-bottom: 20vh;
+  margin-bottom: 20svh;
+}
+
+.cm-conferences {
+  min-height: 100%;
+
+  &__empty {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @include media_breakpoint_down(md) {
+      min-height: 34rem;
+    }
+
+    &__img-container {
+      max-width: 12.4rem;
+      width: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    h1 {
+      @extend %h400;
+      margin-top: 3rem;
+      margin-bottom: 0;
+      color: var(--grey-900);
+    }
+
+    p {
+      @extend %text300;
+      color: var(--grey-700);
+      margin-top: 1rem;
+      max-width: 31.5rem;
+    }
+  }
+
+  &__join {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      position: static;
+      bottom: unset;
+      left: unset;
+      transform: unset;
+    }
+
+    @include media_breakpoint_down(md) {
+      position: fixed;
+      bottom: 5rem;
+      left: 0;
+
+      button {
+        position: fixed;
+        bottom: 58px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

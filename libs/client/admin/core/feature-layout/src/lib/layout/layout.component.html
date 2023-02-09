@@ -1,0 +1,14 @@
+<ng-container *transloco="let t">
+  <cm-top-nav class="header"></cm-top-nav>
+  <main id="maincontent" class="main">
+    <div class="main__header" *tdRouteTag="[RouteTag.pageWithHeader]">
+      <div class="main__header__container">
+        <router-outlet name="main-header"></router-outlet>
+      </div>
+    </div>
+
+    <div class="main__content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</ng-container>

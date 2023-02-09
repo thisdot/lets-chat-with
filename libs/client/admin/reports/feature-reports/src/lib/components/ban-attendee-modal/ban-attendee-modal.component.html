@@ -1,0 +1,20 @@
+<div class="ban-attendee-modal" *transloco="let t; read: 'reports'">
+  <cm-modal-header
+    [showBack]="modalState === 'NOTE_INPUT'"
+    [title]="t('banAttendee')"
+    (cancel)="closeModal()"
+    (back)="modalState = 'REASON_SELECTION'"
+  ></cm-modal-header>
+  <div class="ban-attendee-modal__content">
+    <cm-ban-reason-selector
+      *ngIf="modalState === 'REASON_SELECTION'"
+      (reasonSelected)="onClickOption($event)"
+    ></cm-ban-reason-selector>
+
+    <cm-reason-form
+      *ngIf="modalState === 'NOTE_INPUT'"
+      (submission)="onSubmitNote($event)"
+      [placeholder]="t('describeWhyBan')"
+    ></cm-reason-form>
+  </div>
+</div>

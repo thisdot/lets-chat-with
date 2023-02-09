@@ -1,0 +1,31 @@
+<ng-container *transloco="let t; read: 'conferences.connect'">
+  <div class="cm-onboarding__stepper">
+    <cm-swipe-stepper>
+      <cm-stepper-content>
+        <img
+          class="cm-connect__no-results__image"
+          src="assets/wave_image.svg"
+          draggable="false"
+          alt=""
+        />
+        <h2>{{ t('findChatters') }}</h2>
+        <p>{{ t('reviewChatterInterests') }}</p>
+      </cm-stepper-content>
+      <cm-stepper-content>
+        <img
+          class="cm-connect__no-results__image"
+          src="assets/pass_image.svg"
+          draggable="false"
+          alt=""
+        />
+        <h2>{{ t('passChatters') }}</h2>
+        <p>{{ t('notInterested') }}</p>
+      </cm-stepper-content>
+    </cm-swipe-stepper>
+  </div>
+  <ng-container *ngIf="stepper">
+    <button cm-button [floating]="true" (click)="onActionButtonClick()">
+      {{ stepper.focusedIdx > 0 ? t('connectButton') : t('nextButton') }}
+    </button>
+  </ng-container>
+</ng-container>

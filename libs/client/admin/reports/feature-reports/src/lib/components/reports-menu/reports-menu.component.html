@@ -1,0 +1,28 @@
+<nav class="reports-menu" *transloco="let t; read: 'reports.menu'">
+  <ul>
+    <li
+      class="reports-menu__item"
+      [class.reports-menu__item--selected]="selectedStatus === ReportStatus.SUBMITTED"
+    >
+      <a (click)="onSelectItem(ReportStatus.SUBMITTED)">{{
+        (isMobile$ | async) ? t('reported') : 'Reported users'
+      }}</a>
+    </li>
+    <li
+      class="reports-menu__item"
+      [class.reports-menu__item--selected]="selectedStatus === ReportStatus.BANNED"
+    >
+      <a (click)="onSelectItem(ReportStatus.BANNED)">{{
+        (isMobile$ | async) ? t('banned') : 'Banned users'
+      }}</a>
+    </li>
+    <li
+      class="reports-menu__item"
+      [class.reports-menu__item--selected]="selectedStatus === ReportStatus.DISMISSED"
+    >
+      <a (click)="onSelectItem(ReportStatus.DISMISSED)">{{
+        (isMobile$ | async) ? t('dismissed') : 'Dismissed users'
+      }}</a>
+    </li>
+  </ul>
+</nav>

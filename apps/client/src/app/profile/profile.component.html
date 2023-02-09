@@ -1,0 +1,7 @@
+<cm-purple-shape></cm-purple-shape>
+<cm-profile-card
+  *ngIf="attendee$ | async as attendee"
+  [attendee]="attendee"
+  [canEdit]="true"
+  (edit)="onEdit()"
+></cm-profile-card>

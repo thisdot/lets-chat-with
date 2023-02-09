@@ -1,0 +1,22 @@
+# Add files here to ignore them from prettier formatting
+
+amplify/**/*.js
+amplify/**/*.json
+libs/api/src/aws-exports.js
+
+/dist
+/coverage
+/apps/client/documentation
+/libs/api/graphql
+/libs/api/aws-exports.js
+/libs/api/lib/api.service.ts
+angular.json
+
+package-lock.json
+**/*.graphql
+**/.angular/
+serverless/node_modules
+serverless/.dynamodb
+serverless/.esbuild
+serverless/s3-local
+.github

@@ -1,0 +1,46 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  --profile-width-desktop: clamp(21.8rem, 30vw, 28rem);
+
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include media_breakpoint_up(md) {
+    width: var(--profile-width-desktop);
+  }
+
+  .interests__header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid var(--grey-300);
+
+    .interests__title {
+      @extend %h100;
+    }
+
+    .interests__close-button {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      @include media_breakpoint_down(sm) {
+        margin-right: 1.3rem;
+      }
+    }
+  }
+
+  .interests__content {
+    margin-top: 2rem;
+    padding: 1rem;
+    width: 100%;
+  }
+}

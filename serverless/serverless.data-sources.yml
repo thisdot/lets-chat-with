@@ -1,0 +1,431 @@
+# Lambda Data Sources
+# Naming convention is ${FunctionName}LambdaDataSource, and each should reference a function resource.
+# Function resources are created implicitly by Serverless, and are named like ${FunctionName}LambdaFunction.
+- type: AWS_LAMBDA
+  name: UpdateAttendeeLambdaDataSource
+  config:
+    functionName: updateAttendee
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: FileUploadLambdaDataSource
+  config:
+    functionName: fileUpload
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: NumberOfUnreadMessagesLambdaDataSource
+  config:
+    functionName: numberOfUnreadMessages
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: ResolveMatchesLambdaDataSource
+  config:
+    functionName: resolveMatches
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: CreateAttendeeLambdaDataSource
+  config:
+    functionName: createAttendee
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: UpdateCandidateLambdaDataSource
+  config:
+    functionName: updateCandidate
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: ResolveChatsLambdaDataSource
+  config:
+    functionName: resolveChats
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+- type: AWS_LAMBDA
+  name: AccessEventLambdaDataSource
+  config:
+    functionName: accessEvent
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - lambda:InvokeFunction
+        Resource: arn:aws:lambda:${aws:region}:${aws:accountId}:*
+
+# Table Data Sources
+# Naming convention is ${TableName}DataSource, and each should reference an existing table resource, created explicitly
+# in serverless.resources.yml.
+- type: AMAZON_DYNAMODB
+  name: AttendeeDataSource
+  config:
+    tableName: { Ref: AttendeeTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: AttendeeDesiredIdentifierDataSource
+  config:
+    tableName: { Ref: AttendeeDesiredIdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: AttendeeInterestDataSource
+  config:
+    tableName: { Ref: AttendeeInterestTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: AttendeeOwnIdentifierDataSource
+  config:
+    tableName: { Ref: AttendeeOwnIdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: CandidateDataSource
+  config:
+    tableName: { Ref: CandidateTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: ChatThreadDataSource
+  config:
+    tableName: { Ref: ChatThreadTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: EventDataSource
+  config:
+    tableName: { Ref: EventTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: EventIdentifierDataSource
+  config:
+    tableName: { Ref: EventIdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: EventInterestDataSource
+  config:
+    tableName: { Ref: EventInterestTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: IdentifierDataSource
+  config:
+    tableName: { Ref: IdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: InterestDataSource
+  config:
+    tableName: { Ref: InterestTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: MatchDataSource
+  config:
+    tableName: { Ref: MatchTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: MessageDataSource
+  config:
+    tableName: { Ref: MessageTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: OrganizationDataSource
+  config:
+    tableName: { Ref: OrganizationTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: OrganizationMemberDataSource
+  config:
+    tableName: { Ref: OrganizationMemberTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: ReportDataSource
+  config:
+    tableName: { Ref: ReportTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: ThemeDataSource
+  config:
+    tableName: { Ref: ThemeTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: UserDataSource
+  config:
+    tableName: { Ref: UserTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: CandidateInterestDataSource
+  config:
+    tableName: { Ref: CandidateInterestTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: CandidateDesiredIdentifierDataSource
+  config:
+    tableName: { Ref: CandidateDesiredIdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: MatchInterestDataSource
+  config:
+    tableName: { Ref: MatchInterestTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+- type: AMAZON_DYNAMODB
+  name: MatchDesiredIdentifierDataSource
+  config:
+    tableName: { Ref: MatchDesiredIdentifierTableResource }
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*

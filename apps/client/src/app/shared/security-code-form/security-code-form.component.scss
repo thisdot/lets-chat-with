@@ -1,0 +1,26 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host {
+  display: flex;
+  justify-content: center;
+
+  .cm-security-code-form__invalid {
+    margin-top: 12px;
+    text-align: center;
+
+    p {
+      @extend %text200;
+      color: var(--grey-700);
+      margin: 0 auto 16px auto;
+      width: 240px;
+    }
+
+    button {
+      @extend %text300;
+      color: var(--secondary-500);
+      font-weight: bold;
+      background: none;
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<ng-container *ngIf="reportedAttendees !== null">
+  <ng-container *transloco="let t; read: 'reports'">
+    <ng-container *ngIf="reportedAttendees?.length; else noItems">
+      <cm-reports-list-item
+        class="cm-reports-list__item"
+        *ngFor="let reportedAttendee of reportedAttendees"
+        [reportedAttendee]="reportedAttendee"
+        (ban)="onPressBan($event)"
+        (dismiss)="onPressDismiss($event)"
+        (revoke)="onPressRevoke($event)"
+        (viewAttendee)="onPressViewAttendee($event)"
+      >
+      </cm-reports-list-item>
+    </ng-container>
+
+    <ng-template #noItems>
+      <ng-container [ngSwitch]="reportStatus$ | async" *ngIf="!isLoading">
+        <cm-empty-indicator
+          *ngSwitchCase="ReportStatus.SUBMITTED"
+          [title]="t('goodJob')"
+          [subtitle]="t('noNewReports')"
+        ></cm-empty-indicator>
+        <cm-empty-indicator
+          *ngSwitchCase="ReportStatus.BANNED"
+          [title]="t('noBannedReportsTitle')"
+          [subtitle]="t('noBannedReportsSubtitle')"
+        ></cm-empty-indicator>
+        <cm-empty-indicator
+          *ngSwitchCase="ReportStatus.DISMISSED"
+          [title]="t('noDismissedReportsTitle')"
+          [subtitle]="t('noDismissedReportsSubtitle')"
+        ></cm-empty-indicator>
+      </ng-container>
+
+      <ng-container *ngIf="isLoading">
+        <cm-empty-indicator
+          [title]="t('loadingReportsTitle')"
+          [subtitle]="t('loadingReportsSubtitle')"
+        ></cm-empty-indicator>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</ng-container>

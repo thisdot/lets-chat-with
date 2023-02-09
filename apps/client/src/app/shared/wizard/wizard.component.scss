@@ -1,0 +1,17 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  padding: 1rem 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  @include media_breakpoint_down(sm) {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+  @include media_breakpoint_up(md) {
+    width: 50%;
+    margin: auto;
+  }
+}

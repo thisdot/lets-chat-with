@@ -1,0 +1,34 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.cm-chip-list__header {
+  display: flex;
+  justify-content: space-between;
+
+  .cm-icon {
+    fill: var(--grey-600);
+    cursor: pointer;
+  }
+}
+
+.cm-chip-list__header__title {
+  @extend %caption200;
+  color: var(--grey-700);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.cm-chip-list__content {
+  margin-left: -4px;
+  margin-right: -4px;
+
+  .cm-chip {
+    margin: 4px;
+  }
+}

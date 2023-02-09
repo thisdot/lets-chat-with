@@ -1,0 +1,51 @@
+{
+  "data": {
+    "listAttendees": {
+      "items": [
+        {
+          "id": "243683a2-a075-4fb2-9ee3-f46e4970653e",
+          "fullName": "Balázs Tápai",
+          "avatarUrl": "https://conf-match-user-content-develop-develop.s3.us-east-1.amazonaws.com/public/users/profile_images/1618313649188_abu_flying.gif",
+          "company": "This Dot Labs",
+          "title": "Software Engineer",
+          "bio": "this is a test bio. Its purpose is to test a long biography. I still need to write at least 90 characters into this bio. There's not hing to see here. Chop chop",
+          "interests": ["Health", "Angular", "React", "NodeJS", "JS"],
+          "connections": ["Partner"],
+          "eventId": "66561d52-7210-4567-ba60-c861c8a9b468",
+          "event": {
+            "attendeeMatches": 1,
+            "attendeeChats": 1,
+            "id": "66561d52-7210-4567-ba60-c861c8a9b468",
+            "name": "ngHansGruber",
+            "description": "Hans Gruber was the true hero of that movie.",
+            "logoUrl": "https://static1.squarespace.com/static/5b7b64d52714e503eebf914c/t/5b7b7dda758d462bead7e54c/1614678102951/?format=1500w",
+            "__typename": "Event"
+          },
+          "__typename": "Attendee"
+        },
+        {
+          "id": "b4ff618c-1720-4e5e-895a-74dccfa12dee",
+          "fullName": "Balázs Tápai",
+          "avatarUrl": "https://conf-match-user-content-develop-develop.s3.amazonaws.com/public/users/profile_images/1617870450135_cantina_sm.jpg",
+          "company": "This Dot Labs",
+          "title": "Software Engineer",
+          "bio": "Test",
+          "interests": ["Software development", "Angular"],
+          "connections": ["Developer"],
+          "eventId": "66561d52-7210-4567-ba60-c861c8a9b470",
+          "event": {
+            "attendeeMatches": 12,
+            "attendeeChats": 12,
+            "id": "66561d52-7210-4567-ba60-c861c8a9b470",
+            "name": "ngNakatomi",
+            "description": "A conference about Angular in the Nakatomi tower.",
+            "logoUrl": "https://assets.website-files.com/59f04de85aae0d0001bb95be/59f1a028ffa06300013b4d40_ngATL-logo.svg",
+            "__typename": "Event"
+          },
+          "__typename": "Attendee"
+        }
+      ],
+      "__typename": "ModelAttendeeConnection"
+    }
+  }
+}

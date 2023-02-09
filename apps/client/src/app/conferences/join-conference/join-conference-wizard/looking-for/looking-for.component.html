@@ -1,0 +1,16 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <cm-connections-selector
+    [identifiers]="(identifiers$ | async) || []"
+    [limit]="identifiersCount$ | async"
+    (connectionSelect)="onConnectionsSelected($event)"
+  ></cm-connections-selector>
+
+  <button
+    cm-button
+    (click)="onSubmit()"
+    [floating]="true"
+    [disabled]="selectedConnections.length === 0"
+  >
+    {{ t('actions.next') }}
+  </button>
+</ng-container>

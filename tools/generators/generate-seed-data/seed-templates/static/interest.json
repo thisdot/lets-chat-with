@@ -1,0 +1,170 @@
+[
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "c3256522-baf9-4dab-a7bb-0e48ab79e06d",
+    "name": "Project Management"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "8ae54d1d-cd0b-4443-a3a4-8dbf40670a01",
+    "name": "Webflow"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "715885df-d0c9-489f-8113-55854064f0c9",
+    "name": "Business News"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "6ceac99f-744d-4064-b4c8-e77ba5a1524c",
+    "name": "Redux"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "0d6de011-b62a-48f1-9b9d-b6792f475d73",
+    "name": "Node.JS"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "b1c48dcc-72cd-4c78-9560-65dec3252fba",
+    "name": "Design Systems"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "894c5a95-825d-4f0a-be4f-8664e878574d",
+    "name": "Brokers"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "1ae8f81d-464c-4f1b-9c7d-f91a23256c91",
+    "name": "Frontend"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "278155a2-0dec-4e70-80fd-4476b9679c12",
+    "name": "GraphQL"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "2dbff9cd-ead4-407f-b1f9-f7d22c6cb279",
+    "name": "Health"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "e1dda37a-1f3f-4cc6-b2cb-9f3def40046d",
+    "name": "Automation"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "e909569f-68e5-428c-96fa-16d7a73abfaf",
+    "name": "Design"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "ded0c342-c364-4d16-933b-7f9d7bd1c67a",
+    "name": "Business Apps"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "fdd44ccd-d20b-45f2-a3e4-7157848e2f7a",
+    "name": "CSS"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "89ec10ed-42a5-4303-a52f-dd38f00fc1b5",
+    "name": "Angular"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "a897adb2-9eae-4c79-a976-574f51b297de",
+    "name": "Figma"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "5d899e5c-5c53-427c-9038-99ede9a092a5",
+    "name": "Software Development"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "e434ac54-69af-4860-ae73-e02460b6c7f9",
+    "name": "Low Code"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Business",
+    "id": "afb17d77-16d6-4f10-85a4-766d6d0eb567",
+    "name": "Business Plan"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "9261338c-cb6c-4c1b-8e2f-c92440eed0df",
+    "name": "Vue"
+  },
+  {
+    "__typename": "Interest",
+    "updatedAt": "2022-03-02T16:53:34.055Z",
+    "createdAt": "2022-03-02T16:53:34.055Z",
+    "group": "Technology",
+    "id": "9d0bf912-c310-484b-9b23-c4fc33d167d3",
+    "name": "React"
+  }
+]

@@ -1,0 +1,21 @@
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+<ng-container *ngIf="!routerLink; else link">
+  <button type="button" (click)="buttonClick.emit()">
+    <cm-icon [name]="iconName" size="lg"></cm-icon>
+    <span>{{ text }}</span>
+    <div class="cm-context-button__content-icon">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+  </button>
+</ng-container>
+<ng-template #link>
+  <a [routerLink]="routerLink" (click)="buttonClick.emit()">
+    <cm-icon [name]="iconName" size="lg"></cm-icon>
+    <span>{{ text }}</span>
+    <div class="cm-context-button__content-icon">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+  </a>
+</ng-template>

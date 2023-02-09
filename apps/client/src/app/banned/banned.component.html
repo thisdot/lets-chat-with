@@ -1,0 +1,12 @@
+<ng-container *transloco="let t; read: 'banned'">
+  <ng-container *ngIf="report$ | async as report">
+    <div class="cm-banned">
+      <img class="cm-banned__image" src="assets/banned.png" alt="{{ t('alt') }}" />
+      <span class="cm-banned__title">{{ t('title') }}</span>
+      <p class="cm-banned__text">
+        {{ report.reason.split('_').join(' ') }} <br />
+        {{ report.message }}
+      </p>
+    </div>
+  </ng-container>
+</ng-container>

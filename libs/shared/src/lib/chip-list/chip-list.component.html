@@ -1,0 +1,16 @@
+<div class="cm-chip-list__header" *transloco="let t; read: 'chipList'">
+  <span tabindex="0" class="cm-chip-list__header__title">{{ title }}</span>
+  <cm-icon
+    name="Edit"
+    size="lg"
+    role="button"
+    tabindex="0"
+    [attr.aria-label]="t('editChip', { title: title })"
+    (click)="edit.emit()"
+  ></cm-icon>
+</div>
+<div class="cm-chip-list__content" role="list">
+  <cm-chip role="listitem" tabindex="0" *ngFor="let item of items" [type]="type">{{
+    item.name
+  }}</cm-chip>
+</div>

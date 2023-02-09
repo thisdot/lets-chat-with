@@ -1,0 +1,59 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+@import '../shared/settings_shared';
+
+:host {
+  @include set_page_styles();
+}
+
+.settings-email-page {
+  @include settings_shared();
+
+  & &__content {
+    align-items: flex-start;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+    box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & &__form {
+    margin-top: 1.5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      width: 100%;
+      &.ng-invalid {
+        border-color: var(--grey-400);
+      }
+    }
+
+    input + button {
+      margin-top: 1rem;
+    }
+
+    &__buttons {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 1rem;
+
+      @include media_breakpoint_down(md) {
+        flex-flow: column nowrap;
+
+        button {
+          margin: 0 0 1rem 0;
+        }
+      }
+    }
+  }
+}

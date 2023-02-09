@@ -1,0 +1,1651 @@
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+  mimeType: String!
+  localUri: String!
+}
+
+enum STATE {
+  PENDING
+  REJECTED
+  APPROVED
+}
+
+enum STATUS {
+  VISIBLE
+  HIDDEN
+}
+
+enum OrganizationMemberRole {
+  MEMBER
+  MARKETING
+  VOLUNTEER
+  SALES
+}
+
+enum ReportReason {
+  INAPPROPRIATE_MESSAGE
+  INAPPROPRIATE_PHOTO
+  SPAM
+  OTHER
+}
+
+enum ReportStatus {
+  SUBMITTED
+  BANNED
+  DISMISSED
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  CANCELLED
+  TERMINATED
+}
+
+enum EventSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum EventPaymentStatus {
+  REQUIRED
+  PAID_IN_FULL
+  DEFAULTED
+}
+
+enum CandidateType {
+  LIKE
+  DISLIKE
+  UNDECIDED
+}
+
+type NotificationConfig {
+  matches: Boolean
+  messages: Boolean
+  subscribe: Boolean
+}
+
+type User {
+  id: ID!
+  owner: ID!
+  notificationConfig: NotificationConfig
+  termsAccepted: Boolean
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Interest {
+  id: ID!
+  group: String!
+  name: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Identifier {
+  id: ID!
+  name: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Theme {
+  id: ID!
+  name: String!
+  primary: String!
+  secondary: String!
+  tertiary: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type OrganizationMember {
+  organizationId: ID!
+  organization: Organization!
+  userId: ID!
+  role: OrganizationMemberRole!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type OrganizationPaymentMethod {
+  name: String!
+  provider: String!
+  method: String!
+  token: String!
+}
+
+type Organization {
+  id: ID!
+  owners: [String!]!
+  name: String!
+  website: String
+  facebook: String
+  twitter: String
+  linkedin: String
+  events(filter: ModelEventFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventConnection
+  members(userId: ModelIDKeyConditionInput, filter: ModelOrganizationMemberFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelOrganizationMemberConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EventDateRange {
+  startDate: AWSDate!
+  endDate: AWSDate!
+}
+
+type Event {
+  id: ID!
+  organizationId: ID!
+  organization: Organization!
+  owners: [String!]!
+  readers: [ID!]
+  name: String!
+  status: EventStatus!
+  size: EventSize!
+  logoUrl: String
+  qrImageUrl: String
+  description: String
+  theme: Theme
+  registrationCode: String
+  letsChatWithUrl: String!
+  website: String
+  facebook: String
+  twitter: String
+  dateRange: EventDateRange!
+  interests(interestId: ModelIDKeyConditionInput, filter: ModelEventInterestFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventInterestConnection
+  identifiers(identifierId: ModelIDKeyConditionInput, filter: ModelEventIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventIdentifierConnection
+  maxInterests: Int
+  maxIdentifiers: Int
+  totalAmountDue: Int
+  paymentStatus: EventPaymentStatus
+  payments: [EventPayments!]
+  attendees(filter: ModelAttendeeFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttendeeConnection
+  reports(id: ModelIDKeyConditionInput, filter: ModelReportFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EventInterest {
+  id: ID!
+  eventId: ID!
+  interestId: ID!
+  event: Event!
+  interest: Interest!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EventIdentifier {
+  id: ID!
+  eventId: ID!
+  identifierId: ID!
+  event: Event!
+  identifier: Identifier!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EventPayments {
+  paymentMethod: OrganizationPaymentMethod!
+  transactionId: String!
+  amount: Int!
+  receivedAt: AWSDate!
+}
+
+type Attendee {
+  id: ID!
+  owner: String
+  userId: ID!
+  fullName: String!
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  interests(interestId: ModelIDKeyConditionInput, filter: ModelAttendeeInterestFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttendeeInterestConnection
+  desiredIdentifiers(identifierId: ModelIDKeyConditionInput, filter: ModelAttendeeDesiredIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttendeeDesiredIdentifierConnection
+  ownIdentifiers(identifierId: ModelIDKeyConditionInput, filter: ModelAttendeeOwnIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelAttendeeOwnIdentifierConnection
+  eventId: ID!
+  attendeeMatches: [Match]
+  attendeeChats: [ChatThread]
+  event: Event
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type AttendeeInterest {
+  id: ID!
+  attendeeId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee!
+  interest: Interest!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type AttendeeDesiredIdentifier {
+  id: ID!
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee!
+  identifier: Identifier!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type AttendeeOwnIdentifier {
+  id: ID!
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+  attendee: Attendee!
+  identifier: Identifier!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Report {
+  eventId: ID!
+  event: Event!
+  id: ID!
+  owner: String!
+  reportingAttendeeId: ID!
+  reportingAttendee: Attendee!
+  reportedAttendeeId: ID!
+  reportedAttendee: Attendee!
+  reason: ReportReason!
+  message: String
+  status: ReportStatus!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ChatThread {
+  id: ID!
+  eventId: ID!
+  lastMessageAt: AWSDateTime
+  attendee1LastReadAt: AWSDateTime
+  attendee2LastReadAt: AWSDateTime
+  messages(id: ModelIDKeyConditionInput, filter: ModelMessageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMessageConnection
+  matchId: ID!
+  match: Match
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Message {
+  id: ID!
+  content: String!
+  createdAt: AWSDateTime
+  owner: String
+  attendeeId: ID!
+  attendee: Attendee
+  chatThreadId: ID!
+  chatThread: ChatThread!
+  updatedAt: AWSDateTime!
+}
+
+type Subscription {
+  onCreateMessage(chatThreadId: ID): Message @aws_subscribe(mutations: ["createMessage"])
+}
+
+type Query {
+  numberOfUnreadMessages(chatThreadId: ID): Int
+  getUser(id: ID!): User
+  getInterest(id: ID!): Interest
+  listInterests(filter: ModelInterestFilterInput, limit: Int, nextToken: String): ModelInterestConnection
+  getIdentifier(id: ID!): Identifier
+  listIdentifiers(filter: ModelIdentifierFilterInput, limit: Int, nextToken: String): ModelIdentifierConnection
+  getTheme(id: ID!): Theme
+  listThemes(filter: ModelThemeFilterInput, limit: Int, nextToken: String): ModelThemeConnection
+  getOrganizationMember(organizationId: ID!, userId: ID!): OrganizationMember
+  listOrganizationMembers(organizationId: ID, userId: ModelIDKeyConditionInput, filter: ModelOrganizationMemberFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOrganizationMemberConnection
+  getOrganization(id: ID!): Organization
+  listOrganizations(id: ID, filter: ModelOrganizationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelOrganizationConnection
+  getEvent(id: ID!): Event
+  listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
+  getAttendee(id: ID!): Attendee
+  listAttendees(filter: ModelAttendeeFilterInput, limit: Int, nextToken: String): ModelAttendeeConnection
+  getReport(eventId: ID!, id: ID!): Report
+  listReports(eventId: ID, id: ModelIDKeyConditionInput, filter: ModelReportFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelReportConnection
+  getChatThread(id: ID!): ChatThread
+  listChatThreads(filter: ModelChatThreadFilterInput, limit: Int, nextToken: String): ModelChatThreadConnection
+  getCandidate(id: ID!): Candidate
+  listCandidates(filter: ModelCandidateFilterInput, limit: Int, nextToken: String): ModelCandidateConnection
+  getMatch(id: ID!): Match
+  listMatches(filter: ModelMatchFilterInput, limit: Int, nextToken: String): ModelMatchConnection
+  getUserByOwner(owner: ID, sortDirection: ModelSortDirection, filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection
+  candidatesByEventId(eventId: ID, matchScore: ModelIntKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelCandidateFilterInput, limit: Int, nextToken: String): ModelCandidateConnection
+}
+
+type Mutation {
+  accessEvent(letsChatWithUrl: String): ID
+  fileUpload(bucketFolder: String, fileName: String, base64: String): String
+  createAttendee(input: CreateAttendeeInput!): Attendee
+  updateAttendee(input: UpdateAttendeeInput!): Attendee
+  updateCandidate(input: UpdateCandidateInput!): Candidate
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User
+  createInterest(input: CreateInterestInput!, condition: ModelInterestConditionInput): Interest
+  updateInterest(input: UpdateInterestInput!, condition: ModelInterestConditionInput): Interest
+  deleteInterest(input: DeleteInterestInput!, condition: ModelInterestConditionInput): Interest
+  createIdentifier(input: CreateIdentifierInput!, condition: ModelIdentifierConditionInput): Identifier
+  updateIdentifier(input: UpdateIdentifierInput!, condition: ModelIdentifierConditionInput): Identifier
+  deleteIdentifier(input: DeleteIdentifierInput!, condition: ModelIdentifierConditionInput): Identifier
+  createTheme(input: CreateThemeInput!, condition: ModelThemeConditionInput): Theme
+  updateTheme(input: UpdateThemeInput!, condition: ModelThemeConditionInput): Theme
+  deleteTheme(input: DeleteThemeInput!, condition: ModelThemeConditionInput): Theme
+  createOrganizationMember(input: CreateOrganizationMemberInput!, condition: ModelOrganizationMemberConditionInput): OrganizationMember
+  updateOrganizationMember(input: UpdateOrganizationMemberInput!, condition: ModelOrganizationMemberConditionInput): OrganizationMember
+  deleteOrganizationMember(input: DeleteOrganizationMemberInput!, condition: ModelOrganizationMemberConditionInput): OrganizationMember
+  createOrganization(input: CreateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization
+  updateOrganization(input: UpdateOrganizationInput!, condition: ModelOrganizationConditionInput): Organization
+  deleteOrganization(input: DeleteOrganizationInput!, condition: ModelOrganizationConditionInput): Organization
+  createEvent(input: CreateEventInput!, condition: ModelEventConditionInput): Event
+  updateEvent(input: UpdateEventInput!, condition: ModelEventConditionInput): Event
+  deleteEvent(input: DeleteEventInput!, condition: ModelEventConditionInput): Event
+  createEventInterest(input: CreateEventInterestInput!, condition: ModelEventInterestConditionInput): EventInterest
+  updateEventInterest(input: UpdateEventInterestInput!, condition: ModelEventInterestConditionInput): EventInterest
+  deleteEventInterest(input: DeleteEventInterestInput!, condition: ModelEventInterestConditionInput): EventInterest
+  createEventIdentifier(input: CreateEventIdentifierInput!, condition: ModelEventIdentifierConditionInput): EventIdentifier
+  updateEventIdentifier(input: UpdateEventIdentifierInput!, condition: ModelEventIdentifierConditionInput): EventIdentifier
+  deleteEventIdentifier(input: DeleteEventIdentifierInput!, condition: ModelEventIdentifierConditionInput): EventIdentifier
+  createAttendeeInterest(input: CreateAttendeeInterestInput!, condition: ModelAttendeeInterestConditionInput): AttendeeInterest
+  updateAttendeeInterest(input: UpdateAttendeeInterestInput!, condition: ModelAttendeeInterestConditionInput): AttendeeInterest
+  deleteAttendeeInterest(input: DeleteAttendeeInterestInput!, condition: ModelAttendeeInterestConditionInput): AttendeeInterest
+  createAttendeeDesiredIdentifier(input: CreateAttendeeDesiredIdentifierInput!, condition: ModelAttendeeDesiredIdentifierConditionInput): AttendeeDesiredIdentifier
+  updateAttendeeDesiredIdentifier(input: UpdateAttendeeDesiredIdentifierInput!, condition: ModelAttendeeDesiredIdentifierConditionInput): AttendeeDesiredIdentifier
+  deleteAttendeeDesiredIdentifier(input: DeleteAttendeeDesiredIdentifierInput!, condition: ModelAttendeeDesiredIdentifierConditionInput): AttendeeDesiredIdentifier
+  createAttendeeOwnIdentifier(input: CreateAttendeeOwnIdentifierInput!, condition: ModelAttendeeOwnIdentifierConditionInput): AttendeeOwnIdentifier
+  updateAttendeeOwnIdentifier(input: UpdateAttendeeOwnIdentifierInput!, condition: ModelAttendeeOwnIdentifierConditionInput): AttendeeOwnIdentifier
+  deleteAttendeeOwnIdentifier(input: DeleteAttendeeOwnIdentifierInput!, condition: ModelAttendeeOwnIdentifierConditionInput): AttendeeOwnIdentifier
+  createReport(input: CreateReportInput!, condition: ModelReportConditionInput): Report
+  updateReport(input: UpdateReportInput!, condition: ModelReportConditionInput): Report
+  deleteReport(input: DeleteReportInput!, condition: ModelReportConditionInput): Report
+  updateChatThread(input: UpdateChatThreadInput!, condition: ModelChatThreadConditionInput): ChatThread
+  createMessage(input: CreateMessageInput!, condition: ModelMessageConditionInput): Message
+  deleteMatch(input: DeleteMatchInput!, condition: ModelMatchConditionInput): Match
+  createCandidateInterest(input: CreateCandidateInterestInput!, condition: ModelCandidateInterestConditionInput): CandidateInterest
+  updateCandidateInterest(input: UpdateCandidateInterestInput!, condition: ModelCandidateInterestConditionInput): CandidateInterest
+  deleteCandidateInterest(input: DeleteCandidateInterestInput!, condition: ModelCandidateInterestConditionInput): CandidateInterest
+  createCandidateDesiredIdentifier(input: CreateCandidateDesiredIdentifierInput!, condition: ModelCandidateDesiredIdentifierConditionInput): CandidateDesiredIdentifier
+  updateCandidateDesiredIdentifier(input: UpdateCandidateDesiredIdentifierInput!, condition: ModelCandidateDesiredIdentifierConditionInput): CandidateDesiredIdentifier
+  deleteCandidateDesiredIdentifier(input: DeleteCandidateDesiredIdentifierInput!, condition: ModelCandidateDesiredIdentifierConditionInput): CandidateDesiredIdentifier
+  createMatchInterest(input: CreateMatchInterestInput!, condition: ModelMatchInterestConditionInput): MatchInterest
+  updateMatchInterest(input: UpdateMatchInterestInput!, condition: ModelMatchInterestConditionInput): MatchInterest
+  deleteMatchInterest(input: DeleteMatchInterestInput!, condition: ModelMatchInterestConditionInput): MatchInterest
+  createMatchDesiredIdentifier(input: CreateMatchDesiredIdentifierInput!, condition: ModelMatchDesiredIdentifierConditionInput): MatchDesiredIdentifier
+  updateMatchDesiredIdentifier(input: UpdateMatchDesiredIdentifierInput!, condition: ModelMatchDesiredIdentifierConditionInput): MatchDesiredIdentifier
+  deleteMatchDesiredIdentifier(input: DeleteMatchDesiredIdentifierInput!, condition: ModelMatchDesiredIdentifierConditionInput): MatchDesiredIdentifier
+}
+
+input UpdateAttendeeInput {
+  id: ID!
+  owner: String
+  userId: ID
+  fullName: String
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  eventId: ID
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  ownIdentifiers: [ID!]
+  updatedAt: AWSDateTime
+}
+
+input UpdateCandidateInput {
+  id: ID!
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  updatedAt: AWSDateTime
+  candidateType: CandidateType!
+}
+
+input CreateAttendeeInput {
+  id: ID
+  owner: String!
+  userId: ID!
+  fullName: String!
+  avatarUrl: String
+  title: String
+  company: String
+  pronouns: String
+  bio: String
+  newsletterSubscribed: Boolean
+  linkedin: String
+  twitter: String
+  facebook: String
+  eventId: ID!
+  interests: [ID!]
+  desiredIdentifiers: [ID!]
+  ownIdentifiers: [ID!]
+  createdAt: AWSDateTime
+}
+
+type Candidate {
+  id: ID!
+  owner: String!
+  ownerAttendeeId: ID!
+  eventId: ID!
+  event: Event
+  attendeeId: ID!
+  attendee: Attendee
+  candidateType: CandidateType!
+  matchScore: Int!
+  interests(interestId: ModelIDKeyConditionInput, filter: ModelCandidateInterestFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCandidateInterestConnection
+  desiredIdentifiers(desiredIdentifierId: ModelIDKeyConditionInput, filter: ModelCandidateDesiredIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCandidateDesiredIdentifierConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Match {
+  id: ID!
+  owners: [String!]!
+  attendee1Id: ID!
+  attendee2Id: ID!
+  eventId: ID!
+  event: Event
+  createdAt: AWSDateTime!
+  attendee1: Attendee
+  attendee2: Attendee
+  interests(interestId: ModelIDKeyConditionInput, filter: ModelMatchInterestFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMatchInterestConnection
+  desiredIdentifiers(desiredIdentifierId: ModelIDKeyConditionInput, filter: ModelMatchDesiredIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMatchDesiredIdentifierConnection
+  updatedAt: AWSDateTime!
+}
+
+type CandidateInterest {
+  id: ID!
+  candidateId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  candidate: Candidate!
+  interest: Interest!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type CandidateDesiredIdentifier {
+  id: ID!
+  candidateId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+  candidate: Candidate!
+  desiredIdentifier: Identifier!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type MatchInterest {
+  id: ID!
+  matchId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  attendeeId: ID!
+  match: Match!
+  interest: Interest!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type MatchDesiredIdentifier {
+  id: ID!
+  matchId: ID!
+  attendeeId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+  match: Match!
+  desiredIdentifier: Identifier!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input NotificationConfigInput {
+  matches: Boolean
+  messages: Boolean
+  subscribe: Boolean
+}
+
+input UpdateUserInput {
+  id: ID!
+  owner: ID
+  notificationConfig: NotificationConfigInput
+  termsAccepted: Boolean
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelUserConditionInput {
+  termsAccepted: ModelBooleanInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelInterestConnection {
+  items: [Interest]!
+  nextToken: String
+}
+
+input ModelInterestFilterInput {
+  id: ModelIDInput
+  group: ModelStringInput
+  name: ModelStringInput
+  and: [ModelInterestFilterInput]
+  or: [ModelInterestFilterInput]
+  not: ModelInterestFilterInput
+}
+
+input CreateInterestInput {
+  id: ID
+  group: String!
+  name: String!
+}
+
+input UpdateInterestInput {
+  id: ID!
+  group: String
+  name: String
+}
+
+input DeleteInterestInput {
+  id: ID!
+}
+
+input ModelInterestConditionInput {
+  group: ModelStringInput
+  name: ModelStringInput
+  and: [ModelInterestConditionInput]
+  or: [ModelInterestConditionInput]
+  not: ModelInterestConditionInput
+}
+
+type ModelIdentifierConnection {
+  items: [Identifier]!
+  nextToken: String
+}
+
+input ModelIdentifierFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  and: [ModelIdentifierFilterInput]
+  or: [ModelIdentifierFilterInput]
+  not: ModelIdentifierFilterInput
+}
+
+input CreateIdentifierInput {
+  id: ID
+  name: String!
+}
+
+input UpdateIdentifierInput {
+  id: ID!
+  name: String
+}
+
+input DeleteIdentifierInput {
+  id: ID!
+}
+
+input ModelIdentifierConditionInput {
+  name: ModelStringInput
+  and: [ModelIdentifierConditionInput]
+  or: [ModelIdentifierConditionInput]
+  not: ModelIdentifierConditionInput
+}
+
+type ModelThemeConnection {
+  items: [Theme]!
+  nextToken: String
+}
+
+input ModelThemeFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  primary: ModelStringInput
+  secondary: ModelStringInput
+  tertiary: ModelStringInput
+  and: [ModelThemeFilterInput]
+  or: [ModelThemeFilterInput]
+  not: ModelThemeFilterInput
+}
+
+input CreateThemeInput {
+  id: ID
+  name: String!
+  primary: String!
+  secondary: String!
+  tertiary: String!
+}
+
+input UpdateThemeInput {
+  id: ID!
+  name: String
+  primary: String
+  secondary: String
+  tertiary: String
+}
+
+input DeleteThemeInput {
+  id: ID!
+}
+
+input ModelThemeConditionInput {
+  name: ModelStringInput
+  primary: ModelStringInput
+  secondary: ModelStringInput
+  tertiary: ModelStringInput
+  and: [ModelThemeConditionInput]
+  or: [ModelThemeConditionInput]
+  not: ModelThemeConditionInput
+}
+
+type ModelOrganizationMemberConnection {
+  items: [OrganizationMember]!
+  nextToken: String
+}
+
+input ModelOrganizationMemberRoleInput {
+  eq: OrganizationMemberRole
+  ne: OrganizationMemberRole
+}
+
+input ModelOrganizationMemberFilterInput {
+  organizationId: ModelIDInput
+  userId: ModelIDInput
+  role: ModelOrganizationMemberRoleInput
+  and: [ModelOrganizationMemberFilterInput]
+  or: [ModelOrganizationMemberFilterInput]
+  not: ModelOrganizationMemberFilterInput
+}
+
+input CreateOrganizationMemberInput {
+  organizationId: ID!
+  userId: ID!
+  role: OrganizationMemberRole!
+}
+
+input UpdateOrganizationMemberInput {
+  organizationId: ID!
+  userId: ID!
+  role: OrganizationMemberRole
+}
+
+input DeleteOrganizationMemberInput {
+  organizationId: ID!
+  userId: ID!
+}
+
+input ModelOrganizationMemberConditionInput {
+  role: ModelOrganizationMemberRoleInput
+  and: [ModelOrganizationMemberConditionInput]
+  or: [ModelOrganizationMemberConditionInput]
+  not: ModelOrganizationMemberConditionInput
+}
+
+type ModelOrganizationConnection {
+  items: [Organization]!
+  nextToken: String
+}
+
+input ModelOrganizationFilterInput {
+  id: ModelIDInput
+  owners: ModelStringInput
+  name: ModelStringInput
+  website: ModelStringInput
+  facebook: ModelStringInput
+  twitter: ModelStringInput
+  linkedin: ModelStringInput
+  and: [ModelOrganizationFilterInput]
+  or: [ModelOrganizationFilterInput]
+  not: ModelOrganizationFilterInput
+}
+
+input CreateOrganizationInput {
+  id: ID
+  owners: [String!]!
+  name: String!
+  website: String
+  facebook: String
+  twitter: String
+  linkedin: String
+}
+
+input UpdateOrganizationInput {
+  id: ID!
+  owners: [String!]
+  name: String
+  website: String
+  facebook: String
+  twitter: String
+  linkedin: String
+}
+
+input DeleteOrganizationInput {
+  id: ID!
+}
+
+input ModelOrganizationConditionInput {
+  name: ModelStringInput
+  website: ModelStringInput
+  facebook: ModelStringInput
+  twitter: ModelStringInput
+  linkedin: ModelStringInput
+  and: [ModelOrganizationConditionInput]
+  or: [ModelOrganizationConditionInput]
+  not: ModelOrganizationConditionInput
+}
+
+input EventDateRangeInput {
+  startDate: AWSDate!
+  endDate: AWSDate!
+}
+
+input EventPaymentsInput {
+  paymentMethod: OrganizationPaymentMethodInput!
+  transactionId: String!
+  amount: Int!
+  receivedAt: AWSDate!
+}
+
+input OrganizationPaymentMethodInput {
+  name: String!
+  provider: String!
+  method: String!
+  token: String!
+}
+
+type ModelEventConnection {
+  items: [Event]!
+  nextToken: String
+}
+
+input ModelEventStatusInput {
+  eq: EventStatus
+  ne: EventStatus
+}
+
+input ModelEventSizeInput {
+  eq: EventSize
+  ne: EventSize
+}
+
+input ModelEventPaymentStatusInput {
+  eq: EventPaymentStatus
+  ne: EventPaymentStatus
+}
+
+input ModelEventFilterInput {
+  id: ModelIDInput
+  organizationId: ModelIDInput
+  owners: ModelStringInput
+  readers: ModelIDInput
+  name: ModelStringInput
+  status: ModelEventStatusInput
+  size: ModelEventSizeInput
+  logoUrl: ModelStringInput
+  qrImageUrl: ModelStringInput
+  description: ModelStringInput
+  registrationCode: ModelStringInput
+  letsChatWithUrl: ModelStringInput
+  website: ModelStringInput
+  facebook: ModelStringInput
+  twitter: ModelStringInput
+  maxInterests: ModelIntInput
+  maxIdentifiers: ModelIntInput
+  totalAmountDue: ModelIntInput
+  paymentStatus: ModelEventPaymentStatusInput
+  and: [ModelEventFilterInput]
+  or: [ModelEventFilterInput]
+  not: ModelEventFilterInput
+}
+
+input CreateEventInput {
+  id: ID
+  organizationId: ID!
+  owners: [String!]!
+  readers: [ID!]
+  name: String!
+  status: EventStatus!
+  size: EventSize!
+  logoUrl: String
+  qrImageUrl: String
+  description: String
+  registrationCode: String
+  letsChatWithUrl: String!
+  website: String
+  facebook: String
+  twitter: String
+  dateRange: EventDateRangeInput!
+  maxInterests: Int
+  maxIdentifiers: Int
+  totalAmountDue: Int
+  paymentStatus: EventPaymentStatus
+  payments: [EventPaymentsInput!]
+  eventThemeId: ID
+}
+
+input UpdateEventInput {
+  id: ID!
+  organizationId: ID
+  owners: [String!]
+  readers: [ID!]
+  name: String
+  status: EventStatus
+  size: EventSize
+  logoUrl: String
+  qrImageUrl: String
+  description: String
+  registrationCode: String
+  letsChatWithUrl: String
+  website: String
+  facebook: String
+  twitter: String
+  dateRange: EventDateRangeInput
+  maxInterests: Int
+  maxIdentifiers: Int
+  totalAmountDue: Int
+  paymentStatus: EventPaymentStatus
+  payments: [EventPaymentsInput!]
+  eventThemeId: ID
+}
+
+input DeleteEventInput {
+  id: ID!
+}
+
+input ModelEventConditionInput {
+  organizationId: ModelIDInput
+  name: ModelStringInput
+  status: ModelEventStatusInput
+  size: ModelEventSizeInput
+  logoUrl: ModelStringInput
+  qrImageUrl: ModelStringInput
+  description: ModelStringInput
+  registrationCode: ModelStringInput
+  letsChatWithUrl: ModelStringInput
+  website: ModelStringInput
+  facebook: ModelStringInput
+  twitter: ModelStringInput
+  maxInterests: ModelIntInput
+  maxIdentifiers: ModelIntInput
+  totalAmountDue: ModelIntInput
+  paymentStatus: ModelEventPaymentStatusInput
+  and: [ModelEventConditionInput]
+  or: [ModelEventConditionInput]
+  not: ModelEventConditionInput
+}
+
+input CreateEventInterestInput {
+  id: ID
+  eventId: ID!
+  interestId: ID!
+}
+
+input UpdateEventInterestInput {
+  id: ID!
+  eventId: ID
+  interestId: ID
+}
+
+input DeleteEventInterestInput {
+  id: ID!
+}
+
+input ModelEventInterestConditionInput {
+  eventId: ModelIDInput
+  interestId: ModelIDInput
+  and: [ModelEventInterestConditionInput]
+  or: [ModelEventInterestConditionInput]
+  not: ModelEventInterestConditionInput
+}
+
+input CreateEventIdentifierInput {
+  id: ID
+  eventId: ID!
+  identifierId: ID!
+}
+
+input UpdateEventIdentifierInput {
+  id: ID!
+  eventId: ID
+  identifierId: ID
+}
+
+input DeleteEventIdentifierInput {
+  id: ID!
+}
+
+input ModelEventIdentifierConditionInput {
+  eventId: ModelIDInput
+  identifierId: ModelIDInput
+  and: [ModelEventIdentifierConditionInput]
+  or: [ModelEventIdentifierConditionInput]
+  not: ModelEventIdentifierConditionInput
+}
+
+type ModelAttendeeConnection {
+  items: [Attendee]!
+  nextToken: String
+}
+
+input ModelAttendeeFilterInput {
+  id: ModelIDInput
+  owner: ModelStringInput
+  userId: ModelIDInput
+  fullName: ModelStringInput
+  avatarUrl: ModelStringInput
+  title: ModelStringInput
+  company: ModelStringInput
+  pronouns: ModelStringInput
+  bio: ModelStringInput
+  newsletterSubscribed: ModelBooleanInput
+  linkedin: ModelStringInput
+  twitter: ModelStringInput
+  facebook: ModelStringInput
+  eventId: ModelIDInput
+  createdAt: ModelStringInput
+  and: [ModelAttendeeFilterInput]
+  or: [ModelAttendeeFilterInput]
+  not: ModelAttendeeFilterInput
+}
+
+input CreateAttendeeInterestInput {
+  id: ID
+  attendeeId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateAttendeeInterestInput {
+  id: ID!
+  attendeeId: ID
+  interestId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteAttendeeInterestInput {
+  id: ID!
+}
+
+input ModelAttendeeInterestConditionInput {
+  attendeeId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelAttendeeInterestConditionInput]
+  or: [ModelAttendeeInterestConditionInput]
+  not: ModelAttendeeInterestConditionInput
+}
+
+input CreateAttendeeDesiredIdentifierInput {
+  id: ID
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateAttendeeDesiredIdentifierInput {
+  id: ID!
+  attendeeId: ID
+  identifierId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteAttendeeDesiredIdentifierInput {
+  id: ID!
+}
+
+input ModelAttendeeDesiredIdentifierConditionInput {
+  attendeeId: ModelIDInput
+  identifierId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelAttendeeDesiredIdentifierConditionInput]
+  or: [ModelAttendeeDesiredIdentifierConditionInput]
+  not: ModelAttendeeDesiredIdentifierConditionInput
+}
+
+input CreateAttendeeOwnIdentifierInput {
+  id: ID
+  attendeeId: ID!
+  identifierId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateAttendeeOwnIdentifierInput {
+  id: ID!
+  attendeeId: ID
+  identifierId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteAttendeeOwnIdentifierInput {
+  id: ID!
+}
+
+input ModelAttendeeOwnIdentifierConditionInput {
+  attendeeId: ModelIDInput
+  identifierId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelAttendeeOwnIdentifierConditionInput]
+  or: [ModelAttendeeOwnIdentifierConditionInput]
+  not: ModelAttendeeOwnIdentifierConditionInput
+}
+
+type ModelReportConnection {
+  items: [Report]!
+  nextToken: String
+}
+
+input ModelReportReasonInput {
+  eq: ReportReason
+  ne: ReportReason
+}
+
+input ModelReportStatusInput {
+  eq: ReportStatus
+  ne: ReportStatus
+}
+
+input ModelReportFilterInput {
+  eventId: ModelIDInput
+  id: ModelIDInput
+  owner: ModelStringInput
+  reportingAttendeeId: ModelIDInput
+  reportedAttendeeId: ModelIDInput
+  reason: ModelReportReasonInput
+  message: ModelStringInput
+  status: ModelReportStatusInput
+  and: [ModelReportFilterInput]
+  or: [ModelReportFilterInput]
+  not: ModelReportFilterInput
+}
+
+input CreateReportInput {
+  eventId: ID!
+  id: ID
+  owner: String!
+  reportingAttendeeId: ID!
+  reportedAttendeeId: ID!
+  reason: ReportReason!
+  message: String
+  status: ReportStatus!
+}
+
+input UpdateReportInput {
+  eventId: ID!
+  id: ID!
+  owner: String
+  reportingAttendeeId: ID
+  reportedAttendeeId: ID
+  reason: ReportReason
+  message: String
+  status: ReportStatus
+}
+
+input DeleteReportInput {
+  eventId: ID!
+  id: ID!
+}
+
+input ModelReportConditionInput {
+  reportingAttendeeId: ModelIDInput
+  reportedAttendeeId: ModelIDInput
+  reason: ModelReportReasonInput
+  message: ModelStringInput
+  status: ModelReportStatusInput
+  and: [ModelReportConditionInput]
+  or: [ModelReportConditionInput]
+  not: ModelReportConditionInput
+}
+
+type ModelChatThreadConnection {
+  items: [ChatThread]!
+  nextToken: String
+}
+
+input ModelChatThreadFilterInput {
+  id: ModelIDInput
+  eventId: ModelIDInput
+  lastMessageAt: ModelStringInput
+  attendee1LastReadAt: ModelStringInput
+  attendee2LastReadAt: ModelStringInput
+  matchId: ModelIDInput
+  and: [ModelChatThreadFilterInput]
+  or: [ModelChatThreadFilterInput]
+  not: ModelChatThreadFilterInput
+}
+
+input UpdateChatThreadInput {
+  id: ID!
+  eventId: ID
+  lastMessageAt: AWSDateTime
+  attendee1LastReadAt: AWSDateTime
+  attendee2LastReadAt: AWSDateTime
+  matchId: ID
+}
+
+input ModelChatThreadConditionInput {
+  eventId: ModelIDInput
+  lastMessageAt: ModelStringInput
+  attendee1LastReadAt: ModelStringInput
+  attendee2LastReadAt: ModelStringInput
+  matchId: ModelIDInput
+  and: [ModelChatThreadConditionInput]
+  or: [ModelChatThreadConditionInput]
+  not: ModelChatThreadConditionInput
+}
+
+input CreateMessageInput {
+  id: ID
+  content: String!
+  createdAt: AWSDateTime
+  owner: String
+  attendeeId: ID!
+  chatThreadId: ID!
+}
+
+input ModelMessageConditionInput {
+  content: ModelStringInput
+  createdAt: ModelStringInput
+  owner: ModelStringInput
+  attendeeId: ModelIDInput
+  chatThreadId: ModelIDInput
+  and: [ModelMessageConditionInput]
+  or: [ModelMessageConditionInput]
+  not: ModelMessageConditionInput
+}
+
+type ModelCandidateConnection {
+  items: [Candidate]!
+  nextToken: String
+}
+
+input ModelCandidateTypeInput {
+  eq: CandidateType
+  ne: CandidateType
+}
+
+input ModelCandidateFilterInput {
+  id: ModelIDInput
+  owner: ModelStringInput
+  ownerAttendeeId: ModelIDInput
+  eventId: ModelIDInput
+  attendeeId: ModelIDInput
+  candidateType: ModelCandidateTypeInput
+  matchScore: ModelIntInput
+  and: [ModelCandidateFilterInput]
+  or: [ModelCandidateFilterInput]
+  not: ModelCandidateFilterInput
+}
+
+type ModelMatchConnection {
+  items: [Match]!
+  nextToken: String
+}
+
+input ModelMatchFilterInput {
+  id: ModelIDInput
+  owners: ModelStringInput
+  attendee1Id: ModelIDInput
+  attendee2Id: ModelIDInput
+  eventId: ModelIDInput
+  createdAt: ModelStringInput
+  and: [ModelMatchFilterInput]
+  or: [ModelMatchFilterInput]
+  not: ModelMatchFilterInput
+}
+
+input DeleteMatchInput {
+  id: ID!
+}
+
+input ModelMatchConditionInput {
+  attendee1Id: ModelIDInput
+  attendee2Id: ModelIDInput
+  eventId: ModelIDInput
+  createdAt: ModelStringInput
+  and: [ModelMatchConditionInput]
+  or: [ModelMatchConditionInput]
+  not: ModelMatchConditionInput
+}
+
+input CreateCandidateInterestInput {
+  id: ID
+  candidateId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateCandidateInterestInput {
+  id: ID!
+  candidateId: ID
+  interestId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteCandidateInterestInput {
+  id: ID!
+}
+
+input ModelCandidateInterestConditionInput {
+  candidateId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelCandidateInterestConditionInput]
+  or: [ModelCandidateInterestConditionInput]
+  not: ModelCandidateInterestConditionInput
+}
+
+input CreateCandidateDesiredIdentifierInput {
+  id: ID
+  candidateId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateCandidateDesiredIdentifierInput {
+  id: ID!
+  candidateId: ID
+  desiredIdentifierId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteCandidateDesiredIdentifierInput {
+  id: ID!
+}
+
+input ModelCandidateDesiredIdentifierConditionInput {
+  candidateId: ModelIDInput
+  desiredIdentifierId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelCandidateDesiredIdentifierConditionInput]
+  or: [ModelCandidateDesiredIdentifierConditionInput]
+  not: ModelCandidateDesiredIdentifierConditionInput
+}
+
+input CreateMatchInterestInput {
+  id: ID
+  matchId: ID!
+  interestId: ID!
+  eventId: ID!
+  owner: String!
+  attendeeId: ID!
+}
+
+input UpdateMatchInterestInput {
+  id: ID!
+  matchId: ID
+  interestId: ID
+  eventId: ID
+  owner: String
+  attendeeId: ID
+}
+
+input DeleteMatchInterestInput {
+  id: ID!
+}
+
+input ModelMatchInterestConditionInput {
+  matchId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  attendeeId: ModelIDInput
+  and: [ModelMatchInterestConditionInput]
+  or: [ModelMatchInterestConditionInput]
+  not: ModelMatchInterestConditionInput
+}
+
+input CreateMatchDesiredIdentifierInput {
+  id: ID
+  matchId: ID!
+  attendeeId: ID!
+  desiredIdentifierId: ID!
+  eventId: ID!
+  owner: String!
+}
+
+input UpdateMatchDesiredIdentifierInput {
+  id: ID!
+  matchId: ID
+  attendeeId: ID
+  desiredIdentifierId: ID
+  eventId: ID
+  owner: String
+}
+
+input DeleteMatchDesiredIdentifierInput {
+  id: ID!
+}
+
+input ModelMatchDesiredIdentifierConditionInput {
+  matchId: ModelIDInput
+  attendeeId: ModelIDInput
+  desiredIdentifierId: ModelIDInput
+  eventId: ModelIDInput
+  and: [ModelMatchDesiredIdentifierConditionInput]
+  or: [ModelMatchDesiredIdentifierConditionInput]
+  not: ModelMatchDesiredIdentifierConditionInput
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  owner: ModelIDInput
+  termsAccepted: ModelBooleanInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+type ModelUserConnection {
+  items: [User]!
+  nextToken: String
+}
+
+input ModelIDKeyConditionInput {
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIntKeyConditionInput {
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+type ModelEventInterestConnection {
+  items: [EventInterest]!
+  nextToken: String
+}
+
+input ModelEventInterestFilterInput {
+  id: ModelIDInput
+  eventId: ModelIDInput
+  interestId: ModelIDInput
+  and: [ModelEventInterestFilterInput]
+  or: [ModelEventInterestFilterInput]
+  not: ModelEventInterestFilterInput
+}
+
+type ModelEventIdentifierConnection {
+  items: [EventIdentifier]!
+  nextToken: String
+}
+
+input ModelEventIdentifierFilterInput {
+  id: ModelIDInput
+  eventId: ModelIDInput
+  identifierId: ModelIDInput
+  and: [ModelEventIdentifierFilterInput]
+  or: [ModelEventIdentifierFilterInput]
+  not: ModelEventIdentifierFilterInput
+}
+
+type ModelAttendeeInterestConnection {
+  items: [AttendeeInterest]!
+  nextToken: String
+}
+
+input ModelAttendeeInterestFilterInput {
+  id: ModelIDInput
+  attendeeId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelAttendeeInterestFilterInput]
+  or: [ModelAttendeeInterestFilterInput]
+  not: ModelAttendeeInterestFilterInput
+}
+
+type ModelAttendeeDesiredIdentifierConnection {
+  items: [AttendeeDesiredIdentifier]!
+  nextToken: String
+}
+
+input ModelAttendeeDesiredIdentifierFilterInput {
+  id: ModelIDInput
+  attendeeId: ModelIDInput
+  identifierId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelAttendeeDesiredIdentifierFilterInput]
+  or: [ModelAttendeeDesiredIdentifierFilterInput]
+  not: ModelAttendeeDesiredIdentifierFilterInput
+}
+
+type ModelAttendeeOwnIdentifierConnection {
+  items: [AttendeeOwnIdentifier]!
+  nextToken: String
+}
+
+input ModelAttendeeOwnIdentifierFilterInput {
+  id: ModelIDInput
+  attendeeId: ModelIDInput
+  identifierId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelAttendeeOwnIdentifierFilterInput]
+  or: [ModelAttendeeOwnIdentifierFilterInput]
+  not: ModelAttendeeOwnIdentifierFilterInput
+}
+
+type ModelMessageConnection {
+  items: [Message]!
+  nextToken: String
+}
+
+input ModelMessageFilterInput {
+  id: ModelIDInput
+  content: ModelStringInput
+  createdAt: ModelStringInput
+  owner: ModelStringInput
+  attendeeId: ModelIDInput
+  chatThreadId: ModelIDInput
+  and: [ModelMessageFilterInput]
+  or: [ModelMessageFilterInput]
+  not: ModelMessageFilterInput
+}
+
+type ModelCandidateInterestConnection {
+  items: [CandidateInterest]!
+  nextToken: String
+}
+
+input ModelCandidateInterestFilterInput {
+  id: ModelIDInput
+  candidateId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelCandidateInterestFilterInput]
+  or: [ModelCandidateInterestFilterInput]
+  not: ModelCandidateInterestFilterInput
+}
+
+type ModelCandidateDesiredIdentifierConnection {
+  items: [CandidateDesiredIdentifier]!
+  nextToken: String
+}
+
+input ModelCandidateDesiredIdentifierFilterInput {
+  id: ModelIDInput
+  candidateId: ModelIDInput
+  desiredIdentifierId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelCandidateDesiredIdentifierFilterInput]
+  or: [ModelCandidateDesiredIdentifierFilterInput]
+  not: ModelCandidateDesiredIdentifierFilterInput
+}
+
+type ModelMatchInterestConnection {
+  items: [MatchInterest]!
+  nextToken: String
+}
+
+input ModelMatchInterestFilterInput {
+  id: ModelIDInput
+  matchId: ModelIDInput
+  interestId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  attendeeId: ModelIDInput
+  and: [ModelMatchInterestFilterInput]
+  or: [ModelMatchInterestFilterInput]
+  not: ModelMatchInterestFilterInput
+}
+
+type ModelMatchDesiredIdentifierConnection {
+  items: [MatchDesiredIdentifier]!
+  nextToken: String
+}
+
+input ModelMatchDesiredIdentifierFilterInput {
+  id: ModelIDInput
+  matchId: ModelIDInput
+  attendeeId: ModelIDInput
+  desiredIdentifierId: ModelIDInput
+  eventId: ModelIDInput
+  owner: ModelStringInput
+  and: [ModelMatchDesiredIdentifierFilterInput]
+  or: [ModelMatchDesiredIdentifierFilterInput]
+  not: ModelMatchDesiredIdentifierFilterInput
+}

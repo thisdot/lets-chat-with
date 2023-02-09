@@ -1,0 +1,36 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../shared/settings_shared';
+
+:host {
+  @include set_page_styles();
+}
+
+.settings-house-rules-page {
+  @include settings_shared();
+
+  & &__content {
+    align-items: flex-start;
+    padding-top: 16px;
+    padding-bottom: 42px;
+    box-sizing: border-box;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & &__terms {
+    margin-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & .cm-terms {
+    width: 100%;
+  }
+
+  & .cm-terms + .cm-terms {
+    margin-top: 12px;
+  }
+}

@@ -1,0 +1,72 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+@import '../../../../client/shared/styles/src/lib/cards';
+
+:host {
+  @include desktop-card;
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @include media_breakpoint_up(md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.cm-match-card__content,
+.cm-match-card__actions {
+  display: flex;
+  align-items: center;
+}
+
+.cm-match-card__content {
+  margin-bottom: 16px;
+}
+
+cm-avatar-image {
+  margin-right: 16px;
+}
+
+.cm-match-card__content__full-name {
+  @extend %h200;
+  color: var(--grey-900);
+  margin-bottom: 4px;
+}
+
+.cm-match-card__content__bio {
+  @extend %text200;
+  color: var(--grey-700);
+}
+
+.cm-match-card__actions {
+  justify-content: center;
+  button + button {
+    margin-left: 24px;
+  }
+}
+
+.cm-match-card__menu {
+  background: none;
+  border: none;
+  padding: 0;
+
+  fill: var(--grey-600);
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  @include media_breakpoint_up(md) {
+    position: relative;
+    top: unset;
+    right: unset;
+    background: var(--grey-200);
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+  }
+}

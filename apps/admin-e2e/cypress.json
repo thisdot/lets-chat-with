@@ -1,0 +1,23 @@
+{
+  "fileServerFolder": ".",
+  "fixturesFolder": "./src/fixtures",
+  "integrationFolder": "./src/integration",
+  "modifyObstructiveCode": false,
+  "pluginsFile": "./src/plugins/index",
+  "supportFile": "./src/support/index.ts",
+  "video": true,
+  "videosFolder": "../../cyreport/admin-e2e/videos",
+  "screenshotsFolder": "../../cyreport/admin-e2e/screenshots",
+  "chromeWebSecurity": false,
+  "viewportHeight": 1080,
+  "viewportWidth": 1920,
+  "testFiles": "**/*.{feature,features}",
+  "reporter": "../../node_modules/mochawesome/src/mochawesome.js",
+  "reporterOptions": {
+    "reportDir": "../../cyreport/mochawesome-report",
+    "overwrite": false,
+    "html": false,
+    "json": true,
+    "timestamp": "yyyy-mm-dd_HHMMss"
+  }
+}

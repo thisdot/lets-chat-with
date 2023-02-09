@@ -1,0 +1,30 @@
+<ng-container *transloco="let t; read: 'conferences.join.byUrl'">
+  <h1 class="page-title">{{ t('enterUrl') }}</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="input-container">
+      <div class="form-field">
+        <input
+          placeholder="conference-url"
+          data-test-id="conference-url"
+          [attr.aria-label]="t('inputLabel')"
+          formControlName="domain"
+          autocomplete="off"
+        />
+        <div class="form-field__ripple"></div>
+      </div>
+      <div class="domain">.letschatwith.com</div>
+    </div>
+    <div class="cm-input_duplicate__errors" *ngIf="form.get('domain').errors?.duplicate">
+      {{ t('already.join.conference') }}
+    </div>
+    <button
+      data-test-id="Continue"
+      cm-button
+      type="submit"
+      cmButtonType="primary"
+      [disabled]="!form.valid"
+    >
+      {{ t('continue') }}
+    </button>
+  </form>
+</ng-container>

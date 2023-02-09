@@ -1,0 +1,217 @@
+service: lcw
+
+frameworkVersion: '3'
+useDotenv: true
+
+plugins:
+  - serverless-esbuild
+  - serverless-appsync-plugin
+  - serverless-dynamodb-local
+  - serverless-appsync-simulator
+  - serverless-offline
+  - serverless-offline-local-authorizers-plugin
+  - serverless-s3-local
+  - serverless-plugin-offline-dynamodb-stream
+
+package:
+  individually: true
+
+params:
+  default:
+    bucketSuffix: <your-custom-suffix>
+  dev:
+    confirmationMailRedirectUrl: ${param:appUrl, '<dev-app-url>'}/signup/verify?
+  prod:
+    confirmationMailRedirectUrl: ${param:appUrl, '<production-app-url>'}/signup/verify?
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: ${env:REGION, 'us-east-1'}
+  profile: ${env:AWS_PROFILE, 'lcw'}
+  stage: ${opt:stage, 'dev'}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchWriteItem
+          Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:*
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:GetObject
+          Resource: 'arn:aws:s3:::${self:provider.environment.S3_BUCKET_NAME}/*'
+
+  environment:
+    CHAT_THREAD_TABLE_NAME: ChatThread_${self:provider.stage}
+    MESSAGE_TABLE_NAME: Message_${self:provider.stage}
+    ATTENDEE_TABLE_NAME: Attendee_${self:provider.stage}
+    ATTENDEE_DESIRED_IDENTIFIER_TABLE_NAME: AttendeeDesiredIdentifier_${self:provider.stage}
+    ATTENDEE_INTEREST_TABLE_NAME: AttendeeInterest_${self:provider.stage}
+    ATTENDEE_OWN_IDENTIFIER_TABLE_NAME: AttendeeOwnIdentifier_${self:provider.stage}
+    CANDIDATE_TABLE_NAME: Candidate_${self:provider.stage}
+    CANDIDATE_INTEREST_TABLE_NAME: CandidateInterest_${self:provider.stage}
+    CANDIDATE_DESIRED_IDENTIFIER_TABLE_NAME: CandidateDesiredIdentifier_${self:provider.stage}
+    EVENT_TABLE_NAME: Event_${self:provider.stage}
+    EVENT_IDENTIFIER_TABLE_NAME: EventIdentifier_${self:provider.stage}
+    EVENT_INTEREST_TABLE_NAME: EventInterest_${self:provider.stage}
+    IDENTIFIER_TABLE_NAME: Identifier_${self:provider.stage}
+    INTEREST_TABLE_NAME: Interest_${self:provider.stage}
+    MATCH_TABLE_NAME: Match_${self:provider.stage}
+    MATCH_INTEREST_TABLE_NAME: MatchInterest_${self:provider.stage}
+    MATCH_DESIRED_IDENTIFIER_TABLE_NAME: MatchDesiredIdentifier_${self:provider.stage}
+    ORGANIZATION_TABLE_NAME: Organization_${self:provider.stage}
+    ORGANIZATION_MEMBER_TABLE_NAME: OrganizationMember_${self:provider.stage}
+    REPORT_TABLE_NAME: Report_${self:provider.stage}
+    THEME_TABLE_NAME: Theme_${self:provider.stage}
+    USER_TABLE_NAME: User_${self:provider.stage}
+    S3_BUCKET_NAME: ${self:service}-${opt:stage, self:provider.stage}-images-${param:bucketSuffix}
+    REDIRECT_URL: ${env:CONFIRMATION_MAIL_REDIRECT_URL, param:confirmationMailRedirectUrl}
+
+functions:
+  healthCheck:
+    handler: handlers/health-check/index.handler
+    events:
+      - httpApi:
+          method: GET
+          path: /health-check
+  accessEvent:
+    handler: handlers/access-event/index.handler
+  addUserAfterConfirmation:
+    handler: handlers/add-user-after-confirmation/index.handler
+    events:
+      - cognitoUserPool:
+          pool: ClientPool_${self:provider.stage}
+          trigger: PostAuthentication
+          existing: true
+          forceDeploy: true
+      - cognitoUserPool:
+          pool: ClientPool_${self:provider.stage}
+          trigger: PostConfirmation
+          existing: true
+          forceDeploy: true
+  createAttendee:
+    handler: handlers/create-attendee/index.handler
+  createEvent:
+    handler: handlers/create-event/index.handler
+  updateCandidate:
+    handler: handlers/update-candidate/index.handler
+  fileUpload:
+    handler: handlers/file-upload/index.handler
+  generateCandidates:
+    handler: handlers/generate-candidates/index.handler
+    events:
+      - stream:
+          type: dynamodb
+          arn: !GetAtt AttendeeTableResource.StreamArn
+  numberOfUnreadMessages:
+    handler: handlers/number-of-unread-messages/index.handler
+  resolveChats:
+    handler: handlers/resolve-chats/index.handler
+  resolveMatches:
+    handler: handlers/resolve-matches/index.handler
+  sendUserConfirmationMessage:
+    handler: handlers/send-user-confirmation-code/index.handler
+    events:
+      - cognitoUserPool:
+          pool: ClientPool_${self:provider.stage}
+          trigger: CustomMessage
+          existing: true
+          forceDeploy: true
+  updateAttendee:
+    handler: handlers/update-attendee/index.handler
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+  dynamodb:
+    stages:
+      - dev
+      - prod
+    start:
+      migrate: true
+      seed: true
+    seed:
+      dev:
+        sources:
+          - table: ${self:provider.environment.ATTENDEE_TABLE_NAME}
+            sources: [seed/attendee.json]
+          - table: ${self:provider.environment.ATTENDEE_OWN_IDENTIFIER_TABLE_NAME}
+            sources: [seed/attendeeOwnIdentifier.json]
+          - table: ${self:provider.environment.ATTENDEE_DESIRED_IDENTIFIER_TABLE_NAME}
+            sources: [seed/attendeeDesiredIdentifier.json]
+          - table: ${self:provider.environment.ATTENDEE_INTEREST_TABLE_NAME}
+            sources: [seed/attendeeInterest.json]
+          - table: ${self:provider.environment.CANDIDATE_TABLE_NAME}
+            sources: [seed/candidate.json]
+          - table: ${self:provider.environment.CHAT_THREAD_TABLE_NAME}
+            sources: [seed/chatThread.json]
+          - table: ${self:provider.environment.EVENT_TABLE_NAME}
+            sources: [seed/event.json]
+          - table: ${self:provider.environment.EVENT_IDENTIFIER_TABLE_NAME}
+            sources: [seed/eventIdentifier.json]
+          - table: ${self:provider.environment.EVENT_INTEREST_TABLE_NAME}
+            sources: [seed/eventInterest.json]
+          - table: ${self:provider.environment.IDENTIFIER_TABLE_NAME}
+            sources: [seed/identifier.json]
+          - table: ${self:provider.environment.INTEREST_TABLE_NAME}
+            sources: [seed/interest.json]
+          - table: ${self:provider.environment.MATCH_TABLE_NAME}
+            sources: [seed/match.json]
+          - table: ${self:provider.environment.MATCH_INTEREST_TABLE_NAME}
+            sources: [seed/matchInterest.json]
+          - table: ${self:provider.environment.MATCH_DESIRED_IDENTIFIER_TABLE_NAME}
+            sources: [seed/matchDesiredIdentifier.json]
+          - table: ${self:provider.environment.MESSAGE_TABLE_NAME}
+            sources: [seed/message.json]
+          - table: ${self:provider.environment.ORGANIZATION_TABLE_NAME}
+            sources: [seed/organization.json]
+          - table: ${self:provider.environment.ORGANIZATION_MEMBER_TABLE_NAME}
+            sources: [seed/organizationMember.json]
+          - table: ${self:provider.environment.REPORT_TABLE_NAME}
+            sources: [seed/report.json]
+          - table: ${self:provider.environment.THEME_TABLE_NAME}
+            sources: [seed/theme.json]
+          - table: ${self:provider.environment.USER_TABLE_NAME}
+            sources: [seed/user.json]
+  appSync:
+    name: LCW_${self:provider.stage}
+    authenticationType: AMAZON_COGNITO_USER_POOLS
+    schema: appsync-schema.graphql
+    userPoolConfig:
+      defaultAction: ALLOW
+      userPoolId:
+        Ref: CognitoUserPoolLCW # This ID is generated implicitly by Serverless, it was taken from the generated CF template
+    mappingTemplates:
+      - ${file(serverless.mapping-templates.yml)}
+    functionConfigurations:
+      - ${file(serverless.appsync-function-configs.yml)}
+    dataSources:
+      - ${file(serverless.data-sources.yml)}
+  s3:
+    host: localhost
+    port: 8001
+    directory: s3-local
+
+  dynamodbStream:
+    host: localhost
+    port: 8000
+    region: ${env:REGION, 'us-east-1'}
+    pollForever: true
+    streams:
+      - table: ${self:provider.environment.ATTENDEE_TABLE_NAME}
+        functions:
+          - generateCandidates
+
+resources:
+  - Resources:
+  - ${file(serverless.resources.yml)}

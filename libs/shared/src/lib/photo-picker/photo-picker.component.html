@@ -1,0 +1,26 @@
+<div class="cm-photo-picker__container">
+  <ng-container *ngIf="(isUploadInProgress$ | async) === false; else uploadInProgress">
+    <div class="cm-photo-picker__container__circle"></div>
+    <cm-icon *ngIf="!photo" name="SingleMan" size="xxxl"></cm-icon>
+    <img *ngIf="photo" [src]="photo" alt="" />
+  </ng-container>
+  <ng-template #uploadInProgress>
+    <cm-ellipsis></cm-ellipsis>
+  </ng-template>
+</div>
+<div
+  class="cm-photo-picker__icon"
+  role="button"
+  tabindex="0"
+  *ngIf="(isUploadInProgress$ | async) === false"
+>
+  <cm-icon size="lg" [name]="photo ? 'Refresh' : 'Plus'"></cm-icon>
+</div>
+<input
+  type="file"
+  tabindex="-1"
+  aria-label="Profile photo upload"
+  class="cm-photo-picker__input"
+  (change)="onSelectedPhoto($event.target.files)"
+  accept="image/*"
+/>

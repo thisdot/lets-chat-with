@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/admin-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/admin-e2e/cypress.json",
+        "tsConfig": "apps/admin-e2e/tsconfig.e2e.json",
+        "devServerTarget": "admin:serve:e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "admin:serve:e2e"
+        }
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["admin"]
+}

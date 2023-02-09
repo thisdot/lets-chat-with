@@ -1,0 +1,17 @@
+<ng-container *ngIf="matches$ | async as matches; else loading">
+  <ng-container *ngIf="matches.length; else noResults">
+    <cm-match-card
+      *ngFor="let match of matches$ | async"
+      [match]="match"
+      (info)="onInfo(match)"
+      (chat)="onChat(match)"
+      (menu)="onMenu(match)"
+    ></cm-match-card>
+  </ng-container>
+</ng-container>
+<ng-template #noResults>
+  <cm-no-results></cm-no-results>
+</ng-template>
+<ng-template #loading>
+  <cm-ellipsis></cm-ellipsis>
+</ng-template>

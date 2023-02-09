@@ -1,0 +1,30 @@
+<ng-container *transloco="let t; read: 'conferences.join.wizard'">
+  <header class="cm-join-conference__header">
+    <nav>
+      <a class="cm-join-conference__home-link" href="/">
+        <img
+          class="cm-join-conference__icon--logo"
+          src="assets/logo-with-text.svg"
+          width="198"
+          height="32"
+          alt="LetsChatWith"
+        />
+      </a>
+    </nav>
+  </header>
+  <ng-container *ngIf="conference$ | async as conference">
+    <div class="wrapper">
+      <div class="top-section">
+        <cm-event-logo [event]="conference"></cm-event-logo>
+        <h2 class="page-title">{{ conference.name }}</h2>
+        <p class="page-subtitle">
+          {{ conference.description }}
+        </p>
+      </div>
+
+      <button cm-button routerLink="basic-info">
+        {{ t('actions.continue') }}
+      </button>
+    </div>
+  </ng-container>
+</ng-container>

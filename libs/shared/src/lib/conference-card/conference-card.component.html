@@ -1,0 +1,23 @@
+<div class="cm-conference-card__content">
+  <cm-event-logo class="cm-conference-card__content__img" [event]="conference"></cm-event-logo>
+  <div>
+    <div class="cm-conference-card__content__title">
+      {{ conference?.title }}
+    </div>
+    <div class="cm-conference-card__content__subtitle">
+      {{ conference?.subTitle }}
+    </div>
+  </div>
+</div>
+
+<div class="cm-conference-card__meta">
+  <div class="cm-conference-card__meta__item">
+    <cm-icon name="Flash" size="lg"></cm-icon> {{ conference?.matches }}
+    {{ conference?.matches == 1 ? 'chatter' : 'chatters' }}
+  </div>
+  <div class="cm-conference-card__meta__item">
+    <cm-icon name="MessageBubbleTyping" size="md"></cm-icon>
+    {{ conference?.chats }}
+    {{ conference?.chats == 1 ? 'chat' : 'chats' }}
+  </div>
+</div>

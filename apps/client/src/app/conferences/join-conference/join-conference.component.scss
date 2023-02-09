@@ -1,0 +1,65 @@
+@import '../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../libs/client/shared/styles/src/lib/breakpoints';
+
+:host {
+  width: 100%;
+  min-height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .cm-join-conference {
+    &__header {
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+        margin: 0;
+        width: 100%;
+
+        @include media_breakpoint_up(md) {
+          justify-content: space-between;
+        }
+
+        .cm-join-conference {
+          &__home-link {
+            display: flex;
+            text-decoration: none;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+:host cm-event-logo {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-title {
+  @extend %h500;
+  color: white;
+}
+
+.page-subtitle {
+  @extend %text300;
+  color: var(--grey-100);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  background: linear-gradient(180deg, #736bc7 0%, #938cd9 100%);
+  box-shadow: 0px -4px 16px rgba(60, 60, 60, 0.06);
+  border-radius: 1rem 1rem 0px 0px;
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  width: 100%;
+  flex-grow: 1;
+}

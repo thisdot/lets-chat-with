@@ -1,0 +1,9 @@
+<div class="reports-modal-header" *transloco="let t; read: 'reports'">
+  <div class="reports-modal-header__back" *ngIf="showBack">
+    <a (click)="back.emit()"><img src="/assets/modal-back.svg" [alt]="t('back')" /></a>
+  </div>
+  <div class="reports-modal-header__title">{{ title }}</div>
+  <div class="reports-modal-header__close">
+    <a (click)="cancel.emit()"><img src="/assets/modal-close.svg" [alt]="t('close')" /></a>
+  </div>
+</div>

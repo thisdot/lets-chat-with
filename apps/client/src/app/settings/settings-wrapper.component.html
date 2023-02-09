@@ -1,0 +1,69 @@
+<div class="cm-settings-wrapper__menu" *transloco="let t; read: 'settings.navigation'">
+  <div>
+    <a cm-list-item class="settings" icon="LeftChevron" (click)="onBack()">{{ t('settings') }}</a>
+    <a
+      cm-list-item
+      routerLink="/settings/email"
+      icon="Email"
+      routerLinkActive
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaEmail="routerLinkActive"
+      [active]="rlaEmail.isActive"
+      >{{ t('email') }}</a
+    >
+    <a
+      cm-list-item
+      routerLink="/settings/password"
+      icon="Lock"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive
+      #rlaPassword="routerLinkActive"
+      [active]="rlaPassword.isActive"
+      >{{ t('password') }}</a
+    >
+    <a
+      cm-list-item
+      routerLink="/settings/notifications"
+      icon="Settings"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive
+      #rlaNotification="routerLinkActive"
+      [active]="rlaNotification.isActive"
+      >{{ t('notifications') }}</a
+    >
+    <!--        TODO: re-enable this in #707 -->
+    <!--    <a-->
+    <!--      cm-list-item-->
+    <!--      routerLink="/settings/help"-->
+    <!--      icon="Question"-->
+    <!--      [routerLinkActiveOptions]="{ exact: true }"-->
+    <!--      routerLinkActive-->
+    <!--      #rlaHelp="routerLinkActive"-->
+    <!--      [active]="rlaHelp.isActive"-->
+    <!--      >{{ t('help') }}</a-->
+    <!--    >-->
+    <a
+      cm-list-item
+      routerLink="/settings/house-rules"
+      icon="List"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive
+      #rlaRules="routerLinkActive"
+      [active]="rlaRules.isActive"
+      >{{ t('houseRules') }}</a
+    >
+    <a
+      cm-list-item
+      icon="List"
+      routerLink="/terms-of-service"
+      routerLinkActive
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaTerms="routerLinkActive"
+      [active]="rlaTerms.isActive"
+      >{{ t('terms') }}</a
+    >
+  </div>
+</div>
+<div class="cm-settings-wrapper__content">
+  <router-outlet></router-outlet>
+</div>

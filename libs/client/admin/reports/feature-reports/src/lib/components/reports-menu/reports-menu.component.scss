@@ -1,0 +1,86 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+@import '../../../../../../../shared/styles/src/lib/breakpoints';
+
+$borderRadius: 12px;
+
+:host {
+  display: block;
+}
+
+.reports-menu {
+  border: 1px solid #554db3;
+  margin: 20px 40px 5px 40px;
+  border-radius: $borderRadius;
+
+  ul {
+    list-style-type: none;
+    padding: 3px;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  @include media_breakpoint_up(sm) {
+    border: 0;
+    margin: 20px 0;
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgb(9 13 44 / 6%);
+    border-radius: 12px;
+    padding: 8px 0;
+
+    ul {
+      display: block;
+      padding: 0;
+    }
+  }
+}
+
+.reports-menu__item {
+  flex-grow: 1;
+  text-align: center;
+  color: #554db3;
+  border-radius: $borderRadius - 3px;
+  @extend %caption200;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    color: inherit;
+    text-decoration: inherit;
+    text-transform: uppercase;
+  }
+
+  &--selected {
+    background-color: #554db3;
+
+    a {
+      color: var(--white);
+    }
+  }
+
+  @include media_breakpoint_up(sm) {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 122%;
+    color: #7b729f;
+
+    a {
+      justify-content: start;
+      padding: 0 30px;
+      text-transform: none;
+      border-left: 3px solid var(--white);
+    }
+
+    &--selected {
+      background-color: inherit;
+
+      a {
+        border-left: 3px solid #554db3;
+        color: #554db3;
+      }
+    }
+  }
+}

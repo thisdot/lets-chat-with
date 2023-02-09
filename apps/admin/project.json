@@ -1,0 +1,296 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/admin/src",
+  "prefix": "cm",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/admin",
+        "index": "apps/admin/src/index.html",
+        "main": "apps/admin/src/main.ts",
+        "polyfills": "apps/admin/src/polyfills.ts",
+        "tsConfig": "apps/admin/tsconfig.app.json",
+        "aot": true,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "libs/client/admin/assets/src/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "**/*.+(png|svg)",
+            "input": "libs/shared/assets/src/lib",
+            "output": "assets"
+          },
+          {
+            "glob": "favicon.ico",
+            "input": "./",
+            "output": "./"
+          },
+          {
+            "glob": "manifest.webmanifest",
+            "input": "./",
+            "output": "./"
+          }
+        ],
+        "styles": ["apps/admin/src/styles.scss"],
+        "scripts": [],
+        "allowedCommonJsDependencies": ["graphql-tag", "zen-observable"]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "libs/client/admin/core/environments/src/lib/environment.prod.ts"
+            }
+          ],
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": true
+            },
+            "fonts": true
+          },
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "libs/client/admin/core/environments/src/lib/environment.stage.ts"
+            }
+          ],
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": true
+            },
+            "fonts": true
+          },
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "e2e": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "libs/client/admin/core/environments/src/lib/environment.e2e.ts"
+            }
+          ],
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": true
+            },
+            "fonts": true
+          },
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "serviceWorker": true,
+          "ngswConfigPath": "apps/client/ngsw-config.json"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "local": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "libs/client/admin/core/environments/src/lib/environment.local.ts"
+            }
+          ],
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        },
+        "thisdot-production": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "amplify/environments/admin/environment.thisdot.prod.ts"
+            }
+          ],
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": true
+            },
+            "fonts": true
+          },
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "thisdot-staging": {
+          "fileReplacements": [
+            {
+              "replace": "libs/client/admin/core/environments/src/lib/environment.ts",
+              "with": "amplify/environments/admin/environment.thisdot.stage.ts"
+            }
+          ],
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": true
+            },
+            "fonts": true
+          },
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "browserTarget": "admin:build",
+        "port": 4201
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "admin:build:production"
+        },
+        "development": {
+          "browserTarget": "admin:build:development"
+        },
+        "local": {
+          "browserTarget": "admin:build:local"
+        },
+        "e2e": {
+          "browserTarget": "admin:build:e2e"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "admin:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/admin/src/test.ts",
+        "tsConfig": "apps/admin/tsconfig.spec.json",
+        "karmaConfig": "apps/admin/karma.conf.js",
+        "polyfills": "apps/admin/src/polyfills.ts",
+        "styles": [],
+        "scripts": [],
+        "assets": []
+      },
+      "configurations": {
+        "CI": {
+          "watch": false,
+          "progress": false,
+          "browsers": "HeadlessChrome"
+        }
+      },
+      "outputs": ["coverage/apps/admin"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["shared-assets", "client-admin-assets"]
+}

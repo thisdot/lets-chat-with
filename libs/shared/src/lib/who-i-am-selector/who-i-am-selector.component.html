@@ -1,0 +1,25 @@
+<ng-container *transloco="let t; read: 'profile.edit.whoIAm'">
+  <header>
+    <h2 class="cm-who-i-am-selector-heading">{{ t('headerText') }}</h2>
+    <cm-counter [total]="limit" [count]="selectedIdentifiers?.length"></cm-counter>
+  </header>
+  <p class="cm-who-i-am-selector-text">
+    {{ t('helpUsFindBestMatches') }}
+  </p>
+  <div>
+    <cm-pill
+      tabindex="0"
+      *ngFor="let identifier of identifiers"
+      type="primary"
+      role="button"
+      (tryUpdateWhenDisabled)="
+        onInterestMouseDown(limit === selectedIdentifiers.length && !isSelected(identifier))
+      "
+      [ngModel]="isSelected(identifier)"
+      (ngModelChange)="onIdentifierStateChange(identifier)"
+      [disabled]="limit === selectedIdentifiers.length && !isSelected(identifier)"
+    >
+      {{ identifier.name }}
+    </cm-pill>
+  </div>
+</ng-container>

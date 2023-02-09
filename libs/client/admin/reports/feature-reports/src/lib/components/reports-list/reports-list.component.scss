@@ -1,0 +1,12 @@
+@import '../../../../../../../shared/styles/src/lib/typography';
+
+:host {
+  display: block;
+  @extend %h100;
+}
+
+.cm-reports-list {
+  &__item {
+    margin: 20px;
+  }
+}

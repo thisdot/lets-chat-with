@@ -1,0 +1,36 @@
+:host.cm-expandable {
+  .cm-expandable__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__arrow {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--primary-200);
+      transform: rotate(-180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cm-icon {
+        display: block;
+      }
+    }
+  }
+
+  .cm-expandable__content {
+    display: none;
+  }
+}
+
+:host.cm-expandable--visible {
+  .cm-expandable__header__arrow {
+    transform: rotate(-90deg);
+  }
+
+  .cm-expandable__content {
+    display: block;
+  }
+}

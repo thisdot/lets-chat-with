@@ -1,0 +1,37 @@
+<section
+  #modal
+  role="dialog"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+  class="cm-docked-modal-wrapper"
+  cdkTrapFocus
+  tabindex="-1"
+>
+  <div (click)="onClickOutside()" class="cm-docked-modal__overlay"></div>
+  <div
+    class="cm-docked-modal__modal"
+    [class.cm-docked-modal__modal-bottom]="config.direction === 'bottom'"
+    [class.cm-docked-modal__modal-right]="config.direction === 'right'"
+  >
+    <div
+      *ngIf="config.resizeable"
+      class="cm-docked-modal__modal__drag-handle"
+      (touchstart)="onHandleMouseDown($event)"
+      (mousedown)="onHandleMouseDown($event)"
+    ></div>
+    <div class="cm-docked-modal__modal-body">
+      <div *ngIf="config.closeIcon" class="cm-docked-modal__modal__close-icon">
+        <cm-icon name="Close" role="button" (click)="onClose()"></cm-icon>
+      </div>
+      <div *ngIf="!config.resizeable" class="cm-docked-modal__modal__spacer"></div>
+      <div #content class="cm-docked-modal__modal__content">
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+      </div>
+      <div class="cm-docked-modal__modal__options">
+        <button *ngIf="config.closeButton" cm-button cmButtonType="full-width" (click)="onClose()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

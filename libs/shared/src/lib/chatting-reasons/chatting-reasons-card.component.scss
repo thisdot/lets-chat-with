@@ -1,0 +1,82 @@
+@import '../../../../client/shared/styles/src/lib/typography';
+@import '../../../../client/shared/styles/src/lib/breakpoints';
+@import '../../../../client/shared/styles/src/lib/cards';
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  padding-top: 1rem;
+
+  @include media_breakpoint_up(sm) {
+    width: 85%;
+  }
+
+  @include media_breakpoint_up(xl) {
+    width: 100%;
+  }
+
+  @include media_breakpoint_down(sm) {
+    width: 100%;
+  }
+}
+
+.cm-chatting-reasons-card__title {
+  @extend %h100;
+}
+
+.cm-chatting-reasons-card__attendee {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+cm-avatar-image {
+  margin-right: 16px;
+}
+
+.cm-chatting-reasons-card__attendee__name {
+  @extend %h200;
+  color: var(--grey-900);
+  margin-bottom: 4px;
+}
+
+.cm-chatting-reasons-card__attendee__description {
+  @extend %text200;
+  color: var(--grey-700);
+}
+
+.cm-chatting-reasons-card__attendee__pronouns {
+  @extend %text200;
+  color: var(--grey-500);
+}
+
+.cm-chatting-reasons-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cm-chatting-reasons-card__title {
+  margin: 20px 0 8px 0;
+}
+
+.cm-chatting-reasons-card__footnote {
+  @extend %text200;
+  color: var(--grey-600);
+}
+
+.cm-button.cm-chatting-reasons-card__button {
+  margin: 28px 0 8px 0;
+
+  @include media_breakpoint_up(md) {
+    align-self: flex-start;
+  }
+
+  @include media_breakpoint_down(md) {
+    width: 100%;
+  }
+}

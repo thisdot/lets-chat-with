@@ -1,0 +1,21 @@
+<ng-container *transloco="let t; read: 'signup.welcomeScreen'">
+  <cm-landing-view>
+    <div>
+      <p class="cm-welcome-screen__description">
+        {{ t('description') }}
+      </p>
+    </div>
+    <cm-auth-form
+      [loading]="loading$ | async"
+      (submitForm)="onSubmit($event)"
+      [buttonLabel]="t('signup')"
+    ></cm-auth-form>
+    <div>
+      <p class="cm-welcome-screen__sign-in">
+        <span>{{ t('alreadyAMember') }}</span
+        >&nbsp;
+        <a routerLink="/signin">{{ t('signin') }}</a>
+      </p>
+    </div>
+  </cm-landing-view>
+</ng-container>

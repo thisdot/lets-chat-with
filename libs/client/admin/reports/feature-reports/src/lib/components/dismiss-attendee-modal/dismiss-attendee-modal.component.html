@@ -1,0 +1,9 @@
+<div class="dismiss-attendee-modal" *transloco="let t; read: 'reports'">
+  <cm-modal-header [title]="t('dismissAttendee')" (cancel)="closeModal()"></cm-modal-header>
+  <div class="dismiss-attendee-modal__content">
+    <cm-reason-form
+      (submission)="onSubmitNote($event)"
+      [placeholder]="t('describeWhyDismiss')"
+    ></cm-reason-form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<ng-container *transloco="let t; read: 'messages'">
+  <div class="cm-message-list__messages" cdkScrollable>
+    <cm-message-thread-banner [matchAttendee]="matchAttendee"></cm-message-thread-banner>
+
+    <div class="cm-message-list__messages__loading" *ngIf="isLoading">
+      <cm-ellipsis></cm-ellipsis>
+    </div>
+    <div
+      class="cm-message-list__messages__group"
+      *ngFor="let group of groupedMessages | keyvalue; trackBy: trackByGroup"
+    >
+      <div *ngIf="group.key !== today" class="date-separator">
+        {{ group.key | date }}
+      </div>
+      <div *ngIf="group.key === today" class="date-separator">{{ t('today') }}</div>
+      <cm-message-list-item
+        *ngFor="let message of group.value; trackBy: trackByMessageId"
+        [type]="message.attendeeId === attendeeId ? 'sent' : 'received'"
+        [message]="message"
+      >
+      </cm-message-list-item>
+    </div>
+  </div>
+</ng-container>

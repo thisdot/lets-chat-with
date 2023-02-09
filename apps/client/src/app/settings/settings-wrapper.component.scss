@@ -1,0 +1,46 @@
+@import '../../../../../libs/client/shared/styles/src/lib/breakpoints';
+:host {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 100%;
+  grid-template-areas: 'page';
+
+  .cm-settings-wrapper__menu {
+    display: none;
+    grid-area: settingsnav;
+    background: transparent;
+    padding: 1rem 1.5rem 0;
+
+    a {
+      text-decoration: none;
+      background: transparent;
+      padding-left: 0.5rem;
+
+      &.settings {
+        padding-left: 0;
+        fill: var(--grey-600);
+        stroke-width: 0.2;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .cm-settings-wrapper__content {
+    grid-area: page;
+    display: flex;
+  }
+
+  @include media_breakpoint_up(md) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'settingsnav page';
+
+    .cm-settings-wrapper__menu {
+      display: flex;
+    }
+  }
+}

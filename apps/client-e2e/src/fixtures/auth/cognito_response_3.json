@@ -1,0 +1,17 @@
+{
+  "UserAttributes": [
+    {
+      "Name": "sub",
+      "Value": "6cc28c18-asdf-asdf-asdf-asdfasdfb2ac"
+    },
+    {
+      "Name": "email_verified",
+      "Value": "true"
+    },
+    {
+      "Name": "email",
+      "Value": "john.mcClane@nakatomi.com"
+    }
+  ],
+  "Username": "6cc28c18-asdf-asdf-asdf-asdfasdfb2ac"
+}

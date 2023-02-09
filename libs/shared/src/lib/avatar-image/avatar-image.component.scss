@@ -1,0 +1,24 @@
+:host {
+  --avatar-min-width: 64px;
+  --avatar-min-height: 64px;
+}
+
+.avatar-img {
+  display: block;
+  min-width: var(--avatar-min-width);
+  min-height: var(--avatar-min-height);
+  max-width: var(--avatar-min-width);
+  max-height: var(--avatar-min-height);
+  width: var(--avatar-min-height);
+  height: var(--avatar-min-height);
+  background-color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.bordered {
+  box-shadow: 0 0 0 1px var(--grey-400);
+}

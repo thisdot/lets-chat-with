@@ -1,0 +1,111 @@
+@use '@angular/cdk';
+
+@import '../../../libs/client/shared/styles/src/lib/inputs';
+@import '../../../libs/client/shared/styles/src/lib/buttons';
+@import '../../../libs/client/shared/styles/src/lib/typography';
+
+@import '@angular/cdk/overlay-prebuilt.css';
+
+@include cdk.a11y-visually-hidden();
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html,
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  //overflow: auto;
+}
+
+body {
+  background: linear-gradient(180deg, var(--grey-200) 0%, var(--grey-100) 100%);
+  color: var(--grey-700);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  @extend %link300;
+  color: var(--grey-600);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-500);
+  }
+}
+
+.cm-ordered-list {
+  list-style: none;
+
+  counter-reset: ordered-list;
+
+  padding-left: 0;
+
+  li::before {
+    counter-increment: ordered-list;
+    content: counters(ordered-list, '.') ' ';
+    background-color: var(--secondary-500);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: var(--white);
+
+    margin-right: 14px;
+  }
+
+  li {
+    @extend %text200;
+    color: var(--grey-700);
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.cdk-overlay-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.cdk-overlay-container .cm-notifications-backdrop {
+  position: fixed !important;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+p {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 122%;
+
+  letter-spacing: 0.01em;
+
+  color: var(--grey-700);
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}

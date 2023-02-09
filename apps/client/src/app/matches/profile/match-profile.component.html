@@ -1,0 +1,12 @@
+<ng-container *transloco="let t; read: 'matches'">
+  <cm-purple-shape></cm-purple-shape>
+  <ng-container *ngIf="attendee$ | async as attendee">
+    <cm-profile-card [attendee]="attendee"></cm-profile-card>
+
+    <div class="match-profile__chat--button">
+      <button cm-button (click)="onChat()">
+        {{ t('profile.chatWith', { name: attendee.fullName }) }}
+      </button>
+    </div>
+  </ng-container>
+</ng-container>

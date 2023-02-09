@@ -1,0 +1,13 @@
+<form (submit)="message && submit($event)" *transloco="let t; read: 'messages'">
+  <cm-input-append-wrapper>
+    <input
+      name="message"
+      [(ngModel)]="message"
+      cmInput
+      placeholder="{{ t('messagePlaceholder') }}"
+    />
+    <button cmInputSuffix type="submit" [class.has-content]="!!message">
+      <cm-icon name="Send" size="xl"></cm-icon>
+    </button>
+  </cm-input-append-wrapper>
+</form>

@@ -1,0 +1,128 @@
+<ng-container *transloco="let t; read: 'connect'">
+  <ng-container *ngIf="currentCandidate$ | async as currentCandidate; else noResults">
+    <ng-container
+      *ngIf="
+        action !== 'like' &&
+        (action !== 'confirmLike' ||
+          (newMatch$ | async) === null ||
+          (newMatch$ | async) === undefined)
+      "
+    >
+      <cm-purple-shape></cm-purple-shape>
+      <div class="cm-connect__card-wrapper">
+        <ng-container
+          *ngFor="let candidate of candidates$ | async | reverse; trackBy: trackByCandidate"
+        >
+          <div class="cm-connect__card-wrapper__inner" *ngIf="candidate.id === currentCandidate.id">
+            <cm-connect-card [attendee]="candidate.attendee"></cm-connect-card>
+          </div>
+        </ng-container>
+        <cm-new-connection
+          *ngIf="newPairMatch$ | async as newPairMatch"
+          [matchAttendee]="newPairMatch.attendee"
+          [hidden]="isNewConnectionClosed"
+          (chat)="onNewConnectionChat(newPairMatch.id)"
+          (dismiss)="onNewConnectionClose()"
+        >
+        </cm-new-connection>
+      </div>
+      <div class="cm-connect__actions">
+        <div class="button-container">
+          <button
+            class="cm-connect__actions__back"
+            cm-action-button
+            [attr.aria-label]="t('button.undo')"
+            type="undo"
+            [disabled]="
+              !(
+                (lastActionInHistory?.type === CandidateType.LIKE ||
+                  lastActionInHistory?.type === CandidateType.DISLIKE) &&
+                (newPairMatch$ | async)?.attendee?.id !==
+                  lastActionInHistory?.candidate?.attendee?.id
+              )
+            "
+            (click)="undo()"
+          ></button>
+          <div class="primary-actions">
+            <ng-container
+              *ngIf="isMobile$ | async; then mobileButtons; else desktopButtons"
+            ></ng-container>
+          </div>
+        </div>
+
+        <ng-template #desktopButtons>
+          <button class="cm-connect-skip-btn" type="no-match" (click)="dislike(currentCandidate)">
+            {{ t('button.skip') }}
+          </button>
+          <button class="cm-connect-chat-btn" type="match" (click)="like(currentCandidate)">
+            {{ t('button.like') }}
+          </button>
+        </ng-template>
+        <ng-template #mobileButtons>
+          <button
+            class="cm-connect-skip-btn"
+            cm-action-button
+            type="no-match"
+            [attr.aria-label]="t('button.skip')"
+            (click)="dislike(currentCandidate)"
+          >
+            <cm-icon name="Close"></cm-icon>
+          </button>
+          <button
+            class="cm-connect-chat-btn"
+            cm-action-button
+            type="match"
+            [attr.aria-label]="t('button.like')"
+            (click)="like(currentCandidate)"
+          >
+            <cm-icon name="MessageBubbleTyping"></cm-icon>
+          </button>
+        </ng-template>
+      </div>
+    </ng-container>
+
+    <cm-chatting-reasons-card
+      *ngIf="
+        action === 'like' && ((newMatch$ | async) === null || (newMatch$ | async) === undefined)
+      "
+      [candidate]="currentCandidate$ | async"
+      (liked)="confirmLike($event)"
+    ></cm-chatting-reasons-card>
+  </ng-container>
+
+  <ng-template #noResults>
+    <div
+      *ngIf="
+        (newMatch$ | async) === null ||
+        (newMatch$ | async) === undefined ||
+        action !== 'confirmLike'
+      "
+      class="cm-connect__no-results"
+    >
+      <cm-new-connection
+        *ngIf="newPairMatch$ | async as newPairMatch"
+        [matchAttendee]="newPairMatch.attendee"
+        [hidden]="isNewConnectionClosed"
+        (chat)="onNewConnectionChat(newPairMatch.id)"
+        (dismiss)="onNewConnectionClose()"
+      >
+      </cm-new-connection>
+      <img
+        class="cm-connect__no-results__image"
+        src="assets/connect-no-results.svg"
+        alt="{{ t('empty.alt') }}"
+      />
+      <span class="cm-connect__no-results__title">{{ t('empty.title') }}</span>
+      <p class="cm-connect__no-results__text">
+        {{ t('empty.description') }}
+      </p>
+    </div>
+  </ng-template>
+</ng-container>
+
+<div *ngIf="action === 'confirmLike' && newMatch$ | async as newMatch">
+  <cm-you-are-chatters-card
+    [match]="newMatch"
+    (chat)="onNewConnectionChat(newMatch.id)"
+  ></cm-you-are-chatters-card>
+</div>

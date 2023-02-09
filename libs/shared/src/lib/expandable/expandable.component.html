@@ -1,0 +1,9 @@
+<div class="cm-expandable__header" (click)="onToggle()">
+  <ng-content select="[header]"></ng-content>
+  <div class="cm-expandable__header__arrow">
+    <cm-icon name="LeftChevron" size="sm"></cm-icon>
+  </div>
+</div>
+<div class="cm-expandable__content">
+  <ng-content select="[content]"></ng-content>
+</div>

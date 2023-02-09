@@ -1,0 +1,64 @@
+@import '../../../../../../shared/styles/src/lib/shell-text';
+@import '../../../../../../shared/styles/src/lib/breakpoints';
+@import '../../../../../../shared/styles/src/lib/typography';
+
+:host {
+  display: flex;
+
+  --profile-width-desktop: clamp(21.8rem, 30vw, 28rem);
+
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: flex-start;
+  @include media_breakpoint_up(md) {
+    width: var(--profile-width-desktop);
+  }
+
+  .report__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: var(--grey-100);
+    border-bottom: 1px solid var(--grey-300);
+
+    .report__title {
+      @extend %h100;
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+
+    .report__back-button {
+      @include media_breakpoint_down(sm) {
+        margin-right: 1.3rem;
+      }
+    }
+
+    .cm-icon {
+      fill: var(--grey-600);
+    }
+  }
+
+  .report__content {
+    background: linear-gradient(180deg, var(--grey-200) 0%, var(--grey-100) 100%);
+    padding: 1rem;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .report__content__msg {
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    p {
+      flex-grow: 1;
+    }
+    button {
+      justify-content: flex-end;
+    }
+  }
+}

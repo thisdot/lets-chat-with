@@ -1,0 +1,65 @@
+@import '../../../../../../../libs/client/shared/styles/src/lib/typography';
+
+:host.cm-message-thread-list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 12px 24px;
+  border-radius: 12px;
+
+  position: relative;
+}
+
+.cm-message-thread-list-item {
+  &__content {
+    display: grid;
+    grid-template-areas: 'avatar name message badge';
+    grid-template-columns: 3.75rem 0.75fr 1fr 0.5fr;
+    align-items: center;
+
+    cm-avatar-image {
+      --avatar-min-width: 48px;
+      --avatar-min-height: 48px;
+      margin-right: 16px;
+      grid-area: avatar;
+    }
+
+    &__name {
+      @extend %h100;
+      color: var(--grey-900);
+      margin-bottom: 4px;
+
+      display: flex;
+      justify-content: space-between;
+
+      grid-area: name;
+    }
+
+    &__badge {
+      background-color: var(--primary-500);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      line-height: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: flex-end;
+
+      grid-area: badge;
+    }
+
+    &__lastMessage {
+      @extend %text200;
+      color: var(--grey-700);
+
+      grid-area: message;
+    }
+  }
+}

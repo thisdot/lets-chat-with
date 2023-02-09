@@ -1,0 +1,21 @@
+@import '../../../../../../../shared/styles/src/lib/breakpoints';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  @include media_breakpoint_up(sm) {
+    flex-direction: row;
+  }
+}
+
+@include media_breakpoint_up(sm) {
+  cm-reports-menu {
+    width: 20%;
+    margin-right: 50px;
+  }
+
+  cm-reports-list {
+    flex-grow: 1;
+  }
+}

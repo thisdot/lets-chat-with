@@ -1,0 +1,25 @@
+<div class="cm-main-nav__wrapper">
+  <a
+    class="cm-main-nav__wrapper__link"
+    *ngFor="let link of links$ | async"
+    [routerLink]="[link.to]"
+    routerLinkActive="active"
+    [attr.data-testid]="'main-nav:link:' + link.label"
+  >
+    <div class="cm-main-nav__wrapper__link__desktop__notifier">&nbsp;</div>
+
+    <div class="cm-main-nav__wrapper__link__content">
+      <cm-icon
+        [name]="link.iconName"
+        size="lg"
+        [attr.data-testid]="'main-nav:link:icon:' + link.iconName"
+      ></cm-icon>
+      <span
+        class="cm-main-nav__wrapper__link__content__label"
+        [attr.data-testid]="'main-nav:link:label:' + link.label"
+      >
+        {{ link.label }}
+      </span>
+    </div>
+  </a>
+</div>

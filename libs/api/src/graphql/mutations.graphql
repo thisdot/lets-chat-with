@@ -1,0 +1,2021 @@
+# this is an auto generated file. This will be overwritten
+mutation AccessEvent($letsChatWithUrl: String) {
+  accessEvent(letsChatWithUrl: $letsChatWithUrl)
+}
+mutation FileUpload($bucketFolder: String, $fileName: String, $base64: String) {
+  fileUpload(bucketFolder: $bucketFolder, fileName: $fileName, base64: $base64)
+}
+mutation CreateAttendee($input: CreateAttendeeInput!) {
+  createAttendee(input: $input) {
+    id
+    owner
+    userId
+    fullName
+    avatarUrl
+    title
+    company
+    pronouns
+    bio
+    newsletterSubscribed
+    linkedin
+    twitter
+    facebook
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    ownIdentifiers {
+      nextToken
+    }
+    eventId
+    attendeeMatches {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendeeChats {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAttendee($input: UpdateAttendeeInput!) {
+  updateAttendee(input: $input) {
+    id
+    owner
+    userId
+    fullName
+    avatarUrl
+    title
+    company
+    pronouns
+    bio
+    newsletterSubscribed
+    linkedin
+    twitter
+    facebook
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    ownIdentifiers {
+      nextToken
+    }
+    eventId
+    attendeeMatches {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendeeChats {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCandidate($input: UpdateCandidateInput!) {
+  updateCandidate(input: $input) {
+    id
+    owner
+    ownerAttendeeId
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    attendeeId
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    candidateType
+    matchScore
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    owner
+    notificationConfig {
+      matches
+      messages
+      subscribe
+    }
+    termsAccepted
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateInterest(
+  $input: CreateInterestInput!
+  $condition: ModelInterestConditionInput
+) {
+  createInterest(input: $input, condition: $condition) {
+    id
+    group
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateInterest(
+  $input: UpdateInterestInput!
+  $condition: ModelInterestConditionInput
+) {
+  updateInterest(input: $input, condition: $condition) {
+    id
+    group
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteInterest(
+  $input: DeleteInterestInput!
+  $condition: ModelInterestConditionInput
+) {
+  deleteInterest(input: $input, condition: $condition) {
+    id
+    group
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateIdentifier(
+  $input: CreateIdentifierInput!
+  $condition: ModelIdentifierConditionInput
+) {
+  createIdentifier(input: $input, condition: $condition) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateIdentifier(
+  $input: UpdateIdentifierInput!
+  $condition: ModelIdentifierConditionInput
+) {
+  updateIdentifier(input: $input, condition: $condition) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteIdentifier(
+  $input: DeleteIdentifierInput!
+  $condition: ModelIdentifierConditionInput
+) {
+  deleteIdentifier(input: $input, condition: $condition) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateTheme(
+  $input: CreateThemeInput!
+  $condition: ModelThemeConditionInput
+) {
+  createTheme(input: $input, condition: $condition) {
+    id
+    name
+    primary
+    secondary
+    tertiary
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTheme(
+  $input: UpdateThemeInput!
+  $condition: ModelThemeConditionInput
+) {
+  updateTheme(input: $input, condition: $condition) {
+    id
+    name
+    primary
+    secondary
+    tertiary
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTheme(
+  $input: DeleteThemeInput!
+  $condition: ModelThemeConditionInput
+) {
+  deleteTheme(input: $input, condition: $condition) {
+    id
+    name
+    primary
+    secondary
+    tertiary
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateOrganizationMember(
+  $input: CreateOrganizationMemberInput!
+  $condition: ModelOrganizationMemberConditionInput
+) {
+  createOrganizationMember(input: $input, condition: $condition) {
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    userId
+    role
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateOrganizationMember(
+  $input: UpdateOrganizationMemberInput!
+  $condition: ModelOrganizationMemberConditionInput
+) {
+  updateOrganizationMember(input: $input, condition: $condition) {
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    userId
+    role
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteOrganizationMember(
+  $input: DeleteOrganizationMemberInput!
+  $condition: ModelOrganizationMemberConditionInput
+) {
+  deleteOrganizationMember(input: $input, condition: $condition) {
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    userId
+    role
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateOrganization(
+  $input: CreateOrganizationInput!
+  $condition: ModelOrganizationConditionInput
+) {
+  createOrganization(input: $input, condition: $condition) {
+    id
+    owners
+    name
+    website
+    facebook
+    twitter
+    linkedin
+    events {
+      nextToken
+    }
+    members {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateOrganization(
+  $input: UpdateOrganizationInput!
+  $condition: ModelOrganizationConditionInput
+) {
+  updateOrganization(input: $input, condition: $condition) {
+    id
+    owners
+    name
+    website
+    facebook
+    twitter
+    linkedin
+    events {
+      nextToken
+    }
+    members {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteOrganization(
+  $input: DeleteOrganizationInput!
+  $condition: ModelOrganizationConditionInput
+) {
+  deleteOrganization(input: $input, condition: $condition) {
+    id
+    owners
+    name
+    website
+    facebook
+    twitter
+    linkedin
+    events {
+      nextToken
+    }
+    members {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateEvent(
+  $input: CreateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  createEvent(input: $input, condition: $condition) {
+    id
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    owners
+    readers
+    name
+    status
+    size
+    logoUrl
+    qrImageUrl
+    description
+    theme {
+      id
+      name
+      primary
+      secondary
+      tertiary
+      createdAt
+      updatedAt
+    }
+    registrationCode
+    letsChatWithUrl
+    website
+    facebook
+    twitter
+    dateRange {
+      startDate
+      endDate
+    }
+    interests {
+      nextToken
+    }
+    identifiers {
+      nextToken
+    }
+    maxInterests
+    maxIdentifiers
+    totalAmountDue
+    paymentStatus
+    payments {
+      transactionId
+      amount
+      receivedAt
+    }
+    attendees {
+      nextToken
+    }
+    reports {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateEvent(
+  $input: UpdateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  updateEvent(input: $input, condition: $condition) {
+    id
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    owners
+    readers
+    name
+    status
+    size
+    logoUrl
+    qrImageUrl
+    description
+    theme {
+      id
+      name
+      primary
+      secondary
+      tertiary
+      createdAt
+      updatedAt
+    }
+    registrationCode
+    letsChatWithUrl
+    website
+    facebook
+    twitter
+    dateRange {
+      startDate
+      endDate
+    }
+    interests {
+      nextToken
+    }
+    identifiers {
+      nextToken
+    }
+    maxInterests
+    maxIdentifiers
+    totalAmountDue
+    paymentStatus
+    payments {
+      transactionId
+      amount
+      receivedAt
+    }
+    attendees {
+      nextToken
+    }
+    reports {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteEvent(
+  $input: DeleteEventInput!
+  $condition: ModelEventConditionInput
+) {
+  deleteEvent(input: $input, condition: $condition) {
+    id
+    organizationId
+    organization {
+      id
+      owners
+      name
+      website
+      facebook
+      twitter
+      linkedin
+      createdAt
+      updatedAt
+    }
+    owners
+    readers
+    name
+    status
+    size
+    logoUrl
+    qrImageUrl
+    description
+    theme {
+      id
+      name
+      primary
+      secondary
+      tertiary
+      createdAt
+      updatedAt
+    }
+    registrationCode
+    letsChatWithUrl
+    website
+    facebook
+    twitter
+    dateRange {
+      startDate
+      endDate
+    }
+    interests {
+      nextToken
+    }
+    identifiers {
+      nextToken
+    }
+    maxInterests
+    maxIdentifiers
+    totalAmountDue
+    paymentStatus
+    payments {
+      transactionId
+      amount
+      receivedAt
+    }
+    attendees {
+      nextToken
+    }
+    reports {
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateEventInterest(
+  $input: CreateEventInterestInput!
+  $condition: ModelEventInterestConditionInput
+) {
+  createEventInterest(input: $input, condition: $condition) {
+    id
+    eventId
+    interestId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateEventInterest(
+  $input: UpdateEventInterestInput!
+  $condition: ModelEventInterestConditionInput
+) {
+  updateEventInterest(input: $input, condition: $condition) {
+    id
+    eventId
+    interestId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteEventInterest(
+  $input: DeleteEventInterestInput!
+  $condition: ModelEventInterestConditionInput
+) {
+  deleteEventInterest(input: $input, condition: $condition) {
+    id
+    eventId
+    interestId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateEventIdentifier(
+  $input: CreateEventIdentifierInput!
+  $condition: ModelEventIdentifierConditionInput
+) {
+  createEventIdentifier(input: $input, condition: $condition) {
+    id
+    eventId
+    identifierId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateEventIdentifier(
+  $input: UpdateEventIdentifierInput!
+  $condition: ModelEventIdentifierConditionInput
+) {
+  updateEventIdentifier(input: $input, condition: $condition) {
+    id
+    eventId
+    identifierId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteEventIdentifier(
+  $input: DeleteEventIdentifierInput!
+  $condition: ModelEventIdentifierConditionInput
+) {
+  deleteEventIdentifier(input: $input, condition: $condition) {
+    id
+    eventId
+    identifierId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAttendeeInterest(
+  $input: CreateAttendeeInterestInput!
+  $condition: ModelAttendeeInterestConditionInput
+) {
+  createAttendeeInterest(input: $input, condition: $condition) {
+    id
+    attendeeId
+    interestId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAttendeeInterest(
+  $input: UpdateAttendeeInterestInput!
+  $condition: ModelAttendeeInterestConditionInput
+) {
+  updateAttendeeInterest(input: $input, condition: $condition) {
+    id
+    attendeeId
+    interestId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAttendeeInterest(
+  $input: DeleteAttendeeInterestInput!
+  $condition: ModelAttendeeInterestConditionInput
+) {
+  deleteAttendeeInterest(input: $input, condition: $condition) {
+    id
+    attendeeId
+    interestId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAttendeeDesiredIdentifier(
+  $input: CreateAttendeeDesiredIdentifierInput!
+  $condition: ModelAttendeeDesiredIdentifierConditionInput
+) {
+  createAttendeeDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAttendeeDesiredIdentifier(
+  $input: UpdateAttendeeDesiredIdentifierInput!
+  $condition: ModelAttendeeDesiredIdentifierConditionInput
+) {
+  updateAttendeeDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAttendeeDesiredIdentifier(
+  $input: DeleteAttendeeDesiredIdentifierInput!
+  $condition: ModelAttendeeDesiredIdentifierConditionInput
+) {
+  deleteAttendeeDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateAttendeeOwnIdentifier(
+  $input: CreateAttendeeOwnIdentifierInput!
+  $condition: ModelAttendeeOwnIdentifierConditionInput
+) {
+  createAttendeeOwnIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateAttendeeOwnIdentifier(
+  $input: UpdateAttendeeOwnIdentifierInput!
+  $condition: ModelAttendeeOwnIdentifierConditionInput
+) {
+  updateAttendeeOwnIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteAttendeeOwnIdentifier(
+  $input: DeleteAttendeeOwnIdentifierInput!
+  $condition: ModelAttendeeOwnIdentifierConditionInput
+) {
+  deleteAttendeeOwnIdentifier(input: $input, condition: $condition) {
+    id
+    attendeeId
+    identifierId
+    eventId
+    owner
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    identifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateReport(
+  $input: CreateReportInput!
+  $condition: ModelReportConditionInput
+) {
+  createReport(input: $input, condition: $condition) {
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    id
+    owner
+    reportingAttendeeId
+    reportingAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reportedAttendeeId
+    reportedAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reason
+    message
+    status
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateReport(
+  $input: UpdateReportInput!
+  $condition: ModelReportConditionInput
+) {
+  updateReport(input: $input, condition: $condition) {
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    id
+    owner
+    reportingAttendeeId
+    reportingAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reportedAttendeeId
+    reportedAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reason
+    message
+    status
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteReport(
+  $input: DeleteReportInput!
+  $condition: ModelReportConditionInput
+) {
+  deleteReport(input: $input, condition: $condition) {
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    id
+    owner
+    reportingAttendeeId
+    reportingAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reportedAttendeeId
+    reportedAttendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    reason
+    message
+    status
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateChatThread(
+  $input: UpdateChatThreadInput!
+  $condition: ModelChatThreadConditionInput
+) {
+  updateChatThread(input: $input, condition: $condition) {
+    id
+    eventId
+    lastMessageAt
+    attendee1LastReadAt
+    attendee2LastReadAt
+    messages {
+      nextToken
+    }
+    matchId
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateMessage(
+  $input: CreateMessageInput!
+  $condition: ModelMessageConditionInput
+) {
+  createMessage(input: $input, condition: $condition) {
+    id
+    content
+    createdAt
+    owner
+    attendeeId
+    attendee {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    chatThreadId
+    chatThread {
+      id
+      eventId
+      lastMessageAt
+      attendee1LastReadAt
+      attendee2LastReadAt
+      matchId
+      createdAt
+      updatedAt
+    }
+    updatedAt
+  }
+}
+mutation DeleteMatch(
+  $input: DeleteMatchInput!
+  $condition: ModelMatchConditionInput
+) {
+  deleteMatch(input: $input, condition: $condition) {
+    id
+    owners
+    attendee1Id
+    attendee2Id
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    attendee1 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendee2 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    updatedAt
+  }
+}
+mutation CreateCandidateInterest(
+  $input: CreateCandidateInterestInput!
+  $condition: ModelCandidateInterestConditionInput
+) {
+  createCandidateInterest(input: $input, condition: $condition) {
+    id
+    candidateId
+    interestId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCandidateInterest(
+  $input: UpdateCandidateInterestInput!
+  $condition: ModelCandidateInterestConditionInput
+) {
+  updateCandidateInterest(input: $input, condition: $condition) {
+    id
+    candidateId
+    interestId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCandidateInterest(
+  $input: DeleteCandidateInterestInput!
+  $condition: ModelCandidateInterestConditionInput
+) {
+  deleteCandidateInterest(input: $input, condition: $condition) {
+    id
+    candidateId
+    interestId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCandidateDesiredIdentifier(
+  $input: CreateCandidateDesiredIdentifierInput!
+  $condition: ModelCandidateDesiredIdentifierConditionInput
+) {
+  createCandidateDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    candidateId
+    desiredIdentifierId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCandidateDesiredIdentifier(
+  $input: UpdateCandidateDesiredIdentifierInput!
+  $condition: ModelCandidateDesiredIdentifierConditionInput
+) {
+  updateCandidateDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    candidateId
+    desiredIdentifierId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCandidateDesiredIdentifier(
+  $input: DeleteCandidateDesiredIdentifierInput!
+  $condition: ModelCandidateDesiredIdentifierConditionInput
+) {
+  deleteCandidateDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    candidateId
+    desiredIdentifierId
+    eventId
+    owner
+    candidate {
+      id
+      owner
+      ownerAttendeeId
+      eventId
+      attendeeId
+      candidateType
+      matchScore
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateMatchInterest(
+  $input: CreateMatchInterestInput!
+  $condition: ModelMatchInterestConditionInput
+) {
+  createMatchInterest(input: $input, condition: $condition) {
+    id
+    matchId
+    interestId
+    eventId
+    owner
+    attendeeId
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMatchInterest(
+  $input: UpdateMatchInterestInput!
+  $condition: ModelMatchInterestConditionInput
+) {
+  updateMatchInterest(input: $input, condition: $condition) {
+    id
+    matchId
+    interestId
+    eventId
+    owner
+    attendeeId
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMatchInterest(
+  $input: DeleteMatchInterestInput!
+  $condition: ModelMatchInterestConditionInput
+) {
+  deleteMatchInterest(input: $input, condition: $condition) {
+    id
+    matchId
+    interestId
+    eventId
+    owner
+    attendeeId
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    interest {
+      id
+      group
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateMatchDesiredIdentifier(
+  $input: CreateMatchDesiredIdentifierInput!
+  $condition: ModelMatchDesiredIdentifierConditionInput
+) {
+  createMatchDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    matchId
+    attendeeId
+    desiredIdentifierId
+    eventId
+    owner
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMatchDesiredIdentifier(
+  $input: UpdateMatchDesiredIdentifierInput!
+  $condition: ModelMatchDesiredIdentifierConditionInput
+) {
+  updateMatchDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    matchId
+    attendeeId
+    desiredIdentifierId
+    eventId
+    owner
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMatchDesiredIdentifier(
+  $input: DeleteMatchDesiredIdentifierInput!
+  $condition: ModelMatchDesiredIdentifierConditionInput
+) {
+  deleteMatchDesiredIdentifier(input: $input, condition: $condition) {
+    id
+    matchId
+    attendeeId
+    desiredIdentifierId
+    eventId
+    owner
+    match {
+      id
+      owners
+      attendee1Id
+      attendee2Id
+      eventId
+      createdAt
+      updatedAt
+    }
+    desiredIdentifier {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

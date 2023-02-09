@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/client/admin/reports/feature-reports/src",
+  "prefix": "cm",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/admin/reports/feature-reports/src/**/*.ts",
+          "libs/client/admin/reports/feature-reports/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": ["technology:client", "application:admin", "bc:reports", "type:feature"]
+}

@@ -1,0 +1,12 @@
+<cm-icon class="cm-terms__icon" *ngIf="icon" [name]="icon" size="xxl"></cm-icon>
+<div class="cm-terms__content">
+  <div class="cm-terms__content__title">{{ title }}</div>
+  <div class="cm-terms__content__text">
+    <ng-container *ngIf="text">
+      {{ text }}
+    </ng-container>
+    <ng-container *ngIf="!text">
+      <ng-content></ng-content>
+    </ng-container>
+  </div>
+</div>
