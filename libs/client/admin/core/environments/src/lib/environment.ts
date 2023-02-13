@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  graphQlEndpoint: 'https://<unique-appsync-id>.appsync-api.<region>.amazonaws.com/graphql',
+  googleAnalyticsId: undefined,
+  graphQlEndpoint: 'http://localhost:20002/graphql',
   cognito: {
     userPoolId: '<my-user-pool-id>',
     userPoolWebClientId: '<my-user-pool-web-client-id>',
