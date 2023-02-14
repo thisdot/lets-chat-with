@@ -4,13 +4,12 @@
 
 export const environment = {
   production: false,
-  googleAnalyticsId: undefined,
-  graphQlEndpoint: 'http://localhost:20002/graphql',
+  graphQlEndpoint: process.env.GRAPHQL_ENDPOINT,
   cognito: {
-    userPoolId: '<my-user-pool-id>',
-    userPoolWebClientId: '<my-user-pool-web-client-id>',
+    userPoolId: process.env.USER_POOL_ID,
+    userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID,
   },
-  awsRegion: '<region>',
+  awsRegion: process.env.REGION,
 };
 
 /*
