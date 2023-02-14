@@ -126,7 +126,7 @@ You can also invoke `npm start` to start the `sls` offline server in the root di
 
 The above command will automatically migrate and seed the DynamoDB tables whenever it executed. You can verify that the backend is running by opening the health check endpoint http://localhost:3000/health-check. Press Cmd+C/Ctrl+C to stop it once you've verified that it works.
 
-However if the profile you're using isn't the default one, make sure to specify it using the `AWS_PROFILE` environment variable. If you're keeping your environment variables in `.env` make sure it's sourced into your running shell instance before running the commands. Alternatively you can just export the `AWS_PROFILE` variable directly.
+However if the profile you're using isn't the default one, make sure to specify it using the `AWS_PROFILE` environment variable.
 
 ```shell
 # Linux / macOS
@@ -140,7 +140,20 @@ set AWS_PROFILE=profile_name
 
 ## Quick Start
 
-After all the above installations, you can now run the client app for the first time. To do so, it's as simple as running:
+Before running the server you need to have some environment variables set in the root `.env` file. We keep some of the environment configuration values outside of source control so that we don't need to commit changes to them to alter those values. You can copy the `.env.example` file as `.env` as a baseline to get started.
+
+```shell
+# Replace these values with your own.
+REGION=us-east-1
+ENVIRONMENT=staging
+# Use the local serverless GraphQL API.
+GRAPHQL_ENDPOINT="http://localhost:20002/graphql"
+# Cognito credentials that you need to generate yourself.
+USER_POOL_ID="<your-user-pool-id>"
+USER_POOL_WEB_CLIENT_ID="<your-user-pool-web-client-id>"
+```
+
+After all the above installations and your environment variables are set in the root `.env`, you can now run the client app for the first time. To do so, it's as simple as running:
 
 ```shell
 npm run start:local
