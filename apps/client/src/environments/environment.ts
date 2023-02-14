@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  googleAnalyticsId: undefined,
-  graphQlEndpoint: 'https://<unique-appsync-id>.appsync-api.<region>.amazonaws.com/graphql',
+  googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
+  graphQlEndpoint: process.env.GRAPHQL_ENDPOINT,
   cognito: {
-    userPoolId: '<my-user-pool-id>',
-    userPoolWebClientId: '<my-user-pool-web-client-id>',
+    userPoolId: process.env.USER_POOL_ID,
+    userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID,
   },
-  awsRegion: '<region>',
+  awsRegion: process.env.REGION,
 };
 
 /*
