@@ -76,11 +76,11 @@ In order to use the app and seed it locally, you need to have a User Pool set up
 - In the fifth step, just enter names for your user pool and app client.
 - In the last step, review your settings and create the user pool.
 
-> If you are planning to deploy a staging environment and use its user pool for local development, you can skip to the "Configuring Environments and Deployment" section. And then fill in the value of the created pool into your `environment.local.ts`.
+> If you are planning to deploy a staging environment and use its user pool for local development, you can skip to the "Configuring Environments and Deployment" section. And then fill in the value of the created pool into your `.env`.
 
-The newly created pool information needs to be configured in [apps/client/src/environments/environment.local.ts](./apps/client/src/environments/environment.local.ts) for the main app and in [apps/client/src/environments/environment.local.ts](./apps/client/src/environments/environment.local.ts) for the admin app. You can find the `userPoolId` directly in the list of your user pools or in the details of the pool in the "User pool overview" section. To obtain `userPoolWebClientId` you need to go to the pool details and under `App integration` tab find `App client list` section you'll find the `Client ID` value.
+The newly created pool information needs to be configured in [.env](./.env) for the main app and in [serverless/.env](./serverless/.env) for the admin app. You can find the `USER_POOL_ID` directly in the list of your user pools or in the details of the pool in the "User pool overview" section. To obtain `USER_POOL_WEB_CLIENT_ID` you need to go to the pool details and under `App integration` tab find `App client list` section you'll find the `Client ID` value.
 
-> Don't forget to also replace the `<region>` placeholder in your environment files with the actual region you are using (e.g. "us-east-1").
+> Don't forget to also replace the `REGION` value in your `.env` files with the actual region you are using (e.g. "us-east-1").
 
 ### Offline Serverless Backend
 
@@ -126,7 +126,7 @@ You can also invoke `npm start` to start the `sls` offline server in the root di
 
 The above command will automatically migrate and seed the DynamoDB tables whenever it executed. You can verify that the backend is running by opening the health check endpoint http://localhost:3000/health-check. Press Cmd+C/Ctrl+C to stop it once you've verified that it works.
 
-However if the profile you're using isn't the default one, make sure to specify it using the `AWS_PROFILE` environment variable. If you're keeping your environment variables in `.env` make sure it's sourced into your running shell instance before running the commands. Alternatively you can just export the `AWS_PROFILE` variable directly.
+However if the profile you're using isn't the default one, make sure to specify it using the `AWS_PROFILE` environment variable.
 
 ```shell
 # Linux / macOS
@@ -140,7 +140,20 @@ set AWS_PROFILE=profile_name
 
 ## Quick Start
 
-After all the above installations, you can now run the client app for the first time. To do so, it's as simple as running:
+Before running the server you need to have some environment variables set in the root `.env` file. We keep some of the environment configuration values outside of source control so that we don't need to commit changes to them to alter those values. You can copy the `.env.example` file as `.env` as a baseline to get started.
+
+```shell
+# Replace these values with your own.
+REGION=us-east-1
+ENVIRONMENT=staging
+# Use the local serverless GraphQL API.
+GRAPHQL_ENDPOINT="http://localhost:20002/graphql"
+# Cognito credentials that you need to generate yourself.
+USER_POOL_ID="<your-user-pool-id>"
+USER_POOL_WEB_CLIENT_ID="<your-user-pool-web-client-id>"
+```
+
+After all the above installations and your environment variables are set in the root `.env`, you can now run the client app for the first time. To do so, it's as simple as running:
 
 ```shell
 npm run start:local

@@ -1,9 +1,9 @@
 export const environment = {
   production: true,
-  graphQlEndpoint: 'https://<unique-appsync-id>.appsync-api.<region>.amazonaws.com/graphql',
+  graphQlEndpoint: process.env.GRAPHQL_ENDPOINT,
   cognito: {
-    userPoolId: '<production-user-pool-id>',
-    userPoolWebClientId: '<production-user-pool-web-client-id>',
+    userPoolId: process.env.USER_POOL_ID,
+    userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID,
   },
-  awsRegion: '<region>',
+  awsRegion: process.env.REGION,
 };
