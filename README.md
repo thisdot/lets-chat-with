@@ -76,11 +76,11 @@ In order to use the app and seed it locally, you need to have a User Pool set up
 - In the fifth step, just enter names for your user pool and app client.
 - In the last step, review your settings and create the user pool.
 
-> If you are planning to deploy a staging environment and use its user pool for local development, you can skip to the "Configuring Environments and Deployment" section. And then fill in the value of the created pool into your `environment.local.ts`.
+> If you are planning to deploy a staging environment and use its user pool for local development, you can skip to the "Configuring Environments and Deployment" section. And then fill in the value of the created pool into your `.env`.
 
-The newly created pool information needs to be configured in [apps/client/src/environments/environment.local.ts](./apps/client/src/environments/environment.local.ts) for the main app and in [apps/client/src/environments/environment.local.ts](./apps/client/src/environments/environment.local.ts) for the admin app. You can find the `userPoolId` directly in the list of your user pools or in the details of the pool in the "User pool overview" section. To obtain `userPoolWebClientId` you need to go to the pool details and under `App integration` tab find `App client list` section you'll find the `Client ID` value.
+The newly created pool information needs to be configured in [.env](./.env) for the main app and in [serverless/.env](./serverless/.env) for the admin app. You can find the `USER_POOL_ID` directly in the list of your user pools or in the details of the pool in the "User pool overview" section. To obtain `USER_POOL_WEB_CLIENT_ID` you need to go to the pool details and under `App integration` tab find `App client list` section you'll find the `Client ID` value.
 
-> Don't forget to also replace the `<region>` placeholder in your environment files with the actual region you are using (e.g. "us-east-1").
+> Don't forget to also replace the `REGION` value in your `.env` files with the actual region you are using (e.g. "us-east-1").
 
 ### Offline Serverless Backend
 
