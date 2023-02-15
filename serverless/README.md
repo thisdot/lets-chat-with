@@ -31,7 +31,7 @@ The [serverless.yml](./serverless.yml) config file is organized into the followi
 
 If you ever need to create a new environment in addition to the existing one, or if you need to drop and re-create an existing environment, this will re-generate some identifiers which the UI requires.
 
-These are the properties in the environment file you will need to set for your new environment:
+These are the properties in the root environment file found at `<root-dir>/.env` you will need to set for your new environment:
 
 ```shell
 GRAPHQL_ENDPOINT="https://<your-serverless-subdomain>.appsync-api.<your-region>.amazonaws.com/graphql"
