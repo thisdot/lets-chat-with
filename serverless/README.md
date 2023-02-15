@@ -31,19 +31,17 @@ The [serverless.yml](./serverless.yml) config file is organized into the followi
 
 If you ever need to create a new environment in addition to the existing one, or if you need to drop and re-create an existing environment, this will re-generate some identifiers which the UI requires.
 
-These are the following properties in Angular's environment files:
+These are the properties in the root environment file found at `<root-dir>/.env` you will need to set for your new environment:
 
-```
-  graphQlEndpoint: 'https://gjaq22zzozc35jocoj34p73jma.appsync-api.us-east-1.amazonaws.com/graphql',
-  cognito: {
-    userPoolId: 'us-east-1_D3JjkdD19',
-    userPoolWebClientId: '4d1cku992b0v3fl19bvum38bqr',
-  }
+```shell
+GRAPHQL_ENDPOINT="https://<your-serverless-subdomain>.appsync-api.<your-region>.amazonaws.com/graphql"
+USER_POOL_ID="<your-user-pool-id>"
+USER_POOL_WEB_CLIENT_ID="<your-user-pool-web-client-id>"
 ```
 
-- You'll find the `graphQlEndpoint` in the console output of `sls deploy`.
-- You'll find the user pool ID under [Cognito User Pools](https://console.aws.amazon.com/cognito/v2/idp/user-pools?region=us-east-1).
-- You'll find the user pool client ID if you open the above user pool and go to "App integration", and scroll down to the bottom.
+- You'll find the `GRAPHQL_ENDPOINT` in the console output of `sls deploy`.
+- You'll find the `USER_POOL_ID` under [Cognito User Pools](https://console.aws.amazon.com/cognito/v2/idp/user-pools?region=us-east-1).
+- You'll find the `USER_POOL_WEB_CLIENT_ID` if you open the above user pool and go to "App integration", and scroll down to the bottom.
 
 ## Creating New Lambdas
 
