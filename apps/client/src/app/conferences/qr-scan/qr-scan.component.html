@@ -2,7 +2,7 @@
   <zxing-scanner
     *ngIf="startCamera$ | async"
     [enable]="enable$ | async"
-    [autostart]="false"
+    [autostart]="true"
     [device]="selectedDevice$ | async"
     [formats]="['QR_CODE']"
     (camerasFound)="devices.next($event)"
