@@ -3,8 +3,8 @@
   <section (click)="onChat()">
     <img
       *ngIf="matchAttendee?.avatarUrl"
-      src="matchAttendee.avatarUrl"
-      alt="matchAttendee.fullName"
+      src="{{ matchAttendee.avatarUrl }}"
+      alt="{{ matchAttendee.fullName }}"
       class="avatar-image"
     />
     <h2>{{ t('new.newConnection') }}</h2>

@@ -1,699 +1,706 @@
-- type: Query
-  field: getUser
-  dataSource: UserDataSource
-  request: Query.getUser.req.vtl
-  response: Query.getUser.res.vtl
-- type: Mutation
-  field: updateUser
-  dataSource: UserDataSource
-  request: Mutation.updateUser.req.vtl
-  response: Mutation.updateUser.res.vtl
-- type: Query
-  field: getUserByOwner
-  dataSource: UserDataSource
-  request: Query.getUserByOwner.req.vtl
-  response: Query.getUserByOwner.res.vtl
 
-- type: Query
-  field: getInterest
-  dataSource: InterestDataSource
-  request: Query.getInterest.req.vtl
-  response: Query.getInterest.res.vtl
-- type: Query
-  field: listInterests
-  dataSource: InterestDataSource
-  request: Query.listInterests.req.vtl
-  response: Query.listInterests.res.vtl
-- type: Mutation
-  field: createInterest
-  dataSource: InterestDataSource
-  request: Mutation.createInterest.req.vtl
-  response: Mutation.createInterest.res.vtl
-- type: Mutation
-  field: updateInterest
-  dataSource: InterestDataSource
-  request: Mutation.updateInterest.req.vtl
-  response: Mutation.updateInterest.res.vtl
-- type: Mutation
-  field: deleteInterest
-  dataSource: InterestDataSource
-  request: Mutation.deleteInterest.req.vtl
-  response: Mutation.deleteInterest.res.vtl
+  - type: Query
+    field: getUser
+    dataSource: UserDataSource
+    request: Query.getUser.req.vtl
+    response: Query.getUser.res.vtl
+  - type: Mutation
+    field: updateUser
+    dataSource: UserDataSource
+    request: Mutation.updateUser.req.vtl
+    response: Mutation.updateUser.res.vtl
+  - type: Query
+    field: getUserByOwner
+    dataSource: UserDataSource
+    request: Query.getUserByOwner.req.vtl
+    response: Query.getUserByOwner.res.vtl
 
-- type: Query
-  field: getIdentifier
-  dataSource: IdentifierDataSource
-  request: Query.getIdentifier.req.vtl
-  response: Query.getIdentifier.res.vtl
-- type: Query
-  field: listIdentifiers
-  dataSource: IdentifierDataSource
-  request: Query.listIdentifiers.req.vtl
-  response: Query.listIdentifiers.res.vtl
-- type: Mutation
-  field: createIdentifier
-  dataSource: IdentifierDataSource
-  request: Mutation.createIdentifier.req.vtl
-  response: Mutation.createIdentifier.res.vtl
-- type: Mutation
-  field: updateIdentifier
-  dataSource: IdentifierDataSource
-  request: Mutation.updateIdentifier.req.vtl
-  response: Mutation.updateIdentifier.res.vtl
-- type: Mutation
-  field: deleteIdentifier
-  dataSource: IdentifierDataSource
-  request: Mutation.deleteIdentifier.req.vtl
-  response: Mutation.deleteIdentifier.res.vtl
+  - type: Query
+    field: getInterest
+    dataSource: InterestDataSource
+    request: Query.getInterest.req.vtl
+    response: Query.getInterest.res.vtl
+  - type: Query
+    field: listInterests
+    dataSource: InterestDataSource
+    request: Query.listInterests.req.vtl
+    response: Query.listInterests.res.vtl
+  - type: Mutation
+    field: createInterest
+    dataSource: InterestDataSource
+    request: Mutation.createInterest.req.vtl
+    response: Mutation.createInterest.res.vtl
+  - type: Mutation
+    field: updateInterest
+    dataSource: InterestDataSource
+    request: Mutation.updateInterest.req.vtl
+    response: Mutation.updateInterest.res.vtl
+  - type: Mutation
+    field: deleteInterest
+    dataSource: InterestDataSource
+    request: Mutation.deleteInterest.req.vtl
+    response: Mutation.deleteInterest.res.vtl
 
-- type: Query
-  field: getTheme
-  dataSource: ThemeDataSource
-  request: Query.getTheme.req.vtl
-  response: Query.getTheme.res.vtl
-- type: Query
-  field: listThemes
-  dataSource: ThemeDataSource
-  request: Query.listThemes.req.vtl
-  response: Query.listThemes.res.vtl
-- type: Mutation
-  field: createTheme
-  dataSource: ThemeDataSource
-  request: Mutation.createTheme.req.vtl
-  response: Mutation.createTheme.res.vtl
-- type: Mutation
-  field: updateTheme
-  dataSource: ThemeDataSource
-  request: Mutation.updateTheme.req.vtl
-  response: Mutation.updateTheme.res.vtl
-- type: Mutation
-  field: deleteTheme
-  dataSource: ThemeDataSource
-  request: Mutation.deleteTheme.req.vtl
-  response: Mutation.deleteTheme.res.vtl
+  - type: Query
+    field: getIdentifier
+    dataSource: IdentifierDataSource
+    request: Query.getIdentifier.req.vtl
+    response: Query.getIdentifier.res.vtl
+  - type: Query
+    field: listIdentifiers
+    dataSource: IdentifierDataSource
+    request: Query.listIdentifiers.req.vtl
+    response: Query.listIdentifiers.res.vtl
+  - type: Mutation
+    field: createIdentifier
+    dataSource: IdentifierDataSource
+    request: Mutation.createIdentifier.req.vtl
+    response: Mutation.createIdentifier.res.vtl
+  - type: Mutation
+    field: updateIdentifier
+    dataSource: IdentifierDataSource
+    request: Mutation.updateIdentifier.req.vtl
+    response: Mutation.updateIdentifier.res.vtl
+  - type: Mutation
+    field: deleteIdentifier
+    dataSource: IdentifierDataSource
+    request: Mutation.deleteIdentifier.req.vtl
+    response: Mutation.deleteIdentifier.res.vtl
 
-- type: Query
-  field: getOrganizationMember
-  dataSource: OrganizationMemberDataSource
-  request: Query.getOrganizationMember.req.vtl
-  response: Query.getOrganizationMember.res.vtl
-- type: Query
-  field: listOrganizationMembers
-  dataSource: OrganizationMemberDataSource
-  request: Query.listOrganizationMembers.req.vtl
-  response: Query.listOrganizationMembers.res.vtl
-- type: Mutation
-  field: createOrganizationMember
-  dataSource: OrganizationMemberDataSource
-  request: Mutation.createOrganizationMember.req.vtl
-  response: Mutation.createOrganizationMember.res.vtl
-- type: Mutation
-  field: updateOrganizationMember
-  dataSource: OrganizationMemberDataSource
-  request: Mutation.updateOrganizationMember.req.vtl
-  response: Mutation.updateOrganizationMember.res.vtl
-- type: Mutation
-  field: deleteOrganizationMember
-  dataSource: OrganizationMemberDataSource
-  request: Mutation.deleteOrganizationMember.req.vtl
-  response: Mutation.deleteOrganizationMember.res.vtl
+  - type: Query
+    field: getTheme
+    dataSource: ThemeDataSource
+    request: Query.getTheme.req.vtl
+    response: Query.getTheme.res.vtl
+  - type: Query
+    field: listThemes
+    dataSource: ThemeDataSource
+    request: Query.listThemes.req.vtl
+    response: Query.listThemes.res.vtl
+  - type: Mutation
+    field: createTheme
+    dataSource: ThemeDataSource
+    request: Mutation.createTheme.req.vtl
+    response: Mutation.createTheme.res.vtl
+  - type: Mutation
+    field: updateTheme
+    dataSource: ThemeDataSource
+    request: Mutation.updateTheme.req.vtl
+    response: Mutation.updateTheme.res.vtl
+  - type: Mutation
+    field: deleteTheme
+    dataSource: ThemeDataSource
+    request: Mutation.deleteTheme.req.vtl
+    response: Mutation.deleteTheme.res.vtl
 
-- type: Query
-  field: getOrganization
-  dataSource: OrganizationDataSource
-  request: Query.getOrganization.req.vtl
-  response: Query.getOrganization.res.vtl
-- type: Query
-  field: listOrganizations
-  dataSource: OrganizationDataSource
-  request: Query.listOrganizations.req.vtl
-  response: Query.listOrganizations.res.vtl
-- type: Mutation
-  field: createOrganization
-  dataSource: OrganizationDataSource
-  request: Mutation.createOrganization.req.vtl
-  response: Mutation.createOrganization.res.vtl
-- type: Mutation
-  field: updateOrganization
-  dataSource: OrganizationDataSource
-  request: Mutation.updateOrganization.req.vtl
-  response: Mutation.updateOrganization.res.vtl
-- type: Mutation
-  field: deleteOrganization
-  dataSource: OrganizationDataSource
-  request: Mutation.deleteOrganization.req.vtl
-  response: Mutation.deleteOrganization.res.vtl
+  - type: Query
+    field: getOrganizationMember
+    dataSource: OrganizationMemberDataSource
+    request: Query.getOrganizationMember.req.vtl
+    response: Query.getOrganizationMember.res.vtl
+  - type: Query
+    field: listOrganizationMembers
+    dataSource: OrganizationMemberDataSource
+    request: Query.listOrganizationMembers.req.vtl
+    response: Query.listOrganizationMembers.res.vtl
+  - type: Mutation
+    field: createOrganizationMember
+    dataSource: OrganizationMemberDataSource
+    request: Mutation.createOrganizationMember.req.vtl
+    response: Mutation.createOrganizationMember.res.vtl
+  - type: Mutation
+    field: updateOrganizationMember
+    dataSource: OrganizationMemberDataSource
+    request: Mutation.updateOrganizationMember.req.vtl
+    response: Mutation.updateOrganizationMember.res.vtl
+  - type: Mutation
+    field: deleteOrganizationMember
+    dataSource: OrganizationMemberDataSource
+    request: Mutation.deleteOrganizationMember.req.vtl
+    response: Mutation.deleteOrganizationMember.res.vtl
 
-- type: Query
-  field: getEvent
-  dataSource: EventDataSource
-  request: Query.getEvent.req.vtl
-  response: Query.getEvent.res.vtl
-- type: Query
-  field: listEvents
-  dataSource: EventDataSource
-  request: Query.listEvents.req.vtl
-  response: Query.listEvents.res.vtl
-- type: Mutation
-  field: createEvent
-  dataSource: EventDataSource
-  request: Mutation.createEvent.req.vtl
-  response: Mutation.createEvent.res.vtl
-- type: Mutation
-  field: updateEvent
-  dataSource: EventDataSource
-  request: Mutation.updateEvent.req.vtl
-  response: Mutation.updateEvent.res.vtl
-- type: Mutation
-  field: deleteEvent
-  dataSource: EventDataSource
-  request: Mutation.deleteEvent.req.vtl
-  response: Mutation.deleteEvent.res.vtl
+  - type: Query
+    field: getOrganization
+    dataSource: OrganizationDataSource
+    request: Query.getOrganization.req.vtl
+    response: Query.getOrganization.res.vtl
+  - type: Query
+    field: listOrganizations
+    dataSource: OrganizationDataSource
+    request: Query.listOrganizations.req.vtl
+    response: Query.listOrganizations.res.vtl
+  - type: Mutation
+    field: createOrganization
+    dataSource: OrganizationDataSource
+    request: Mutation.createOrganization.req.vtl
+    response: Mutation.createOrganization.res.vtl
+  - type: Mutation
+    field: updateOrganization
+    dataSource: OrganizationDataSource
+    request: Mutation.updateOrganization.req.vtl
+    response: Mutation.updateOrganization.res.vtl
+  - type: Mutation
+    field: deleteOrganization
+    dataSource: OrganizationDataSource
+    request: Mutation.deleteOrganization.req.vtl
+    response: Mutation.deleteOrganization.res.vtl
 
-- type: Mutation
-  field: createEventInterest
-  dataSource: EventInterestDataSource
-  request: Mutation.createEventInterest.req.vtl
-  response: Mutation.createEventInterest.res.vtl
-- type: Mutation
-  field: updateEventInterest
-  dataSource: EventInterestDataSource
-  request: Mutation.updateEventInterest.req.vtl
-  response: Mutation.updateEventInterest.res.vtl
-- type: Mutation
-  field: deleteEventInterest
-  dataSource: EventInterestDataSource
-  request: Mutation.deleteEventInterest.req.vtl
-  response: Mutation.deleteEventInterest.res.vtl
+  - type: Query
+    field: getEvent
+    dataSource: EventDataSource
+    request: Query.getEvent.req.vtl
+    response: Query.getEvent.res.vtl
+  - type: Query
+    field: listEvents
+    dataSource: EventDataSource
+    request: Query.listEvents.req.vtl
+    response: Query.listEvents.res.vtl
+  - type: Mutation
+    field: createEvent
+    dataSource: EventDataSource
+    request: Mutation.createEvent.req.vtl
+    response: Mutation.createEvent.res.vtl
+  - type: Mutation
+    field: updateEvent
+    dataSource: EventDataSource
+    request: Mutation.updateEvent.req.vtl
+    response: Mutation.updateEvent.res.vtl
+  - type: Mutation
+    field: deleteEvent
+    dataSource: EventDataSource
+    request: Mutation.deleteEvent.req.vtl
+    response: Mutation.deleteEvent.res.vtl
 
-- type: Mutation
-  field: createEventIdentifier
-  dataSource: EventIdentifierDataSource
-  request: Mutation.createEventIdentifier.req.vtl
-  response: Mutation.createEventIdentifier.res.vtl
-- type: Mutation
-  field: updateEventIdentifier
-  dataSource: EventIdentifierDataSource
-  request: Mutation.updateEventIdentifier.req.vtl
-  response: Mutation.updateEventIdentifier.res.vtl
-- type: Mutation
-  field: deleteEventIdentifier
-  dataSource: EventIdentifierDataSource
-  request: Mutation.deleteEventIdentifier.req.vtl
-  response: Mutation.deleteEventIdentifier.res.vtl
+  - type: Mutation
+    field: createEventInterest
+    dataSource: EventInterestDataSource
+    request: Mutation.createEventInterest.req.vtl
+    response: Mutation.createEventInterest.res.vtl
+  - type: Mutation
+    field: updateEventInterest
+    dataSource: EventInterestDataSource
+    request: Mutation.updateEventInterest.req.vtl
+    response: Mutation.updateEventInterest.res.vtl
+  - type: Mutation
+    field: deleteEventInterest
+    dataSource: EventInterestDataSource
+    request: Mutation.deleteEventInterest.req.vtl
+    response: Mutation.deleteEventInterest.res.vtl
 
-- type: Query
-  field: getAttendee
-  dataSource: AttendeeDataSource
-  request: Query.getAttendee.req.vtl
-  response: Query.getAttendee.res.vtl
-- type: Query
-  field: listAttendees
-  dataSource: AttendeeDataSource
-  request: Query.listAttendees.req.vtl
-  response: Query.listAttendees.res.vtl
+  - type: Mutation
+    field: createEventIdentifier
+    dataSource: EventIdentifierDataSource
+    request: Mutation.createEventIdentifier.req.vtl
+    response: Mutation.createEventIdentifier.res.vtl
+  - type: Mutation
+    field: updateEventIdentifier
+    dataSource: EventIdentifierDataSource
+    request: Mutation.updateEventIdentifier.req.vtl
+    response: Mutation.updateEventIdentifier.res.vtl
+  - type: Mutation
+    field: deleteEventIdentifier
+    dataSource: EventIdentifierDataSource
+    request: Mutation.deleteEventIdentifier.req.vtl
+    response: Mutation.deleteEventIdentifier.res.vtl
 
-- type: Mutation
-  field: createAttendeeInterest
-  dataSource: AttendeeInterestDataSource
-  request: Mutation.createAttendeeInterest.req.vtl
-  response: Mutation.createAttendeeInterest.res.vtl
-- type: Mutation
-  field: updateAttendeeInterest
-  dataSource: AttendeeInterestDataSource
-  request: Mutation.updateAttendeeInterest.req.vtl
-  response: Mutation.updateAttendeeInterest.res.vtl
-- type: Mutation
-  field: deleteAttendeeInterest
-  dataSource: AttendeeInterestDataSource
-  request: Mutation.deleteAttendeeInterest.req.vtl
-  response: Mutation.deleteAttendeeInterest.res.vtl
+  - type: Query
+    field: getAttendee
+    dataSource: AttendeeDataSource
+    request: Query.getAttendee.req.vtl
+    response: Query.getAttendee.res.vtl
+  - type: Query
+    field: listAttendees
+    dataSource: AttendeeDataSource
+    request: Query.listAttendees.req.vtl
+    response: Query.listAttendees.res.vtl
 
-- type: Mutation
-  field: createAttendeeDesiredIdentifier
-  dataSource: AttendeeDesiredIdentifierDataSource
-  request: Mutation.createAttendeeDesiredIdentifier.req.vtl
-  response: Mutation.createAttendeeDesiredIdentifier.res.vtl
-- type: Mutation
-  field: updateAttendeeDesiredIdentifier
-  dataSource: AttendeeDesiredIdentifierDataSource
-  request: Mutation.updateAttendeeDesiredIdentifier.req.vtl
-  response: Mutation.updateAttendeeDesiredIdentifier.res.vtl
-- type: Mutation
-  field: deleteAttendeeDesiredIdentifier
-  dataSource: AttendeeDesiredIdentifierDataSource
-  request: Mutation.deleteAttendeeDesiredIdentifier.req.vtl
-  response: Mutation.deleteAttendeeDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: createAttendeeInterest
+    dataSource: AttendeeInterestDataSource
+    request: Mutation.createAttendeeInterest.req.vtl
+    response: Mutation.createAttendeeInterest.res.vtl
+  - type: Mutation
+    field: updateAttendeeInterest
+    dataSource: AttendeeInterestDataSource
+    request: Mutation.updateAttendeeInterest.req.vtl
+    response: Mutation.updateAttendeeInterest.res.vtl
+  - type: Mutation
+    field: deleteAttendeeInterest
+    dataSource: AttendeeInterestDataSource
+    request: Mutation.deleteAttendeeInterest.req.vtl
+    response: Mutation.deleteAttendeeInterest.res.vtl
 
-- type: Mutation
-  field: createAttendeeOwnIdentifier
-  dataSource: AttendeeOwnIdentifierDataSource
-  request: Mutation.createAttendeeOwnIdentifier.req.vtl
-  response: Mutation.createAttendeeOwnIdentifier.res.vtl
-- type: Mutation
-  field: updateAttendeeOwnIdentifier
-  dataSource: AttendeeOwnIdentifierDataSource
-  request: Mutation.updateAttendeeOwnIdentifier.req.vtl
-  response: Mutation.updateAttendeeOwnIdentifier.res.vtl
-- type: Mutation
-  field: deleteAttendeeOwnIdentifier
-  dataSource: AttendeeOwnIdentifierDataSource
-  request: Mutation.deleteAttendeeOwnIdentifier.req.vtl
-  response: Mutation.deleteAttendeeOwnIdentifier.res.vtl
+  - type: Mutation
+    field: createAttendeeDesiredIdentifier
+    dataSource: AttendeeDesiredIdentifierDataSource
+    request: Mutation.createAttendeeDesiredIdentifier.req.vtl
+    response: Mutation.createAttendeeDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: updateAttendeeDesiredIdentifier
+    dataSource: AttendeeDesiredIdentifierDataSource
+    request: Mutation.updateAttendeeDesiredIdentifier.req.vtl
+    response: Mutation.updateAttendeeDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: deleteAttendeeDesiredIdentifier
+    dataSource: AttendeeDesiredIdentifierDataSource
+    request: Mutation.deleteAttendeeDesiredIdentifier.req.vtl
+    response: Mutation.deleteAttendeeDesiredIdentifier.res.vtl
 
-- type: Query
-  field: getReport
-  dataSource: ReportDataSource
-  request: Query.getReport.req.vtl
-  response: Query.getReport.res.vtl
-- type: Query
-  field: listReports
-  dataSource: ReportDataSource
-  request: Query.listReports.req.vtl
-  response: Query.listReports.res.vtl
-- type: Mutation
-  field: createReport
-  dataSource: ReportDataSource
-  request: Mutation.createReport.req.vtl
-  response: Mutation.createReport.res.vtl
-- type: Mutation
-  field: updateReport
-  dataSource: ReportDataSource
-  request: Mutation.updateReport.req.vtl
-  response: Mutation.updateReport.res.vtl
-- type: Mutation
-  field: deleteReport
-  dataSource: ReportDataSource
-  request: Mutation.deleteReport.req.vtl
-  response: Mutation.deleteReport.res.vtl
+  - type: Mutation
+    field: createAttendeeOwnIdentifier
+    dataSource: AttendeeOwnIdentifierDataSource
+    request: Mutation.createAttendeeOwnIdentifier.req.vtl
+    response: Mutation.createAttendeeOwnIdentifier.res.vtl
+  - type: Mutation
+    field: updateAttendeeOwnIdentifier
+    dataSource: AttendeeOwnIdentifierDataSource
+    request: Mutation.updateAttendeeOwnIdentifier.req.vtl
+    response: Mutation.updateAttendeeOwnIdentifier.res.vtl
+  - type: Mutation
+    field: deleteAttendeeOwnIdentifier
+    dataSource: AttendeeOwnIdentifierDataSource
+    request: Mutation.deleteAttendeeOwnIdentifier.req.vtl
+    response: Mutation.deleteAttendeeOwnIdentifier.res.vtl
 
-- type: Query
-  field: getChatThread
-  dataSource: ChatThreadDataSource
-  request: Query.getChatThread.req.vtl
-  response: Query.getChatThread.res.vtl
-- type: Query
-  field: listChatThreads
-  dataSource: ChatThreadDataSource
-  request: Query.listChatThreads.req.vtl
-  response: Query.listChatThreads.res.vtl
-- type: Mutation
-  field: updateChatThread
-  dataSource: ChatThreadDataSource
-  request: Mutation.updateChatThread.req.vtl
-  response: Mutation.updateChatThread.res.vtl
+  - type: Query
+    field: getReport
+    dataSource: ReportDataSource
+    request: Query.getReport.req.vtl
+    response: Query.getReport.res.vtl
+  - type: Query
+    field: listReports
+    dataSource: ReportDataSource
+    request: Query.listReports.req.vtl
+    response: Query.listReports.res.vtl
+  - type: Mutation
+    field: createReport
+    dataSource: ReportDataSource
+    request: Mutation.createReport.req.vtl
+    response: Mutation.createReport.res.vtl
+  - type: Mutation
+    field: updateReport
+    dataSource: ReportDataSource
+    request: Mutation.updateReport.req.vtl
+    response: Mutation.updateReport.res.vtl
+  - type: Mutation
+    field: deleteReport
+    dataSource: ReportDataSource
+    request: Mutation.deleteReport.req.vtl
+    response: Mutation.deleteReport.res.vtl
 
-- type: Mutation
-  field: createMessage
-  dataSource: MessageDataSource
-  request: Mutation.createMessage.req.vtl
-  response: Mutation.createMessage.res.vtl
+  - type: Query
+    field: getChatThread
+    dataSource: ChatThreadDataSource
+    request: Query.getChatThread.req.vtl
+    response: Query.getChatThread.res.vtl
+  - type: Query
+    field: listChatThreads
+    dataSource: ChatThreadDataSource
+    request: Query.listChatThreads.req.vtl
+    response: Query.listChatThreads.res.vtl
+  - type: Mutation
+    field: updateChatThread
+    dataSource: ChatThreadDataSource
+    request: Mutation.updateChatThread.req.vtl
+    response: Mutation.updateChatThread.res.vtl
 
-- type: Query
-  field: getCandidate
-  dataSource: CandidateDataSource
-  request: Query.getCandidate.req.vtl
-  response: Query.getCandidate.res.vtl
-- type: Query
-  field: listCandidates
-  dataSource: CandidateDataSource
-  request: Query.listCandidates.req.vtl
-  response: Query.listCandidates.res.vtl
-- type: Query
-  field: candidatesByEventId
-  dataSource: CandidateDataSource
-  request: Query.candidatesByEventId.req.vtl
-  response: Query.candidatesByEventId.res.vtl
+  - type: Mutation
+    field: createMessage
+    dataSource: MessageDataSource
+    request: Mutation.createMessage.req.vtl
+    response: Mutation.createMessage.res.vtl
 
-- type: Query
-  field: getMatch
-  dataSource: MatchDataSource
-  request: Query.getMatch.req.vtl
-  response: Query.getMatch.res.vtl
-- type: Query
-  field: listMatches
-  dataSource: MatchDataSource
-  request: Query.listMatches.req.vtl
-  response: Query.listMatches.res.vtl
-- type: Mutation
-  field: deleteMatch
-  dataSource: MatchDataSource
-  request: Mutation.deleteMatch.req.vtl
-  response: Mutation.deleteMatch.res.vtl
+  - type: Query
+    field: getCandidate
+    dataSource: CandidateDataSource
+    request: Query.getCandidate.req.vtl
+    response: Query.getCandidate.res.vtl
+  - type: Query
+    field: listCandidates
+    dataSource: CandidateDataSource
+    request: Query.listCandidates.req.vtl
+    response: Query.listCandidates.res.vtl
+  - type: Query
+    field: candidatesByEventId
+    dataSource: CandidateDataSource
+    request: Query.candidatesByEventId.req.vtl
+    response: Query.candidatesByEventId.res.vtl
 
-- type: Mutation
-  field: createCandidateInterest
-  dataSource: CandidateInterestDataSource
-  request: Mutation.createCandidateInterest.req.vtl
-  response: Mutation.createCandidateInterest.res.vtl
-- type: Mutation
-  field: updateCandidateInterest
-  dataSource: CandidateInterestDataSource
-  request: Mutation.updateCandidateInterest.req.vtl
-  response: Mutation.updateCandidateInterest.res.vtl
-- type: Mutation
-  field: deleteCandidateInterest
-  dataSource: CandidateInterestDataSource
-  request: Mutation.deleteCandidateInterest.req.vtl
-  response: Mutation.deleteCandidateInterest.res.vtl
+  - type: Query
+    field: getMatch
+    dataSource: MatchDataSource
+    request: Query.getMatch.req.vtl
+    response: Query.getMatch.res.vtl
+  - type: Query
+    field: listMatches
+    dataSource: MatchDataSource
+    request: Query.listMatches.req.vtl
+    response: Query.listMatches.res.vtl
+  - type: Mutation
+    field: updateMatch
+    dataSource: MatchDataSource
+    request: Mutation.updateMatch.req.vtl
+    response: Mutation.updateMatch.res.vtl
+  - type: Mutation
+    field: deleteMatch
+    dataSource: MatchDataSource
+    request: Mutation.deleteMatch.req.vtl
+    response: Mutation.deleteMatch.res.vtl
 
-- type: Mutation
-  field: createCandidateDesiredIdentifier
-  dataSource: CandidateDesiredIdentifierDataSource
-  request: Mutation.createCandidateDesiredIdentifier.req.vtl
-  response: Mutation.createCandidateDesiredIdentifier.res.vtl
-- type: Mutation
-  field: updateCandidateDesiredIdentifier
-  dataSource: CandidateDesiredIdentifierDataSource
-  request: Mutation.updateCandidateDesiredIdentifier.req.vtl
-  response: Mutation.updateCandidateDesiredIdentifier.res.vtl
-- type: Mutation
-  field: deleteCandidateDesiredIdentifier
-  dataSource: CandidateDesiredIdentifierDataSource
-  request: Mutation.deleteCandidateDesiredIdentifier.req.vtl
-  response: Mutation.deleteCandidateDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: createCandidateInterest
+    dataSource: CandidateInterestDataSource
+    request: Mutation.createCandidateInterest.req.vtl
+    response: Mutation.createCandidateInterest.res.vtl
+  - type: Mutation
+    field: updateCandidateInterest
+    dataSource: CandidateInterestDataSource
+    request: Mutation.updateCandidateInterest.req.vtl
+    response: Mutation.updateCandidateInterest.res.vtl
+  - type: Mutation
+    field: deleteCandidateInterest
+    dataSource: CandidateInterestDataSource
+    request: Mutation.deleteCandidateInterest.req.vtl
+    response: Mutation.deleteCandidateInterest.res.vtl
 
-- type: Mutation
-  field: createMatchInterest
-  dataSource: MatchInterestDataSource
-  request: Mutation.createMatchInterest.req.vtl
-  response: Mutation.createMatchInterest.res.vtl
-- type: Mutation
-  field: updateMatchInterest
-  dataSource: MatchInterestDataSource
-  request: Mutation.updateMatchInterest.req.vtl
-  response: Mutation.updateMatchInterest.res.vtl
-- type: Mutation
-  field: deleteMatchInterest
-  dataSource: MatchInterestDataSource
-  request: Mutation.deleteMatchInterest.req.vtl
-  response: Mutation.deleteMatchInterest.res.vtl
+  - type: Mutation
+    field: createCandidateDesiredIdentifier
+    dataSource: CandidateDesiredIdentifierDataSource
+    request: Mutation.createCandidateDesiredIdentifier.req.vtl
+    response: Mutation.createCandidateDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: updateCandidateDesiredIdentifier
+    dataSource: CandidateDesiredIdentifierDataSource
+    request: Mutation.updateCandidateDesiredIdentifier.req.vtl
+    response: Mutation.updateCandidateDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: deleteCandidateDesiredIdentifier
+    dataSource: CandidateDesiredIdentifierDataSource
+    request: Mutation.deleteCandidateDesiredIdentifier.req.vtl
+    response: Mutation.deleteCandidateDesiredIdentifier.res.vtl
 
-- type: Mutation
-  field: createMatchDesiredIdentifier
-  dataSource: MatchDesiredIdentifierDataSource
-  request: Mutation.createMatchDesiredIdentifier.req.vtl
-  response: Mutation.createMatchDesiredIdentifier.res.vtl
-- type: Mutation
-  field: updateMatchDesiredIdentifier
-  dataSource: MatchDesiredIdentifierDataSource
-  request: Mutation.updateMatchDesiredIdentifier.req.vtl
-  response: Mutation.updateMatchDesiredIdentifier.res.vtl
-- type: Mutation
-  field: deleteMatchDesiredIdentifier
-  dataSource: MatchDesiredIdentifierDataSource
-  request: Mutation.deleteMatchDesiredIdentifier.req.vtl
-  response: Mutation.deleteMatchDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: createMatchInterest
+    dataSource: MatchInterestDataSource
+    request: Mutation.createMatchInterest.req.vtl
+    response: Mutation.createMatchInterest.res.vtl
+  - type: Mutation
+    field: updateMatchInterest
+    dataSource: MatchInterestDataSource
+    request: Mutation.updateMatchInterest.req.vtl
+    response: Mutation.updateMatchInterest.res.vtl
+  - type: Mutation
+    field: deleteMatchInterest
+    dataSource: MatchInterestDataSource
+    request: Mutation.deleteMatchInterest.req.vtl
+    response: Mutation.deleteMatchInterest.res.vtl
 
-- type: Attendee
-  field: attendeeMatches
-  kind: 'PIPELINE'
-  request: Attendee.attendeeMatches.req.vtl
-  response: Attendee.attendeeMatches.res.vtl
-  functions:
-    - InvokeResolveMatchesLambdaDataSource
-- type: Attendee
-  field: attendeeChats
-  kind: 'PIPELINE'
-  request: Attendee.attendeeChats.req.vtl
-  response: Attendee.attendeeChats.res.vtl
-  functions:
-    - InvokeResolveChatsLambdaDataSource
-- type: Query
-  field: numberOfUnreadMessages
-  kind: 'PIPELINE'
-  request: Query.numberOfUnreadMessages.req.vtl
-  response: Query.numberOfUnreadMessages.res.vtl
-  functions:
-    - InvokeNumberOfUnreadMessagesLambdaDataSource
-- type: Mutation
-  field: accessEvent
-  kind: 'PIPELINE'
-  request: Mutation.accessEvent.req.vtl
-  response: Mutation.accessEvent.res.vtl
-  functions:
-    - InvokeAccessEventLambdaDataSource
-- type: Mutation
-  field: fileUpload
-  kind: 'PIPELINE'
-  request: Mutation.fileUpload.req.vtl
-  response: Mutation.fileUpload.res.vtl
-  functions:
-    - InvokeFileUploadLambdaDataSource
-- type: Mutation
-  field: createAttendee
-  kind: 'PIPELINE'
-  request: Mutation.createAttendee.req.vtl
-  response: Mutation.createAttendee.res.vtl
-  functions:
-    - InvokeCreateAttendeeLambdaDataSource
-- type: Mutation
-  field: updateAttendee
-  kind: 'PIPELINE'
-  request: Mutation.updateAttendee.req.vtl
-  response: Mutation.updateAttendee.res.vtl
-  functions:
-    - InvokeUpdateAttendeeLambdaDataSource
-- type: Mutation
-  field: updateCandidate
-  kind: 'PIPELINE'
-  request: Mutation.updateCandidate.req.vtl
-  response: Mutation.updateCandidate.res.vtl
-  functions:
-    - InvokeUpdateCandidateLambdaDataSource
+  - type: Mutation
+    field: createMatchDesiredIdentifier
+    dataSource: MatchDesiredIdentifierDataSource
+    request: Mutation.createMatchDesiredIdentifier.req.vtl
+    response: Mutation.createMatchDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: updateMatchDesiredIdentifier
+    dataSource: MatchDesiredIdentifierDataSource
+    request: Mutation.updateMatchDesiredIdentifier.req.vtl
+    response: Mutation.updateMatchDesiredIdentifier.res.vtl
+  - type: Mutation
+    field: deleteMatchDesiredIdentifier
+    dataSource: MatchDesiredIdentifierDataSource
+    request: Mutation.deleteMatchDesiredIdentifier.req.vtl
+    response: Mutation.deleteMatchDesiredIdentifier.res.vtl
 
-- type: OrganizationMember
-  field: organization
-  dataSource: OrganizationDataSource
-  request: OrganizationMember.organization.req.vtl
-  response: OrganizationMember.organization.res.vtl
-- type: Organization
-  field: events
-  dataSource: EventDataSource
-  request: Organization.events.req.vtl
-  response: Organization.events.res.vtl
-- type: Organization
-  field: members
-  dataSource: OrganizationMemberDataSource
-  request: Organization.members.req.vtl
-  response: Organization.members.res.vtl
-- type: Event
-  field: organization
-  dataSource: OrganizationDataSource
-  request: Event.organization.req.vtl
-  response: Event.organization.res.vtl
-- type: Event
-  field: theme
-  dataSource: ThemeDataSource
-  request: Event.theme.req.vtl
-  response: Event.theme.res.vtl
-- type: Event
-  field: interests
-  dataSource: EventInterestDataSource
-  request: Event.interests.req.vtl
-  response: Event.interests.res.vtl
-- type: Event
-  field: identifiers
-  dataSource: EventIdentifierDataSource
-  request: Event.identifiers.req.vtl
-  response: Event.identifiers.res.vtl
-- type: Event
-  field: attendees
-  dataSource: AttendeeDataSource
-  request: Event.attendees.req.vtl
-  response: Event.attendees.res.vtl
-- type: Event
-  field: reports
-  dataSource: ReportDataSource
-  request: Event.reports.req.vtl
-  response: Event.reports.res.vtl
-- type: EventInterest
-  field: event
-  dataSource: EventDataSource
-  request: EventInterest.event.req.vtl
-  response: EventInterest.event.res.vtl
-- type: EventInterest
-  field: interest
-  dataSource: InterestDataSource
-  request: EventInterest.interest.req.vtl
-  response: EventInterest.interest.res.vtl
-- type: EventIdentifier
-  field: event
-  dataSource: EventDataSource
-  request: EventIdentifier.event.req.vtl
-  response: EventIdentifier.event.res.vtl
-- type: EventIdentifier
-  field: identifier
-  dataSource: IdentifierDataSource
-  request: EventIdentifier.identifier.req.vtl
-  response: EventIdentifier.identifier.res.vtl
-- type: Attendee
-  field: interests
-  dataSource: AttendeeInterestDataSource
-  request: Attendee.interests.req.vtl
-  response: Attendee.interests.res.vtl
-- type: Attendee
-  field: desiredIdentifiers
-  dataSource: AttendeeDesiredIdentifierDataSource
-  request: Attendee.desiredIdentifiers.req.vtl
-  response: Attendee.desiredIdentifiers.res.vtl
-- type: Attendee
-  field: ownIdentifiers
-  dataSource: AttendeeOwnIdentifierDataSource
-  request: Attendee.ownIdentifiers.req.vtl
-  response: Attendee.ownIdentifiers.res.vtl
-- type: Attendee
-  field: event
-  dataSource: EventDataSource
-  request: Attendee.event.req.vtl
-  response: Attendee.event.res.vtl
-- type: AttendeeInterest
-  field: attendee
-  dataSource: AttendeeDataSource
-  request: AttendeeInterest.attendee.req.vtl
-  response: AttendeeInterest.attendee.res.vtl
-- type: AttendeeInterest
-  field: interest
-  dataSource: InterestDataSource
-  request: AttendeeInterest.interest.req.vtl
-  response: AttendeeInterest.interest.res.vtl
-- type: AttendeeDesiredIdentifier
-  field: attendee
-  dataSource: AttendeeDataSource
-  request: AttendeeDesiredIdentifier.attendee.req.vtl
-  response: AttendeeDesiredIdentifier.attendee.res.vtl
-- type: AttendeeDesiredIdentifier
-  field: identifier
-  dataSource: IdentifierDataSource
-  request: AttendeeDesiredIdentifier.identifier.req.vtl
-  response: AttendeeDesiredIdentifier.identifier.res.vtl
-- type: AttendeeOwnIdentifier
-  field: attendee
-  dataSource: AttendeeDataSource
-  request: AttendeeOwnIdentifier.attendee.req.vtl
-  response: AttendeeOwnIdentifier.attendee.res.vtl
-- type: AttendeeOwnIdentifier
-  field: identifier
-  dataSource: IdentifierDataSource
-  request: AttendeeOwnIdentifier.identifier.req.vtl
-  response: AttendeeOwnIdentifier.identifier.res.vtl
-- type: Report
-  field: event
-  dataSource: EventDataSource
-  request: Report.event.req.vtl
-  response: Report.event.res.vtl
-- type: Report
-  field: reportingAttendee
-  dataSource: AttendeeDataSource
-  request: Report.reportingAttendee.req.vtl
-  response: Report.reportingAttendee.res.vtl
-- type: Report
-  field: reportedAttendee
-  dataSource: AttendeeDataSource
-  request: Report.reportedAttendee.req.vtl
-  response: Report.reportedAttendee.res.vtl
-- type: ChatThread
-  field: messages
-  dataSource: MessageDataSource
-  request: ChatThread.messages.req.vtl
-  response: ChatThread.messages.res.vtl
-- type: ChatThread
-  field: match
-  dataSource: MatchDataSource
-  request: ChatThread.match.req.vtl
-  response: ChatThread.match.res.vtl
-- type: Message
-  field: attendee
-  dataSource: AttendeeDataSource
-  request: Message.attendee.req.vtl
-  response: Message.attendee.res.vtl
-- type: Message
-  field: chatThread
-  dataSource: ChatThreadDataSource
-  request: Message.chatThread.req.vtl
-  response: Message.chatThread.res.vtl
-- type: Candidate
-  field: event
-  dataSource: EventDataSource
-  request: Candidate.event.req.vtl
-  response: Candidate.event.res.vtl
-- type: Candidate
-  field: attendee
-  dataSource: AttendeeDataSource
-  request: Candidate.attendee.req.vtl
-  response: Candidate.attendee.res.vtl
-- type: Candidate
-  field: interests
-  dataSource: CandidateInterestDataSource
-  request: Candidate.interests.req.vtl
-  response: Candidate.interests.res.vtl
-- type: Candidate
-  field: desiredIdentifiers
-  dataSource: CandidateDesiredIdentifierDataSource
-  request: Candidate.desiredIdentifiers.req.vtl
-  response: Candidate.desiredIdentifiers.res.vtl
-- type: Match
-  field: event
-  dataSource: EventDataSource
-  request: Match.event.req.vtl
-  response: Match.event.res.vtl
-- type: Match
-  field: attendee1
-  dataSource: AttendeeDataSource
-  request: Match.attendee1.req.vtl
-  response: Match.attendee1.res.vtl
-- type: Match
-  field: attendee2
-  dataSource: AttendeeDataSource
-  request: Match.attendee2.req.vtl
-  response: Match.attendee2.res.vtl
-- type: Match
-  field: interests
-  dataSource: MatchInterestDataSource
-  request: Match.interests.req.vtl
-  response: Match.interests.res.vtl
-- type: Match
-  field: desiredIdentifiers
-  dataSource: MatchDesiredIdentifierDataSource
-  request: Match.desiredIdentifiers.req.vtl
-  response: Match.desiredIdentifiers.res.vtl
-- type: CandidateInterest
-  field: candidate
-  dataSource: CandidateDataSource
-  request: CandidateInterest.candidate.req.vtl
-  response: CandidateInterest.candidate.res.vtl
-- type: CandidateInterest
-  field: interest
-  dataSource: InterestDataSource
-  request: CandidateInterest.interest.req.vtl
-  response: CandidateInterest.interest.res.vtl
-- type: CandidateDesiredIdentifier
-  field: candidate
-  dataSource: CandidateDataSource
-  request: CandidateDesiredIdentifier.candidate.req.vtl
-  response: CandidateDesiredIdentifier.candidate.res.vtl
-- type: CandidateDesiredIdentifier
-  field: desiredIdentifier
-  dataSource: IdentifierDataSource
-  request: CandidateDesiredIdentifier.desiredIdentifier.req.vtl
-  response: CandidateDesiredIdentifier.desiredIdentifier.res.vtl
-- type: MatchInterest
-  field: match
-  dataSource: MatchDataSource
-  request: MatchInterest.match.req.vtl
-  response: MatchInterest.match.res.vtl
-- type: MatchInterest
-  field: interest
-  dataSource: InterestDataSource
-  request: MatchInterest.interest.req.vtl
-  response: MatchInterest.interest.res.vtl
-- type: MatchDesiredIdentifier
-  field: match
-  dataSource: MatchDataSource
-  request: MatchDesiredIdentifier.match.req.vtl
-  response: MatchDesiredIdentifier.match.res.vtl
-- type: MatchDesiredIdentifier
-  field: desiredIdentifier
-  dataSource: IdentifierDataSource
-  request: MatchDesiredIdentifier.desiredIdentifier.req.vtl
-  response: MatchDesiredIdentifier.desiredIdentifier.res.vtl
+
+  - type: Attendee
+    field: attendeeMatches
+    kind: 'PIPELINE'
+    request: Attendee.attendeeMatches.req.vtl
+    response: Attendee.attendeeMatches.res.vtl
+    functions:
+      - InvokeResolveMatchesLambdaDataSource
+  - type: Attendee
+    field: attendeeChats
+    kind: 'PIPELINE'
+    request: Attendee.attendeeChats.req.vtl
+    response: Attendee.attendeeChats.res.vtl
+    functions:
+      - InvokeResolveChatsLambdaDataSource
+  - type: Query
+    field: numberOfUnreadMessages
+    kind: 'PIPELINE'
+    request: Query.numberOfUnreadMessages.req.vtl
+    response: Query.numberOfUnreadMessages.res.vtl
+    functions:
+      - InvokeNumberOfUnreadMessagesLambdaDataSource
+  - type: Mutation
+    field: accessEvent
+    kind: 'PIPELINE'
+    request: Mutation.accessEvent.req.vtl
+    response: Mutation.accessEvent.res.vtl
+    functions:
+      - InvokeAccessEventLambdaDataSource
+  - type: Mutation
+    field: fileUpload
+    kind: 'PIPELINE'
+    request: Mutation.fileUpload.req.vtl
+    response: Mutation.fileUpload.res.vtl
+    functions:
+      - InvokeFileUploadLambdaDataSource
+  - type: Mutation
+    field: createAttendee
+    kind: 'PIPELINE'
+    request: Mutation.createAttendee.req.vtl
+    response: Mutation.createAttendee.res.vtl
+    functions:
+      - InvokeCreateAttendeeLambdaDataSource
+  - type: Mutation
+    field: updateAttendee
+    kind: 'PIPELINE'
+    request: Mutation.updateAttendee.req.vtl
+    response: Mutation.updateAttendee.res.vtl
+    functions:
+      - InvokeUpdateAttendeeLambdaDataSource
+  - type: Mutation
+    field: updateCandidate
+    kind: 'PIPELINE'
+    request: Mutation.updateCandidate.req.vtl
+    response: Mutation.updateCandidate.res.vtl
+    functions:
+      - InvokeUpdateCandidateLambdaDataSource
+
+  - type: OrganizationMember
+    field: organization
+    dataSource: OrganizationDataSource
+    request: OrganizationMember.organization.req.vtl
+    response: OrganizationMember.organization.res.vtl
+  - type: Organization
+    field: events
+    dataSource: EventDataSource
+    request: Organization.events.req.vtl
+    response: Organization.events.res.vtl
+  - type: Organization
+    field: members
+    dataSource: OrganizationMemberDataSource
+    request: Organization.members.req.vtl
+    response: Organization.members.res.vtl
+  - type: Event
+    field: organization
+    dataSource: OrganizationDataSource
+    request: Event.organization.req.vtl
+    response: Event.organization.res.vtl
+  - type: Event
+    field: theme
+    dataSource: ThemeDataSource
+    request: Event.theme.req.vtl
+    response: Event.theme.res.vtl
+  - type: Event
+    field: interests
+    dataSource: EventInterestDataSource
+    request: Event.interests.req.vtl
+    response: Event.interests.res.vtl
+  - type: Event
+    field: identifiers
+    dataSource: EventIdentifierDataSource
+    request: Event.identifiers.req.vtl
+    response: Event.identifiers.res.vtl
+  - type: Event
+    field: attendees
+    dataSource: AttendeeDataSource
+    request: Event.attendees.req.vtl
+    response: Event.attendees.res.vtl
+  - type: Event
+    field: reports
+    dataSource: ReportDataSource
+    request: Event.reports.req.vtl
+    response: Event.reports.res.vtl
+  - type: EventInterest
+    field: event
+    dataSource: EventDataSource
+    request: EventInterest.event.req.vtl
+    response: EventInterest.event.res.vtl
+  - type: EventInterest
+    field: interest
+    dataSource: InterestDataSource
+    request: EventInterest.interest.req.vtl
+    response: EventInterest.interest.res.vtl
+  - type: EventIdentifier
+    field: event
+    dataSource: EventDataSource
+    request: EventIdentifier.event.req.vtl
+    response: EventIdentifier.event.res.vtl
+  - type: EventIdentifier
+    field: identifier
+    dataSource: IdentifierDataSource
+    request: EventIdentifier.identifier.req.vtl
+    response: EventIdentifier.identifier.res.vtl
+  - type: Attendee
+    field: interests
+    dataSource: AttendeeInterestDataSource
+    request: Attendee.interests.req.vtl
+    response: Attendee.interests.res.vtl
+  - type: Attendee
+    field: desiredIdentifiers
+    dataSource: AttendeeDesiredIdentifierDataSource
+    request: Attendee.desiredIdentifiers.req.vtl
+    response: Attendee.desiredIdentifiers.res.vtl
+  - type: Attendee
+    field: ownIdentifiers
+    dataSource: AttendeeOwnIdentifierDataSource
+    request: Attendee.ownIdentifiers.req.vtl
+    response: Attendee.ownIdentifiers.res.vtl
+  - type: Attendee
+    field: event
+    dataSource: EventDataSource
+    request: Attendee.event.req.vtl
+    response: Attendee.event.res.vtl
+  - type: AttendeeInterest
+    field: attendee
+    dataSource: AttendeeDataSource
+    request: AttendeeInterest.attendee.req.vtl
+    response: AttendeeInterest.attendee.res.vtl
+  - type: AttendeeInterest
+    field: interest
+    dataSource: InterestDataSource
+    request: AttendeeInterest.interest.req.vtl
+    response: AttendeeInterest.interest.res.vtl
+  - type: AttendeeDesiredIdentifier
+    field: attendee
+    dataSource: AttendeeDataSource
+    request: AttendeeDesiredIdentifier.attendee.req.vtl
+    response: AttendeeDesiredIdentifier.attendee.res.vtl
+  - type: AttendeeDesiredIdentifier
+    field: identifier
+    dataSource: IdentifierDataSource
+    request: AttendeeDesiredIdentifier.identifier.req.vtl
+    response: AttendeeDesiredIdentifier.identifier.res.vtl
+  - type: AttendeeOwnIdentifier
+    field: attendee
+    dataSource: AttendeeDataSource
+    request: AttendeeOwnIdentifier.attendee.req.vtl
+    response: AttendeeOwnIdentifier.attendee.res.vtl
+  - type: AttendeeOwnIdentifier
+    field: identifier
+    dataSource: IdentifierDataSource
+    request: AttendeeOwnIdentifier.identifier.req.vtl
+    response: AttendeeOwnIdentifier.identifier.res.vtl
+  - type: Report
+    field: event
+    dataSource: EventDataSource
+    request: Report.event.req.vtl
+    response: Report.event.res.vtl
+  - type: Report
+    field: reportingAttendee
+    dataSource: AttendeeDataSource
+    request: Report.reportingAttendee.req.vtl
+    response: Report.reportingAttendee.res.vtl
+  - type: Report
+    field: reportedAttendee
+    dataSource: AttendeeDataSource
+    request: Report.reportedAttendee.req.vtl
+    response: Report.reportedAttendee.res.vtl
+  - type: ChatThread
+    field: messages
+    dataSource: MessageDataSource
+    request: ChatThread.messages.req.vtl
+    response: ChatThread.messages.res.vtl
+  - type: ChatThread
+    field: match
+    dataSource: MatchDataSource
+    request: ChatThread.match.req.vtl
+    response: ChatThread.match.res.vtl
+  - type: Message
+    field: attendee
+    dataSource: AttendeeDataSource
+    request: Message.attendee.req.vtl
+    response: Message.attendee.res.vtl
+  - type: Message
+    field: chatThread
+    dataSource: ChatThreadDataSource
+    request: Message.chatThread.req.vtl
+    response: Message.chatThread.res.vtl
+  - type: Candidate
+    field: event
+    dataSource: EventDataSource
+    request: Candidate.event.req.vtl
+    response: Candidate.event.res.vtl
+  - type: Candidate
+    field: attendee
+    dataSource: AttendeeDataSource
+    request: Candidate.attendee.req.vtl
+    response: Candidate.attendee.res.vtl
+  - type: Candidate
+    field: interests
+    dataSource: CandidateInterestDataSource
+    request: Candidate.interests.req.vtl
+    response: Candidate.interests.res.vtl
+  - type: Candidate
+    field: desiredIdentifiers
+    dataSource: CandidateDesiredIdentifierDataSource
+    request: Candidate.desiredIdentifiers.req.vtl
+    response: Candidate.desiredIdentifiers.res.vtl
+  - type: Match
+    field: event
+    dataSource: EventDataSource
+    request: Match.event.req.vtl
+    response: Match.event.res.vtl
+  - type: Match
+    field: attendee1
+    dataSource: AttendeeDataSource
+    request: Match.attendee1.req.vtl
+    response: Match.attendee1.res.vtl
+  - type: Match
+    field: attendee2
+    dataSource: AttendeeDataSource
+    request: Match.attendee2.req.vtl
+    response: Match.attendee2.res.vtl
+  - type: Match
+    field: interests
+    dataSource: MatchInterestDataSource
+    request: Match.interests.req.vtl
+    response: Match.interests.res.vtl
+  - type: Match
+    field: desiredIdentifiers
+    dataSource: MatchDesiredIdentifierDataSource
+    request: Match.desiredIdentifiers.req.vtl
+    response: Match.desiredIdentifiers.res.vtl
+  - type: CandidateInterest
+    field: candidate
+    dataSource: CandidateDataSource
+    request: CandidateInterest.candidate.req.vtl
+    response: CandidateInterest.candidate.res.vtl
+  - type: CandidateInterest
+    field: interest
+    dataSource: InterestDataSource
+    request: CandidateInterest.interest.req.vtl
+    response: CandidateInterest.interest.res.vtl
+  - type: CandidateDesiredIdentifier
+    field: candidate
+    dataSource: CandidateDataSource
+    request: CandidateDesiredIdentifier.candidate.req.vtl
+    response: CandidateDesiredIdentifier.candidate.res.vtl
+  - type: CandidateDesiredIdentifier
+    field: desiredIdentifier
+    dataSource: IdentifierDataSource
+    request: CandidateDesiredIdentifier.desiredIdentifier.req.vtl
+    response: CandidateDesiredIdentifier.desiredIdentifier.res.vtl
+  - type: MatchInterest
+    field: match
+    dataSource: MatchDataSource
+    request: MatchInterest.match.req.vtl
+    response: MatchInterest.match.res.vtl
+  - type: MatchInterest
+    field: interest
+    dataSource: InterestDataSource
+    request: MatchInterest.interest.req.vtl
+    response: MatchInterest.interest.res.vtl
+  - type: MatchDesiredIdentifier
+    field: match
+    dataSource: MatchDataSource
+    request: MatchDesiredIdentifier.match.req.vtl
+    response: MatchDesiredIdentifier.match.res.vtl
+  - type: MatchDesiredIdentifier
+    field: desiredIdentifier
+    dataSource: IdentifierDataSource
+    request: MatchDesiredIdentifier.desiredIdentifier.req.vtl
+    response: MatchDesiredIdentifier.desiredIdentifier.res.vtl

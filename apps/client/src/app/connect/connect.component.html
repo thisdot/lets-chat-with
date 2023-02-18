@@ -17,14 +17,16 @@
             <cm-connect-card [attendee]="candidate.attendee"></cm-connect-card>
           </div>
         </ng-container>
-        <cm-new-connection
-          *ngIf="newPairMatch$ | async as newPairMatch"
-          [matchAttendee]="newPairMatch.attendee"
-          [hidden]="isNewConnectionClosed"
-          (chat)="onNewConnectionChat(newPairMatch.id)"
-          (dismiss)="onNewConnectionClose()"
-        >
-        </cm-new-connection>
+        <ng-container *ngrxLet="(newPairMatch$ | async) as newPairMatch">
+          <cm-new-connection
+            *ngIf="newPairMatch && newPairMatch[0]"
+            [matchAttendee]="newPairMatch[0].attendee"
+            [hidden]="isNewConnectionClosed"
+            (chat)="onNewConnectionChat(newPairMatch[0], newPairMatch[1])"
+            (dismiss)="onNewConnectionClose(newPairMatch[0], newPairMatch[1])"
+          >
+          </cm-new-connection>
+        </ng-container>
       </div>
       <div class="cm-connect__actions">
         <div class="button-container">
@@ -37,7 +39,7 @@
               !(
                 (lastActionInHistory?.type === CandidateType.LIKE ||
                   lastActionInHistory?.type === CandidateType.DISLIKE) &&
-                (newPairMatch$ | async)?.attendee?.id !==
+                (newPairMatch$ | async)[0]?.attendee?.id !==
                   lastActionInHistory?.candidate?.attendee?.id
               )
             "
@@ -99,14 +101,16 @@
       "
       class="cm-connect__no-results"
     >
-      <cm-new-connection
-        *ngIf="newPairMatch$ | async as newPairMatch"
-        [matchAttendee]="newPairMatch.attendee"
-        [hidden]="isNewConnectionClosed"
-        (chat)="onNewConnectionChat(newPairMatch.id)"
-        (dismiss)="onNewConnectionClose()"
-      >
-      </cm-new-connection>
+      <ng-container *ngrxLet="(newPairMatch$ | async) as newPairMatch">
+        <cm-new-connection
+          *ngIf="newPairMatch && newPairMatch[0]"
+          [matchAttendee]="newPairMatch[0].attendee"
+          [hidden]="isNewConnectionClosed"
+          (chat)="onNewConnectionChat(newPairMatch[0], newPairMatch[1])"
+          (dismiss)="onNewConnectionClose(newPairMatch[0], newPairMatch[1])"
+        >
+        </cm-new-connection>
+      </ng-container>
       <img
         class="cm-connect__no-results__image"
         src="assets/connect-no-results.svg"
@@ -120,7 +124,7 @@
   </ng-container>
 </ng-container>
 
-<div *ngIf="action === 'confirmLike' && newMatch$ | async as newMatch">
+<div *ngIf="action === 'confirmLike' && (newMatch$ | async) as newMatch">
   <cm-you-are-chatters-card
     [match]="newMatch"
     (chat)="onNewConnectionChat(newMatch.id)"

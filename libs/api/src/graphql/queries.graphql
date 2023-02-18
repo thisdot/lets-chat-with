@@ -316,6 +316,8 @@ query GetAttendee($id: ID!) {
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     attendeeChats {
@@ -504,6 +506,8 @@ query GetChatThread($id: ID!) {
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     createdAt
@@ -682,6 +686,8 @@ query GetMatch($id: ID!) {
     desiredIdentifiers {
       nextToken
     }
+    viewedByAttendee1
+    viewedByAttendee2
     updatedAt
   }
 }
@@ -698,6 +704,8 @@ query ListMatches(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     nextToken

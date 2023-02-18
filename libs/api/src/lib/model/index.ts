@@ -117,6 +117,8 @@ export interface Match {
   createdAt: string;
   interests: MatchInterest[];
   desiredIdentifiers: MatchDesiredIdentifier[];
+  viewedByAttendee1?: boolean;
+  viewedByAttendee2?: boolean;
 }
 
 export interface MatchDetails {
