@@ -22,7 +22,6 @@
 
 form {
   width: 100%;
-  padding-bottom: 8rem;
 
   @include media_breakpoint_up(md) {
     width: var(--profile-width-desktop);
@@ -52,7 +51,6 @@ form {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    position: fixed;
     width: 100%;
     left: 0;
     right: 0;
@@ -71,6 +69,8 @@ form {
     }
 
     button {
+      width: 100%;
+
       &:focus {
         outline: 1px solid rgb(229, 152, 0);
       }
