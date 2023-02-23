@@ -28,3 +28,7 @@ export const selectCandidates = createSelector(
 export const selectCurrentCandidate = createSelector(selectCandidates, (candidates) =>
   candidates.find((candidate) => candidate.candidateType === CandidateType.UNDECIDED)
 );
+
+export const selectNoCandidates = createSelector(selectCandidates, (candidates) =>
+  Boolean(candidates.length)
+);

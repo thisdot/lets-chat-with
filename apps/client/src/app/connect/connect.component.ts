@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -5,19 +6,18 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { map, pluck, take } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
 import { Candidate, CandidateType, Identifier, Interest } from '@conf-match/api';
-import { CmBreakpoints, ModalService, Storage } from '@conf-match/shared';
 import {
   ConnectActions,
   ConnectSelectors,
 } from '@conf-match/client/conference/connect/data-access';
-import { OnboardingComponent } from './onboarding/onboarding.component';
 import { MatchesSelectors } from '@conf-match/client/conference/matches/data-access';
 import { MatchesActions } from '@conf-match/client/conference/messages/data-access';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { CmBreakpoints, ModalService, Storage } from '@conf-match/shared';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { delay, map, pluck, take } from 'rxjs/operators';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 // TODO: Decide where that key will be kept
 const OnboardingStorageKey = 'cm-onboarding-completed';
@@ -35,8 +35,11 @@ interface ActionOnCandidate {
 })
 export class ConnectComponent implements OnInit, OnDestroy {
   private isMobile$ = this.breakpointObserver.observe(CmBreakpoints.MD.DOWN).pipe(pluck('matches'));
-  currentCandidate$: Observable<Candidate> = this.store.select(
+  readonly currentCandidate$: Observable<Candidate> = this.store.select(
     ConnectSelectors.selectCurrentCandidate
+  );
+  readonly noMoreCandidates$: Observable<Boolean> = this.store.select(
+    ConnectSelectors.selectNoCandidates
   );
   CandidateType = CandidateType;
   candidates$: Observable<Candidate[]> = this.store

@@ -14,7 +14,7 @@
         "heading": "Welcome to Let's Chat With!",
         "text": "The best way to get started is to join a conference. You can scan a QR Code or use the conference URL provided by the organizers using the button below. Check your email or the check-in desk for more information."
       },
-      "noResults": "No Conferences yet, loading..."
+      "noResults": "Loading Conferences..."
     },
     "share": {
       "modal": {

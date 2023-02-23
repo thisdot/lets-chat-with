@@ -27,6 +27,7 @@ import { ReadQrInProgressComponent } from './qr-scan/read-qr-in-progress.compone
 import { ShareConferenceModalComponent } from './share-conference-modal/share-conference-modal.component';
 import { ConferenceResolversModule } from './conference-resolvers/conference-resolvers.module';
 import { ClientSharedUiInputModule } from '@conf-match/client/shared/ui-input';
+import { ContentLoaderModule } from '@ngneat/content-loader';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ClientSharedUiInputModule } from '@conf-match/client/shared/ui-input';
     ZXingScannerModule,
     ConferenceResolversModule,
     ClientSharedUiInputModule,
+    ContentLoaderModule,
   ],
   providers: [
     {
