@@ -39,8 +39,9 @@
   }
 
   .connections__content {
-    margin-top: 2rem;
-    padding: 1rem;
+    padding: 3rem 1rem 1rem 1rem;
     width: 100%;
+    overflow: auto;
+    height: calc(100vh - 5.5rem);
   }
 }
