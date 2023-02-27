@@ -90,7 +90,7 @@
     ></cm-chatting-reasons-card>
   </ng-container>
 
-  <ng-container *ngIf="!noMoreCandidates$ | async">
+  <ng-container *ngIf="noMoreCandidates$ | async">
     <div
       *ngIf="
         (newMatch$ | async) === null ||

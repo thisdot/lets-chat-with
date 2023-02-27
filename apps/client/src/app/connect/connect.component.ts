@@ -16,7 +16,7 @@ import { MatchesActions } from '@conf-match/client/conference/messages/data-acce
 import { CmBreakpoints, ModalService, Storage } from '@conf-match/shared';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { delay, map, pluck, take } from 'rxjs/operators';
+import { map, pluck, take } from 'rxjs/operators';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 
 // TODO: Decide where that key will be kept
