@@ -57,6 +57,7 @@ import { NewConnectionComponent } from './new-connection/new-connection.componen
 import { ClientSharedUiInputModule } from '@conf-match/client/shared/ui-input';
 import { ChattingReasonsCardComponent } from './chatting-reasons/chatting-reasons-card.component';
 import { YouAreChattersCardComponent } from './you-are-chatters/you-are-chatters-card.component';
+import { StringSeparatorPipe } from './pipes/string-separator.pipe';
 
 @NgModule({
   imports: [
@@ -118,6 +119,7 @@ import { YouAreChattersCardComponent } from './you-are-chatters/you-are-chatters
     SpinnerComponent,
     ChattingReasonsCardComponent,
     YouAreChattersCardComponent,
+    StringSeparatorPipe,
   ],
   exports: [
     ActionButtonComponent,
@@ -163,6 +165,7 @@ import { YouAreChattersCardComponent } from './you-are-chatters/you-are-chatters
     HamburgerMenuModule,
     ChattingReasonsCardComponent,
     YouAreChattersCardComponent,
+    StringSeparatorPipe,
   ],
   providers: [ModalService],
 })
