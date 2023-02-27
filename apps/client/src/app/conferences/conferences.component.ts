@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ModalService } from '@conf-match/shared';
-import { JoinConferenceModalComponent } from './join-conference-modal/join-conference-modal.component';
-import { filter, take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ModalService } from '@conf-match/shared';
+import { delay, filter, take } from 'rxjs/operators';
+import { JoinConferenceModalComponent } from './join-conference-modal/join-conference-modal.component';
 
-import { Store } from '@ngrx/store';
 import { Conference, ConferencesActions, ConferencesSelectors } from '@conf-match/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'cm-conferences',
@@ -13,7 +13,12 @@ import { Conference, ConferencesActions, ConferencesSelectors } from '@conf-matc
   styleUrls: ['./conferences.component.scss'],
 })
 export class ConferencesComponent {
-  readonly conferences$ = this._store.select(ConferencesSelectors.selectAttendeeConferences);
+  readonly conferences$ = this._store
+    .select(ConferencesSelectors.selectAttendeeConferences)
+    .pipe(delay(3000));
+  readonly conferencesLoaded$ = this._store.select(
+    ConferencesSelectors.selectAttendeeConferencesLoaded
+  );
   stack: any[] = [];
 
   constructor(

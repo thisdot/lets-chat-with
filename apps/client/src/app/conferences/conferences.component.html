@@ -1,7 +1,7 @@
 <ng-container *transloco="let t; read: 'conferences.conferences'">
   <div class="cm-conferences">
     <ng-container *ngIf="conferences$ | async as conferences; else noResults">
-      <ng-container *ngIf="conferences.length > 0; else noConferences">
+      <ng-container *ngIf="conferencesLoaded$ | async">
         <ul>
           <li
             *ngFor="let conference of conferences; trackBy: trackById"
@@ -15,7 +15,7 @@
           </li>
         </ul>
       </ng-container>
-      <ng-template #noConferences>
+      <ng-container *ngIf="!(conferencesLoaded$ | async)">
         <div class="cm-conferences__empty">
           <div class="cm-conferences__empty__img-container">
             <img src="/assets/conferences-empty-state.svg" alt="" />
@@ -25,7 +25,7 @@
             {{ t('empty.text') }}
           </p>
         </div>
-      </ng-template>
+      </ng-container>
       <div class="cm-conferences__join">
         <button data-test-id="join conference" cm-button [floating]="true" (click)="openModal()">
           {{ t('joinConference') }}
