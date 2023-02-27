@@ -11,6 +11,10 @@ export const selectAttendeeConferences = createSelector(
   (conferences) => conferences?.attendeeConferences
 );
 
+export const selectAttendeeConferencesLoaded = createSelector(selectConferences, (conferences) =>
+  Boolean(conferences?.attendeeConferences.length)
+);
+
 export const selectAttendeeConferencesToSelect = createSelector(
   selectAttendeeConferences,
   selectConference,

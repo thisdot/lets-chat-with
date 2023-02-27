@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; read: 'connect'">
-  <ng-container *ngIf="currentCandidate$ | async as currentCandidate; else noResults">
+  <ng-container *ngIf="currentCandidate$ | async as currentCandidate">
     <ng-container
       *ngIf="
         action !== 'like' &&
@@ -90,7 +90,7 @@
     ></cm-chatting-reasons-card>
   </ng-container>
 
-  <ng-template #noResults>
+  <ng-container *ngIf="noMoreCandidates$ | async">
     <div
       *ngIf="
         (newMatch$ | async) === null ||
@@ -117,7 +117,7 @@
         {{ t('empty.description') }}
       </p>
     </div>
-  </ng-template>
+  </ng-container>
 </ng-container>
 
 <div *ngIf="action === 'confirmLike' && newMatch$ | async as newMatch">
