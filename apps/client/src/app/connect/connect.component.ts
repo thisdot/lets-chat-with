@@ -17,7 +17,7 @@ import { ModalService, Storage } from '@conf-match/shared';
 import { Store } from '@ngrx/store';
 import { markMatchAsRead } from 'libs/client/conference/matches/data-access/src/lib/state/actions/matches.actions';
 import { combineLatest, Observable, Subscription } from 'rxjs';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 
 // TODO: Decide where that key will be kept
@@ -54,7 +54,6 @@ export class ConnectComponent implements OnInit, OnDestroy {
     this.store.select(MatchesSelectors.selectNewPairMatch),
     this.store.select(selectAttendee),
   ]).pipe(
-    tap((x) => console.log(x)),
     filter(
       ([pairMatch, attendee]) =>
         !(
