@@ -56,6 +56,8 @@ export const matchFragment = gql`
       }
     }
     createdAt
+    viewedByAttendee1
+    viewedByAttendee2
   }
 `;
 
@@ -122,6 +124,8 @@ export const matchDetailsFragment = gql`
       }
     }
     createdAt
+    viewedByAttendee1
+    viewedByAttendee2
   }
 `;
 
@@ -153,6 +157,8 @@ export interface MatchFragment {
   createdAt: string;
   interests?: { items: MatchInterestFragment[] };
   desiredIdentifiers?: { items: MatchDesiredIdentifierFragment[] };
+  viewedByAttendee1?: boolean;
+  viewedByAttendee2?: boolean;
 }
 
 export interface MatchAttendeeDetailsFragment {
@@ -177,4 +183,5 @@ export interface MatchDetailsFragment {
   createdAt: string;
   interests?: InterestModel[];
   desiredIdentifiers?: IdentifierModel[];
+  viewedBy?: string[];
 }

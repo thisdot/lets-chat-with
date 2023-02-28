@@ -566,7 +566,7 @@ type Candidate
 type Match
   @model(
     queries: { list: "listMatches", get: "getMatch" }
-    mutations: { delete: "deleteMatch" }
+    mutations: { update: "updateMatch", delete: "deleteMatch" }
     subscriptions: null
   )
   @key(fields: ["attendee1Id", "attendee2Id"], name: "byAttendeesIds")
@@ -593,6 +593,8 @@ type Match
   attendee2: Attendee @connection(fields: ["attendee2Id"])
   interests: [MatchInterest] @connection(keyName: "byMatch", fields: ["id"])
   desiredIdentifiers: [MatchDesiredIdentifier] @connection(keyName: "byMatch", fields: ["id"])
+  viewedByAttendee1: Boolean
+  viewedByAttendee2: Boolean
 }
 
 type CandidateInterest

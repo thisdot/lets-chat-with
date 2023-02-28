@@ -10,4 +10,5 @@ export * from './update-user';
 export * from './update-report';
 export * from './file-upload';
 export * from './update-chat-thread';
+export * from './update-match';
 export * from './delete-match';

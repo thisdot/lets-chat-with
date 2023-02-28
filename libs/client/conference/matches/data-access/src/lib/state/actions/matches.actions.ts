@@ -21,3 +21,12 @@ export const matchCreatedFromPairLike = createAction(
   '[Matches] Match created from pair like',
   props<{ newPairMatch: Match }>()
 );
+
+export const markMatchAsRead = createAction(
+  '[Matches] Mark match as read',
+  props<{ matchId: string; attendeeId: string; attendee1Id: string; attendee2Id: string }>()
+);
+
+export const markMatchAsReadSuccess = createAction('[Matches] Mark match as read success');
+
+export const markMatchAsReadFailed = createAction('[Matches] Mark match as read failed');

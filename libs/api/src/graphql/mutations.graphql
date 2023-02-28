@@ -37,6 +37,8 @@ mutation CreateAttendee($input: CreateAttendeeInput!) {
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     attendeeChats {
@@ -108,6 +110,8 @@ mutation UpdateAttendee($input: UpdateAttendeeInput!) {
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     attendeeChats {
@@ -1520,6 +1524,8 @@ mutation UpdateChatThread(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     createdAt
@@ -1565,6 +1571,87 @@ mutation CreateMessage(
       createdAt
       updatedAt
     }
+    updatedAt
+  }
+}
+mutation UpdateMatch(
+  $input: UpdateMatchInput!
+  $condition: ModelMatchConditionInput
+) {
+  updateMatch(input: $input, condition: $condition) {
+    id
+    owners
+    attendee1Id
+    attendee2Id
+    eventId
+    event {
+      id
+      organizationId
+      owners
+      readers
+      name
+      status
+      size
+      logoUrl
+      qrImageUrl
+      description
+      registrationCode
+      letsChatWithUrl
+      website
+      facebook
+      twitter
+      maxInterests
+      maxIdentifiers
+      totalAmountDue
+      paymentStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    attendee1 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    attendee2 {
+      id
+      owner
+      userId
+      fullName
+      avatarUrl
+      title
+      company
+      pronouns
+      bio
+      newsletterSubscribed
+      linkedin
+      twitter
+      facebook
+      eventId
+      createdAt
+      updatedAt
+    }
+    interests {
+      nextToken
+    }
+    desiredIdentifiers {
+      nextToken
+    }
+    viewedByAttendee1
+    viewedByAttendee2
     updatedAt
   }
 }
@@ -1644,6 +1731,8 @@ mutation DeleteMatch(
     desiredIdentifiers {
       nextToken
     }
+    viewedByAttendee1
+    viewedByAttendee2
     updatedAt
   }
 }
@@ -1854,6 +1943,8 @@ mutation CreateMatchInterest(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     interest {
@@ -1885,6 +1976,8 @@ mutation UpdateMatchInterest(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     interest {
@@ -1916,6 +2009,8 @@ mutation DeleteMatchInterest(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     interest {
@@ -1947,6 +2042,8 @@ mutation CreateMatchDesiredIdentifier(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     desiredIdentifier {
@@ -1977,6 +2074,8 @@ mutation UpdateMatchDesiredIdentifier(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     desiredIdentifier {
@@ -2007,6 +2106,8 @@ mutation DeleteMatchDesiredIdentifier(
       attendee2Id
       eventId
       createdAt
+      viewedByAttendee1
+      viewedByAttendee2
       updatedAt
     }
     desiredIdentifier {
