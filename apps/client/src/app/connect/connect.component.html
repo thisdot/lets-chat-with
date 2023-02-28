@@ -17,7 +17,7 @@
             <cm-connect-card [attendee]="candidate.attendee"></cm-connect-card>
           </div>
         </ng-container>
-        <ng-container *ngrxLet="(newPairMatch$ | async) as newPairMatch">
+        <ng-container *ngrxLet="newPairMatch$ | async as newPairMatch">
           <cm-new-connection
             *ngIf="newPairMatch && newPairMatch[0]"
             [matchAttendee]="newPairMatch[0].attendee"
@@ -31,6 +31,7 @@
       <div class="cm-connect__actions">
         <div class="button-container">
           <button
+            *ngrxLet="newPairMatch$ | async as newPairMatch"
             class="cm-connect__actions__back"
             cm-action-button
             [attr.aria-label]="t('button.undo')"
@@ -39,7 +40,7 @@
               !(
                 (lastActionInHistory?.type === CandidateType.LIKE ||
                   lastActionInHistory?.type === CandidateType.DISLIKE) &&
-                (newPairMatch$ | async)[0]?.attendee?.id !==
+                (newPairMatch && newPairMatch[0])?.attendee?.id !==
                   lastActionInHistory?.candidate?.attendee?.id
               )
             "
@@ -101,7 +102,7 @@
       "
       class="cm-connect__no-results"
     >
-      <ng-container *ngrxLet="(newPairMatch$ | async) as newPairMatch">
+      <ng-container *ngrxLet="newPairMatch$ | async as newPairMatch">
         <cm-new-connection
           *ngIf="newPairMatch && newPairMatch[0]"
           [matchAttendee]="newPairMatch[0].attendee"
