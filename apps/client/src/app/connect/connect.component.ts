@@ -1,4 +1,3 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -6,17 +5,21 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Candidate, CandidateType, Identifier, Interest } from '@conf-match/api';
+import { Attendee, Candidate, CandidateType, Identifier, Interest, Match } from '@conf-match/api';
 import {
   ConnectActions,
   ConnectSelectors,
 } from '@conf-match/client/conference/connect/data-access';
-import { MatchesSelectors } from '@conf-match/client/conference/matches/data-access';
-import { MatchesActions } from '@conf-match/client/conference/messages/data-access';
-import { CmBreakpoints, ModalService, Storage } from '@conf-match/shared';
+import {
+  MatchesSelectors,
+  MatchesActions,
+} from '@conf-match/client/conference/matches/data-access';
+import { MatchesActions as MatchesMessagesActions } from '@conf-match/client/conference/messages/data-access';
+import { selectAttendee } from '@conf-match/core';
+import { ModalService, Storage } from '@conf-match/shared';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { map, pluck, take } from 'rxjs/operators';
+import { combineLatest, Observable, Subscription } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 
 // TODO: Decide where that key will be kept
@@ -34,7 +37,6 @@ interface ActionOnCandidate {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConnectComponent implements OnInit, OnDestroy {
-  private isMobile$ = this.breakpointObserver.observe(CmBreakpoints.MD.DOWN).pipe(pluck('matches'));
   readonly currentCandidate$: Observable<Candidate> = this.store.select(
     ConnectSelectors.selectCurrentCandidate
   );
@@ -50,15 +52,25 @@ export class ConnectComponent implements OnInit, OnDestroy {
   lastActionInHistory: ActionOnCandidate | null = null;
   isNewConnectionClosed = false;
   newMatch$ = this.store.select(MatchesSelectors.selectNewMatch);
-  newPairMatch$ = this.store.select(MatchesSelectors.selectNewPairMatch);
+  newPairMatch$ = combineLatest([
+    this.store.select(MatchesSelectors.selectNewPairMatch),
+    this.store.select(selectAttendee),
+  ]).pipe(
+    filter(
+      ([pairMatch, attendee]) =>
+        !(
+          (pairMatch?.viewedByAttendee1 && pairMatch?.attendee1Id === attendee.id) ||
+          (pairMatch?.viewedByAttendee2 && pairMatch?.attendee2Id === attendee.id)
+        )
+    )
+  );
   private subscription: Subscription;
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private store: Store<any>,
     private storage: Storage,
-    private modalService: ModalService,
-    private breakpointObserver: BreakpointObserver
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -85,12 +97,28 @@ export class ConnectComponent implements OnInit, OnDestroy {
     this.lastActionInHistory = action;
   }
 
-  onNewConnectionClose() {
+  onNewConnectionClose(match: Match, attendee: Attendee) {
     this.isNewConnectionClosed = true;
+    this.store.dispatch(
+      MatchesActions.markMatchAsRead({
+        matchId: match.id,
+        attendeeId: attendee.id,
+        attendee1Id: match.attendee1Id,
+        attendee2Id: match.attendee2Id,
+      })
+    );
   }
 
-  onNewConnectionChat(matchId: string) {
-    this.store.dispatch(MatchesActions.startChatConversation({ matchId }));
+  onNewConnectionChat(match: Match, attendee: Attendee) {
+    this.store.dispatch(MatchesMessagesActions.startChatConversation({ matchId: match.id }));
+    this.store.dispatch(
+      MatchesActions.markMatchAsRead({
+        matchId: match.id,
+        attendeeId: attendee.id,
+        attendee1Id: match.attendee1Id,
+        attendee2Id: match.attendee2Id,
+      })
+    );
   }
 
   undo() {

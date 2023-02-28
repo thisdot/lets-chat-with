@@ -9,8 +9,8 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 import { SharedUiIconsModule } from '@conf-match/shared/ui-icons';
 import { SharedUiButtonsModule } from '@conf-match/shared/ui-buttons';
 import { RouteTag } from '@conf-match/shared/route-tags';
-
 import { ClientConferenceConnectDataAccessModule } from '@conf-match/client/conference/connect/data-access';
+import { LetModule } from '@ngrx/component';
 
 const routes: Routes = [
   {
@@ -27,6 +27,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    LetModule,
     ClientConferenceConnectDataAccessModule,
     CmSharedModule,
     AppSharedModule,
