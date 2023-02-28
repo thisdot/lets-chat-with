@@ -5,22 +5,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StringSeparatorPipe implements PipeTransform {
   transform(stringValues: string[]): string {
-    let finalString = '';
-
     if (stringValues.length === 0) {
-      return finalString;
+      return '';
     }
 
-    const firstValue = stringValues[0];
-    const secondValue = stringValues[1];
+    const [firstValue, secondValue] = stringValues;
 
     if (firstValue && secondValue) {
-      finalString = `${firstValue}, ${secondValue}`;
+      return `${firstValue}, ${secondValue}`;
     } else if (firstValue && !secondValue) {
-      finalString = firstValue;
+      return firstValue;
     } else if (!firstValue && secondValue) {
-      finalString = secondValue;
+      return secondValue;
     }
-    return finalString;
   }
 }

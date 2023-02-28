@@ -22,8 +22,14 @@ describe('StringSeparatorPipe', () => {
     expect(result).toEqual('SE2, ThisDot');
   });
 
-  it('should not show a comma if only one value is provided', () => {
-    const entry = ['ThisDot'];
+  it('should not show a comma if only the first value is provided', () => {
+    const entry = ['SE2', ''];
+    const result = pipe.transform(entry);
+    expect(result).toEqual('SE2');
+  });
+
+  it('should not show a comma if only the second value is provided', () => {
+    const entry = ['', 'ThisDot'];
     const result = pipe.transform(entry);
     expect(result).toEqual('ThisDot');
   });
