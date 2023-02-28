@@ -7,7 +7,7 @@
         {{ match.attendee.fullName }}
       </div>
       <div class="cm-you-are-chatters-card__attendee__description">
-        {{ match.attendee.title }}, {{ match.attendee.company }}
+        {{ [match.attendee.title, match.attendee.company] | stringSeparator }}
       </div>
     </div>
   </div>
