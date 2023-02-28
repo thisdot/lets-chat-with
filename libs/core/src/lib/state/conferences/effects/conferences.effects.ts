@@ -66,7 +66,7 @@ export class ConferencesEffects {
 
   private convertEventsIntoConferences(events: EventModel[]): Conference[] {
     return events.map(
-      ({ id, name, description, logoUrl, letsChatWithUrl, qrImageUrl, matches }) => {
+      ({ id, name, description, logoUrl, letsChatWithUrl, qrImageUrl, matches, chats }) => {
         return {
           id,
           letsChatWithUrl,
@@ -77,6 +77,7 @@ export class ConferencesEffects {
           logoUrl,
           qrImageUrl,
           matches: matches.length,
+          chats: chats.length,
         } as Conference;
       }
     );
