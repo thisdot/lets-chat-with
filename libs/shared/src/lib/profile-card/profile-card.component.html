@@ -16,7 +16,7 @@
           {{ attendee.fullName }}
         </div>
         <div class="cm-profile-card__content__description">
-          {{ attendee.title }}
+          {{ [attendee.title, attendee.company] | stringSeparator }}
         </div>
         <div class="cm-profile-card__content__pronouns">
           {{ attendee.pronouns }}
