@@ -10,12 +10,14 @@ import {
   ConnectActions,
   ConnectSelectors,
 } from '@conf-match/client/conference/connect/data-access';
-import { MatchesSelectors } from '@conf-match/client/conference/matches/data-access';
-import { MatchesActions } from '@conf-match/client/conference/messages/data-access';
+import {
+  MatchesSelectors,
+  MatchesActions,
+} from '@conf-match/client/conference/matches/data-access';
+import { MatchesActions as MatchesMessagesActions } from '@conf-match/client/conference/messages/data-access';
 import { selectAttendee } from '@conf-match/core';
 import { ModalService, Storage } from '@conf-match/shared';
 import { Store } from '@ngrx/store';
-import { markMatchAsRead } from 'libs/client/conference/matches/data-access/src/lib/state/actions/matches.actions';
 import { combineLatest, Observable, Subscription } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { OnboardingComponent } from './onboarding/onboarding.component';
@@ -98,7 +100,7 @@ export class ConnectComponent implements OnInit, OnDestroy {
   onNewConnectionClose(match: Match, attendee: Attendee) {
     this.isNewConnectionClosed = true;
     this.store.dispatch(
-      markMatchAsRead({
+      MatchesActions.markMatchAsRead({
         matchId: match.id,
         attendeeId: attendee.id,
         attendee1Id: match.attendee1Id,
@@ -108,9 +110,9 @@ export class ConnectComponent implements OnInit, OnDestroy {
   }
 
   onNewConnectionChat(match: Match, attendee: Attendee) {
-    this.store.dispatch(MatchesActions.startChatConversation({ matchId: match.id }));
+    this.store.dispatch(MatchesMessagesActions.startChatConversation({ matchId: match.id }));
     this.store.dispatch(
-      markMatchAsRead({
+      MatchesActions.markMatchAsRead({
         matchId: match.id,
         attendeeId: attendee.id,
         attendee1Id: match.attendee1Id,

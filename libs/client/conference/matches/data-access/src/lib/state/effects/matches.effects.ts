@@ -235,7 +235,6 @@ export class MatchesEffects {
         return of(null);
       }
       input.viewedByAttendee2 = true;
-      console.log('markMatchAsRead$:::::::::', input);
     } else {
       return throwError(
         () =>
