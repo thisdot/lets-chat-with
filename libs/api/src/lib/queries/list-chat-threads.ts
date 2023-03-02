@@ -13,6 +13,7 @@ export const LIST_CHAT_THREADS_QUERY = gql`
         messages(limit: 10, sortDirection: DESC) {
           items {
             content
+            createdAt
           }
           nextToken
         }
