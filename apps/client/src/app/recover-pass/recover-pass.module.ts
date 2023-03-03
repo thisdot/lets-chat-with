@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ClientSharedUiTextFieldWrapperModule } from '@conf-match/client/shared/ui-text-field-wrapper';
 import { SharedModule as CmSharedModule } from '@conf-match/shared';
 import { SharedModule as AppSharedModule } from '../shared/shared.module';
 
-import { RecoverPassFlowComponent } from './recover-pass-flow/recover-pass-flow.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClientSharedUiInputModule } from '@conf-match/client/shared/ui-input';
+import { SharedUiButtonsModule } from '@conf-match/shared/ui-buttons';
+import { TranslocoModule } from '@ngneat/transloco';
 import { CurrentEmailComponent } from './recover-pass-flow/current-email/current-email.component';
 import { NewPasswordComponent } from './recover-pass-flow/new-password/new-password.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SecurityCodeGuard } from './security-code.guard';
-import { SharedUiButtonsModule } from '@conf-match/shared/ui-buttons';
+import { RecoverPassFlowComponent } from './recover-pass-flow/recover-pass-flow.component';
 import { ResetCodeComponent } from './recover-pass-flow/reset-code/reset-code.component';
-import { TranslocoModule } from '@ngneat/transloco';
+import { SecurityCodeGuard } from './security-code.guard';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     CommonModule,
     CmSharedModule,
     ClientSharedUiTextFieldWrapperModule,
+    ClientSharedUiInputModule,
     AppSharedModule,
     FormsModule,
     ReactiveFormsModule,
