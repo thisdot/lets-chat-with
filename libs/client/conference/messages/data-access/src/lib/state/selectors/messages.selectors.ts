@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { messageFeatureKey, MessagesState } from '../reducers';
-import { ChatThread, IdentifierModel, InterestModel } from '@conf-match/api';
+import { ChatThread, IdentifierModel, InterestModel, Message } from '@conf-match/api';
 import { MatchesSelectors } from '@conf-match/client/conference/matches/data-access';
 import { MatchAttendeeNumber } from '@conf-match/core';
 
@@ -40,6 +40,12 @@ export const selectFilteredChatThreadList = createSelector(
   selectChatThreadListTerm,
   (chatThreads, getMatchInfo, term) =>
     chatThreads
+      ?.map((chatThread) => {
+        const lastMessage = chatThread.messages.items.find(
+          (message: Message) => message.createdAt === chatThread.lastMessageAt
+        );
+        return { ...chatThread, messages: { ...chatThread.messages, items: [lastMessage] } };
+      })
       ?.filter(
         (chatThread: ChatThread & { matchId: string }) =>
           getMatchInfo(chatThread.matchId)
