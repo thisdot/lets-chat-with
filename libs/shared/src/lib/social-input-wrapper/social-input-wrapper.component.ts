@@ -1,13 +1,17 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
-  Component,
-  Input,
-  ContentChild,
   AfterContentInit,
+  Component,
+  ContentChild,
   HostBinding,
+  Input,
   Renderer2,
 } from '@angular/core';
-import { IconName } from '@conf-match/shared/ui-icons';
 import { InputDirective } from '@conf-match/client/shared/ui-input';
+import { IconName } from '@conf-match/shared/ui-icons';
+import { getSocialProfile } from '@conf-match/utilities';
+import { map, Subject, takeUntil } from 'rxjs';
+import { CmBreakpoints } from '../breakpoint/breakpoint.types';
 
 type SocialPlatform = 'linkedin' | 'fb' | 'twitter';
 
@@ -23,10 +27,23 @@ const IconMap: { [key in SocialPlatform]: IconName } = {
   styleUrls: ['./social-input-wrapper.component.scss'],
 })
 export class SocialInputWrapperComponent implements AfterContentInit {
+  isMobile: boolean = false;
+  private readonly destroy$ = new Subject<void>();
+
   @Input() platform?: SocialPlatform;
   @ContentChild(InputDirective) input?: InputDirective;
 
-  constructor(private _renderer: Renderer2) {}
+  constructor(private breakpointObserver: BreakpointObserver, private _renderer: Renderer2) {
+    breakpointObserver
+      .observe(CmBreakpoints.MD.DOWN)
+      .pipe(
+        takeUntil(this.destroy$),
+        map((x) => x?.matches)
+      )
+      .subscribe((x) => {
+        this.isMobile = x;
+      });
+  }
 
   @HostBinding('class.cm-social-input-wrapper')
   get defaultClass() {
@@ -44,20 +61,15 @@ export class SocialInputWrapperComponent implements AfterContentInit {
 
     this._renderer.addClass(this.input.nativeElement, 'cm-social-input-wrapper__input');
 
-    this._renderer.listen(this.input.nativeElement, 'input', this._extractUsername);
+    this._renderer.listen(this.input.nativeElement, 'input', (e: Event) => {
+      const el = e.target as HTMLInputElement;
+      const { sanitizedURL } = getSocialProfile(el.value, this.isMobile);
+      el.value = sanitizedURL;
+    });
   }
 
-  private _extractUsername(e: Event) {
-    const el = e.target as HTMLInputElement;
-
-    if (el.value.startsWith('@')) {
-      el.value = el.value.slice(1, el.value.length);
-    } else if (el.value.indexOf('/') > -1) {
-      el.value =
-        el.value
-          .split('/')
-          .filter((p) => !!p)
-          .pop() || '';
-    }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
