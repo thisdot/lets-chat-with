@@ -1,15 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Validators, UntypedFormBuilder } from '@angular/forms';
-import { AttendeeModel, UpdateAttendeeInput } from '@conf-match/api';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { AttendeeModel, mapAttendeeToAttendeeModel, UpdateAttendeeInput } from '@conf-match/api';
 import { savingProfileStarted, selectAttendee } from '@conf-match/core';
+import { CmBreakpoints, DockedModalConfig, ModalService } from '@conf-match/shared';
+import { getSocialLink, getSocialProfile } from '@conf-match/utilities';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { tap, map, takeUntil } from 'rxjs/operators';
-import { ModalService, DockedModalConfig } from '@conf-match/shared';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import { EditConnectionsComponent } from '../edit-connections/edit-connections.component';
 import { EditInterestsComponent } from '../edit-interests/edit-interests.component';
 import { EditWhoIAmComponent } from '../edit-who-i-am/edit-who-i-am.component';
-import { mapAttendeeToAttendeeModel } from '@conf-match/api';
 
 const DEFAULT_DOCKED_MODAL_CONFIG: DockedModalConfig = {
   direction: 'right',
@@ -26,6 +27,7 @@ const DEFAULT_DOCKED_MODAL_CONFIG: DockedModalConfig = {
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit, OnDestroy {
+  isMobile: boolean = false;
   private readonly destroy$ = new Subject<void>();
   readonly saveAction = new Subject<void>();
 
@@ -44,14 +46,28 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   readonly attendee$: Observable<AttendeeModel> = this.store.pipe(
     select(selectAttendee),
     map(mapAttendeeToAttendeeModel),
-    tap((attendee: AttendeeModel) => this.form.patchValue(attendee))
+    tap((attendee: AttendeeModel) => {
+      const socials = this._patchSocialUsernames(attendee);
+      this.form.patchValue({ ...attendee, ...socials });
+    })
   );
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private store: Store<any>,
-    private modalService: ModalService
-  ) {}
+    private modalService: ModalService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    breakpointObserver
+      .observe(CmBreakpoints.MD.DOWN)
+      .pipe(
+        takeUntil(this.destroy$),
+        map((x) => x?.matches)
+      )
+      .subscribe((x) => {
+        this.isMobile = x;
+      });
+  }
 
   ngOnInit(): void {
     this.saveAction
@@ -59,7 +75,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         map(() => this.form.getRawValue()),
-        tap((value) => this.onSave(value))
+        tap((value) => {
+          const socials = this._patchSocialURLs(value);
+          this.onSave({ ...value, ...socials });
+        })
       )
       .subscribe();
   }
@@ -93,5 +112,39 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private _patchSocialUsernames(attendee: AttendeeModel) {
+    const { linkedin, twitter, facebook } = attendee;
+    const socials = [linkedin, twitter, facebook];
+    return socials.reduce((a, socialURL) => {
+      if (!socialURL) {
+        return a;
+      }
+
+      const { profileName, username } = getSocialProfile(socialURL, this.isMobile);
+
+      return {
+        ...a,
+        [profileName]: username,
+      };
+    }, {});
+  }
+
+  private _patchSocialURLs(input: UpdateAttendeeInput) {
+    const { linkedin, twitter, facebook } = input;
+    const socials = { linkedin, twitter, facebook };
+    return Object.keys(socials).reduce((a, profileName) => {
+      const usernameOrSocialURL = socials[profileName];
+      if (!usernameOrSocialURL) {
+        return a;
+      }
+      const sanitizedURL = getSocialLink(profileName, usernameOrSocialURL, this.isMobile);
+
+      return {
+        ...a,
+        [profileName]: sanitizedURL,
+      };
+    }, {});
   }
 }
