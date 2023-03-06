@@ -16,7 +16,21 @@
     color: var(--grey-900);
   }
 
+  h3 {
+    @extend %h100;
+    color: var(--grey-900);
+  }
+
   p {
     margin-bottom: 0.5rem;
+  }
+
+  ol {
+    @extend %text300;
+    line-height: 122%;
+  }
+
+  li {
+    padding-left: 0.7rem;
   }
 }
