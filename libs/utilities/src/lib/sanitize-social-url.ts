@@ -24,6 +24,11 @@ export const sanitizeSocialURL = (usernameOrSocialURL: string, isMobile: boolean
 /** Extracts the profile info from a given social URL. */
 export const getSocialProfile = (usernameOrSocialURL: string, isMobile: boolean) => {
   const profileName = socialLinks.detectProfile(usernameOrSocialURL);
+
+  if (!profileName || !isValidSocialURL(usernameOrSocialURL)) {
+    return { profileName, sanitizedURL: '', username: '' };
+  }
+
   const sanitizedURL = sanitizeSocialURL(usernameOrSocialURL, isMobile);
   const username = socialLinks.getProfileId(profileName, usernameOrSocialURL);
 
@@ -36,7 +41,7 @@ export const getSocialLink = (
   usernameOrSocialURL: string,
   isMobile: boolean
 ) => {
-  if (isValidSocialURL(usernameOrSocialURL)) {
+  if (profileName && isValidSocialURL(usernameOrSocialURL)) {
     return usernameOrSocialURL;
   }
 
