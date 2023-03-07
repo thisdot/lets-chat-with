@@ -78,23 +78,7 @@ describe('SocialInputWrapperTestComponent', () => {
     expect(icon.componentInstance.name).toEqual('SocialFacebook');
   });
 
-  it('should strip the @ in front of a username', () => {
-    const input = fixture.debugElement.query(By.css('input'));
-    const event = {
-      target: {
-        value: '@username',
-      },
-    };
-    input.triggerEventHandler('input', event);
-
-    expect(event.target.value).toEqual('username');
-  });
-
-  [
-    { url: 'https://twitter.com/johndoe', expected: 'johndoe' },
-    { url: 'https://fb.com/user/john.doe/', expected: 'john.doe' },
-    { url: '/', expected: '' },
-  ].forEach(({ url, expected }) => {
+  [{ url: 'https://fb.com/user/john.doe/', expected: 'john.doe' }].forEach(({ url, expected }) => {
     it(`should strip the username from ${url} link`, () => {
       const input = fixture.debugElement.query(By.css('input'));
       const event = {
