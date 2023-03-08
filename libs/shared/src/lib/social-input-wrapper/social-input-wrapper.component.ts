@@ -1,13 +1,13 @@
 import {
-  AfterContentInit,
   Component,
-  ContentChild,
-  HostBinding,
   Input,
+  ContentChild,
+  AfterContentInit,
+  HostBinding,
   Renderer2,
 } from '@angular/core';
-import { InputDirective } from '@conf-match/client/shared/ui-input';
 import { IconName } from '@conf-match/shared/ui-icons';
+import { InputDirective } from '@conf-match/client/shared/ui-input';
 
 type SocialPlatform = 'linkedin' | 'fb' | 'twitter';
 
