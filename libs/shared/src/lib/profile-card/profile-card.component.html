@@ -62,15 +62,15 @@
       <span class="cm-profile-card__box__section__title">{{ t('socials') }}</span>
       <span class="socials" *ngIf="attendee.linkedin"
         ><cm-icon class="cm-social-input-wrapper__icon" name="SocialLinkedIn" size="xl"></cm-icon>
-        {{ attendee.linkedin }}</span
+        <a [href]="socials.linkedin.socialURL">{{ socials.linkedin.username }}</a></span
       >
       <span class="socials" *ngIf="attendee.twitter"
         ><cm-icon class="cm-social-input-wrapper__icon" name="SocialTwitter" size="xl"></cm-icon>
-        {{ attendee.twitter }}</span
+        <a [href]="socials.twitter.socialURL">{{ socials.twitter.username }}</a></span
       >
       <span class="socials" *ngIf="attendee.facebook"
         ><cm-icon class="cm-social-input-wrapper__icon" name="SocialFacebook" size="xl"></cm-icon>
-        {{ attendee.facebook }}</span
+        <a [href]="socials.facebook.socialURL">{{ socials.facebook.username }}</a></span
       >
     </div>
   </div>
