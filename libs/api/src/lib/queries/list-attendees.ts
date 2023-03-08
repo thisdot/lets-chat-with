@@ -53,6 +53,7 @@ export const LIST_ATTENDEES_QUERY = gql`
           logoUrl
           letsChatWithUrl
           qrImageUrl
+          readers
         }
       }
     }
