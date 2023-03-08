@@ -12,6 +12,12 @@ import { getSocialLink } from '@conf-match/utilities';
 import { map, Subject, takeUntil } from 'rxjs';
 import { CmBreakpoints } from '../breakpoint/breakpoint.types';
 
+const SOCIALS_DEFAULT = {
+  linkedin: {},
+  twitter: {},
+  facebook: {},
+};
+
 @Component({
   selector: 'cm-profile-card',
   templateUrl: './profile-card.component.html',
@@ -19,11 +25,7 @@ import { CmBreakpoints } from '../breakpoint/breakpoint.types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileCardComponent implements OnInit {
-  socials = {
-    linkedin: {},
-    twitter: {},
-    facebook: {},
-  };
+  socials = SOCIALS_DEFAULT;
   isMobile: boolean = false;
   private readonly destroy$ = new Subject<void>();
 
@@ -59,27 +61,20 @@ export class ProfileCardComponent implements OnInit {
     const socials = { linkedin, twitter, facebook };
 
     this.showSocials = Object.values(socials).some((x) => !!x);
-    this.socials = Object.keys(socials).reduce(
-      (a, profileName) => {
-        const username = socials[profileName];
-        if (!username) {
-          return a;
-        }
-        const sanitizedURL = getSocialLink(profileName, username, this.isMobile);
-
-        return {
-          ...a,
-          [profileName]: {
-            socialURL: sanitizedURL,
-            username,
-          },
-        };
-      },
-      {
-        linkedin: {},
-        twitter: {},
-        facebook: {},
+    this.socials = Object.keys(socials).reduce((a, profileName) => {
+      const username = socials[profileName];
+      if (!username) {
+        return a;
       }
-    );
+      const sanitizedURL = getSocialLink(profileName, username, this.isMobile);
+
+      return {
+        ...a,
+        [profileName]: {
+          socialURL: sanitizedURL,
+          username,
+        },
+      };
+    }, SOCIALS_DEFAULT);
   }
 }
