@@ -44,7 +44,7 @@ export class ConferencesEffects {
         map((attendees) =>
           attendees.items.map((item: any) => ({
             ...item.event,
-            matches: item.event.readers,
+            matches: item.event.attendees.items,
             chats: item.attendeeChats,
           }))
         ),

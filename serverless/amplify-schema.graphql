@@ -245,7 +245,7 @@ type Event
   paymentStatus: EventPaymentStatus
   # the payment installments received from the organization for the event
   payments: [EventPayments!]
-  attendees: [Attendee] @connection(name: "eventAttendees")
+  attendees: [Attendee] @connection(name: "eventAttendees", keyName: "byEventId", fields: ["id"])
   reports: [Report] @connection(name: "EventReports", fields: ["id"])
 }
 
