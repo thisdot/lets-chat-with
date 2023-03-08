@@ -91,11 +91,11 @@ export const selectChatThreadIdentifiers = createSelector(
   }
 );
 
-export const selectChatThreadAttendee = createSelector(
+export const selectChatThreadInfo = createSelector(
   selectChatThread,
   MatchesSelectors.selectGetMatchBasicInfo,
   (chatThread: ChatThread & { matchId: string }, getMatchInfo) => {
-    return chatThread ? getMatchInfo(chatThread.matchId)?.attendee : null;
+    return chatThread ? getMatchInfo(chatThread.matchId) : null;
   }
 );
 export const selectChatThreadAttendeeNumber = createSelector(
@@ -106,6 +106,7 @@ export const selectChatThreadAttendeeNumber = createSelector(
       return null;
     }
     const match = getMatchInfo(chatThread.matchId);
+    console.log(chatThread, match);
     return match.attendee1Id === match.attendee.id ? 'Attendee1' : 'Attendee2';
   }
 );
