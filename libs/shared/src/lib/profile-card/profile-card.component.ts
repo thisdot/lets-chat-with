@@ -8,7 +8,7 @@ import {
   Output,
 } from '@angular/core';
 import { Attendee } from '@conf-match/api';
-import { getSocialProfile } from '@conf-match/utilities';
+import { getSocialLink } from '@conf-match/utilities';
 import { map, Subject, takeUntil } from 'rxjs';
 import { CmBreakpoints } from '../breakpoint/breakpoint.types';
 
@@ -56,13 +56,16 @@ export class ProfileCardComponent implements OnInit {
 
   ngOnInit() {
     const { linkedin, twitter, facebook } = this.attendee!;
-    this.showSocials = !!linkedin || !!twitter || !!facebook;
-    this.socials = [linkedin, twitter, facebook].reduce(
-      (a, socialURL) => {
-        if (!socialURL) {
+    const socials = { linkedin, twitter, facebook };
+
+    this.showSocials = Object.values(socials).some((x) => !!x);
+    this.socials = Object.keys(socials).reduce(
+      (a, profileName) => {
+        const username = socials[profileName];
+        if (!username) {
           return a;
         }
-        const { profileName, sanitizedURL, username } = getSocialProfile(socialURL, this.isMobile);
+        const sanitizedURL = getSocialLink(profileName, username, this.isMobile);
 
         return {
           ...a,
