@@ -3,7 +3,7 @@ import { EventModel, ListAttendeesGQL } from '@conf-match/api';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, filter, map, pluck, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Conference } from '../../../models';
 import { selectOwnerId } from '../../core.selectors';
 import { ConferencesActions } from '../actions';
@@ -44,7 +44,8 @@ export class ConferencesEffects {
         map((attendees) =>
           attendees.items.map((item: any) => ({
             ...item.event,
-            matches: item.event.attendees.items,
+            attendeeCount: item.event.attendees.items,
+            matches: item.attendeeMatches,
             chats: item.attendeeChats,
           }))
         ),
@@ -66,7 +67,17 @@ export class ConferencesEffects {
 
   private convertEventsIntoConferences(events: EventModel[]): Conference[] {
     return events.map(
-      ({ id, name, description, logoUrl, letsChatWithUrl, qrImageUrl, matches, chats }) => {
+      ({
+        id,
+        name,
+        description,
+        logoUrl,
+        letsChatWithUrl,
+        qrImageUrl,
+        attendeeCount,
+        matches,
+        chats,
+      }) => {
         return {
           id,
           letsChatWithUrl,
@@ -76,6 +87,7 @@ export class ConferencesEffects {
           subTitle: description,
           logoUrl,
           qrImageUrl,
+          attendeeCount: attendeeCount.length,
           matches: matches.length,
           chats: chats.length,
         } as Conference;

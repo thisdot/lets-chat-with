@@ -443,7 +443,7 @@ type ChatThread
       sortField: "createdAt"
     )
   matchId: ID!
-  match: Match @connection(fields: ["matchId"])
+  match: Match @connection(name: "matchChatThreads", fields: ["matchId"])
 }
 
 # TODO: The @searchable annotation is creating extra costs.

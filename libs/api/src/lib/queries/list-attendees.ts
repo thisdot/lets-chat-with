@@ -45,6 +45,7 @@ export const LIST_ATTENDEES_QUERY = gql`
         }
         attendeeChats {
           id
+          matchId
         }
         event {
           id
