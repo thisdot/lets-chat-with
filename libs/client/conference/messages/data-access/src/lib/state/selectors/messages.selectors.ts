@@ -44,7 +44,10 @@ export const selectFilteredChatThreadList = createSelector(
         const lastMessage = chatThread.messages.items.find(
           (message: Message) => message.createdAt === chatThread.lastMessageAt
         );
-        return { ...chatThread, messages: { ...chatThread.messages, items: [lastMessage] } };
+        return {
+          ...chatThread,
+          messages: { ...chatThread.messages, items: lastMessage ? [lastMessage] : [] },
+        };
       })
       ?.filter(
         (chatThread: ChatThread & { matchId: string }) =>
