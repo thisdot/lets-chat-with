@@ -6,9 +6,11 @@ const { CHAT_THREAD_TABLE_NAME } = process.env;
 exports.handler = async (event) => {
   try {
     const { source } = event;
-    const { id, eventId } = source;
+    const { eventId } = source;
 
-    return await getChats(eventId, id);
+    console.log(source);
+
+    return await getChats(eventId);
   } catch (err) {
     console.error(JSON.stringify(err, null, 2));
   }
@@ -16,25 +18,23 @@ exports.handler = async (event) => {
 };
 
 async function getChats(eventId) {
-  const searchParamsBase = {
+  const searchParams = {
+    ExpressionAttributeNames: {
+      '#eventId': 'eventId',
+    },
+    ExpressionAttributeValues: {
+      ':eventId': eventId,
+    },
     KeyConditionExpression: '#eventId = :eventId',
     IndexName: 'byEventId',
     TableName: CHAT_THREAD_TABLE_NAME,
   };
 
-  const Items = await Promise.all([
-    documentClient()
-      .query({
-        ...searchParamsBase,
-        ExpressionAttributeNames: {
-          '#eventId': 'eventId',
-        },
-        ExpressionAttributeValues: {
-          ':eventId': eventId,
-        },
-      })
-      .promise(),
-  ]).then((res) => [...res.Items]);
+  const Items = await documentClient()
+    .query(searchParams)
+    .promise()
+    .then((res) => [...res.Items]);
 
+  console.log(Items);
   return Items.length ? Items : [];
 }

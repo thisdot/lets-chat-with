@@ -424,12 +424,12 @@ type Report
 }
 
 type ChatThread
-  @key(name: "byEventId", fields: ["eventId"])
   @model(
     mutations: { update: "updateChatThread" }
     queries: { get: "getChatThread", list: "listChatThreads" }
     subscriptions: null
-  ) {
+  )
+  @key(name: "byEventId", fields: ["eventId"]) {
   id: ID!
   eventId: ID!
   lastMessageAt: AWSDateTime
@@ -443,7 +443,7 @@ type ChatThread
       sortField: "createdAt"
     )
   matchId: ID!
-  match: Match @connection(name: "matchChatThreads", fields: ["matchId"])
+  match: Match @connection(fields: ["matchId"])
 }
 
 # TODO: The @searchable annotation is creating extra costs.
@@ -580,6 +580,7 @@ type Match
         ownerField: "owners"
         operations: [create, update, delete, read]
       }
+      { allow: private, operations: [read] }
     ]
   ) {
   id: ID!
