@@ -22,15 +22,7 @@ import {
   styleUrls: ['./message-thread.component.scss'],
 })
 export class MessageThreadComponent implements OnInit, OnDestroy {
-  thread$: Observable<ChatThread> = this.store.pipe(
-    select(MessagesSelectors.selectChatThread),
-    tap((thread) => {
-      console.log(thread);
-      if (!thread) {
-        this.goToMessages();
-      }
-    })
-  );
+  thread$: Observable<ChatThread>;
   match$: Observable<Match>;
   messages$: Observable<GQLCollection<Message>>;
   isLoading$: Observable<boolean>;
@@ -38,7 +30,7 @@ export class MessageThreadComponent implements OnInit, OnDestroy {
   attendeeId$ = this.store.pipe(select(selectAttendeeId));
   conferenceId: string;
 
-  private threadId = this.activatedRoute.snapshot.paramMap.get('chatThreadId');
+  private threadId: string;
   readonly menuClickSubject = new Subject<Match>();
   private onDestroy$ = new Subject<void>();
 
@@ -48,14 +40,17 @@ export class MessageThreadComponent implements OnInit, OnDestroy {
     private modalService: ModalService,
     private store: Store<any>
   ) {
-    this.messages$ = this.store.pipe(select(MessagesSelectors.selectChatThreadMessages));
+    this.threadId = this.activatedRoute.snapshot.paramMap.get('chatThreadId');
+    this.thread$ = this.store.pipe(select(MessagesSelectors.selectChatThread));
     this.match$ = this.store.pipe(select(MessagesSelectors.selectChatThreadInfo));
+    this.messages$ = this.store.pipe(select(MessagesSelectors.selectChatThreadMessages));
     this.isLoading$ = this.store.pipe(select(MessagesSelectors.selectIsLoadingMessages));
 
     this.menuClickSubject
       .asObservable()
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((match) => {
+        this.goToMessages();
         this.modalService.openDockedModal<void, ConnectionActionMenuComponentInput>(
           ConnectionActionMenuComponent,
           {
