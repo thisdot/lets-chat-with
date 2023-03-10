@@ -245,7 +245,7 @@ type Event
   paymentStatus: EventPaymentStatus
   # the payment installments received from the organization for the event
   payments: [EventPayments!]
-  attendees: [Attendee] @connection(name: "eventAttendees")
+  attendees: [Attendee] @connection(name: "eventAttendees", keyName: "byEventId", fields: ["id"])
   reports: [Report] @connection(name: "EventReports", fields: ["id"])
 }
 
@@ -424,12 +424,12 @@ type Report
 }
 
 type ChatThread
-  @key(name: "byEventId", fields: ["eventId"])
   @model(
     mutations: { update: "updateChatThread" }
     queries: { get: "getChatThread", list: "listChatThreads" }
     subscriptions: null
-  ) {
+  )
+  @key(name: "byEventId", fields: ["eventId"]) {
   id: ID!
   eventId: ID!
   lastMessageAt: AWSDateTime
@@ -580,6 +580,7 @@ type Match
         ownerField: "owners"
         operations: [create, update, delete, read]
       }
+      { allow: private, operations: [read] }
     ]
   ) {
   id: ID!

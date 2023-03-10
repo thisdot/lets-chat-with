@@ -7565,7 +7565,14 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListOrganizationMembersQuery> {
     const statement = `query ListOrganizationMembers($organizationId: ID, $userId: ModelIDKeyConditionInput, $filter: ModelOrganizationMemberFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listOrganizationMembers(organizationId: $organizationId, userId: $userId, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listOrganizationMembers(
+          organizationId: $organizationId
+          userId: $userId
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -7641,7 +7648,13 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListOrganizationsQuery> {
     const statement = `query ListOrganizations($id: ID, $filter: ModelOrganizationFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listOrganizations(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listOrganizations(
+          id: $id
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -8043,7 +8056,14 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListReportsQuery> {
     const statement = `query ListReports($eventId: ID, $id: ModelIDKeyConditionInput, $filter: ModelReportFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listReports(eventId: $eventId, id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listReports(
+          eventId: $eventId
+          id: $id
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -8411,7 +8431,13 @@ export class APIService {
     nextToken?: string
   ): Promise<GetUserByOwnerQuery> {
     const statement = `query GetUserByOwner($owner: ID, $sortDirection: ModelSortDirection, $filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
-        getUserByOwner(owner: $owner, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+        getUserByOwner(
+          owner: $owner
+          sortDirection: $sortDirection
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+        ) {
           __typename
           items {
             __typename
@@ -8454,7 +8480,14 @@ export class APIService {
     nextToken?: string
   ): Promise<CandidatesByEventIdQuery> {
     const statement = `query CandidatesByEventId($eventId: ID, $matchScore: ModelIntKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelCandidateFilterInput, $limit: Int, $nextToken: String) {
-        candidatesByEventId(eventId: $eventId, matchScore: $matchScore, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+        candidatesByEventId(
+          eventId: $eventId
+          matchScore: $matchScore
+          sortDirection: $sortDirection
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+        ) {
           __typename
           items {
             __typename

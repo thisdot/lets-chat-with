@@ -12,8 +12,8 @@
 
 <div class="cm-conference-card__meta">
   <div class="cm-conference-card__meta__item">
-    <cm-icon name="Flash" size="lg"></cm-icon> {{ conference?.matches }}
-    {{ conference?.matches == 1 ? 'chatter' : 'chatters' }}
+    <cm-icon name="Flash" size="lg"></cm-icon> {{ conference?.attendeeCount }}
+    {{ conference?.attendeeCount == 1 ? 'chatter' : 'chatters' }}
   </div>
   <div class="cm-conference-card__meta__item">
     <cm-icon name="MessageBubbleTyping" size="md"></cm-icon>

@@ -17,6 +17,7 @@ export interface Event {
   letsChatWithUrl: string;
   logoUrl: string;
   qrImageUrl: string;
+  attendeeCount: Attendee[];
   matches: Match[];
   chats: ChatThread[];
   interests: Interest[];
