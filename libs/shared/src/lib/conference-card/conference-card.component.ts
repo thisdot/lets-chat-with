@@ -11,7 +11,7 @@ export class ConferenceCardComponent {
   conference?: {
     title: string;
     subTitle: string;
-    matches: number;
+    attendeeCount: number;
     chats: number;
   };
 

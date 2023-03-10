@@ -1,4 +1,4 @@
-#if( $util.isNull($context.source.id) )
+#if( $util.isNull($ctx.source.id) )
   #set( $result = {
   "items":   []
 } )
@@ -6,12 +6,12 @@
 #else
   #set( $limit = $util.defaultIfNull($context.args.limit, 100) )
   #set( $query = {
-  "expression": "#connectionAttribute = :connectionAttribute",
+  "expression": "#partitionKey = :partitionKey",
   "expressionNames": {
-      "#connectionAttribute": "attendeeEventId"
+      "#partitionKey": "eventId"
   },
   "expressionValues": {
-      ":connectionAttribute": {
+      ":partitionKey": {
           "S": "$context.source.id"
     }
   }
@@ -40,6 +40,6 @@ $util.toJson($context.args.nextToken)
     #else
 null
     #end,
-      "index": "gsi-eventAttendees"
+      "index": "byEventId"
   }
 #end
