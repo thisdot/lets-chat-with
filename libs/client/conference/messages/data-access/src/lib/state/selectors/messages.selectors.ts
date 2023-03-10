@@ -109,7 +109,6 @@ export const selectChatThreadAttendeeNumber = createSelector(
       return null;
     }
     const match = getMatchInfo(chatThread.matchId);
-    console.log(chatThread, match);
     return match.attendee1Id === match.attendee.id ? 'Attendee1' : 'Attendee2';
   }
 );
