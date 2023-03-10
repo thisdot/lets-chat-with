@@ -1,16 +1,18 @@
 <ng-container *ngIf="thread$ | async as thread">
   <ng-container *transloco="let t; read: 'messages'">
-    <div class="cm-message-thread" *ngIf="matchAttendee$ | async as matchAttendee">
+    <div class="cm-message-thread" *ngIf="match$ | async as match">
       <div class="cm-message-thread__toolbar">
         <a class="cm-message-thread__back-button" routerLink="..">
           <cm-icon name="LeftChevron" size="xl"></cm-icon>
-          <cm-message-avatar [avatarUrl]="matchAttendee.avatarUrl"></cm-message-avatar>
+          <cm-message-avatar [avatarUrl]="match.attendee.avatarUrl"></cm-message-avatar>
           <div class="cm-message-thread__user-name">
-            {{ matchAttendee?.fullName }}
+            {{ match.attendee?.fullName }}
           </div>
         </a>
 
-        <cm-icon name="Flag" size="xl"></cm-icon>
+        <button (click)="onMenu(match)">
+          <cm-icon name="Flag" size="xl"></cm-icon>
+        </button>
       </div>
 
       <ng-container *ngIf="messages$ | async as messages; else noMessages">
@@ -18,7 +20,7 @@
           <cm-message-list
             [isLoading]="isLoading$ | async"
             [attendeeId]="attendeeId$ | async"
-            [matchAttendee]="matchAttendee$ | async"
+            [match]="(match$ | async).attendee"
             [messageThread]="thread"
             [messages]="messages"
             (loadNextPage)="onLoadNextPage()"
@@ -30,9 +32,7 @@
     </div>
     <ng-template #noMessages>
       <div class="cm-message-thread__no-messages">
-        <cm-message-thread-banner
-          [matchAttendee]="matchAttendee$ | async"
-        ></cm-message-thread-banner>
+        <cm-message-thread-banner [match]="(match$ | async).attendee"></cm-message-thread-banner>
         {{ t('firstMessage') }}
       </div>
     </ng-template>

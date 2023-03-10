@@ -1,15 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ChatThread, GQLCollection, Match, Message } from '@conf-match/api';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { ChatThread, GQLCollection, Message, MatchAttendee } from '@conf-match/api';
-import { Store, select } from '@ngrx/store';
+import { filter, takeUntil, tap } from 'rxjs/operators';
 
-import { selectConferenceId, selectAttendeeId } from '@conf-match/core';
 import {
-  MessagesSelectors,
   MessagesActions,
+  MessagesSelectors,
 } from '@conf-match/client/conference/messages/data-access';
+import { selectAttendeeId, selectConferenceId } from '@conf-match/core';
+import { ModalService } from '@conf-match/shared';
+import {
+  ConnectionActionMenuComponent,
+  ConnectionActionMenuComponentInput,
+} from '../../shared/connection-action-menu/connection-action-menu.component';
 
 @Component({
   selector: 'cm-message-thread',
@@ -18,7 +23,7 @@ import {
 })
 export class MessageThreadComponent implements OnInit, OnDestroy {
   thread$: Observable<ChatThread>;
-  matchAttendee$: Observable<MatchAttendee>;
+  match$: Observable<Match>;
   messages$: Observable<GQLCollection<Message>>;
   isLoading$: Observable<boolean>;
 
@@ -26,18 +31,35 @@ export class MessageThreadComponent implements OnInit, OnDestroy {
   conferenceId: string;
 
   private threadId: string;
+  readonly menuClickSubject = new Subject<Match>();
   private onDestroy$ = new Subject<void>();
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private modalService: ModalService,
     private store: Store<any>
   ) {
     this.threadId = this.activatedRoute.snapshot.paramMap.get('chatThreadId');
     this.thread$ = this.store.pipe(select(MessagesSelectors.selectChatThread));
+    this.match$ = this.store.pipe(select(MessagesSelectors.selectChatThreadInfo));
     this.messages$ = this.store.pipe(select(MessagesSelectors.selectChatThreadMessages));
-    this.matchAttendee$ = this.store.pipe(select(MessagesSelectors.selectChatThreadAttendee));
     this.isLoading$ = this.store.pipe(select(MessagesSelectors.selectIsLoadingMessages));
+
+    this.menuClickSubject
+      .asObservable()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((match) => {
+        this.goToMessages();
+        this.modalService.openDockedModal<void, ConnectionActionMenuComponentInput>(
+          ConnectionActionMenuComponent,
+          {
+            reportedAttendee: match,
+            isMatch: true,
+            conferenceId: this.conferenceId,
+          }
+        );
+      });
   }
 
   ngOnInit() {
@@ -79,5 +101,9 @@ export class MessageThreadComponent implements OnInit, OnDestroy {
 
   updateAttendeeLastReadAt() {
     this.store.dispatch(MessagesActions.updateAttendeeLastReadAt({ chatThreadId: this.threadId }));
+  }
+
+  onMenu(match: Match) {
+    this.menuClickSubject.next(match);
   }
 }
