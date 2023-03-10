@@ -44,7 +44,10 @@ export const selectFilteredChatThreadList = createSelector(
         const lastMessage = chatThread.messages.items.find(
           (message: Message) => message.createdAt === chatThread.lastMessageAt
         );
-        return { ...chatThread, messages: { ...chatThread.messages, items: [lastMessage] } };
+        return {
+          ...chatThread,
+          messages: { ...chatThread.messages, items: lastMessage ? [lastMessage] : [] },
+        };
       })
       ?.filter(
         (chatThread: ChatThread & { matchId: string }) =>
@@ -91,11 +94,11 @@ export const selectChatThreadIdentifiers = createSelector(
   }
 );
 
-export const selectChatThreadAttendee = createSelector(
+export const selectChatThreadInfo = createSelector(
   selectChatThread,
   MatchesSelectors.selectGetMatchBasicInfo,
   (chatThread: ChatThread & { matchId: string }, getMatchInfo) => {
-    return chatThread ? getMatchInfo(chatThread.matchId)?.attendee : null;
+    return chatThread ? getMatchInfo(chatThread.matchId) : null;
   }
 );
 export const selectChatThreadAttendeeNumber = createSelector(
