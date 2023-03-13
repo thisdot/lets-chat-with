@@ -52,7 +52,9 @@ export class ConferenceUrlFormComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.form.valid) {
-      this.store.dispatch(conferenceJoinAttempted({ letsChatWithUrl: this.form.value.domain }));
+      this.store.dispatch(
+        conferenceJoinAttempted({ letsChatWithUrl: this.form.value.domain.toLowerCase() })
+      );
     }
   }
 }
