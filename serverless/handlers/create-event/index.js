@@ -28,7 +28,7 @@ async function handler(lambdaEvent) {
     maxIdentifiers: event.maxIdentifiers,
     logoUrl: event.logoUrl,
     qrImageUrl: event.qrImageUrl,
-    letsChatWithUrl: event.letsChatWithUrl,
+    letsChatWithUrl: event.letsChatWithUrl.toLowerCase(),
     dateRange: event.dateRange,
     // the dev test organisation id is '052a154d-a0ac-4d83-89d4-77a95be6079f'
     organizationId: event.organizationId,
