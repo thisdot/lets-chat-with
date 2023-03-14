@@ -5,8 +5,6 @@ frontend:
     preBuild:
       commands:
         - npm ci --force
-        #        - temporarily disabled
-        #        - npm run format:check
         - npm run affected:lint
     build:
       commands:
@@ -19,25 +17,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-# test:
-#   artifacts:
-#     baseDirectory: cyreport
-#     configFilePath: cyreport/mochawesome.json
-#     files:
-#       - '**/*.png'
-#       - '**/*.mp4'
-#       - '**/*.html'
-#   phases:
-#     preTest:
-#       commands:
-#         - npm ci --force
-#         - wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-#         - yum install -y ./google-chrome-stable_current_*.rpm
-#     test:
-#       commands:
-#         - npm run affected:test -- --base=origin/develop --configuration=CI
-#         - npm run e2e:client
-#     postTest:
-#       commands:
-#         - npm run devtools:mochawesome:report
-#         - npm run devtools:cucumber:report
