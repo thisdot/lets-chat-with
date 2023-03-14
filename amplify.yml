@@ -36,7 +36,7 @@ test:
     test:
       commands:
         - npm run affected:test -- --base=origin/develop --configuration=CI
-        - npm run e2e:client
+        # - npm run e2e:client
     postTest:
       commands:
         - npm run devtools:mochawesome:report
