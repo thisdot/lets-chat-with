@@ -10,8 +10,8 @@ frontend:
         - npm run affected:lint
     build:
       commands:
-        - npm run build -- --configuration=thisdot-$ENVIRONMENT
-        - npm run build:admin -- --configuration=thisdot-$ENVIRONMENT
+        - npm run build
+        - npm run build:admin
   artifacts:
     baseDirectory: dist/apps
     files:
