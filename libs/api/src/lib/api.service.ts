@@ -147,6 +147,8 @@ export type Match = {
   attendee2?: Attendee | null;
   interests?: ModelMatchInterestConnection | null;
   desiredIdentifiers?: ModelMatchDesiredIdentifierConnection | null;
+  viewedByAttendee1?: boolean | null;
+  viewedByAttendee2?: boolean | null;
   updatedAt: string;
 };
 
@@ -1101,8 +1103,15 @@ export type ModelMessageConditionInput = {
   not?: ModelMessageConditionInput | null;
 };
 
-export type DeleteMatchInput = {
+export type UpdateMatchInput = {
   id: string;
+  owners?: Array<string> | null;
+  attendee1Id?: string | null;
+  attendee2Id?: string | null;
+  eventId?: string | null;
+  createdAt?: string | null;
+  viewedByAttendee1?: boolean | null;
+  viewedByAttendee2?: boolean | null;
 };
 
 export type ModelMatchConditionInput = {
@@ -1110,9 +1119,15 @@ export type ModelMatchConditionInput = {
   attendee2Id?: ModelIDInput | null;
   eventId?: ModelIDInput | null;
   createdAt?: ModelStringInput | null;
+  viewedByAttendee1?: ModelBooleanInput | null;
+  viewedByAttendee2?: ModelBooleanInput | null;
   and?: Array<ModelMatchConditionInput | null> | null;
   or?: Array<ModelMatchConditionInput | null> | null;
   not?: ModelMatchConditionInput | null;
+};
+
+export type DeleteMatchInput = {
+  id: string;
 };
 
 export type CreateCandidateInterestInput = {
@@ -1435,6 +1450,8 @@ export type ModelMatchFilterInput = {
   attendee2Id?: ModelIDInput | null;
   eventId?: ModelIDInput | null;
   createdAt?: ModelStringInput | null;
+  viewedByAttendee1?: ModelBooleanInput | null;
+  viewedByAttendee2?: ModelBooleanInput | null;
   and?: Array<ModelMatchFilterInput | null> | null;
   or?: Array<ModelMatchFilterInput | null> | null;
   not?: ModelMatchFilterInput | null;
@@ -1506,6 +1523,8 @@ export type CreateAttendeeMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null> | null;
   attendeeChats?: Array<{
@@ -1583,6 +1602,8 @@ export type UpdateAttendeeMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null> | null;
   attendeeChats?: Array<{
@@ -2962,6 +2983,8 @@ export type UpdateChatThreadMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null;
   createdAt: string;
@@ -3006,6 +3029,89 @@ export type CreateMessageMutation = {
     createdAt: string;
     updatedAt: string;
   };
+  updatedAt: string;
+};
+
+export type UpdateMatchMutation = {
+  __typename: 'Match';
+  id: string;
+  owners: Array<string>;
+  attendee1Id: string;
+  attendee2Id: string;
+  eventId: string;
+  event?: {
+    __typename: 'Event';
+    id: string;
+    organizationId: string;
+    owners: Array<string>;
+    readers?: Array<string> | null;
+    name: string;
+    status: EventStatus;
+    size: EventSize;
+    logoUrl?: string | null;
+    qrImageUrl?: string | null;
+    description?: string | null;
+    registrationCode?: string | null;
+    letsChatWithUrl: string;
+    website?: string | null;
+    facebook?: string | null;
+    twitter?: string | null;
+    maxInterests?: number | null;
+    maxIdentifiers?: number | null;
+    totalAmountDue?: number | null;
+    paymentStatus?: EventPaymentStatus | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  createdAt: string;
+  attendee1?: {
+    __typename: 'Attendee';
+    id: string;
+    owner?: string | null;
+    userId: string;
+    fullName: string;
+    avatarUrl?: string | null;
+    title?: string | null;
+    company?: string | null;
+    pronouns?: string | null;
+    bio?: string | null;
+    newsletterSubscribed?: boolean | null;
+    linkedin?: string | null;
+    twitter?: string | null;
+    facebook?: string | null;
+    eventId: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  attendee2?: {
+    __typename: 'Attendee';
+    id: string;
+    owner?: string | null;
+    userId: string;
+    fullName: string;
+    avatarUrl?: string | null;
+    title?: string | null;
+    company?: string | null;
+    pronouns?: string | null;
+    bio?: string | null;
+    newsletterSubscribed?: boolean | null;
+    linkedin?: string | null;
+    twitter?: string | null;
+    facebook?: string | null;
+    eventId: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  interests?: {
+    __typename: 'ModelMatchInterestConnection';
+    nextToken?: string | null;
+  } | null;
+  desiredIdentifiers?: {
+    __typename: 'ModelMatchDesiredIdentifierConnection';
+    nextToken?: string | null;
+  } | null;
+  viewedByAttendee1?: boolean | null;
+  viewedByAttendee2?: boolean | null;
   updatedAt: string;
 };
 
@@ -3087,6 +3193,8 @@ export type DeleteMatchMutation = {
     __typename: 'ModelMatchDesiredIdentifierConnection';
     nextToken?: string | null;
   } | null;
+  viewedByAttendee1?: boolean | null;
+  viewedByAttendee2?: boolean | null;
   updatedAt: string;
 };
 
@@ -3289,6 +3397,8 @@ export type CreateMatchInterestMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   interest: {
@@ -3319,6 +3429,8 @@ export type UpdateMatchInterestMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   interest: {
@@ -3349,6 +3461,8 @@ export type DeleteMatchInterestMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   interest: {
@@ -3379,6 +3493,8 @@ export type CreateMatchDesiredIdentifierMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   desiredIdentifier: {
@@ -3408,6 +3524,8 @@ export type UpdateMatchDesiredIdentifierMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   desiredIdentifier: {
@@ -3437,6 +3555,8 @@ export type DeleteMatchDesiredIdentifierMutation = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   };
   desiredIdentifier: {
@@ -3744,6 +3864,8 @@ export type GetAttendeeQuery = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null> | null;
   attendeeChats?: Array<{
@@ -3923,6 +4045,8 @@ export type GetChatThreadQuery = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null;
   createdAt: string;
@@ -4104,6 +4228,8 @@ export type GetMatchQuery = {
     __typename: 'ModelMatchDesiredIdentifierConnection';
     nextToken?: string | null;
   } | null;
+  viewedByAttendee1?: boolean | null;
+  viewedByAttendee2?: boolean | null;
   updatedAt: string;
 };
 
@@ -4117,6 +4243,8 @@ export type ListMatchesQuery = {
     attendee2Id: string;
     eventId: string;
     createdAt: string;
+    viewedByAttendee1?: boolean | null;
+    viewedByAttendee2?: boolean | null;
     updatedAt: string;
   } | null>;
   nextToken?: string | null;
@@ -4271,6 +4399,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           attendeeChats {
@@ -4358,6 +4488,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           attendeeChats {
@@ -6352,6 +6484,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           createdAt
@@ -6425,6 +6559,105 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CreateMessageMutation>response.data.createMessage;
+  }
+  async UpdateMatch(
+    input: UpdateMatchInput,
+    condition?: ModelMatchConditionInput
+  ): Promise<UpdateMatchMutation> {
+    const statement = `mutation UpdateMatch($input: UpdateMatchInput!, $condition: ModelMatchConditionInput) {
+        updateMatch(input: $input, condition: $condition) {
+          __typename
+          id
+          owners
+          attendee1Id
+          attendee2Id
+          eventId
+          event {
+            __typename
+            id
+            organizationId
+            owners
+            readers
+            name
+            status
+            size
+            logoUrl
+            qrImageUrl
+            description
+            registrationCode
+            letsChatWithUrl
+            website
+            facebook
+            twitter
+            maxInterests
+            maxIdentifiers
+            totalAmountDue
+            paymentStatus
+            createdAt
+            updatedAt
+          }
+          createdAt
+          attendee1 {
+            __typename
+            id
+            owner
+            userId
+            fullName
+            avatarUrl
+            title
+            company
+            pronouns
+            bio
+            newsletterSubscribed
+            linkedin
+            twitter
+            facebook
+            eventId
+            createdAt
+            updatedAt
+          }
+          attendee2 {
+            __typename
+            id
+            owner
+            userId
+            fullName
+            avatarUrl
+            title
+            company
+            pronouns
+            bio
+            newsletterSubscribed
+            linkedin
+            twitter
+            facebook
+            eventId
+            createdAt
+            updatedAt
+          }
+          interests {
+            __typename
+            nextToken
+          }
+          desiredIdentifiers {
+            __typename
+            nextToken
+          }
+          viewedByAttendee1
+          viewedByAttendee2
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input,
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateMatchMutation>response.data.updateMatch;
   }
   async DeleteMatch(
     input: DeleteMatchInput,
@@ -6509,6 +6742,8 @@ export class APIService {
             __typename
             nextToken
           }
+          viewedByAttendee1
+          viewedByAttendee2
           updatedAt
         }
       }`;
@@ -6823,6 +7058,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           interest {
@@ -6869,6 +7106,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           interest {
@@ -6915,6 +7154,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           interest {
@@ -6961,6 +7202,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           desiredIdentifier {
@@ -7006,6 +7249,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           desiredIdentifier {
@@ -7051,6 +7296,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           desiredIdentifier {
@@ -7318,7 +7565,14 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListOrganizationMembersQuery> {
     const statement = `query ListOrganizationMembers($organizationId: ID, $userId: ModelIDKeyConditionInput, $filter: ModelOrganizationMemberFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listOrganizationMembers(organizationId: $organizationId, userId: $userId, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listOrganizationMembers(
+          organizationId: $organizationId
+          userId: $userId
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -7394,7 +7648,13 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListOrganizationsQuery> {
     const statement = `query ListOrganizations($id: ID, $filter: ModelOrganizationFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listOrganizations(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listOrganizations(
+          id: $id
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -7604,6 +7864,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           attendeeChats {
@@ -7794,7 +8056,14 @@ export class APIService {
     sortDirection?: ModelSortDirection
   ): Promise<ListReportsQuery> {
     const statement = `query ListReports($eventId: ID, $id: ModelIDKeyConditionInput, $filter: ModelReportFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listReports(eventId: $eventId, id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+        listReports(
+          eventId: $eventId
+          id: $id
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+          sortDirection: $sortDirection
+        ) {
           __typename
           items {
             __typename
@@ -7858,6 +8127,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           createdAt
@@ -8101,6 +8372,8 @@ export class APIService {
             __typename
             nextToken
           }
+          viewedByAttendee1
+          viewedByAttendee2
           updatedAt
         }
       }`;
@@ -8128,6 +8401,8 @@ export class APIService {
             attendee2Id
             eventId
             createdAt
+            viewedByAttendee1
+            viewedByAttendee2
             updatedAt
           }
           nextToken
@@ -8156,7 +8431,13 @@ export class APIService {
     nextToken?: string
   ): Promise<GetUserByOwnerQuery> {
     const statement = `query GetUserByOwner($owner: ID, $sortDirection: ModelSortDirection, $filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {
-        getUserByOwner(owner: $owner, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+        getUserByOwner(
+          owner: $owner
+          sortDirection: $sortDirection
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+        ) {
           __typename
           items {
             __typename
@@ -8199,7 +8480,14 @@ export class APIService {
     nextToken?: string
   ): Promise<CandidatesByEventIdQuery> {
     const statement = `query CandidatesByEventId($eventId: ID, $matchScore: ModelIntKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelCandidateFilterInput, $limit: Int, $nextToken: String) {
-        candidatesByEventId(eventId: $eventId, matchScore: $matchScore, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+        candidatesByEventId(
+          eventId: $eventId
+          matchScore: $matchScore
+          sortDirection: $sortDirection
+          filter: $filter
+          limit: $limit
+          nextToken: $nextToken
+        ) {
           __typename
           items {
             __typename

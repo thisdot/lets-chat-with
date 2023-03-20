@@ -17,6 +17,7 @@ export interface Event {
   letsChatWithUrl: string;
   logoUrl: string;
   qrImageUrl: string;
+  attendeeCount: Attendee[];
   matches: Match[];
   chats: ChatThread[];
   interests: Interest[];
@@ -117,6 +118,8 @@ export interface Match {
   createdAt: string;
   interests: MatchInterest[];
   desiredIdentifiers: MatchDesiredIdentifier[];
+  viewedByAttendee1?: boolean;
+  viewedByAttendee2?: boolean;
 }
 
 export interface MatchDetails {

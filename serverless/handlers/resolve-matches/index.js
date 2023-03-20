@@ -55,3 +55,5 @@ async function getMatches(eventId, attendeeId) {
 
   return Items.length ? Items : [];
 }
+
+exports.getMatches = getMatches;

@@ -45,6 +45,7 @@ export const LIST_ATTENDEES_QUERY = gql`
         }
         attendeeChats {
           id
+          matchId
         }
         event {
           id
@@ -53,6 +54,11 @@ export const LIST_ATTENDEES_QUERY = gql`
           logoUrl
           letsChatWithUrl
           qrImageUrl
+          attendees {
+            items {
+              id
+            }
+          }
         }
       }
     }

@@ -6,6 +6,6 @@
     <span>{{ attendee.fullName }}</span>
   </div>
   <div class="cm-attendee-card-profile__title">
-    <span>{{ attendee.title }}, {{ attendee.company }}</span>
+    <span>{{ [attendee.title, attendee.company] | stringSeparator }}</span>
   </div>
 </div>

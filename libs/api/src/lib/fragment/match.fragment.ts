@@ -56,6 +56,8 @@ export const matchFragment = gql`
       }
     }
     createdAt
+    viewedByAttendee1
+    viewedByAttendee2
   }
 `;
 
@@ -64,24 +66,31 @@ export const matchAttendeeDetailsFragment = gql`
     id
     fullName
     bio
+    pronouns
     avatarUrl
     title
     interests {
-      interest {
-        id
-        name
+      items {
+        interest {
+          id
+          name
+        }
       }
     }
     desiredIdentifiers {
-      identifier {
-        id
-        name
+      items {
+        identifier {
+          id
+          name
+        }
       }
     }
     ownIdentifiers {
-      identifier {
-        id
-        name
+      items {
+        identifier {
+          id
+          name
+        }
       }
     }
     linkedin
@@ -93,6 +102,8 @@ export const matchAttendeeDetailsFragment = gql`
 
 export const matchDetailsFragment = gql`
   ${matchAttendeeDetailsFragment}
+  ${matchInterestFragment}
+  ${matchDesiredIdentifierFragment}
 
   fragment MatchDetails on Match {
     id
@@ -103,12 +114,18 @@ export const matchDetailsFragment = gql`
       ...MatchAttendeeDetails
     }
     interests {
-      ...MatchInterest
+      items {
+        ...MatchInterest
+      }
     }
     desiredIdentifiers {
-      ...MatchDesiredIdentifier
+      items {
+        ...MatchDesiredIdentifier
+      }
     }
     createdAt
+    viewedByAttendee1
+    viewedByAttendee2
   }
 `;
 
@@ -140,6 +157,8 @@ export interface MatchFragment {
   createdAt: string;
   interests?: { items: MatchInterestFragment[] };
   desiredIdentifiers?: { items: MatchDesiredIdentifierFragment[] };
+  viewedByAttendee1?: boolean;
+  viewedByAttendee2?: boolean;
 }
 
 export interface MatchAttendeeDetailsFragment {
@@ -164,4 +183,5 @@ export interface MatchDetailsFragment {
   createdAt: string;
   interests?: InterestModel[];
   desiredIdentifiers?: IdentifierModel[];
+  viewedBy?: string[];
 }

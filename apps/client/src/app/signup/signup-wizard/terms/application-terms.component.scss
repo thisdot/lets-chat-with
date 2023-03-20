@@ -1,4 +1,5 @@
 @import '../../../../../../../libs/client/shared/styles/src/lib/typography';
+@import '../../../../../../../libs/client/shared/styles/src/lib/breakpoints';
 
 .cm-terms {
   margin-top: 8px;
@@ -9,4 +10,19 @@
   @extend %h300;
   margin-top: 0;
   margin-bottom: 24px;
+}
+
+.cm-button {
+  position: fixed;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  @include media_breakpoint_down(md) {
+    width: 100%;
+    margin: 8px auto;
+    position: relative;
+    bottom: auto;
+  }
 }

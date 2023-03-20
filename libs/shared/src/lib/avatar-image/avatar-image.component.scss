@@ -5,6 +5,7 @@
 
 .avatar-img {
   display: block;
+  object-fit: cover;
   min-width: var(--avatar-min-width);
   min-height: var(--avatar-min-height);
   max-width: var(--avatar-min-width);

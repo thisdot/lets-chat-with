@@ -10,7 +10,7 @@
   "prefix": "cm",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nrwl/angular:webpack-browser",
       "options": {
         "outputPath": "dist/apps/admin",
         "index": "apps/admin/src/index.html",
@@ -42,7 +42,10 @@
         ],
         "styles": ["apps/admin/src/styles.scss"],
         "scripts": [],
-        "allowedCommonJsDependencies": ["graphql-tag", "zen-observable"]
+        "allowedCommonJsDependencies": ["graphql-tag", "zen-observable"],
+        "customWebpackConfig": {
+          "path": "apps/admin/webpack.config.js"
+        }
       },
       "configurations": {
         "production": {
@@ -243,7 +246,7 @@
       "outputs": ["{options.outputPath}"]
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nrwl/angular:webpack-server",
       "options": {
         "browserTarget": "admin:build",
         "port": 4201

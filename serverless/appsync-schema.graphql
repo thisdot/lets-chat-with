@@ -376,6 +376,7 @@ type Mutation {
   deleteReport(input: DeleteReportInput!, condition: ModelReportConditionInput): Report
   updateChatThread(input: UpdateChatThreadInput!, condition: ModelChatThreadConditionInput): ChatThread
   createMessage(input: CreateMessageInput!, condition: ModelMessageConditionInput): Message
+  updateMatch(input: UpdateMatchInput!, condition: ModelMatchConditionInput): Match
   deleteMatch(input: DeleteMatchInput!, condition: ModelMatchConditionInput): Match
   createCandidateInterest(input: CreateCandidateInterestInput!, condition: ModelCandidateInterestConditionInput): CandidateInterest
   updateCandidateInterest(input: UpdateCandidateInterestInput!, condition: ModelCandidateInterestConditionInput): CandidateInterest
@@ -469,6 +470,8 @@ type Match {
   attendee2: Attendee
   interests(interestId: ModelIDKeyConditionInput, filter: ModelMatchInterestFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMatchInterestConnection
   desiredIdentifiers(desiredIdentifierId: ModelIDKeyConditionInput, filter: ModelMatchDesiredIdentifierFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMatchDesiredIdentifierConnection
+  viewedByAttendee1: Boolean
+  viewedByAttendee2: Boolean
   updatedAt: AWSDateTime!
 }
 
@@ -1307,9 +1310,22 @@ input ModelMatchFilterInput {
   attendee2Id: ModelIDInput
   eventId: ModelIDInput
   createdAt: ModelStringInput
+  viewedByAttendee1: ModelBooleanInput
+  viewedByAttendee2: ModelBooleanInput
   and: [ModelMatchFilterInput]
   or: [ModelMatchFilterInput]
   not: ModelMatchFilterInput
+}
+
+input UpdateMatchInput {
+  id: ID!
+  owners: [String!]
+  attendee1Id: ID
+  attendee2Id: ID
+  eventId: ID
+  createdAt: AWSDateTime
+  viewedByAttendee1: Boolean
+  viewedByAttendee2: Boolean
 }
 
 input DeleteMatchInput {
@@ -1321,6 +1337,8 @@ input ModelMatchConditionInput {
   attendee2Id: ModelIDInput
   eventId: ModelIDInput
   createdAt: ModelStringInput
+  viewedByAttendee1: ModelBooleanInput
+  viewedByAttendee2: ModelBooleanInput
   and: [ModelMatchConditionInput]
   or: [ModelMatchConditionInput]
   not: ModelMatchConditionInput

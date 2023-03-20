@@ -5,19 +5,22 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { map, pluck, take } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { Candidate, CandidateType, Identifier, Interest } from '@conf-match/api';
-import { CmBreakpoints, ModalService, Storage } from '@conf-match/shared';
+import { Attendee, Candidate, CandidateType, Identifier, Interest, Match } from '@conf-match/api';
 import {
   ConnectActions,
   ConnectSelectors,
 } from '@conf-match/client/conference/connect/data-access';
+import {
+  MatchesSelectors,
+  MatchesActions,
+} from '@conf-match/client/conference/matches/data-access';
+import { MatchesActions as MatchesMessagesActions } from '@conf-match/client/conference/messages/data-access';
+import { selectAttendee } from '@conf-match/core';
+import { ModalService, Storage } from '@conf-match/shared';
+import { Store } from '@ngrx/store';
+import { combineLatest, Observable, Subscription } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
 import { OnboardingComponent } from './onboarding/onboarding.component';
-import { MatchesSelectors } from '@conf-match/client/conference/matches/data-access';
-import { MatchesActions } from '@conf-match/client/conference/messages/data-access';
-import { BreakpointObserver } from '@angular/cdk/layout';
 
 // TODO: Decide where that key will be kept
 const OnboardingStorageKey = 'cm-onboarding-completed';
@@ -34,9 +37,11 @@ interface ActionOnCandidate {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConnectComponent implements OnInit, OnDestroy {
-  private isMobile$ = this.breakpointObserver.observe(CmBreakpoints.MD.DOWN).pipe(pluck('matches'));
-  currentCandidate$: Observable<Candidate> = this.store.select(
+  readonly currentCandidate$: Observable<Candidate> = this.store.select(
     ConnectSelectors.selectCurrentCandidate
+  );
+  readonly noMoreCandidates$: Observable<Boolean> = this.store.select(
+    ConnectSelectors.selectNoCandidates
   );
   CandidateType = CandidateType;
   candidates$: Observable<Candidate[]> = this.store
@@ -47,15 +52,25 @@ export class ConnectComponent implements OnInit, OnDestroy {
   lastActionInHistory: ActionOnCandidate | null = null;
   isNewConnectionClosed = false;
   newMatch$ = this.store.select(MatchesSelectors.selectNewMatch);
-  newPairMatch$ = this.store.select(MatchesSelectors.selectNewPairMatch);
+  newPairMatch$ = combineLatest([
+    this.store.select(MatchesSelectors.selectNewPairMatch),
+    this.store.select(selectAttendee),
+  ]).pipe(
+    filter(
+      ([pairMatch, attendee]) =>
+        !(
+          (pairMatch?.viewedByAttendee1 && pairMatch?.attendee1Id === attendee.id) ||
+          (pairMatch?.viewedByAttendee2 && pairMatch?.attendee2Id === attendee.id)
+        )
+    )
+  );
   private subscription: Subscription;
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private store: Store<any>,
     private storage: Storage,
-    private modalService: ModalService,
-    private breakpointObserver: BreakpointObserver
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -82,12 +97,28 @@ export class ConnectComponent implements OnInit, OnDestroy {
     this.lastActionInHistory = action;
   }
 
-  onNewConnectionClose() {
+  onNewConnectionClose(match: Match, attendee: Attendee) {
     this.isNewConnectionClosed = true;
+    this.store.dispatch(
+      MatchesActions.markMatchAsRead({
+        matchId: match.id,
+        attendeeId: attendee.id,
+        attendee1Id: match.attendee1Id,
+        attendee2Id: match.attendee2Id,
+      })
+    );
   }
 
-  onNewConnectionChat(matchId: string) {
-    this.store.dispatch(MatchesActions.startChatConversation({ matchId }));
+  onNewConnectionChat(match: Match, attendee: Attendee) {
+    this.store.dispatch(MatchesMessagesActions.startChatConversation({ matchId: match.id }));
+    this.store.dispatch(
+      MatchesActions.markMatchAsRead({
+        matchId: match.id,
+        attendeeId: attendee.id,
+        attendee1Id: match.attendee1Id,
+        attendee2Id: match.attendee2Id,
+      })
+    );
   }
 
   undo() {

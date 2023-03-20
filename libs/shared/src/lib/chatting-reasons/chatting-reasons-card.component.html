@@ -6,7 +6,7 @@
         {{ candidate.attendee.fullName }}
       </div>
       <div class="cm-chatting-reasons-card__attendee__description">
-        {{ candidate.attendee.title }}, {{ candidate.attendee.company }}
+        {{ [candidate.attendee.title, candidate.attendee.company] | stringSeparator }}
       </div>
       <div class="cm-chatting-reasons-card__attendee__pronouns">
         {{ candidate.attendee.pronouns }}
