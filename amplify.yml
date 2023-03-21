@@ -5,7 +5,7 @@ frontend:
     preBuild:
       commands:
         - npm ci --force
-        - if [ "${AWS_BRANCH}" = "main" ]; then npm run affected:lint --base=main; fi
+        - if [ "${AWS_BRANCH}" = "main" ]; then npm run affected:lint -- --base=main; fi
         - if [ "${AWS_BRANCH}" = "develop" ]; then npm run affected:lint"; fi
     build:
       commands:
