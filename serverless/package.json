@@ -21,7 +21,7 @@
     "graphql-transformer-core": "^7.4.5",
     "serverless-appsync-plugin": "^1.12.1",
     "serverless-appsync-simulator": "^0.19.3",
-    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-dynamodb-local": "^1.0.2",
     "serverless-esbuild": "^1.26.2",
     "serverless-offline": "^8.8.0",
     "serverless-offline-local-authorizers-plugin": "^1.2.0",
