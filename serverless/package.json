@@ -23,10 +23,10 @@
     "serverless-appsync-simulator": "^0.19.3",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-esbuild": "^1.26.2",
-    "serverless-offline": "^8.8.0",
+    "serverless-offline": "^12.0.4",
     "serverless-offline-local-authorizers-plugin": "^1.2.0",
     "serverless-plugin-offline-dynamodb-stream": "^1.0.20",
-    "serverless-s3-local": "^0.6.21",
+    "serverless-s3-local": "^0.7.2",
     "cfn-resolver-lib": "1.1.7"
   }
 }
