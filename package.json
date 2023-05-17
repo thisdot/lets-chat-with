@@ -90,7 +90,7 @@
     "apollo-angular": "^5.0.0",
     "apollo-client": "^2.6.9",
     "apollo-link": "^1.2.14",
-    "aws-appsync": "^3.0.3",
+    "aws-appsync": "^4.1.9",
     "core-js": "3.9.1",
     "date-fns": "2.29.3",
     "graphql": "^15.0.0",
